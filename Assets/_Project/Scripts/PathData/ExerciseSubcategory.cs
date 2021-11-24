@@ -3,6 +3,7 @@
     public enum ExerciseSubcategory
     {
         Arms,
-        Legs
+        Legs,
+        Lungs
     }
 }

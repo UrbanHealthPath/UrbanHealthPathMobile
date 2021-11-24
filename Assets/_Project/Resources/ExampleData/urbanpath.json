@@ -1,0 +1,10 @@
+﻿[
+  {
+  "pathId": "gliwice.mala_trasa",
+  "displayedName": "Mala trasa",
+  "approximateDistanceInMeters": 1000,
+  "isCyclic": false,
+  "mapUrl": "https://polsl.pl",
+  "waypoints": ["gliwice.rynek.neptun", "gliwice.rynek.ratusz"]
+  }
+]

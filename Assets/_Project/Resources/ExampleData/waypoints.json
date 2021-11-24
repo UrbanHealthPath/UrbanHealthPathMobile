@@ -1,0 +1,12 @@
+﻿[
+  {
+    "waypointId": "gliwice.rynek.neptun",
+    "coordinates": [50.29418, 18.66561],
+    "zoneName": "Rynek",
+    "type": "Station",
+    "exercises": ["2_quick_breaths"],
+    "displayedName": "Rynek - Neptun",
+    "historicalFacts": ["gliwice.neptun"],
+    "navigationAudio": "navigations/gliwice/neptun.mp3"
+  }
+]

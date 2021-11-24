@@ -8,13 +8,13 @@ namespace PolSl.UrbanHealthPath.PathData
         public event EventHandler Triggered;
         
         public abstract void Trigger();
-        public string WaypointTag { get; }
+        public string WaypointId { get; }
         public Coordinates Coordinates { get; }
         public string ZoneName { get; }
 
         protected Waypoint(string waypointTag, Coordinates coordinates, string zoneName)
         {
-            WaypointTag = waypointTag;
+            WaypointId = waypointTag;
             Coordinates = coordinates;
             ZoneName = zoneName;
         }

@@ -7,7 +7,7 @@ namespace PolSl.UrbanHealthPath.PathData
         event EventHandler Triggering;
         event EventHandler Triggered;
 
-        string WaypointTag { get; }
+        string WaypointId { get; }
         Coordinates Coordinates { get; }
         string ZoneName { get; }
         
