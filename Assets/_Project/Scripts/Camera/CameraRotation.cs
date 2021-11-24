@@ -15,31 +15,31 @@ namespace PolSl.UrbanHealthPath.Camera
         [Tooltip("The minimum angle between rotation of the trackedObject and  x or z axis, that will cause camera 90 degrees rotation.")]
         [Range(10.0f, 40.0f)]
         public float minAngle = 25.0f;
-
-        [Tooltip("Reference to the point around which the camera should rotate. ")]
-        public Transform rotationPoint;
+        
+        private Transform _rotationPoint;
         
         private Quaternion _targetRotation;
         
-        private float _rotationSpeed = 5.0f;
+        private float _rotationSpeed = 2.5f;
 
         public void Start()
         {
+            _rotationPoint = this.transform.parent;
             _targetRotation = Quaternion.Euler(GetNewEulerAngles(0.0f));
         }
 
         void Update()
         {
             RotateCamera();
-            rotationPoint.localRotation =
-                Quaternion.Slerp(rotationPoint.localRotation, _targetRotation , Time.deltaTime * _rotationSpeed);
+            _rotationPoint.localRotation =
+                Quaternion.Slerp(_rotationPoint.localRotation, _targetRotation , Time.deltaTime * _rotationSpeed);
         }
 
         private void RotateCamera()
         {
             Quaternion zeroAngle = Quaternion.Euler(0f, 180f, 0f);
-            var trackedObjectRotation = trackedObject.localRotation.eulerAngles.y;
-            var angle = Mathf.DeltaAngle(0.0f, trackedObjectRotation);
+            float trackedObjectRotation = trackedObject.localRotation.eulerAngles.y;
+            float angle = Mathf.DeltaAngle(0.0f, trackedObjectRotation);
 
             if (angle > 90 - minAngle && angle < 90 + minAngle &&
                 !Mathf.Approximately(this.transform.localRotation.eulerAngles.z, 270.0f))
@@ -65,8 +65,8 @@ namespace PolSl.UrbanHealthPath.Camera
         
         private Vector3 GetNewEulerAngles(float newAngle)
         {
-            var currentEuler = rotationPoint.localRotation.eulerAngles;
-            var euler = Vector3.zero;
+            Vector3 currentEuler = _rotationPoint.localRotation.eulerAngles;
+            Vector3 euler = Vector3.zero;
 
             euler.y = -newAngle;
             euler.x = currentEuler.x;
