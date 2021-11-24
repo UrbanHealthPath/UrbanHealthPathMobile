@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackedObject: {fileID: 551685608}
-  minAngle: 70
+  minAngle: 22
   rotationPoint: {fileID: 1559018854}
 --- !u!1 &1160073389
 GameObject:

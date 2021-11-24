@@ -12,9 +12,9 @@ namespace PolSl.UrbanHealthPath.Camera
         [Tooltip("An object that determines camera rotation.")]
         public Transform trackedObject;
 
-        [Tooltip("The minimum angle of rotation of the trackedObject at which the camera will rotate 90 degrees. ")]
-        [Range(60.0f, 100.0f)]
-        public float minAngle = 70.0f;
+        [Tooltip("The minimum angle between rotation of the trackedObject and  x or z axis, that will cause camera 90 degrees rotation.")]
+        [Range(10.0f, 40.0f)]
+        public float minAngle = 25.0f;
 
         [Tooltip("Reference to the point around which the camera should rotate. ")]
         public Transform rotationPoint;
@@ -41,7 +41,7 @@ namespace PolSl.UrbanHealthPath.Camera
             var trackedObjectRotation = trackedObject.localRotation.eulerAngles.y;
             var angle = Mathf.DeltaAngle(0.0f, trackedObjectRotation);
 
-            if (angle > minAngle && angle < 180 - minAngle &&
+            if (angle > 90 - minAngle && angle < 90 + minAngle &&
                 !Mathf.Approximately(this.transform.localRotation.eulerAngles.z, 270.0f))
             {
                 _targetRotation = Quaternion.Euler(GetNewEulerAngles(270.0f));
@@ -51,7 +51,7 @@ namespace PolSl.UrbanHealthPath.Camera
             {
                 _targetRotation = Quaternion.Euler(GetNewEulerAngles(180.0f));
             }
-            else if (angle > -(180 - minAngle) && angle < -minAngle &&
+            else if (angle > -90 - minAngle && angle < -90 + minAngle &&
                      !Mathf.Approximately(this.transform.localRotation.eulerAngles.z, 90.0f))
             {
                 _targetRotation = Quaternion.Euler(GetNewEulerAngles(90.0f));
@@ -62,6 +62,7 @@ namespace PolSl.UrbanHealthPath.Camera
                 _targetRotation = Quaternion.Euler(GetNewEulerAngles(0.0f));
             }
         }
+        
         private Vector3 GetNewEulerAngles(float newAngle)
         {
             var currentEuler = rotationPoint.localRotation.eulerAngles;
