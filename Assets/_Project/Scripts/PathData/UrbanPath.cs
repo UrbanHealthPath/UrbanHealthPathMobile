@@ -6,9 +6,20 @@ namespace PolSl.UrbanHealthPath.PathData
     {
         private string _pathId;
         private string _displayedName;
-        private List<IWaypoint> _waypoints;
         private int _approximateDistanceInMeters;
         private bool _isCyclic;
-        private string _mapUrl;
+
+        public List<IWaypoint> Waypoints { get; }
+        public string MapUrl { get; }
+
+        public UrbanPath(string pathId, string displayedName, int approximateDistanceInMeters, bool isCyclic, string mapUrl, List<IWaypoint> waypoints)
+        {
+            _pathId = pathId;
+            _displayedName = displayedName;
+            _approximateDistanceInMeters = approximateDistanceInMeters;
+            _isCyclic = isCyclic;
+            MapUrl = mapUrl;
+            Waypoints = waypoints;
+        }
     }
 }

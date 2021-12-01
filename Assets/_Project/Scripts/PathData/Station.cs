@@ -10,6 +10,7 @@ namespace PolSl.UrbanHealthPath.PathData
         private List<Exercise> _exercises;
         private List<HistoricalFact> _historicalFacts;
         private AudioClip _navigationAudio;
+        private int _excerciesToShow;
         
         public override void Trigger()
         {

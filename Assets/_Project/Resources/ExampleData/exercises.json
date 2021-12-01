@@ -1,10 +1,15 @@
 ﻿[
   {
     "exerciseId": "2_quick_breaths",
+    "displayedName": "2 quick breaths",
     "category": "Sensorial",
     "subcategory": "Lungs",
-    "description": "Breathe in and out",
-    "minDifficulty": 1,
-    "maxDifficulty": 3
+    "levels": [
+      {
+        "levelId": "easy",
+        "description": "Breathe in and out",
+        "type": "text"
+      }
+    ]
   }
 ]

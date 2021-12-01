@@ -1,14 +1,18 @@
-﻿namespace PolSl.UrbanHealthPath.PathData
+﻿using Mapbox.Utils;
+
+namespace PolSl.UrbanHealthPath.PathData
 {
     public readonly struct Coordinates
     {
-        public decimal X { get; }
-        public decimal Y { get; }
+        public double X { get; }
+        public double Y { get; }
 
-        public Coordinates(decimal x, decimal y)
+        public Coordinates(double x, double y)
         {
             X = x;
             Y = y;
         }
+
+        public static implicit operator Vector2d(Coordinates coordinates) => new Vector2d(coordinates.X, coordinates.Y);
     }
 }

@@ -12,9 +12,9 @@ namespace PolSl.UrbanHealthPath.PathData
         public Coordinates Coordinates { get; }
         public string ZoneName { get; }
 
-        protected Waypoint(string waypointTag, Coordinates coordinates, string zoneName)
+        protected Waypoint(string waypointId, Coordinates coordinates, string zoneName)
         {
-            WaypointId = waypointTag;
+            WaypointId = waypointId;
             Coordinates = coordinates;
             ZoneName = zoneName;
         }

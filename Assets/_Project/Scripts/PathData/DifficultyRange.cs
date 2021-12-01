@@ -1,6 +1,6 @@
 ﻿namespace PolSl.UrbanHealthPath.PathData
 {
-    public struct DifficultyRange
+    public readonly struct DifficultyRange
     {
         public int MinDifficulty { get; }
         public int MaxDifficulty { get; }

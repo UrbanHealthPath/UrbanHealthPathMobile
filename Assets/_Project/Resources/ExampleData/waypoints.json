@@ -3,10 +3,30 @@
     "waypointId": "gliwice.rynek.neptun",
     "coordinates": [50.29418, 18.66561],
     "zoneName": "Rynek",
-    "type": "Station",
+    "type": "station",
     "exercises": ["2_quick_breaths"],
     "displayedName": "Rynek - Neptun",
     "historicalFacts": ["gliwice.neptun"],
     "navigationAudio": "navigations/gliwice/neptun.mp3"
+  },
+  {
+    "waypointId": "gliwice.rynek.ratusz",
+    "coordinates": [50.29387, 18.66577],
+    "zoneName": "Rynek",
+    "type": "station",
+    "exercises": [["2_quick_breaths"]],
+    "displayedName": "Rynek - Rzeźba na ratuszu",
+    "historicalFacts": ["gliwice.ratusz"],
+    "navigationAudio": "navigations/gliwice/ratusz.mp3"
+  },
+  {
+    "waypointId": "gliwice.rynek.arkady",
+    "coordinates": [50.29395, 18.66597],
+    "zoneName": "Rynek",
+    "type": "station",
+    "exercises": ["2_quick_breaths"],
+    "displayedName": "Rynek - Arkady",
+    "historicalFacts": ["gliwice.arkady"],
+    "navigationAudio": "navigations/gliwice/arkady.mp3"
   }
 ]
