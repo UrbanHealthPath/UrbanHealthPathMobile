@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 289492582927451191}
   - component: {fileID: 289492582927451192}
   m_Layer: 5
-  m_Name: BasicScreen
+  m_Name: BasicView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
