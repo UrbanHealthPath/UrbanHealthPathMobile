@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using PolSl.UrbanHealthPath.UserInterface;
@@ -7,15 +8,26 @@ using UnityEngine.UI;
 namespace PolSl.UrbanHealthPath.UserInterface
 {
     [RequireComponent(typeof(RectTransform))]
-    public class MainView : MonoBehaviour, IView
+    public class MainView : MonoBehaviour, IView, IPopupable
     {
         private RectTransform _view;
         
-        public Button profileButton, helpButton, settingsButton, startPathButton, exitButton; 
+        [SerializeField] private Button profileButton, helpButton, settingsButton, startPathButton, exitButton;
 
+        [SerializeField]
+        private RectTransform _popupArea;
+        public RectTransform PopupArea
+        {
+            get { return _popupArea;  }
+        }
         public void Start()
         {
             _view = GetComponent<RectTransform>();
+            profileButton.onClick.AddListener(DisplayProfile);
+            settingsButton.onClick.AddListener(DisplaySettings);
+            helpButton.onClick.AddListener(DisplayHelpMenu);
+            startPathButton.onClick.AddListener(StartPath);
+            exitButton.onClick.AddListener(QuitApplication);
         }
 
         // public void Initialize()
@@ -34,40 +46,45 @@ namespace PolSl.UrbanHealthPath.UserInterface
             this.gameObject.SetActive(false);
         }
 
-        public void DisplayProfile()
+        private void DisplayProfile()
         {
-            Debug.Log("Login without google");
+            Debug.Log("profile");
             
-            ViewManager.GetInstance().OpenView(ViewType.Main);
         }
-        
-        public void DisplaySettings()
+
+        private void DisplaySettings()
         {
-            Debug.Log("Login with google");
+            Debug.Log("settings");
             
-            ViewManager.GetInstance().OpenView(ViewType.Main);
         }
-        
-        public void DisplayHelpMenu()
+
+        private void DisplayHelpMenu()
         {
-            Debug.Log("Login with google");
+            Debug.Log("Help");
             
-            ViewManager.GetInstance().OpenView(ViewType.Main);
         }
-        
-        public void StartPath()
+
+        private void StartPath()
         {
-            Debug.Log("Login with google");
-            
-            ViewManager.GetInstance().OpenView(ViewType.Main);
+            Debug.Log("Start path");
+            ViewManager.GetInstance().OpenView(ViewType.Path);
         }
-        
-        public void QuitApplication()
+
+        private void QuitApplication()
         {
-            Debug.Log("Login with google");
+            Debug.Log("Quit");
             
-            ViewManager.GetInstance().OpenView(ViewType.Main);
+         //   ViewManager.GetInstance().OpenView(ViewType.Main);
+           // transform.GetComponent<>()
         }
-        
+
+        public void OnDestroy()
+        {
+            profileButton.onClick.RemoveListener(DisplayProfile);
+            settingsButton.onClick.RemoveListener(DisplaySettings);
+            helpButton.onClick.RemoveListener(DisplayHelpMenu);
+            startPathButton.onClick.RemoveListener(StartPath);
+            exitButton.onClick.RemoveListener(QuitApplication);
+        }
     }
 }

@@ -13,10 +13,10 @@ namespace PolSl.UrbanHealthPath.UserInterface
         private RectTransform _view;
         
         [Tooltip("Button for login with Google. ")]
-        public Button loginButton; 
+        [SerializeField] private Button loginButton; 
         
         [Tooltip("Button for continuing without login. ")]
-        public Button continueWithoutLoginButton;
+        [SerializeField] private Button continueWithoutLoginButton;
         
         
         public void Start()
@@ -42,14 +42,14 @@ namespace PolSl.UrbanHealthPath.UserInterface
             this.gameObject.SetActive(false);
         }
 
-        public void ContinueWithoutLogin()
+        private void ContinueWithoutLogin()
         {
             Debug.Log("Login without google");
             
             ViewManager.GetInstance().OpenView(ViewType.Main);
         }
-        
-        public void LoginWithGoogle()
+
+        private void LoginWithGoogle()
         {
             Debug.Log("Login with google");
             

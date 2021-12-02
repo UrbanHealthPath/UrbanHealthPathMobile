@@ -4,6 +4,7 @@
     {
         Main,
         Login,
-        Path
+        Path,
+        Station
     }
 }

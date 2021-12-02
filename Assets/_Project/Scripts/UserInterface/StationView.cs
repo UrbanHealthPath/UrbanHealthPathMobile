@@ -8,14 +8,21 @@ using UnityEngine.UI;
 namespace PolSl.UrbanHealthPath.UserInterface
 {
     [RequireComponent(typeof(RectTransform))]
-    public class StationView : MonoBehaviour, IView
+    public class StationView : MonoBehaviour, IView, IPopupable
     {
 
         private RectTransform _view;
 
-        public Button sensorialButton, motorialButton, historicInfoButton, mainMenuButton, returnButton;
+        [SerializeField] private Button sensorialButton, motorialButton, historicInfoButton, mainMenuButton, returnButton;
 
-        public TextMeshProUGUI headerText;
+        [SerializeField] private TextMeshProUGUI headerText;
+        
+        [SerializeField]
+        private RectTransform _popupArea;
+        public RectTransform PopupArea
+        {
+            get { return _popupArea;  }
+        }
         
         public void Start()
         {
@@ -42,43 +49,43 @@ namespace PolSl.UrbanHealthPath.UserInterface
             this.gameObject.SetActive(false);
         }
 
-        public void DisplayMototialExercise()
+        private void DisplayMototialExercise()
         {
             Debug.Log("Motorial");
             
           //  ViewManager.GetInstance().OpenView(ViewType.Main);
         }
-        
-        public void DisplaySensorialExercise()
+
+        private void DisplaySensorialExercise()
         {
             Debug.Log("Sensorial");
             
            // ViewManager.GetInstance().OpenView(ViewType.Main);
         }
-        
-        public void DisplayHistoricInfo()
+
+        private void DisplayHistoricInfo()
         {
             Debug.Log("Historic info");
             
           //  ViewManager.GetInstance().OpenView(ViewType.Main);
         }
-        
-        public void Return()
+
+        private void Return()
         {
             Debug.Log("return");
             ChangeHeaderText("sheeesh");
             
            // ViewManager.GetInstance().OpenView(ViewType.Main);
         }
-        
-        public void GoToMainMenu()
+
+        private void GoToMainMenu()
         {
             Debug.Log("main menu");
             
            // ViewManager.GetInstance().OpenView(ViewType.Main);
         }
 
-        public void ChangeHeaderText(String newText)
+        private void ChangeHeaderText(String newText)
         {
             headerText.text = newText;
         }

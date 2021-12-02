@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using PolSl.UrbanHealthPath.UserInterface;
 using TMPro;
+using UnityEditor.Il2Cpp;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,13 +11,20 @@ namespace PolSl.UrbanHealthPath.UserInterface
 {
     [RequireComponent(typeof(RectTransform))]
     
-    public class PathView : MonoBehaviour, IView
+    public class PathView : MonoBehaviour, IView, IPopupable
     {
         private RectTransform _view;
         
-        public Button endPathButton, nextStationInfoButton, helpButton, imHereButton; 
+        [SerializeField] private Button endPathButton, nextStationInfoButton, helpButton, imHereButton; 
 
-        public TextMeshProUGUI headerText;
+        [SerializeField] private TextMeshProUGUI headerText;
+        
+        [SerializeField]
+        private RectTransform _popupArea;
+        public RectTransform PopupArea
+        {
+            get { return _popupArea;  }
+        }
         public void Start()
         {
             _view = GetComponent<RectTransform>();
@@ -42,28 +50,32 @@ namespace PolSl.UrbanHealthPath.UserInterface
             this.gameObject.SetActive(false);
         }
 
-        public void FinishPath()
+        private void FinishPath()
         {
             Debug.Log("end patch");
             
         }
-        
-        public void DisplayHelpMenu()
+
+        private void DisplayHelpMenu()
         {
             Debug.Log("help");
             
         }
-        
-        public void DisplayNextStationInfo()
+
+        private void DisplayNextStationInfo()
         {
             Debug.Log("next station info");
-            
+            RectTransform rectTransform = ViewManager.GetInstance().CurrentView.GetComponent<IPopupable>().PopupArea;
+            PopupPayload payload = new PopupPayload(rectTransform.anchoredPosition, rectTransform.sizeDelta);
+            PopupManager.GetInstance().OpenPopup(PopupType.WithContent, payload);
         }
-        
-        public void ConfirnArrival()
+
+        private void ConfirnArrival()
         {
             Debug.Log("confirm arrival");
-            
+
+            ViewManager.GetInstance().OpenView(ViewType.Station);
+
         }
 
         private bool DisplayConfirmActionPopup()
@@ -78,5 +90,6 @@ namespace PolSl.UrbanHealthPath.UserInterface
             nextStationInfoButton.onClick.RemoveListener(DisplayNextStationInfo);
             imHereButton.onClick.RemoveListener(ConfirnArrival);
         }
+        
     }
 }
