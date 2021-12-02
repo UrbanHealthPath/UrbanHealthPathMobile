@@ -6,9 +6,16 @@
     "subcategory": "Lungs",
     "levels": [
       {
-        "levelId": "easy",
-        "description": "Breathe in and out",
-        "type": "text"
+        "minDifficulty": 1,
+        "maxDifficulty": 3,
+        "type": "text",
+        "description": "Breathe in and out"
+      },
+      {
+        "minDifficulty": 2,
+        "maxDifficulty": 3,
+        "type": "text",
+        "description": "Breathe in and out faster"
       }
     ]
   }

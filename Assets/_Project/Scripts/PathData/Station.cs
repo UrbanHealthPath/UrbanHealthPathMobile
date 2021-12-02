@@ -9,16 +9,19 @@ namespace PolSl.UrbanHealthPath.PathData
         private string _displayedName;
         private List<Exercise> _exercises;
         private List<HistoricalFact> _historicalFacts;
-        private AudioClip _navigationAudio;
-        private int _excerciesToShow;
-        
+        private string _navigationAudio;
+
         public override void Trigger()
         {
             throw new NotImplementedException();
         }
 
-        public Station(string waypointTag, Coordinates coordinates, string zoneName) : base(waypointTag, coordinates, zoneName)
+        public Station(string waypointId, Coordinates coordinates, string zoneName, string displayedName, List<Exercise> exercises, List<HistoricalFact> historicalFacts, string navigationAudio) : base(waypointId, coordinates, zoneName)
         {
+            _displayedName = displayedName;
+            _exercises = exercises;
+            _historicalFacts = historicalFacts;
+            _navigationAudio = navigationAudio;
         }
     }
 }

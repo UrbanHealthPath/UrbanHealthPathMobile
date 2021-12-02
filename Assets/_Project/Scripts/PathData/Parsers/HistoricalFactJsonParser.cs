@@ -15,7 +15,7 @@ namespace PolSl.UrbanHealthPath
 
         protected override HistoricalFact ParseJsonObject(JObject json)
         {
-            return new HistoricalFact(json["ID_KEY"].Value<string>(), json[NAME_KEY].Value<string>(), json[DESCRIPTION_KEY].Value<string>());
+            return new HistoricalFact(json[ID_KEY].Value<string>(), json[NAME_KEY].Value<string>(), json[DESCRIPTION_KEY].Value<string>());
         }
     }
 }

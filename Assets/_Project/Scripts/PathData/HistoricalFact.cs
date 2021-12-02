@@ -2,13 +2,14 @@
 {
     public class HistoricalFact
     {
-        private string _historicalFactId;
         private string _name;
         private string _description;
 
+        public string HistoricalFactId { get; }
+
         public HistoricalFact(string historicalFactId, string name, string description)
         {
-            _historicalFactId = historicalFactId;
+            HistoricalFactId = historicalFactId;
             _name = name;
             _description = description;
         }

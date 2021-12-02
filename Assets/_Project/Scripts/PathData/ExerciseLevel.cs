@@ -1,8 +1,12 @@
 ﻿namespace PolSl.UrbanHealthPath.PathData
 {
-    public class ExerciseLevel
+    public abstract class ExerciseLevel
     {
-        private string _levelId;
-        private string _description;
+        private DifficultyRange _difficultyRange;
+
+        protected ExerciseLevel(DifficultyRange difficultyRange)
+        {
+            _difficultyRange = difficultyRange;
+        }
     }
 }
