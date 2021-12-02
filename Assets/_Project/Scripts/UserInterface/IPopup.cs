@@ -2,20 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PolSl.UrbanHealthPath
+namespace PolSl.UrbanHealthPath.UserInterface
 {
-    public class IPopup : MonoBehaviour
+    public interface IPopup
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        public RectTransform PopupArea { get;  }
+        public void Display();
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
+        public void Initialize();
+
+        public void Close();
+
+        public void InitSizeAndPosition(PopupPayload payload);
     }
 }

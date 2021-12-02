@@ -2,10 +2,7 @@
 {
     public enum PopupType
     {
-        Profile,
-        Help,
-        Settings,
-        Information,
-        Result
+        Confirmation,
+        WithContent
     }
 }
