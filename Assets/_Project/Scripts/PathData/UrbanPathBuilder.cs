@@ -36,7 +36,7 @@ namespace PolSl.UrbanHealthPath.PathData
                 exercises.Add(exerciseParser.Parse(exercise));
             }
             
-            WaypointJsonParser stationParser = new StationJsonParser(exercises, historicalFacts);
+            JsonObjectParser<Station> stationParser = new StationJsonParser(exercises, historicalFacts);
             JsonObjectParser<Waypoint> waypointParser = new WaypointJsonParser(stationParser);
                 
             TextAsset waypointsFile = Resources.Load<TextAsset>("ExampleData/waypoints");

@@ -18,5 +18,19 @@
         "description": "Breathe in and out faster"
       }
     ]
+  },
+  {
+    "exerciseId": "jumping_jacks",
+    "displayedName": "Jumping jacks",
+    "category": "Motorical",
+    "subcategory": "Arms",
+    "levels": [
+      {
+        "minDifficulty": 3,
+        "maxDifficulty": 5,
+        "type": "text",
+        "description": "Do three jumping jacks"
+      }
+    ]
   }
 ]

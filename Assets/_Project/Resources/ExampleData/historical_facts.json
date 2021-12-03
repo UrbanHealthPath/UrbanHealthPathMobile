@@ -3,5 +3,15 @@
     "historicalFactId": "gliwice.neptun",
     "name": "Neptun",
     "description": "Fajny Neptun"
+  },
+  {
+    "historicalFactId": "gliwice.ratusz",
+    "name": "Ratusz",
+    "description": "Fajniejszy Ratusz"
+  },
+  {
+    "historicalFactId": "gliwice.arkady",
+    "name": "Arkady",
+    "description": "Najfajniejsze Arkady"
   }
 ]

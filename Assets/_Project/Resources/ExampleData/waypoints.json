@@ -14,7 +14,7 @@
     "coordinates": [50.29387, 18.66577],
     "zoneName": "Rynek",
     "type": "station",
-    "exercises": [["2_quick_breaths"]],
+    "exercises": [["2_quick_breaths"], ["jumping_jacks"]],
     "displayedName": "Rynek - Rzeźba na ratuszu",
     "historicalFacts": ["gliwice.ratusz"],
     "navigationAudio": "navigations/gliwice/ratusz.mp3"
@@ -24,7 +24,7 @@
     "coordinates": [50.29395, 18.66597],
     "zoneName": "Rynek",
     "type": "station",
-    "exercises": ["2_quick_breaths"],
+    "exercises": ["2_quick_breaths", "jumping_jacks"],
     "displayedName": "Rynek - Arkady",
     "historicalFacts": ["gliwice.arkady"],
     "navigationAudio": "navigations/gliwice/arkady.mp3"

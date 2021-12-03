@@ -6,8 +6,11 @@ using Random = System.Random;
 
 namespace PolSl.UrbanHealthPath
 {
-    public class StationJsonParser : WaypointJsonParser
+    public class StationJsonParser : ValidatedJsonObjectParser<Station>
     {
+        private const string ID_KEY = "waypointId";
+        private const string COORDINATES_KEY = "coordinates";
+        private const string ZONE_NAME_KEY = "zoneName";
         private const string EXERCISES_KEY = "exercises";
         private const string DISPLAYED_NAME_KEY = "displayedName";
         private const string HISTORICAL_FACTS_KEY = "historicalFacts";
@@ -17,13 +20,23 @@ namespace PolSl.UrbanHealthPath
         private readonly List<HistoricalFact> _historicalFacts;
 
         public StationJsonParser(List<Exercise> exercises, List<HistoricalFact> historicalFacts) : base(new[]
-            {EXERCISES_KEY, DISPLAYED_NAME_KEY, HISTORICAL_FACTS_KEY, NAVIGATION_AUDIO_KEY})
+            {ID_KEY, COORDINATES_KEY, ZONE_NAME_KEY, EXERCISES_KEY, DISPLAYED_NAME_KEY, HISTORICAL_FACTS_KEY, NAVIGATION_AUDIO_KEY})
         {
             _exercises = exercises;
             _historicalFacts = historicalFacts;
         }
 
-        protected override Waypoint ParseJsonObject(JObject json)
+        protected override void ValidateJson(JObject json)
+        {
+            base.ValidateJson(json);
+            
+            if (json[COORDINATES_KEY].Type != JTokenType.Array)
+            {
+                throw new ParsingException();
+            }
+        }
+
+        protected override Station ParseJsonObject(JObject json)
         {
             JArray coordinatesArray = (JArray) json[COORDINATES_KEY];
             Coordinates coordinates =
@@ -49,7 +62,7 @@ namespace PolSl.UrbanHealthPath
 
                 if (hasExerciseGroups)
                 {
-                    int chosenGroup = new Random().Next(0, jsonExercises.Count - 1);
+                    int chosenGroup = new Random().Next(0, jsonExercises.Count);
                     jsonExercisesToAdd = jsonExercises[chosenGroup];
                 }
                 else
