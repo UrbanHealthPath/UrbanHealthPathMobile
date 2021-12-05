@@ -7,7 +7,7 @@
     "exercises": ["2_quick_breaths"],
     "displayedName": "Rynek - Neptun",
     "historicalFacts": ["gliwice.neptun"],
-    "navigationAudio": "navigations/gliwice/neptun.mp3"
+    "navigationAudio": "audio.navigation.neptun"
   },
   {
     "waypointId": "gliwice.rynek.ratusz",
@@ -17,7 +17,7 @@
     "exercises": [["2_quick_breaths"], ["jumping_jacks"]],
     "displayedName": "Rynek - Rzeźba na ratuszu",
     "historicalFacts": ["gliwice.ratusz"],
-    "navigationAudio": "navigations/gliwice/ratusz.mp3"
+    "navigationAudio": "audio.navigation.ratusz"
   },
   {
     "waypointId": "gliwice.rynek.arkady",
@@ -27,6 +27,6 @@
     "exercises": ["2_quick_breaths", "jumping_jacks"],
     "displayedName": "Rynek - Arkady",
     "historicalFacts": ["gliwice.arkady"],
-    "navigationAudio": "navigations/gliwice/arkady.mp3"
+    "navigationAudio": "audio.navigation.arkady"
   }
 ]

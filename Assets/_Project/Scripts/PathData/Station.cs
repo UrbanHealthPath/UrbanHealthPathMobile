@@ -9,14 +9,14 @@ namespace PolSl.UrbanHealthPath.PathData
         private string _displayedName;
         private List<Exercise> _exercises;
         private List<HistoricalFact> _historicalFacts;
-        private string _navigationAudio;
+        private MediaFile _navigationAudio;
 
         public override void Trigger()
         {
             throw new NotImplementedException();
         }
 
-        public Station(string waypointId, Coordinates coordinates, string zoneName, string displayedName, List<Exercise> exercises, List<HistoricalFact> historicalFacts, string navigationAudio) : base(waypointId, coordinates, zoneName)
+        public Station(string waypointId, Coordinates coordinates, string zoneName, string displayedName, List<Exercise> exercises, List<HistoricalFact> historicalFacts, MediaFile navigationAudio) : base(waypointId, coordinates, zoneName)
         {
             _displayedName = displayedName;
             _exercises = exercises;

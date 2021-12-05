@@ -2,8 +2,8 @@
   {
     "exerciseId": "2_quick_breaths",
     "displayedName": "2 quick breaths",
-    "category": "Sensorial",
-    "subcategory": "Lungs",
+    "category": "sensorial",
+    "subcategory": "lungs",
     "levels": [
       {
         "minDifficulty": 1,
@@ -22,8 +22,8 @@
   {
     "exerciseId": "jumping_jacks",
     "displayedName": "Jumping jacks",
-    "category": "Motorical",
-    "subcategory": "Arms",
+    "category": "motorical",
+    "subcategory": "arms",
     "levels": [
       {
         "minDifficulty": 3,

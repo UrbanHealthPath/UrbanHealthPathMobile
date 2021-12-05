@@ -1,0 +1,20 @@
+﻿[
+  {
+    "mediaId": "audio.navigation.neptun",
+    "type": "audio",
+    "storageType": "local",
+    "path": "navigations/gliwice/neptun.mp3"
+  },
+  {
+    "mediaId": "audio.navigation.ratusz",
+    "type": "audio",
+    "storageType": "local",
+    "path": "navigations/gliwice/ratusz.mp3"
+  },
+  {
+    "mediaId": "audio.navigation.arkady",
+    "type": "audio",
+    "storageType": "local",
+    "path": "navigations/gliwice/arkady.mp3"
+  }
+]

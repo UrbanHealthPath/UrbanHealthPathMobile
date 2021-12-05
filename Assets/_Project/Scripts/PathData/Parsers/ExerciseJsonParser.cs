@@ -40,12 +40,12 @@ namespace PolSl.UrbanHealthPath
                 exerciseLevels.Add(_exerciseLevelParser.Parse(level));
             }
 
-            if (!Enum.TryParse(json[CATEGORY_KEY].Value<string>(), out ExerciseCategory category))
+            if (!Enum.TryParse(json[CATEGORY_KEY].Value<string>(), true, out ExerciseCategory category))
             {
                 throw new ParsingException();
             }
             
-            if (!Enum.TryParse(json[SUBCATEGORY_KEY].Value<string>(), out ExerciseSubcategory subcategory))
+            if (!Enum.TryParse(json[SUBCATEGORY_KEY].Value<string>(), true, out ExerciseSubcategory subcategory))
             {
                 throw new ParsingException();
             }

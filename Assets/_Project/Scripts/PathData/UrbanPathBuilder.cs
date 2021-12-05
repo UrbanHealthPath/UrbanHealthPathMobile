@@ -9,12 +9,30 @@ namespace PolSl.UrbanHealthPath.PathData
     {
         public UrbanPath Build()
         {
+            List<MediaFile> mediaFiles = BuildMediaFiles("ExampleData/media_files");
             List<HistoricalFact> historicalFacts = BuildHistoricalFacts("ExampleData/historical_facts");
             List<Exercise> exercises = BuildExercises("ExampleData/exercises");
-            List<IWaypoint> waypoints = BuildWaypoints("ExampleData/waypoints", exercises, historicalFacts);
+            List<IWaypoint> waypoints = BuildWaypoints("ExampleData/waypoints", exercises, historicalFacts, mediaFiles);
             List<UrbanPath> paths = BuildUrbanPaths("ExampleData/urbanpath", waypoints);
 
             return paths[0];
+        }
+
+        private List<MediaFile> BuildMediaFiles(string filePath)
+        {
+            JsonObjectParser<MediaFile> mediaFileParser = new MediaFileJsonParser();
+            TextAsset mediaFilesFile = Resources.Load<TextAsset>(filePath);
+            string mediaFilesJson = mediaFilesFile.text;
+
+            JArray mediaFilesJArray = JsonConvert.DeserializeObject<JArray>(mediaFilesJson);
+            List<MediaFile> mediaFiles = new List<MediaFile>();
+
+            foreach (JObject mediaFile in mediaFilesJArray)
+            {
+                mediaFiles.Add(mediaFileParser.Parse(mediaFile));
+            }
+
+            return mediaFiles;
         }
 
         private List<UrbanPath> BuildUrbanPaths(string filePath, List<IWaypoint> waypoints)
@@ -36,9 +54,9 @@ namespace PolSl.UrbanHealthPath.PathData
             return paths;
         }
 
-        private List<IWaypoint> BuildWaypoints(string filePath, List<Exercise> exercises, List<HistoricalFact> historicalFacts)
+        private List<IWaypoint> BuildWaypoints(string filePath, List<Exercise> exercises, List<HistoricalFact> historicalFacts, List<MediaFile> mediaFiles)
         {
-            JsonObjectParser<Station> stationParser = new StationJsonParser(exercises, historicalFacts);
+            JsonObjectParser<Station> stationParser = new StationJsonParser(exercises, historicalFacts, mediaFiles);
             JsonObjectParser<Waypoint> waypointParser = new WaypointJsonParser(stationParser);
 
             TextAsset waypointsFile = Resources.Load<TextAsset>(filePath);
