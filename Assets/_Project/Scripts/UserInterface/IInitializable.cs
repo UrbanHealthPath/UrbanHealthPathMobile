@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.UserInterface
 {
-    public interface IView
+    public interface IInitializable
     {
-        public void Display();
-        public void Close();
+        public void Initialize();
     }
 }

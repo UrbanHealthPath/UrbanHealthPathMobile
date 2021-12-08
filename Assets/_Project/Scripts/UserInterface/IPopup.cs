@@ -4,14 +4,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.UserInterface
 {
-    public interface IPopup
+    public interface IPopup : IDisplayable
     {
         public RectTransform PopupArea { get;  }
-        public void Display();
-
-        public void Initialize();
-
-        public void Close();
 
         public void InitSizeAndPosition(PopupPayload payload);
     }
