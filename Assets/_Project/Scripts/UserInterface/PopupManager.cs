@@ -11,8 +11,18 @@ namespace PolSl.UrbanHealthPath.UserInterface
         [Serializable]
         public struct Popup
         {
-            public PopupType type;
-            public GameObject popupObject;
+            [SerializeField] private PopupType type;
+            [SerializeField] private GameObject popupObject;
+
+            public PopupType GetPopupType()
+            {
+                return type;
+            }
+
+            public GameObject GetPopupObject()
+            {
+                return popupObject;
+            }
         }
 
         [SerializeField] private Popup[] popupsWithTypes;
@@ -33,11 +43,15 @@ namespace PolSl.UrbanHealthPath.UserInterface
             {
                 _instance = this;
             }
+        }
 
-            _popups = new Dictionary<PopupType, GameObject>();
-            foreach (var popup in popupsWithTypes)
+        private void Start()
+        {
+            _instance._currentPopup = null;
+            _instance._popups = new Dictionary<PopupType, GameObject>();
+            foreach (var popup in _instance.popupsWithTypes)
             {
-                _popups.Add(popup.type, popup.popupObject);
+                _instance._popups.Add(popup.GetPopupType(), popup.GetPopupObject());
             }
         }
 
@@ -53,14 +67,14 @@ namespace PolSl.UrbanHealthPath.UserInterface
 
         public IPopup OpenPopup(PopupType popupType, [CanBeNull] PopupPayload payload = null)
         {
-            _currentPopup.Destroy();
-            _currentPopup = Instantiate(_popups[popupType]);
+            _instance._currentPopup.Destroy();
+            _instance._currentPopup = Instantiate(_popups[popupType]);
             IPopup iPopup = _currentPopup.GetComponent<IPopup>();
 
             if (payload != null)
             {
                 iPopup.InitSizeAndPosition(payload);
-                Debug.Log(" h = " + payload.Size.y + " w = "+ payload.Size.x + " x = " + payload.Position.x);
+                iPopup.Display();
             }
 
             return _currentPopup.GetComponent<IPopup>();

@@ -9,28 +9,31 @@ namespace PolSl.UrbanHealthPath.UserInterface
 {
     public class ViewManager : MonoBehaviour
     {
-        
         [Serializable] public struct View
         {
-            public ViewType type;
-            public GameObject viewObject;
+            [SerializeField] private ViewType type;
+            [SerializeField] private GameObject viewObject;
+            public ViewType GetViewType()
+            {
+                return type;
+            }
+
+            public GameObject GetViewObject()
+            {
+                return viewObject;
+            }
         }
 
         [SerializeField] private View[] viewsWithTypes;
 
         private Dictionary<ViewType, GameObject> _views;
 
-        public GameObject CurrentView { get; private set; } 
-    
-
-        //   private RectTransform _currentView = null;
+        public GameObject CurrentView { get; private set; }
 
         private static ViewManager _instance = null;
 
         private void Awake()
         {
-            CurrentView = null;
-            
             if (_instance != null && _instance != this)
             {
                 Destroy(this.gameObject);
@@ -39,17 +42,22 @@ namespace PolSl.UrbanHealthPath.UserInterface
             {
                 _instance = this;
             }
+        }
+
+        private void Start()
+        {
+            _instance.CurrentView = null;
             
-            _views = new Dictionary<ViewType, GameObject>();
+            _instance._views = new Dictionary<ViewType, GameObject>();
+            
             foreach (var view in viewsWithTypes)
             {
-                _views.Add(view.type, view.viewObject);
+                _views.Add(view.GetViewType(), view.GetViewObject());
             }
             
             OpenView(ViewType.Login);
         }
         
-
         public static ViewManager GetInstance()
         {
             if (_instance == null)
@@ -60,30 +68,14 @@ namespace PolSl.UrbanHealthPath.UserInterface
             return _instance;
         }
 
-        public IView OpenView(ViewType viewType)
+        public IDisplayable OpenView(ViewType viewType)
         {
-            CurrentView.Destroy();
-            CurrentView = Instantiate(_views[viewType]);
-            IView view = CurrentView.GetComponent<IView>();
-            view.Display();
-            return view;
+            _instance.CurrentView.Destroy();
+            _instance.CurrentView = Instantiate(_views[viewType]);
+           // _instance.CurrentView
+            IDisplayable displayable= CurrentView.GetComponent<IDisplayable>();
+            displayable.Display();
+            return displayable;
         }
-
-        // public (float, float, Vector3) GetAreaSize()
-        // {
-        //     float x, y;
-        //     var mapArea = CurrentView.gameObject.transform.Find("SafeArea/MapArea");
-        //     var rectTransform = mapArea.GetComponent<RectTransform>();
-        //     Debug.Log(" "+ mapArea.name);
-        //     y = rectTransform.sizeDelta.y;
-        //     x = rectTransform.sizeDelta.x;
-        //
-        //     Vector3 position = rectTransform.anchoredPosition;
-        //
-        //        Debug.Log("x = " +x+ " y = "+ y + " pos x" + position.x);
-        //     return (x, y, position);
-        //     
-        //  
-        // }
     }
 }
