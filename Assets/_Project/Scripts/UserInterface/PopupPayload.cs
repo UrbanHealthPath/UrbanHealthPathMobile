@@ -11,6 +11,8 @@ namespace PolSl.UrbanHealthPath.UserInterface
         {
             Position = position;
             Size = size;
+            
+            
         }
     }
 }

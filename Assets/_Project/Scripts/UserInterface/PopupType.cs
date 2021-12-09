@@ -2,7 +2,11 @@
 {
     public enum PopupType
     {
+        None,
         Confirmation,
-        WithContent
+        WithTextImageAndButton,
+        WithTextAndImage,
+        WithText,
+        OptionChoice
     }
 }

@@ -30,6 +30,8 @@ namespace PolSl.UrbanHealthPath.UserInterface
         private Dictionary<PopupType, GameObject> _popups;
 
         private GameObject _currentPopup = null;
+        
+        public PopupType CurrentPopupType { get; private set; }
 
         private static PopupManager _instance = null;
 
@@ -67,17 +69,29 @@ namespace PolSl.UrbanHealthPath.UserInterface
 
         public IPopup OpenPopup(PopupType popupType, [CanBeNull] PopupPayload payload = null)
         {
+            _instance.CurrentPopupType = popupType;
             _instance._currentPopup.Destroy();
-            _instance._currentPopup = Instantiate(_popups[popupType]);
-            IPopup iPopup = _currentPopup.GetComponent<IPopup>();
-
-            if (payload != null)
+            if (popupType != PopupType.None)
             {
-                iPopup.InitSizeAndPosition(payload);
-                iPopup.Display();
+                _instance._currentPopup = Instantiate(_popups[popupType]);
+                IPopup iPopup = _currentPopup.GetComponent<IPopup>();
+
+                if (payload != null)
+                {
+                    iPopup.InitSizeAndPosition(payload);
+                    iPopup.Display();
+                }
+
+                return _currentPopup.GetComponent<IPopup>();
             }
 
-            return _currentPopup.GetComponent<IPopup>();
+            return null;
+        }
+
+        public void ClosePopup()
+        {
+            _instance.CurrentPopupType = PopupType.None;
+            _instance._currentPopup.Destroy();
         }
     }
 }
