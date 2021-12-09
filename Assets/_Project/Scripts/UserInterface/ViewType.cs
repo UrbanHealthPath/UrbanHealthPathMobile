@@ -5,6 +5,11 @@
         Main,
         Login,
         Path,
-        Station
+        Station,
+        Profile,
+        Help,
+        Settings,
+        IconInfo,
+        AppInfo
     }
 }

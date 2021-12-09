@@ -8,11 +8,9 @@ using UnityEngine.UI;
 namespace PolSl.UrbanHealthPath.UserInterface
 {
     [RequireComponent(typeof(RectTransform))]
-    public class MainView : MonoBehaviour, IView, IPopupable
+    public class MainView : MonoBehaviour, IInitializable, IPopupable, IDisplayable
     {
-        private RectTransform _view;
-        
-        [SerializeField] private Button profileButton, helpButton, settingsButton, startPathButton, exitButton;
+        [SerializeField] private Button profileButton, helpButton, settingsButton, startPathButton, checkPathButton, exitButton;
 
         [SerializeField]
         private RectTransform _popupArea;
@@ -22,46 +20,42 @@ namespace PolSl.UrbanHealthPath.UserInterface
         }
         public void Start()
         {
-            _view = GetComponent<RectTransform>();
             profileButton.onClick.AddListener(DisplayProfile);
             settingsButton.onClick.AddListener(DisplaySettings);
             helpButton.onClick.AddListener(DisplayHelpMenu);
             startPathButton.onClick.AddListener(StartPath);
+            checkPathButton.onClick.AddListener(CheckPath);
             exitButton.onClick.AddListener(QuitApplication);
         }
 
-        // public void Initialize()
-        // {
-        //     
-        // }
+        public void Initialize()
+        {
+            
+        }
         public void Display()
         {
             this.enabled = true;
             this.gameObject.SetActive(true);
         }
 
-        public void Close()
+        public void StopDisplay()
         {
-            this.enabled = false;
             this.gameObject.SetActive(false);
         }
 
         private void DisplayProfile()
         {
-            Debug.Log("profile");
-            
+            ViewManager.GetInstance().OpenView(ViewType.Profile);
         }
 
         private void DisplaySettings()
         {
-            Debug.Log("settings");
-            
+            ViewManager.GetInstance().OpenView(ViewType.Settings);
         }
 
         private void DisplayHelpMenu()
         {
-            Debug.Log("Help");
-            
+            ViewManager.GetInstance().OpenView(ViewType.Help);
         }
 
         private void StartPath()
@@ -70,6 +64,10 @@ namespace PolSl.UrbanHealthPath.UserInterface
             ViewManager.GetInstance().OpenView(ViewType.Path);
         }
 
+        private void CheckPath()
+        {
+            Debug.Log("Check path");
+        }
         private void QuitApplication()
         {
             Debug.Log("Quit");
@@ -84,6 +82,7 @@ namespace PolSl.UrbanHealthPath.UserInterface
             settingsButton.onClick.RemoveListener(DisplaySettings);
             helpButton.onClick.RemoveListener(DisplayHelpMenu);
             startPathButton.onClick.RemoveListener(StartPath);
+            checkPathButton.onClick.RemoveListener(CheckPath);
             exitButton.onClick.RemoveListener(QuitApplication);
         }
     }

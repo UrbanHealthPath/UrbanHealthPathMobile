@@ -8,7 +8,7 @@ using UnityEngine.UI;
 namespace PolSl.UrbanHealthPath.UserInterface
 {
     [RequireComponent(typeof(RectTransform))]
-    public class StationView : MonoBehaviour, IView, IPopupable
+    public class StationView : MonoBehaviour, IInitializable, IPopupable, IDisplayable
     {
 
         private RectTransform _view;
@@ -24,7 +24,7 @@ namespace PolSl.UrbanHealthPath.UserInterface
             get { return _popupArea;  }
         }
         
-        public void Start()
+        public void Awake()
         {
             _view = GetComponent<RectTransform>();
             motorialButton.onClick.AddListener(DisplayMototialExercise);
@@ -33,14 +33,21 @@ namespace PolSl.UrbanHealthPath.UserInterface
             mainMenuButton.onClick.AddListener(GoToMainMenu);
             returnButton.onClick.AddListener(Return);
         }
-        // public void Initialize()
-        // {
-        //     
-        // }
+        
+        public void Initialize()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Display()
         {
             this.enabled = true;
             this.gameObject.SetActive(true);
+        }
+
+        public void StopDisplay()
+        {
+            throw new NotImplementedException();
         }
 
         public void Close()
@@ -73,16 +80,15 @@ namespace PolSl.UrbanHealthPath.UserInterface
         private void Return()
         {
             Debug.Log("return");
-            ChangeHeaderText("sheeesh");
-            
-           // ViewManager.GetInstance().OpenView(ViewType.Main);
+
+            ViewManager.GetInstance().OpenView(ViewType.Path);
         }
 
         private void GoToMainMenu()
         {
             Debug.Log("main menu");
             
-           // ViewManager.GetInstance().OpenView(ViewType.Main);
+            ViewManager.GetInstance().OpenView(ViewType.Main);
         }
 
         private void ChangeHeaderText(String newText)

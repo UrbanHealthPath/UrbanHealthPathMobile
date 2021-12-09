@@ -8,10 +8,8 @@ using UnityEngine.UI;
 namespace PolSl.UrbanHealthPath.UserInterface
 {
     [RequireComponent(typeof(RectTransform))]
-    public class LoginView : MonoBehaviour, IView
+    public class LoginInView : MonoBehaviour, IDisplayable
     {
-        private RectTransform _view;
-        
         [Tooltip("Button for login with Google. ")]
         [SerializeField] private Button loginButton; 
         
@@ -21,27 +19,20 @@ namespace PolSl.UrbanHealthPath.UserInterface
         
         public void Start()
         {
-            _view = GetComponent<RectTransform>();
             loginButton.onClick.AddListener(LoginWithGoogle);
             continueWithoutLoginButton.onClick.AddListener(ContinueWithoutLogin);
         }
-
-        // public void Initialize()
-        // {
-        //     
-        // }
         public void Display()
         {
             this.enabled = true;
             this.gameObject.SetActive(true);
         }
 
-        public void Close()
+        public void StopDisplay()
         {
-            this.enabled = false;
             this.gameObject.SetActive(false);
         }
-
+        
         private void ContinueWithoutLogin()
         {
             Debug.Log("Login without google");
@@ -55,6 +46,5 @@ namespace PolSl.UrbanHealthPath.UserInterface
             
             ViewManager.GetInstance().OpenView(ViewType.Main);
         }
-        
     }
 }

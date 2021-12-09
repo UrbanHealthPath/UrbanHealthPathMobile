@@ -9,10 +9,12 @@ namespace PolSl.UrbanHealthPath.UserInterface
 {
     public class ViewManager : MonoBehaviour
     {
-        [Serializable] public struct View
+        [Serializable]
+        public struct View
         {
             [SerializeField] private ViewType type;
             [SerializeField] private GameObject viewObject;
+
             public ViewType GetViewType()
             {
                 return type;
@@ -28,10 +30,12 @@ namespace PolSl.UrbanHealthPath.UserInterface
 
         private Dictionary<ViewType, GameObject> _views;
 
-        public GameObject CurrentView { get; private set; }
-
         private static ViewManager _instance = null;
 
+        public ViewType CurrentViewType{ get; private set; }
+        public GameObject CurrentView { get; private set; }
+
+        public ViewType LastViewType { get; private set; }
         private void Awake()
         {
             if (_instance != null && _instance != this)
@@ -47,17 +51,17 @@ namespace PolSl.UrbanHealthPath.UserInterface
         private void Start()
         {
             _instance.CurrentView = null;
-            
+
             _instance._views = new Dictionary<ViewType, GameObject>();
-            
+
             foreach (var view in viewsWithTypes)
             {
                 _views.Add(view.GetViewType(), view.GetViewObject());
             }
-            
+
             OpenView(ViewType.Login);
         }
-        
+
         public static ViewManager GetInstance()
         {
             if (_instance == null)
@@ -70,11 +74,14 @@ namespace PolSl.UrbanHealthPath.UserInterface
 
         public IDisplayable OpenView(ViewType viewType)
         {
+            _instance.LastViewType = _instance.CurrentViewType;
+            _instance.CurrentViewType = viewType;
+            
             _instance.CurrentView.Destroy();
             _instance.CurrentView = Instantiate(_views[viewType]);
-           // _instance.CurrentView
-            IDisplayable displayable= CurrentView.GetComponent<IDisplayable>();
-            displayable.Display();
+            
+            IDisplayable displayable = CurrentView.GetComponent<IDisplayable>();
+            displayable?.Display();
             return displayable;
         }
     }
