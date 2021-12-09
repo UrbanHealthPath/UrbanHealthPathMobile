@@ -4,20 +4,19 @@ namespace PolSl.UrbanHealthPath.PathData
 {
     public class UrbanPath
     {
-        private string _pathId;
-        private string _displayedName;
-        private int _approximateDistanceInMeters;
-        private bool _isCyclic;
-
-        public List<IWaypoint> Waypoints { get; }
+        public string PathId { get; }
+        public string DisplayedName { get; }
+        public int ApproximateDistanceInMeters { get; }
+        public bool IsCyclic { get; }
+        public IList<LateBoundValue<Waypoint>> Waypoints { get; }
         public string MapUrl { get; }
 
-        public UrbanPath(string pathId, string displayedName, int approximateDistanceInMeters, bool isCyclic, string mapUrl, List<IWaypoint> waypoints)
+        public UrbanPath(string pathId, string displayedName, int approximateDistanceInMeters, bool isCyclic, string mapUrl, IList<LateBoundValue<Waypoint>> waypoints)
         {
-            _pathId = pathId;
-            _displayedName = displayedName;
-            _approximateDistanceInMeters = approximateDistanceInMeters;
-            _isCyclic = isCyclic;
+            PathId = pathId;
+            DisplayedName = displayedName;
+            ApproximateDistanceInMeters = approximateDistanceInMeters;
+            IsCyclic = isCyclic;
             MapUrl = mapUrl;
             Waypoints = waypoints;
         }

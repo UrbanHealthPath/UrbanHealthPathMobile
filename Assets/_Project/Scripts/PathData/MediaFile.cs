@@ -2,18 +2,17 @@
 {
     public class MediaFile
     {
-        private readonly MediaFileType _type;
-        private readonly MediaFileStorageType _storageType;
-        private readonly string _path;
-
+        public MediaFileType Type { get; }
+        public MediaFileStorageType StorageType { get; }
+        public string Path { get; }
         public string MediaId { get; }
 
         public MediaFile(string mediaId, MediaFileType type, MediaFileStorageType storageType, string path)
         {
             MediaId = mediaId;
-            _type = type;
-            _storageType = storageType;
-            _path = path;
+            Type = type;
+            StorageType = storageType;
+            Path = path;
         }
     }
 }

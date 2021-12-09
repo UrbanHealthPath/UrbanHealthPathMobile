@@ -2,12 +2,11 @@
 
 namespace PolSl.UrbanHealthPath.PathData
 {
-    public abstract class Waypoint : IWaypoint
+    public abstract class Waypoint
     {
         public event EventHandler Triggering;
         public event EventHandler Triggered;
         
-        public abstract void Trigger();
         public string WaypointId { get; }
         public Coordinates Coordinates { get; }
         public string ZoneName { get; }
@@ -18,6 +17,8 @@ namespace PolSl.UrbanHealthPath.PathData
             Coordinates = coordinates;
             ZoneName = zoneName;
         }
+        
+        public abstract void Trigger();
 
         protected virtual void OnTriggered()
         {

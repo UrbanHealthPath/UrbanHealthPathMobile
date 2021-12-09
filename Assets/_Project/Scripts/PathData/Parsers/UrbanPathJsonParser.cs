@@ -14,21 +14,18 @@ namespace PolSl.UrbanHealthPath
         private const string MAP_URL_KEY = "mapUrl";
         private const string WAYPOINTS_KEY = "waypoints";
 
-        private readonly List<IWaypoint> _waypoints;
-
-        public UrbanPathJsonParser(List<IWaypoint> waypoints) : base(new []{ID_KEY, DISPLAYED_NAME_KEY, APPROXIMATE_DISTANCE_KEY,
+        public UrbanPathJsonParser() : base(new []{ID_KEY, DISPLAYED_NAME_KEY, APPROXIMATE_DISTANCE_KEY,
             IS_CYCLIC_KEY, MAP_URL_KEY, WAYPOINTS_KEY})
         {
-            _waypoints = waypoints;
         }
 
         protected override UrbanPath ParseJsonObject(JObject json)
         {
-            List<IWaypoint> waypoints = new List<IWaypoint>();
+            List<LateBoundValue<Waypoint>> waypoints = new List<LateBoundValue<Waypoint>>();
 
             foreach (JToken waypoint in json[WAYPOINTS_KEY])
             {
-                waypoints.Add(_waypoints.Find(x => x.WaypointId == waypoint.Value<string>()));
+                waypoints.Add(new LateBoundValue<Waypoint>(waypoint.Value<string>()));
             }
 
             return new UrbanPath(json[ID_KEY].Value<string>(), json[DISPLAYED_NAME_KEY].Value<string>(),

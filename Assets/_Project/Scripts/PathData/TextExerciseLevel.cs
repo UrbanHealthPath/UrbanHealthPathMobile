@@ -2,11 +2,11 @@
 {
     public class TextExerciseLevel : ExerciseLevel
     {
-        private string _description;
+        private string Description { get; }
 
         public TextExerciseLevel(DifficultyRange difficultyRange, string description) : base(difficultyRange)
         {
-            _description = description;
+            Description = description;
         }
     }
 }

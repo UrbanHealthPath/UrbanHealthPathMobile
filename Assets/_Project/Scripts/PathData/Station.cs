@@ -6,22 +6,22 @@ namespace PolSl.UrbanHealthPath.PathData
 {
     public class Station : Waypoint
     {
-        private string _displayedName;
-        private List<Exercise> _exercises;
-        private List<HistoricalFact> _historicalFacts;
-        private MediaFile _navigationAudio;
+        public string DisplayedName { get; }
+        public IList<LateBoundValue<Exercise>> Exercises { get; }
+        public IList<LateBoundValue<HistoricalFact>> HistoricalFacts { get; }
+        public LateBoundValue<MediaFile> NavigationAudio { get; }
 
         public override void Trigger()
         {
             throw new NotImplementedException();
         }
 
-        public Station(string waypointId, Coordinates coordinates, string zoneName, string displayedName, List<Exercise> exercises, List<HistoricalFact> historicalFacts, MediaFile navigationAudio) : base(waypointId, coordinates, zoneName)
+        public Station(string waypointId, Coordinates coordinates, string zoneName, string displayedName, IList<LateBoundValue<Exercise>> exercises, IList<LateBoundValue<HistoricalFact>> historicalFacts, LateBoundValue<MediaFile> navigationAudio) : base(waypointId, coordinates, zoneName)
         {
-            _displayedName = displayedName;
-            _exercises = exercises;
-            _historicalFacts = historicalFacts;
-            _navigationAudio = navigationAudio;
+            DisplayedName = displayedName;
+            Exercises = exercises;
+            HistoricalFacts = historicalFacts;
+            NavigationAudio = navigationAudio;
         }
     }
 }

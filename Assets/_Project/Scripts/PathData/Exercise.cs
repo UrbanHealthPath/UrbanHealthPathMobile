@@ -4,20 +4,19 @@ namespace PolSl.UrbanHealthPath.PathData
 {
     public class Exercise
     {
-        private string _displayedName;
-        private ExerciseCategory _category;
-        private ExerciseSubcategory _subcategory;
-        private List<ExerciseLevel> _levels;
-
+        public string DisplayedName { get; }
+        public ExerciseCategory Category { get; }
+        public ExerciseSubcategory Subcategory { get; }
+        public List<ExerciseLevel> Levels { get; }
         public string ExerciseId { get; }
 
         public Exercise(string exerciseId, string displayedName, ExerciseCategory category, ExerciseSubcategory subcategory, List<ExerciseLevel> levels)
         {
             ExerciseId = exerciseId;
-            _displayedName = displayedName;
-            _category = category;
-            _subcategory = subcategory;
-            _levels = levels;
+            DisplayedName = displayedName;
+            Category = category;
+            Subcategory = subcategory;
+            Levels = levels;
         }
     }
 }

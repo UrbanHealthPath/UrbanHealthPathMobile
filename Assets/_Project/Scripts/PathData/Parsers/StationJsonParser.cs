@@ -17,20 +17,12 @@ namespace PolSl.UrbanHealthPath
         private const string HISTORICAL_FACTS_KEY = "historicalFacts";
         private const string NAVIGATION_AUDIO_KEY = "navigationAudio";
 
-        private readonly List<Exercise> _exercises;
-        private readonly List<HistoricalFact> _historicalFacts;
-        private readonly List<MediaFile> _mediaFiles;
-
-        public StationJsonParser(List<Exercise> exercises, List<HistoricalFact> historicalFacts,
-            List<MediaFile> mediaFiles) : base(new[]
+        public StationJsonParser() : base(new[]
         {
             ID_KEY, COORDINATES_KEY, ZONE_NAME_KEY, EXERCISES_KEY, DISPLAYED_NAME_KEY, HISTORICAL_FACTS_KEY,
             NAVIGATION_AUDIO_KEY
         })
         {
-            _exercises = exercises;
-            _historicalFacts = historicalFacts;
-            _mediaFiles = mediaFiles;
         }
 
         protected override void ValidateJson(JObject json)
@@ -46,10 +38,10 @@ namespace PolSl.UrbanHealthPath
         protected override Station ParseJsonObject(JObject json)
         {
             Coordinates coordinates = ParseCoordinates(json);
-            List<Exercise> exercises = ParseExercises(json);
-            List<HistoricalFact> historicalFacts = ParseHistoricalFacts(json);
-
-            MediaFile navigationAudio = _mediaFiles.Find(x => x.MediaId == json[NAVIGATION_AUDIO_KEY].Value<string>());
+            List<LateBoundValue<Exercise>> exercises = ParseExercises(json);
+            List<LateBoundValue<HistoricalFact>> historicalFacts = ParseHistoricalFacts(json);
+            LateBoundValue<MediaFile> navigationAudio =
+                new LateBoundValue<MediaFile>(json[NAVIGATION_AUDIO_KEY].Value<string>());
 
             return new Station(json[ID_KEY].Value<string>(), coordinates, json[ZONE_NAME_KEY].Value<string>(),
                 json[DISPLAYED_NAME_KEY].Value<string>(), exercises, historicalFacts, navigationAudio);
@@ -61,9 +53,9 @@ namespace PolSl.UrbanHealthPath
             return new Coordinates(coordinatesArray[0].Value<double>(), coordinatesArray[1].Value<double>());
         }
 
-        private List<Exercise> ParseExercises(JObject json)
+        private List<LateBoundValue<Exercise>> ParseExercises(JObject json)
         {
-            List<Exercise> exercises = new List<Exercise>();
+            List<LateBoundValue<Exercise>> exercises = new List<LateBoundValue<Exercise>>();
 
             JArray jsonExercises = (JArray) json[EXERCISES_KEY];
 
@@ -73,7 +65,7 @@ namespace PolSl.UrbanHealthPath
 
                 foreach (JToken exercise in exerciseGroup)
                 {
-                    exercises.Add(_exercises.Find(x => x.ExerciseId == (string) exercise));
+                    exercises.Add(new LateBoundValue<Exercise>((string) exercise));
                 }
             }
 
@@ -87,15 +79,14 @@ namespace PolSl.UrbanHealthPath
             return hasExerciseGroups ? jsonExercises[new Random().Next(0, jsonExercises.Count)] : jsonExercises;
         }
 
-        private List<HistoricalFact> ParseHistoricalFacts(JObject json)
+        private List<LateBoundValue<HistoricalFact>> ParseHistoricalFacts(JObject json)
         {
-            List<HistoricalFact> historicalFacts = new List<HistoricalFact>();
+            List<LateBoundValue<HistoricalFact>> historicalFacts = new List<LateBoundValue<HistoricalFact>>();
             JArray jsonHistoricalFacts = (JArray) json[HISTORICAL_FACTS_KEY];
 
             foreach (JToken historicalFact in jsonHistoricalFacts)
             {
-                historicalFacts.Add(_historicalFacts.Find(x =>
-                    x.HistoricalFactId == (string) historicalFact));
+                historicalFacts.Add(new LateBoundValue<HistoricalFact>((string) historicalFact));
             }
 
             return historicalFacts;

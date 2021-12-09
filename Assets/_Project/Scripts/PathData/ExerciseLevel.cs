@@ -2,11 +2,11 @@
 {
     public abstract class ExerciseLevel
     {
-        private DifficultyRange _difficultyRange;
+        public DifficultyRange DifficultyRange { get; }
 
         protected ExerciseLevel(DifficultyRange difficultyRange)
         {
-            _difficultyRange = difficultyRange;
+            DifficultyRange = difficultyRange;
         }
     }
 }
