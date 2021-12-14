@@ -1,4 +1,4 @@
-namespace Mapbox.Unity.Location
+namespace PolSl.UrbanHealthPath.Map
 {
 
 
@@ -8,7 +8,7 @@ namespace Mapbox.Unity.Location
 	using Mapbox.CheapRulerCs;
 	using System;
 	using System.Linq;
-
+	using Mapbox.Unity.Location;
 
 
 	/// <summary>
@@ -17,10 +17,8 @@ namespace Mapbox.Unity.Location
 	/// This relies on Unity's <see href="https://docs.unity3d.com/ScriptReference/LocationService.html">LocationService</see> for location
 	/// and <see href="https://docs.unity3d.com/ScriptReference/Compass.html">Compass</see> for heading.
 	/// </summary>
-	public class DeviceLocationProvider : AbstractLocationProvider
+	public class DeviceLocalizationProvider : AbstractLocationProvider, ILocalizationProvider
 	{
-
-
 		/// <summary>
 		/// Using higher value like 500 usually does not require to turn GPS chip on and thus saves battery power. 
 		/// Values like 5-10 could be used for getting best accuracy.
@@ -83,6 +81,11 @@ namespace Mapbox.Unity.Location
 		/// <summary>minimum needed distance between oldest and newest position before UserHeading is calculated</summary>
 		private double _minDistanceOldestNewestPosition = 1.5;
 
+		private System.Globalization.CultureInfo _invariantCulture;
+
+		private IMapboxLocationInfo _lastData;
+
+		private double _timestamp;
 
 		// Android 6+ permissions have to be granted during runtime
 		// these are the callbacks for requesting location permission
@@ -216,53 +219,27 @@ namespace Mapbox.Unity.Location
 			yield return _wait1sec;
 #endif
 
-			System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture;
+			_invariantCulture = System.Globalization.CultureInfo.InvariantCulture;
 
 			while (true)
 			{
-
-				var lastData = _locationService.lastData;
-				var timestamp = lastData.timestamp;
-
-				///////////////////////////////
-				// oh boy, Unity what are you doing???
-				// on some devices it seems that
-				// Input.location.status != LocationServiceStatus.Running
-				// nevertheless new location is available
-				//////////////////////////////
-				//Debug.LogFormat("Input.location.status: {0}", Input.location.status);
-				_currentLocation.IsLocationServiceEnabled =
-					_locationService.status == LocationServiceStatus.Running
-					|| timestamp > _lastLocationTimestamp;
-
-				_currentLocation.IsUserHeadingUpdated = false;
-				_currentLocation.IsLocationUpdated = false;
-
 				if (!_currentLocation.IsLocationServiceEnabled)
 				{
 					yield return _waitUpdateTime;
 					continue;
 				}
-
-				// device orientation, user heading get calculated below
-				_deviceOrientationSmoothing.Add(Input.compass.trueHeading);
-				_currentLocation.DeviceOrientation = (float)_deviceOrientationSmoothing.Calculate();
-
-
-				//_currentLocation.LatitudeLongitude = new Vector2d(lastData.latitude, lastData.longitude);
-				// HACK to get back to double precision, does this even work?
-				// https://forum.unity.com/threads/precision-of-location-longitude-is-worse-when-longitude-is-beyond-100-degrees.133192/#post-1835164
-				double latitude = double.Parse(lastData.latitude.ToString("R", invariantCulture), invariantCulture);
-				double longitude = double.Parse(lastData.longitude.ToString("R", invariantCulture), invariantCulture);
 				Vector2d previousLocation = new Vector2d(_currentLocation.LatitudeLongitude.x, _currentLocation.LatitudeLongitude.y);
-				_currentLocation.LatitudeLongitude = new Vector2d(latitude, longitude);
 
-				_currentLocation.Accuracy = (float)Math.Floor(lastData.horizontalAccuracy);
+				_lastData = _locationService.lastData;
+				_timestamp = _lastData.timestamp;
+				_currentLocation.LatitudeLongitude = GetLocalization();
+				
+				_currentLocation.Accuracy = (float)Math.Floor(_lastData.horizontalAccuracy);
 				// sometimes Unity's timestamp doesn't seem to get updated, or even jump back in time
 				// do an additional check if location has changed
-				_currentLocation.IsLocationUpdated = timestamp > _lastLocationTimestamp || !_currentLocation.LatitudeLongitude.Equals(previousLocation);
-				_currentLocation.Timestamp = timestamp;
-				_lastLocationTimestamp = timestamp;
+				_currentLocation.IsLocationUpdated = _timestamp > _lastLocationTimestamp || !_currentLocation.LatitudeLongitude.Equals(previousLocation);
+				_currentLocation.Timestamp = _timestamp;
+				_lastLocationTimestamp = _timestamp;
 
 				if (_currentLocation.IsLocationUpdated)
 				{
@@ -341,6 +318,34 @@ namespace Mapbox.Unity.Location
 
 				yield return _waitUpdateTime;
 			}
+		}
+
+		public Vector2d GetLocalization()
+		{
+			///////////////////////////////
+			// oh boy, Unity what are you doing???
+			// on some devices it seems that
+			// Input.location.status != LocationServiceStatus.Running
+			// nevertheless new location is available
+			//////////////////////////////
+			//Debug.LogFormat("Input.location.status: {0}", Input.location.status);
+			_currentLocation.IsLocationServiceEnabled =
+				_locationService.status == LocationServiceStatus.Running
+				|| _timestamp > _lastLocationTimestamp;
+
+			_currentLocation.IsUserHeadingUpdated = false;
+			_currentLocation.IsLocationUpdated = false;
+			
+			// device orientation, user heading get calculated below
+			_deviceOrientationSmoothing.Add(Input.compass.trueHeading);
+			_currentLocation.DeviceOrientation = (float)_deviceOrientationSmoothing.Calculate();
+
+
+			//_currentLocation.LatitudeLongitude = new Vector2d(lastData.latitude, lastData.longitude);
+			// HACK to get back to double precision, does this even work?
+			// https://forum.unity.com/threads/precision-of-location-longitude-is-worse-when-longitude-is-beyond-100-degrees.133192/#post-1835164
+			return new Vector2d(double.Parse(_lastData.latitude.ToString("R", _invariantCulture), _invariantCulture), 
+				double.Parse(_lastData.longitude.ToString("R", _invariantCulture), _invariantCulture));
 		}
 	}
 }

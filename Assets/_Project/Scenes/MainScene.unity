@@ -273,7 +273,7 @@ MonoBehaviour:
   _updateInterval: 0
   _sendEvent: 0
   _latitudeLongitude: 
-  _targetTransform: {fileID: 0}
+  _targetTransform: {fileID: 551685608}
 --- !u!1 &1035195842
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +615,8 @@ PrefabInstance:
       propertyPath: _measurements
       value: 14
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114511931985414354, guid: fa49ad38da3e540fca722d2ca9e1d026, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fa49ad38da3e540fca722d2ca9e1d026, type: 3}
 --- !u!114 &1461055787 stripped
 MonoBehaviour:
@@ -847,6 +848,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1742557927 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1547511233063230, guid: fa49ad38da3e540fca722d2ca9e1d026, type: 3}
+  m_PrefabInstance: {fileID: 1350245048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1742557930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742557927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b006f24c3dc74f04981178bdaa50e184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _desiredAccuracyInMeters: 1
+  _updateDistanceInMeters: 0.5
+  _updateTimeInMilliSeconds: 500
+  _userHeadingSmoothing: {fileID: 2068845914}
+  _deviceOrientationSmoothing: {fileID: 1232534545}
+  _editorDebuggingOnly:
+    _mockUnityInputLocation: 1
+    _locationLogFile: {fileID: 4900000, guid: 5e6bb7224cef35c4788a4817b1c9778d, type: 3}
 --- !u!1 &1793480575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,5 +1370,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08874f5c6afd9f49bb2f37880eb8663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 551685608}
-  _map: {fileID: 1793480577}

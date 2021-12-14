@@ -4,12 +4,10 @@ using Mapbox.Utils;
 using UnityEditor.UIElements;
 using UnityEngine;
 
-namespace PolSl.UrbanHealthPath.Player
+namespace PolSl.UrbanHealthPath.Map
 {
-    public interface ILocalisationProvider
+    public interface ILocalizationProvider
     {
-        public Vector3 GetMapLocalisation();
-
-        public Vector2d GetRealWorldLocalisation();
+        public Vector2d GetLocalization();
     }
 }
