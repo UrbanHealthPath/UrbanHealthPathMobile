@@ -379,8 +379,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ec82a0cbd53a6449bb57e90d592b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackedObject: {fileID: 551685608}
-  minAngle: 22
+  _trackedObject: {fileID: 551685608}
+  _minAngle: 25
 --- !u!1 &1160073389
 GameObject:
   m_ObjectHideFlags: 0
