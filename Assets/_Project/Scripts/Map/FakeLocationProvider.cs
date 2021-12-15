@@ -9,16 +9,14 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath
 {
-    public class FakeLocationProvider : AbstractEditorLocationProvider, ILocalizationProvider
+    public class FakeLocationProvider : AbstractFakeLocalizationProvider, ILocalizationProvider
     {
         // <summary>
         /// The mock "latitude, longitude" location, respresented with a string.
         /// You can search for a place using the embedded "Search" button in the inspector.
         /// This value can be changed at runtime in the inspector.
         /// </summary>
-        [SerializeField]
-        [Geocode]
-        string[] _latitudeLongitude;
+        [SerializeField] [Geocode] private string[] _latitudeLongitude;
 
         /// <summary>
         /// The mock heading value.
@@ -52,6 +50,11 @@ namespace PolSl.UrbanHealthPath
             _currentLocation.Timestamp = UnixTimestampUtils.To(DateTime.UtcNow);
             _currentLocation.IsLocationUpdated = true;
             _currentLocation.IsUserHeadingUpdated = true;
+        }
+
+        public void OnClick_SetLocalization()
+        {
+            StartCoroutine(QueryLocation());
         }
     }
 }
