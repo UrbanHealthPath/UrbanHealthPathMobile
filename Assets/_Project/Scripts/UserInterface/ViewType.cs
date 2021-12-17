@@ -10,6 +10,7 @@
         Help,
         Settings,
         IconInfo,
-        AppInfo
+        AppInfo,
+        PathChoice
     }
 }

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using PolSl.UrbanHealthPath.UserInterface;
 using UnityEngine;
 using UnityEngine.UI;
 

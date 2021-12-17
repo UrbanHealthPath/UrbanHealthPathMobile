@@ -61,7 +61,7 @@ namespace PolSl.UrbanHealthPath.UserInterface
         private void StartPath()
         {
             Debug.Log("Start path");
-            ViewManager.GetInstance().OpenView(ViewType.Path);
+            ViewManager.GetInstance().OpenView(ViewType.PathChoice);
         }
 
         private void CheckPath()

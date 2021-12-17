@@ -37,14 +37,14 @@ namespace PolSl.UrbanHealthPath.UserInterface
         {
             Debug.Log("Login without google");
             
-            ViewManager.GetInstance().OpenView(ViewType.Main);
+            ViewManager.GetInstance().OpenView(ViewType.AppInfo);
         }
 
         private void LoginWithGoogle()
         {
             Debug.Log("Login with google");
             
-            ViewManager.GetInstance().OpenView(ViewType.Main);
+            ViewManager.GetInstance().OpenView(ViewType.AppInfo);
         }
     }
 }
