@@ -26,8 +26,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
         public void Initialize(UnityAction confirmed, UnityAction notConfirmed, string question)
         {
             text.text = question;
-            buttonYes.onClick.AddListener(confirmed);
-            buttonNo.onClick.AddListener(notConfirmed);
+            buttonYes.onClick.AddListener(() => confirmed?.Invoke());
+            buttonNo.onClick.AddListener(() => notConfirmed?.Invoke());
         }
 
         private void OnDestroy()
