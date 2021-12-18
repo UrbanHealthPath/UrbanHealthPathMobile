@@ -2,13 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using PolSl.UrbanHealthPath.UserInterface;
+using PolSl.UrbanHealthPath.UserInterface.Interfaces;
+using PolSl.UrbanHealthPath.UserInterface.Views;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Accessibility;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
-namespace PolSl.UrbanHealthPath.UserInterface
+namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
     public class PopupWithTextImageAndButton : MonoBehaviour, IPopup, IDisplayable
     {

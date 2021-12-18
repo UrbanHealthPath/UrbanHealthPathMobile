@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PolSl.UrbanHealthPath.UserInterface
+namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
     public class ProfileView : MonoBehaviour
     {

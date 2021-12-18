@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PolSl.UrbanHealthPath.UserInterface
+namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
     public class PopupPayload
     {

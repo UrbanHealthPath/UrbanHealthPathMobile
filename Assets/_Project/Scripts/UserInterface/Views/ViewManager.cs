@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using PolSl.UrbanHealthPath.UserInterface;
+using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace PolSl.UrbanHealthPath.UserInterface
+namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
     public class ViewManager : MonoBehaviour
     {

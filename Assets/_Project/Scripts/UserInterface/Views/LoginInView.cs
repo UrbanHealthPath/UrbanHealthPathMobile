@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using PolSl.UrbanHealthPath.UserInterface;
+using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PolSl.UrbanHealthPath.UserInterface
+namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
     [RequireComponent(typeof(RectTransform))]
     public class LoginInView : MonoBehaviour, IDisplayable

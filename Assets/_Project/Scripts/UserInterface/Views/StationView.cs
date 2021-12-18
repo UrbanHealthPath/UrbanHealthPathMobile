@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PolSl.UrbanHealthPath.UserInterface
+namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
     [RequireComponent(typeof(RectTransform))]
     public class StationView : MonoBehaviour, IInitializable, IPopupable, IDisplayable

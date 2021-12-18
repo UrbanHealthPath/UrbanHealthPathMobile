@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace PolSl.UrbanHealthPath.UserInterface
+namespace PolSl.UrbanHealthPath.UserInterface.Components
 {
     [RequireComponent(typeof(Button))]
     public class AppearanceChangingButton : MonoBehaviour

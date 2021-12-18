@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
 
-namespace PolSl.UrbanHealthPath.UserInterface
+namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
     public class PopupManager : MonoBehaviour
     {

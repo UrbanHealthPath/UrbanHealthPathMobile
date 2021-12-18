@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using PolSl.UrbanHealthPath.UserInterface;
+using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PolSl.UrbanHealthPath.UserInterface
+namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
-    public class ApplicationInfoView : MonoBehaviour, IDisplayable
+    public class IconInfoView : MonoBehaviour, IDisplayable
     {
-
         [SerializeField] private Button backButton, forwardButton;
         
         public void Start()
@@ -29,12 +29,12 @@ namespace PolSl.UrbanHealthPath.UserInterface
 
         private void GoBack()
         {
-            ViewManager.GetInstance().OpenView(ViewType.Login);
+            ViewManager.GetInstance().OpenView(ViewType.AppInfo);
         }
 
         private void GoForward()
         {
-            ViewManager.GetInstance().OpenView(ViewType.IconInfo);
+            ViewManager.GetInstance().OpenView(ViewType.Main);
         }
         public void OnDestroy()
         {

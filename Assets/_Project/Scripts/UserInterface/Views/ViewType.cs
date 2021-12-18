@@ -1,4 +1,4 @@
-﻿namespace PolSl.UrbanHealthPath.UserInterface
+﻿namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
     public enum ViewType
     {
