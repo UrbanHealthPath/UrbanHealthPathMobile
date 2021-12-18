@@ -68,7 +68,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
             return _instance;
         }
 
-        public IPopup OpenPopup(PopupType popupType, [CanBeNull] PopupPayload payload = null)
+        public GameObject OpenPopup(PopupType popupType, [CanBeNull] PopupPayload payload = null)
         {
             _instance.CurrentPopupType = popupType;
             _instance._currentPopup.Destroy();
@@ -80,12 +80,9 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
                 if (payload != null)
                 {
                     iPopup.InitSizeAndPosition(payload);
-                    iPopup.Display();
                 }
-
-                return _currentPopup.GetComponent<IPopup>();
+                return _currentPopup;
             }
-
             return null;
         }
 

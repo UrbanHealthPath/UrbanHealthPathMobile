@@ -31,6 +31,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
             ViewManager.GetInstance().OpenView(ViewManager.GetInstance().LastViewType);
         }
+        
         private void StartPath()
         {
             ViewManager.GetInstance().OpenView(ViewType.Path);

@@ -14,11 +14,9 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         [SerializeField] private Button profileButton, helpButton, settingsButton, startPathButton, checkPathButton, exitButton;
 
         [SerializeField]
-        private RectTransform _popupArea;
-        public RectTransform PopupArea
-        {
-            get { return _popupArea;  }
-        }
+        private RectTransform popupArea;
+        public RectTransform PopupArea => popupArea;
+
         public void Start()
         {
             profileButton.onClick.AddListener(DisplayProfile);

@@ -7,12 +7,11 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
     public class ProfileView : MonoBehaviour
     {
-        [SerializeField] private Button  menuButton, returnButton, statisticsButton, achievementsButton, shareButton;
+        [SerializeField] private Button  returnButton, statisticsButton, achievementsButton, shareButton;
         
         public void Start()
         {
             returnButton.onClick.AddListener(Return);
-            menuButton.onClick.AddListener(GoToMainMenu);
             statisticsButton.onClick.AddListener(ShowStatistics);
             achievementsButton.onClick.AddListener(ShowAchievements);
             shareButton.onClick.AddListener(ShareStatistics);
@@ -54,7 +53,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         public void OnDestroy()
         {
             returnButton.onClick.RemoveListener(Return);
-            menuButton.onClick.RemoveListener(GoToMainMenu);
             statisticsButton.onClick.RemoveListener(ShowStatistics);
             achievementsButton.onClick.RemoveListener(ShowAchievements);
             shareButton.onClick.RemoveListener(ShareStatistics);

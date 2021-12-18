@@ -14,26 +14,17 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
     
     public class PathView : MonoBehaviour, IInitializable, IPopupable, IDisplayable
     {
-        private RectTransform _view;
+        [SerializeField] private Button endPathButton, nextStationInfoButton, helpButton, mainMenuButton; 
         
-        [SerializeField] private Button endPathButton, nextStationInfoButton, helpButton, returnButton, mainMenuButton; 
+        [SerializeField] private RectTransform popupArea;
+        public RectTransform PopupArea => popupArea;
 
-        [SerializeField] private TextMeshProUGUI headerText;
-        
-        [SerializeField]
-        private RectTransform _popupArea;
-        public RectTransform PopupArea
-        {
-            get { return _popupArea;  }
-        }
         public void Start()
         {
-            _view = GetComponent<RectTransform>();
-            endPathButton.onClick.AddListener(FinishPath);
+            endPathButton.onClick.AddListener(DisplayConfirmationPopup);
             helpButton.onClick.AddListener(DisplayHelpMenu);
             nextStationInfoButton.onClick.AddListener(DisplayNextStationInfo);
             mainMenuButton.onClick.AddListener(GoToMainMenu);
-            returnButton.onClick.AddListener(Return);
         }
 
         public void Initialize()
@@ -52,11 +43,23 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
 
         private void DisplayConfirmationPopup()
         {
+            RectTransform rectTransform =
+                ViewManager.GetInstance().CurrentView.GetComponent<IPopupable>().PopupArea;
             
+            PopupPayload payload = new PopupPayload(rectTransform.transform.position, rectTransform.sizeDelta);
+            GameObject popup = PopupManager.GetInstance().OpenPopup(PopupType.Confirmation, payload);
+            popup.GetComponent<ConfirmationPopup>().Initialize(FinishPath, ContinuePath, "Czy na pewno chcesz zakończyć ścieżkę?");
         }
+        
         private void FinishPath()
         {
+            PopupManager.GetInstance().ClosePopup();
             ViewManager.GetInstance().OpenView(ViewType.Main);
+        }
+        
+        private void ContinuePath()
+        {
+            PopupManager.GetInstance().ClosePopup();
         }
 
         private void DisplayHelpMenu()
@@ -79,14 +82,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
             }
         }
 
-        private void Return()
-        {
-            Debug.Log("return");
- 
-            
-          //  ViewManager.GetInstance().OpenView(ViewType.Path);
-        }
-
         private void GoToMainMenu()
         {
             Debug.Log("main menu");
@@ -95,11 +90,10 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         }
         public void OnDestroy()
         {
-            endPathButton.onClick.RemoveListener(FinishPath);
+            endPathButton.onClick.RemoveListener(DisplayConfirmationPopup);
             helpButton.onClick.RemoveListener(DisplayHelpMenu);
             nextStationInfoButton.onClick.RemoveListener(DisplayNextStationInfo);
             mainMenuButton.onClick.RemoveListener(GoToMainMenu);
-            returnButton.onClick.RemoveListener(Return);
         }
     }
 }

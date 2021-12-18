@@ -1236,7 +1236,7 @@ MonoBehaviour:
   buttonImHere: {fileID: 5771051765545248751}
   text: {fileID: 1260992362709670499}
   image: {fileID: 4721574767695257624}
-  _popupArea: {fileID: 2757631720174398052}
+  popupArea: {fileID: 2757631720174398052}
 --- !u!114 &5819438196709577931
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,13 +6,12 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
     public class SettingsView : MonoBehaviour, IDisplayable
     {
-        [SerializeField] private Button revertButton, menuButton, returnButton, fontButton, themeButton, audioButton;
+        [SerializeField] private Button revertButton, returnButton, fontButton, themeButton, audioButton;
 
 
         public void Start()
         {
             returnButton.onClick.AddListener(Return);
-            menuButton.onClick.AddListener(GoToMainMenu);
             revertButton.onClick.AddListener(RevertChanges);
             fontButton.onClick.AddListener(AdjustFontSize);
             themeButton.onClick.AddListener(AdjustTheme);
@@ -34,12 +33,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
             ViewManager.GetInstance().OpenView(ViewManager.GetInstance().LastViewType);
         }
-
-        private void GoToMainMenu()
-        {
-            ViewManager.GetInstance().OpenView(ViewType.Main);
-        }
-
         private void RevertChanges()
         {
         }
@@ -59,7 +52,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         public void OnDestroy()
         {
             returnButton.onClick.RemoveListener(Return);
-            menuButton.onClick.RemoveListener(GoToMainMenu);
             revertButton.onClick.RemoveListener(RevertChanges);
             fontButton.onClick.RemoveListener(AdjustFontSize);
             themeButton.onClick.RemoveListener(AdjustTheme);
