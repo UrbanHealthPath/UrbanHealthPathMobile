@@ -15,14 +15,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
         [SerializeField] private TextMeshProUGUI text;   
         [SerializeField] private RectTransform popupArea;
         public RectTransform PopupArea => popupArea;
-
-        private UnityAction _confirmed, _notConfirmed;
-
-        private void Awake()
-        {
-
-        }
-
+        
+        
         public void InitSizeAndPosition(PopupPayload payload)
         {
             PopupArea.sizeDelta = new Vector2(payload.Size.x, payload.Size.y);
@@ -31,17 +25,15 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
 
         public void Initialize(UnityAction confirmed, UnityAction notConfirmed, string question)
         {
-            _confirmed = confirmed;
-            _notConfirmed = notConfirmed;
             text.text = question;
-            buttonYes.onClick.AddListener(_confirmed);
-            buttonNo.onClick.AddListener(_notConfirmed);
+            buttonYes.onClick.AddListener(confirmed);
+            buttonNo.onClick.AddListener(notConfirmed);
         }
 
         private void OnDestroy()
         {
-            buttonYes.onClick.RemoveListener(_confirmed);
-            buttonNo.onClick.RemoveListener(_notConfirmed);
+            buttonYes.onClick.RemoveAllListeners();
+            buttonNo.onClick.RemoveAllListeners();
         }
     }
 }
