@@ -1,10 +1,17 @@
-﻿namespace PolSl.UrbanHealthPath.PathData.Progress
+﻿using System;
+
+namespace PolSl.UrbanHealthPath.PathData.Progress
 {
     public interface IPathProgressManager
     {
-        PathProgress CurrentProgress { get; }
+        event EventHandler CheckpointReached;
+        
+        bool IsPathInProgress { get; }
 
-        void LoadProgress();
-        void SaveProgress(PathProgress progress);
+        bool TryRestoreProgress();
+        void StartNewPath();
+        bool AddCheckpoint(PathProgressCheckpoint checkpoint);
+        void CancelPath();
+        
     }
 }
