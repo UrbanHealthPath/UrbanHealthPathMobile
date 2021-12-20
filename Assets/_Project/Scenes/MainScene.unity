@@ -481,6 +481,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1167294280 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7261815612490402007, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
+  m_PrefabInstance: {fileID: 7261815612663694707}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1167294281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167294280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e28b9ed799dc77045a9a0c9daa044f54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _map: {fileID: 1793480577}
+  _lineMeshModifier: {fileID: 11400000, guid: 2f8c4f9c9a0e2534c8b707d01b5c79ff, type: 2}
+  _material: {fileID: 2100000, guid: ef6c956ca085647fba4624a08c344419, type: 2}
+  _navigatedObject: {fileID: 551685608}
+  _destination: {fileID: 2078125444}
 --- !u!114 &1232534545 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114665743543917518, guid: fa49ad38da3e540fca722d2ca9e1d026, type: 3}
@@ -1189,6 +1211,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1167294281}
+        m_TargetAssemblyTypeName: PolSl.UrbanHealthPath.Navigation.DirectionsFactory,
+          Assembly-CSharp
+        m_MethodName: CallQuery
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2031685586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1238,6 +1273,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc20e719eeb82d448d4698d29d526c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &2078125444 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7261815612953337444, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
+  m_PrefabInstance: {fileID: 7261815612663694707}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7261815612663694707
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1245,6 +1285,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7261815612137441434, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7261815612490402005, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1289,26 +1333,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7261815612490402006, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
-      propertyPath: _map
-      value: 
-      objectReference: {fileID: 1793480577}
-    - target: {fileID: 7261815612490402006, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
-      propertyPath: MeshModifiers.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7261815612490402006, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
-      propertyPath: MeshModifiers.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 2f8c4f9c9a0e2534c8b707d01b5c79ff, type: 2}
-    - target: {fileID: 7261815612490402006, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
-      propertyPath: MeshModifiers.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: d31b2cb2a75a54d5bb6402fe0bd8c6cf, type: 2}
-    - target: {fileID: 7261815612490402006, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
-      propertyPath: MeshModifiers.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: cd4bcff551c0d418997f52b78da87a0e, type: 2}
     - target: {fileID: 7261815612490402007, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
       propertyPath: m_Name
       value: Navigation
