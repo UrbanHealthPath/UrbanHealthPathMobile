@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +8,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
     public class PathChoiceView : MonoBehaviour, IDisplayable
     {
         [SerializeField] private Button menuButton, tmpChoiceButton;
-
+        [SerializeField] private Header header;
         public void Start()
         {
             menuButton.onClick.AddListener(GoToMainMenu);

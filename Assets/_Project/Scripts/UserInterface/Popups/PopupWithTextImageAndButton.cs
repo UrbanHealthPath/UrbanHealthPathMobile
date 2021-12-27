@@ -1,32 +1,21 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using PolSl.UrbanHealthPath.UserInterface;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using PolSl.UrbanHealthPath.UserInterface.Views;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Accessibility;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
-    public class PopupWithTextImageAndButton : MonoBehaviour, IPopup, IDisplayable
+    public class PopupWithTextImageAndButton : MonoBehaviour, IPopup
     {
         [SerializeField] private Button buttonImHere;
-        
         [SerializeField] private TextMeshProUGUI text;
-        
         [SerializeField] private Image image;
+        [SerializeField] private RectTransform popupArea;
+        public RectTransform PopupArea => popupArea;
 
-        [SerializeField] private RectTransform _popupArea;
-        public RectTransform PopupArea
-        {
-            get { return _popupArea; }
-        }
-
-        public String textContent { get; set; }
+        public String TextContent { get; set; }
 
         private void Awake()
         {
@@ -41,13 +30,13 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
 
         public void Display()
         {
-            textContent = "Czy znajdujesz się w tym miejscu?";
+            TextContent = "Czy znajdujesz się w tym miejscu?";
             this.enabled = true;
             this.gameObject.SetActive(true);
             
             //textRef.SetText(textContent);
 
-            text.text = textContent;
+            text.text = TextContent;
         }
 
         public void StopDisplay()

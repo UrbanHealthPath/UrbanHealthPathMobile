@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 1610558204148690410}
   - component: {fileID: 7683065397798616856}
   m_Layer: 5
-  m_Name: ButtonYes
+  m_Name: ButtonFirst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 3446218107356147191}
   - component: {fileID: 7046503066123335060}
   m_Layer: 5
-  m_Name: ButtonNo
+  m_Name: ButtonSecond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1182,7 +1182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e934a6bf4c5f2479957adad47ead9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonYes: {fileID: 7683065397798616856}
-  buttonNo: {fileID: 7046503066123335060}
+  buttonFirst: {fileID: 7683065397798616856}
+  buttonSecond: {fileID: 7046503066123335060}
   text: {fileID: 7178954510161449105}
   popupArea: {fileID: 1060768961755698784}

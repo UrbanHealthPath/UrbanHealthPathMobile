@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using PolSl.UrbanHealthPath.UserInterface.Components;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +7,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
     public class ProfileView : MonoBehaviour
     {
         [SerializeField] private Button  returnButton, statisticsButton, achievementsButton, shareButton;
-        
+        [SerializeField] private Header header;
         public void Start()
         {
             returnButton.onClick.AddListener(Return);

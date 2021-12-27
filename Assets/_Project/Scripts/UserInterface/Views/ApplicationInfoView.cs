@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using PolSl.UrbanHealthPath.UserInterface;
+using PolSl.UrbanHealthPath.UserInterface.Components;
+using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,11 +10,15 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
     {
 
         [SerializeField] private Button backButton, forwardButton;
+        [SerializeField] private Header header;
         
         public void Start()
         {
             backButton.onClick.AddListener(GoBack);
             forwardButton.onClick.AddListener(GoForward);
+
+            HeaderInitializer initializer = new HeaderInitializer("Wyjaśnienie ikon");
+            header.Initialize(initializer);
         }
         public void Display()
         {

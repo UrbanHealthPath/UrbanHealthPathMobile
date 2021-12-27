@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using PolSl.UrbanHealthPath.UserInterface;
+using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
@@ -15,7 +13,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
             [SerializeField] private ViewType type;
             [SerializeField] private GameObject viewObject;
-
+            [SerializeField] private Header header;
             public ViewType GetViewType()
             {
                 return type;

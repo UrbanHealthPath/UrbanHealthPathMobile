@@ -1138,15 +1138,15 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8137891713143239242, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
   m_PrefabInstance: {fileID: 7329678109058675218}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1537880327137879303 stripped
+--- !u!114 &7187806186055862328 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8137891713008752405, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
+  m_CorrespondingSourceObject: {fileID: 466132195754457642, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
   m_PrefabInstance: {fileID: 7329678109058675218}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1537880327003390040}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a3acd2afee8e284d98efa69d9a28d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &3504776101127341341 stripped
@@ -1171,7 +1171,7 @@ MonoBehaviour:
   historicInfoButton: {fileID: 709630922133020289}
   mainMenuButton: {fileID: 7687212608182985520}
   returnButton: {fileID: 5710931451441638750}
-  headerText: {fileID: 1537880327137879303}
+  header: {fileID: 7187806186055862328}
   _popupArea: {fileID: 6580923888322296622}
 --- !u!114 &5837457309128004455
 MonoBehaviour:

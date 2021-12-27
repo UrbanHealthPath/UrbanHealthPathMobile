@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using PolSl.UrbanHealthPath.UserInterface;
+using PolSl.UrbanHealthPath.UserInterface.Components;
+using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
-using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
@@ -15,7 +14,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
     public class PathView : MonoBehaviour, IInitializable, IPopupable, IDisplayable
     {
         [SerializeField] private Button endPathButton, nextStationInfoButton, helpButton, mainMenuButton; 
-        
+        [SerializeField] private Header header;
         [SerializeField] private RectTransform popupArea;
         public RectTransform PopupArea => popupArea;
 
@@ -48,9 +47,14 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
             
             PopupPayload payload = new PopupPayload(rectTransform.transform.position, rectTransform.sizeDelta);
             GameObject popup = PopupManager.GetInstance().OpenPopup(PopupType.Confirmation, payload);
-            popup.GetComponent<ConfirmationPopup>().Initialize(FinishPath, ContinuePath, "Czy na pewno chcesz zakończyć ścieżkę?");
+            popup.GetComponent<ConfirmationPopup>().Initialize(CreateInitializerForConfirmationPopup());
         }
-        
+
+        private ConfirmationPopupInitializer CreateInitializerForConfirmationPopup()
+        {
+            return new ConfirmationPopupInitializer("Czy na pewno chcesz zakończyć ścieżkę?", 2, 
+                new string[]{"Tak", "Nie"}, new UnityAction[] {FinishPath, ContinuePath});
+        }
         private void FinishPath()
         {
             PopupManager.GetInstance().ClosePopup();
@@ -94,6 +98,11 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
             helpButton.onClick.RemoveListener(DisplayHelpMenu);
             nextStationInfoButton.onClick.RemoveListener(DisplayNextStationInfo);
             mainMenuButton.onClick.RemoveListener(GoToMainMenu);
+        }
+
+        public void Initialize(Initializer initializer)
+        {
+            throw new NotImplementedException();
         }
     }
 }

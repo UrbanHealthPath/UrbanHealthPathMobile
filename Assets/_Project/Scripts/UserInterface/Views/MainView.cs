@@ -1,7 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using PolSl.UrbanHealthPath.UserInterface;
+using PolSl.UrbanHealthPath.UserInterface.Components;
+using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,9 +11,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
     public class MainView : MonoBehaviour, IInitializable, IPopupable, IDisplayable
     {
         [SerializeField] private Button profileButton, helpButton, settingsButton, startPathButton, checkPathButton, exitButton;
-
-        [SerializeField]
-        private RectTransform popupArea;
+        [SerializeField] private Header header;
+        [SerializeField] private RectTransform popupArea;
         public RectTransform PopupArea => popupArea;
 
         public void Start()
@@ -83,6 +81,11 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
             startPathButton.onClick.RemoveListener(StartPath);
             checkPathButton.onClick.RemoveListener(CheckPath);
             exitButton.onClick.RemoveListener(QuitApplication);
+        }
+
+        public void Initialize(Initializer initializer)
+        {
+            throw new NotImplementedException();
         }
     }
 }

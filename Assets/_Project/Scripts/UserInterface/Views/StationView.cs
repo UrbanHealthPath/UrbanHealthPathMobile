@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using PolSl.UrbanHealthPath.UserInterface.Components;
+using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using TMPro;
 using UnityEngine;
@@ -15,9 +17,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         private RectTransform _view;
 
         [SerializeField] private Button sensorialButton, motorialButton, historicInfoButton, mainMenuButton, returnButton;
+        [SerializeField] private Header header;
 
-        [SerializeField] private TextMeshProUGUI headerText;
-        
         [SerializeField]
         private RectTransform _popupArea;
         public RectTransform PopupArea
@@ -91,12 +92,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
             
             ViewManager.GetInstance().OpenView(ViewType.Main);
         }
-
-        private void ChangeHeaderText(String newText)
-        {
-            headerText.text = newText;
-        }
-
+        
         public void OnDestroy()
         {
             sensorialButton.onClick.RemoveListener(DisplaySensorialExercise);
@@ -104,6 +100,11 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
             historicInfoButton.onClick.RemoveListener(DisplayHistoricInfo);
             mainMenuButton.onClick.RemoveListener(GoToMainMenu);
             returnButton.onClick.RemoveListener(Return);
+        }
+
+        public void Initialize(Initializer initializer)
+        {
+            throw new NotImplementedException();
         }
     }
 }

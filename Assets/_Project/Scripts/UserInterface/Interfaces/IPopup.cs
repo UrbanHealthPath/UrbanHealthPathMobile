@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Interfaces
 {
-    public interface IPopup : IDisplayable
+    public interface IPopup
     {
         public RectTransform PopupArea { get;  }
 

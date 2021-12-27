@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using PolSl.UrbanHealthPath.UserInterface;
+using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEditor;
 using UnityEngine;
@@ -11,13 +12,11 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
     [RequireComponent(typeof(RectTransform))]
     public class LoginInView : MonoBehaviour, IDisplayable
     {
-        [Tooltip("Button for login with Google. ")]
         [SerializeField] private Button loginButton; 
         
-        [Tooltip("Button for continuing without login. ")]
         [SerializeField] private Button continueWithoutLoginButton;
         
-        
+       // [SerializeField] private Header header;
         public void Start()
         {
             loginButton.onClick.AddListener(LoginWithGoogle);

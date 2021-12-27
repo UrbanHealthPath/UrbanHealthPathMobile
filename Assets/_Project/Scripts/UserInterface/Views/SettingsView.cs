@@ -1,3 +1,4 @@
+using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +8,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
     public class SettingsView : MonoBehaviour, IDisplayable
     {
         [SerializeField] private Button revertButton, returnButton, fontButton, themeButton, audioButton;
-
+        [SerializeField] private Header header;
 
         public void Start()
         {
