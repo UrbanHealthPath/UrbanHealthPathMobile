@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Mapbox.Unity.Location;
 using Mapbox.Unity.Map;
 using PolSl.UrbanHealthPath.Navigation;
 using UnityEngine;
@@ -22,6 +23,18 @@ namespace PolSl.UrbanHealthPath.Navigation
 
         private ILocationProvider _locationProvider;
 
+        public ILocationProvider LocationProvider
+        {
+            get
+            {
+                return _locationProvider;
+            }
+            set
+            {
+                _locationProvider = value;
+            }
+        }
+        
         private void Awake()
         { 
             InjectLocationProvider();
@@ -43,11 +56,6 @@ namespace PolSl.UrbanHealthPath.Navigation
         {
             _mode = mode;
             InjectLocationProvider();
-        }
-
-        public ILocationProvider GetProvider()
-        {
-            return _locationProvider;
         }
     }
 }

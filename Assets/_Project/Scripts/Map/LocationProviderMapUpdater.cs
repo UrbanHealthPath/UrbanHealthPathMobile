@@ -5,16 +5,19 @@ using Mapbox.Unity.Map;
 using Mapbox.Utils;
 using PolSl.UrbanHealthPath.Navigation;
 using UnityEngine;
+using ILocationProvider = PolSl.UrbanHealthPath.Navigation.ILocationProvider;
 
 namespace PolSl.UrbanHealthPath
 {
     public class LocationProviderMapUpdater : MonoBehaviour
     {
-        [SerializeField] private AbstractMap _map;
-
         [SerializeField] private LocationFactory _locationFactory;
         
-        [SerializeField] private float _lerpTime = 1f;
+        [SerializeField] AbstractMap _map;
+
+        private ILocationProvider _locationProvider;
+        
+        private float _lerpTime;
         
         private bool _isMapInitialized = false;
 
@@ -30,18 +33,26 @@ namespace PolSl.UrbanHealthPath
 
         private float _lerpStartTime;
 
+        private void Awake()
+        {
+            _map.InitializeOnStart = false;
+        }
         void Start()
         {
-            _locationFactory.GetProvider().OnLocationUpdated+=LocationProvider_OnFirstLocationUpdate;
+            if (_locationProvider == null)
+            {
+                _locationProvider = _locationFactory.LocationProvider;
+            }
+            _locationProvider.OnLocationUpdated+=LocationProvider_OnFirstLocationUpdate;
         }
         
         void LocationProvider_OnFirstLocationUpdate(Location location)
         {
-            _locationFactory.GetProvider().OnLocationUpdated -= LocationProvider_OnFirstLocationUpdate;
+            _locationProvider.OnLocationUpdated -= LocationProvider_OnFirstLocationUpdate;
             _map.OnInitialized += () =>
             {
                 _isMapInitialized = true;
-                _locationFactory.GetProvider().OnLocationUpdated += LocationProvider_OnLocationUpdated;
+                _locationProvider.OnLocationUpdated += LocationProvider_OnLocationUpdated;
             };
             _map.Initialize(location.LatitudeLongitude, _map.AbsoluteZoom);
         }

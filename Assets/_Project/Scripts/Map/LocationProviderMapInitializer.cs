@@ -11,7 +11,9 @@ namespace PolSl.UrbanHealthPath.Navigation
     {
         [SerializeField] private AbstractMap _map;
 
-        [SerializeField] private LocationFactory _factory;
+        [SerializeField] private LocationFactory _locationFactory;
+
+        private ILocationProvider _locationProvider;
         
         private void Awake()
         {
@@ -20,12 +22,13 @@ namespace PolSl.UrbanHealthPath.Navigation
         
         private void Start()
         {
-            _factory.GetProvider().OnLocationUpdated += LocationProvider_OnLocationUpdated;
+            _locationProvider = _locationFactory.LocationProvider;
+            _locationProvider.OnLocationUpdated += LocationProvider_OnLocationUpdated;
         }
 
         void LocationProvider_OnLocationUpdated(Location location)
         {
-            _factory.GetProvider().OnLocationUpdated -= LocationProvider_OnLocationUpdated;
+            _locationProvider.OnLocationUpdated -= LocationProvider_OnLocationUpdated;
             _map.Initialize(location.LatitudeLongitude, _map.AbsoluteZoom);
         }
     }
