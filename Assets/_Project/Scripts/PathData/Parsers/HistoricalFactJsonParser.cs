@@ -5,7 +5,7 @@ namespace PolSl.UrbanHealthPath
 {
     public class HistoricalFactJsonParser : ValidatedJsonObjectParser<HistoricalFact>
     {
-        private const string ID_KEY = "historicalFactId";
+        private const string ID_KEY = "historical_fact_id";
         private const string NAME_KEY = "name";
         private const string DESCRIPTION_KEY = "description";
         

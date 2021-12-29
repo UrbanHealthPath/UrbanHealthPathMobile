@@ -6,9 +6,9 @@ namespace PolSl.UrbanHealthPath
 {
     public class MediaFileJsonParser : ValidatedJsonObjectParser<MediaFile>
     {
-        private const string ID_KEY = "mediaId";
+        private const string ID_KEY = "media_id";
         private const string TYPE_KEY = "type";
-        private const string STORAGE_TYPE_KEY = "storageType";
+        private const string STORAGE_TYPE_KEY = "storage_type";
         private const string PATH_KEY = "path";
         
         public MediaFileJsonParser() : base(new [] {ID_KEY, TYPE_KEY, STORAGE_TYPE_KEY, PATH_KEY})

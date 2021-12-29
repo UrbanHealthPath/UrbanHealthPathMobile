@@ -9,13 +9,13 @@ namespace PolSl.UrbanHealthPath
 {
     public class StationJsonParser : ValidatedJsonObjectParser<Station>
     {
-        private const string ID_KEY = "waypointId";
+        private const string ID_KEY = "waypoint_id";
         private const string COORDINATES_KEY = "coordinates";
-        private const string ZONE_NAME_KEY = "zoneName";
+        private const string ZONE_NAME_KEY = "zone_name";
         private const string EXERCISES_KEY = "exercises";
-        private const string DISPLAYED_NAME_KEY = "displayedName";
-        private const string HISTORICAL_FACTS_KEY = "historicalFacts";
-        private const string NAVIGATION_AUDIO_KEY = "navigationAudio";
+        private const string DISPLAYED_NAME_KEY = "displayed_name";
+        private const string HISTORICAL_FACTS_KEY = "historical_facts";
+        private const string NAVIGATION_AUDIO_KEY = "navigation_audio";
 
         public StationJsonParser() : base(new[]
         {

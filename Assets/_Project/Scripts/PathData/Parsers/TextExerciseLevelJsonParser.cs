@@ -6,8 +6,8 @@ namespace PolSl.UrbanHealthPath
     public class TextExerciseLevelJsonParser : ValidatedJsonObjectParser<TextExerciseLevel>
     {
         private const string DESCRIPTION_KEY = "description";
-        private const string MIN_DIFFICULTY_KEY = "minDifficulty";
-        private const string MAX_DIFFICULTY_KEY = "maxDifficulty";
+        private const string MIN_DIFFICULTY_KEY = "min_difficulty";
+        private const string MAX_DIFFICULTY_KEY = "max_difficulty";
 
         public TextExerciseLevelJsonParser() : base(new[] {DESCRIPTION_KEY, MIN_DIFFICULTY_KEY, MAX_DIFFICULTY_KEY})
         {

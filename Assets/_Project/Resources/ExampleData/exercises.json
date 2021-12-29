@@ -1,33 +1,33 @@
 ﻿[
   {
-    "exerciseId": "2_quick_breaths",
-    "displayedName": "2 quick breaths",
+    "exercise_id": "2_quick_breaths",
+    "displayed_name": "2 quick breaths",
     "category": "sensorial",
     "subcategory": "lungs",
     "levels": [
       {
-        "minDifficulty": 1,
-        "maxDifficulty": 3,
+        "min_difficulty": 1,
+        "max_difficulty": 3,
         "type": "text",
         "description": "Breathe in and out"
       },
       {
-        "minDifficulty": 2,
-        "maxDifficulty": 3,
+        "min_difficulty": 2,
+        "max_difficulty": 3,
         "type": "text",
         "description": "Breathe in and out faster"
       }
     ]
   },
   {
-    "exerciseId": "jumping_jacks",
-    "displayedName": "Jumping jacks",
+    "exercise_id": "jumping_jacks",
+    "displayed_name": "Jumping jacks",
     "category": "motorical",
     "subcategory": "arms",
     "levels": [
       {
-        "minDifficulty": 3,
-        "maxDifficulty": 5,
+        "min_difficulty": 3,
+        "max_difficulty": 5,
         "type": "text",
         "description": "Do three jumping jacks"
       }

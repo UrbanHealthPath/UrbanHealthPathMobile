@@ -56,6 +56,8 @@ namespace PolSl.UrbanHealthPath.PathData
                 {
                     waypoint.InitializeValue(Waypoints.FirstOrDefault(x => x.WaypointId == waypoint.Key));
                 }
+                
+                urbanPath.PreviewImage.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == urbanPath.PreviewImage.Key));
             }
         }
     }

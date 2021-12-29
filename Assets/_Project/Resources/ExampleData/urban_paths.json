@@ -1,10 +1,15 @@
 ﻿[
   {
-  "pathId": "gliwice.mala_trasa",
-  "displayedName": "Mala trasa",
-  "approximateDistanceInMeters": 1000,
-  "isCyclic": false,
-  "mapUrl": "mapbox://styles/arhenox/ckvur5lrr38y614p8u2w7iboi/draft",
-  "waypoints": ["gliwice.rynek.neptun", "gliwice.rynek.ratusz", "gliwice.rynek.arkady"]
+    "path_id": "gliwice.mala_trasa",
+    "displayed_name": "Mala trasa",
+    "approximate_distance_in_meters": 1000,
+    "is_cyclic": false,
+    "map_url": "mapbox://styles/arhenox/ckvur5lrr38y614p8u2w7iboi/draft",
+    "waypoints": [
+      "gliwice.rynek.neptun",
+      "gliwice.rynek.ratusz",
+      "gliwice.rynek.arkady"
+    ],
+    "preview_image": "image.preview.gliwice.mala_trasa"
   }
 ]

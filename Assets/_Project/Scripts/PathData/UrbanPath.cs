@@ -10,8 +10,9 @@ namespace PolSl.UrbanHealthPath.PathData
         public bool IsCyclic { get; }
         public IList<LateBoundValue<Waypoint>> Waypoints { get; }
         public string MapUrl { get; }
+        public LateBoundValue<MediaFile> PreviewImage { get; }
 
-        public UrbanPath(string pathId, string displayedName, int approximateDistanceInMeters, bool isCyclic, string mapUrl, IList<LateBoundValue<Waypoint>> waypoints)
+        public UrbanPath(string pathId, string displayedName, int approximateDistanceInMeters, bool isCyclic, string mapUrl, IList<LateBoundValue<Waypoint>> waypoints, LateBoundValue<MediaFile> previewImage)
         {
             PathId = pathId;
             DisplayedName = displayedName;
@@ -19,6 +20,7 @@ namespace PolSl.UrbanHealthPath.PathData
             IsCyclic = isCyclic;
             MapUrl = mapUrl;
             Waypoints = waypoints;
+            PreviewImage = previewImage;
         }
     }
 }

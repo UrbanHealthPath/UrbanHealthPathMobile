@@ -7,8 +7,8 @@ namespace PolSl.UrbanHealthPath
 {
     public class ExerciseJsonParser : ValidatedJsonObjectParser<Exercise>
     {
-        private const string ID_KEY = "exerciseId";
-        private const string DISPLAYED_NAME_KEY = "displayedName";
+        private const string ID_KEY = "exercise_id";
+        private const string DISPLAYED_NAME_KEY = "displayed_name";
         private const string CATEGORY_KEY = "category";
         private const string SUBCATEGORY_KEY = "subcategory";
         private const string LEVELS_KEY = "levels";

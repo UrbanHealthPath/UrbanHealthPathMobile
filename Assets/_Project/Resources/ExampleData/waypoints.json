@@ -1,32 +1,59 @@
 ﻿[
   {
-    "waypointId": "gliwice.rynek.neptun",
-    "coordinates": [50.29418, 18.66561],
-    "zoneName": "Rynek",
+    "waypoint_id": "gliwice.rynek.neptun",
+    "coordinates": [
+      50.29418,
+      18.66561
+    ],
+    "zone_name": "Rynek",
     "type": "station",
-    "exercises": ["2_quick_breaths"],
-    "displayedName": "Rynek - Neptun",
-    "historicalFacts": ["gliwice.neptun"],
-    "navigationAudio": "audio.navigation.neptun"
+    "exercises": [
+      "2_quick_breaths"
+    ],
+    "displayed_name": "Rynek - Neptun",
+    "historical_facts": [
+      "gliwice.neptun"
+    ],
+    "navigation_audio": "audio.navigation.neptun"
   },
   {
-    "waypointId": "gliwice.rynek.ratusz",
-    "coordinates": [50.29387, 18.66577],
-    "zoneName": "Rynek",
+    "waypoint_id": "gliwice.rynek.ratusz",
+    "coordinates": [
+      50.29387,
+      18.66577
+    ],
+    "zone_name": "Rynek",
     "type": "station",
-    "exercises": [["2_quick_breaths"], ["jumping_jacks"]],
-    "displayedName": "Rynek - Rzeźba na ratuszu",
-    "historicalFacts": ["gliwice.ratusz"],
-    "navigationAudio": "audio.navigation.ratusz"
+    "exercises": [
+      [
+        "2_quick_breaths"
+      ],
+      [
+        "jumping_jacks"
+      ]
+    ],
+    "displayed_name": "Rynek - Rzeźba na ratuszu",
+    "historical_facts": [
+      "gliwice.ratusz"
+    ],
+    "navigation_audio": "audio.navigation.ratusz"
   },
   {
-    "waypointId": "gliwice.rynek.arkady",
-    "coordinates": [50.29395, 18.66597],
-    "zoneName": "Rynek",
+    "waypoint_id": "gliwice.rynek.arkady",
+    "coordinates": [
+      50.29395,
+      18.66597
+    ],
+    "zone_name": "Rynek",
     "type": "station",
-    "exercises": ["2_quick_breaths", "jumping_jacks"],
-    "displayedName": "Rynek - Arkady",
-    "historicalFacts": ["gliwice.arkady"],
-    "navigationAudio": "audio.navigation.arkady"
+    "exercises": [
+      "2_quick_breaths",
+      "jumping_jacks"
+    ],
+    "displayed_name": "Rynek - Arkady",
+    "historical_facts": [
+      "gliwice.arkady"
+    ],
+    "navigation_audio": "audio.navigation.arkady"
   }
 ]

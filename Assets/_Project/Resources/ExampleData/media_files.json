@@ -1,20 +1,32 @@
 ﻿[
   {
-    "mediaId": "audio.navigation.neptun",
+    "media_id": "image.preview.gliwice.mala_trasa",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/previews/gliwice_mala_trasa.png"
+  },
+  {
+    "media_id": "audio.navigation.neptun",
     "type": "audio",
-    "storageType": "local",
+    "storage_type": "local",
     "path": "navigations/gliwice/neptun.mp3"
   },
   {
-    "mediaId": "audio.navigation.ratusz",
+    "media_id": "audio.navigation.ratusz",
     "type": "audio",
-    "storageType": "local",
+    "storage_type": "local",
     "path": "navigations/gliwice/ratusz.mp3"
   },
   {
-    "mediaId": "audio.navigation.arkady",
+    "media_id": "audio.navigation.arkady",
     "type": "audio",
-    "storageType": "local",
+    "storage_type": "local",
     "path": "navigations/gliwice/arkady.mp3"
+  },
+  {
+    "media_id": "video.exercise.two_quick_breaths_level_2",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/exercises/two_quick_breaths_level_2.mp4"
   }
 ]
