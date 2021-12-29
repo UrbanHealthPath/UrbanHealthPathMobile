@@ -46,28 +46,30 @@ namespace PolSl.UrbanHealthPath.Navigation
         private IEnumerator PollLocation()
         {
             System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture;
-            IMapboxLocationInfo lastData = _locationService.lastData;
-            _currentLocation.IsLocationServiceEnabled = _locationService.status == LocationServiceStatus.Running ||
-                                                        lastData.timestamp > _lastLocationTimeStamp;
-            _deviceOrientationSmoothing.Add(Input.compass.trueHeading);
-            _currentLocation.UserHeading = (float) _deviceOrientationSmoothing.Calculate();
-            _currentLocation.IsUserHeadingUpdated = true;
-            double latitude = double.Parse(lastData.latitude.ToString("R", invariantCulture), invariantCulture);
-            double longitude = double.Parse(lastData.longitude.ToString("R", invariantCulture), invariantCulture);
-            _lastPosition = _currentLocation.LatitudeLongitude;
-            _currentLocation.LatitudeLongitude = new Vector2d(latitude, longitude);
-            _currentLocation.Accuracy = (float)Math.Floor(lastData.horizontalAccuracy);
-            _currentLocation.Timestamp = lastData.timestamp;
-            _currentLocation.IsLocationUpdated = _currentLocation.Timestamp > _lastLocationTimeStamp ||
-                                                 !_currentLocation.LatitudeLongitude.Equals(_lastPosition);
-            _lastLocationTimeStamp = _currentLocation.Timestamp;
-            SendLocation(_currentLocation);
-            yield return _waitUpdateTime;
+            while (true)
+            {
+                IMapboxLocationInfo lastData = _locationService.lastData;
+                _currentLocation.IsLocationServiceEnabled = _locationService.status == LocationServiceStatus.Running ||
+                                                            lastData.timestamp > _lastLocationTimeStamp;
+                _deviceOrientationSmoothing.Add(Input.compass.trueHeading);
+                _currentLocation.UserHeading = (float) _deviceOrientationSmoothing.Calculate();
+                _currentLocation.IsUserHeadingUpdated = true;
+                double latitude = double.Parse(lastData.latitude.ToString("R", invariantCulture), invariantCulture);
+                double longitude = double.Parse(lastData.longitude.ToString("R", invariantCulture), invariantCulture);
+                _lastPosition = _currentLocation.LatitudeLongitude;
+                _currentLocation.LatitudeLongitude = new Vector2d(latitude, longitude);
+                _currentLocation.Accuracy = (float) Math.Floor(lastData.horizontalAccuracy);
+                _currentLocation.Timestamp = lastData.timestamp;
+                _currentLocation.IsLocationUpdated = _currentLocation.Timestamp > _lastLocationTimeStamp ||
+                                                     !_currentLocation.LatitudeLongitude.Equals(_lastPosition);
+                _lastLocationTimeStamp = _currentLocation.Timestamp;
+                SendLocation(_currentLocation);
+                yield return _waitUpdateTime;
+            }
         }
 
         public Location GetLocation()
         {
-            PollLocation();
             return _currentLocation;
         }
         

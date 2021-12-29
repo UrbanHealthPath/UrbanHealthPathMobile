@@ -267,7 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fakeLocationProvider: {fileID: 1563864706}
   _deviceLocationProvider: {fileID: 1749414341}
-  _mode: 0
+  _mode: 1
 --- !u!4 &734530563
 Transform:
   m_ObjectHideFlags: 0
@@ -889,7 +889,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1793480576}
   - component: {fileID: 1793480577}
-  - component: {fileID: 1793480578}
   - component: {fileID: 1793480579}
   m_Layer: 0
   m_Name: Map
@@ -1042,20 +1041,6 @@ MonoBehaviour:
   _tileProvider: {fileID: 0}
   _previewOptions:
     isPreviewEnabled: 0
---- !u!114 &1793480578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1793480575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6322e1b3fdc2e1143bc02eb283467028, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _map: {fileID: 1793480577}
-  _locationFactory: {fileID: 734530562}
 --- !u!114 &1793480579
 MonoBehaviour:
   m_ObjectHideFlags: 0
