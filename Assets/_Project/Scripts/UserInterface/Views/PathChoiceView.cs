@@ -1,20 +1,29 @@
 using PolSl.UrbanHealthPath.UserInterface.Components;
+using PolSl.UrbanHealthPath.UserInterface.Components.List;
+using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
-    public class PathChoiceView : MonoBehaviour, IDisplayable
+    public class PathChoiceView : MonoBehaviour, IDisplayable, IInitializable
     {
-        [SerializeField] private Button menuButton, tmpChoiceButton;
+        [SerializeField] private Button menuButton;
         [SerializeField] private Header header;
-        public void Start()
+        [SerializeField] private ListPanel list;
+        public void Awake()
         {
-            menuButton.onClick.AddListener(GoToMainMenu);
-            tmpChoiceButton.onClick.AddListener(StartPath);
+            header.Initialize("Wybór ścieżki");
         }
-
+        public void Initialize(Initializer initializer)
+        {
+            if (initializer is PathChoiceViewInitializer init)
+            {
+                list.Initialize(init.Elements);
+                menuButton.onClick.AddListener(()=>init.MainMenuEvent?.Invoke());
+            }
+        }
         public void Display()
         {
             this.enabled = true;
@@ -26,25 +35,11 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
             this.gameObject.SetActive(false);
         }
 
-        private void Return()
+        public void OnDisable()
         {
-            ViewManager.GetInstance().OpenView(ViewManager.GetInstance().LastViewType);
-        }
-        
-        private void StartPath()
-        {
-            ViewManager.GetInstance().OpenView(ViewType.Path);
+            menuButton.onClick.RemoveAllListeners();
         }
 
-        private void GoToMainMenu()
-        {
-            ViewManager.GetInstance().OpenView(ViewType.Main);
-        }
 
-        public void OnDestroy()
-        {
-            menuButton.onClick.RemoveListener(GoToMainMenu);
-            tmpChoiceButton.onClick.RemoveListener(StartPath);
-        }
     }
 }

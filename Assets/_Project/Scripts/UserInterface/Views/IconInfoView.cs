@@ -13,10 +13,12 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         [SerializeField] private Button backButton, forwardButton;
         [SerializeField] private Header header;
         
-        public void Start()
+        public void Awake()
         {
             backButton.onClick.AddListener(GoBack);
             forwardButton.onClick.AddListener(GoForward);
+            
+            header.Initialize("Wyjaśnienie ikon");
         }
         public void Display()
         {
@@ -38,7 +40,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
             ViewManager.GetInstance().OpenView(ViewType.Main);
         }
-        public void OnDestroy()
+        public void OnDisable()
         {
             backButton.onClick.RemoveListener(GoBack);
             forwardButton.onClick.RemoveListener(GoForward);

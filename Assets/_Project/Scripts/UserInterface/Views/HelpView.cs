@@ -13,17 +13,18 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         [SerializeField] private Header header;
         [SerializeField] private ListPanel list;
 
-        public void Start()
+        public void Awake()
         {
-            returnButton.onClick.AddListener(Return);
-            HeaderInitializer initializer = new HeaderInitializer("Pomoc");
-            header.Initialize(initializer);
+            header.Initialize("Pomoc");
         }
 
         public void Initialize(Initializer initializer)
         {
-            // I don't know if it even should be there. Maybe we should initialize list from there, not from outside?
-            throw new System.NotImplementedException();
+            if (initializer is HelpViewInitializer init)
+            {
+                list.Initialize(init.Elements);
+                returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
+            }
         }
 
         public void Display()
@@ -36,15 +37,10 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
             this.gameObject.SetActive(false);
         }
-
-        private void Return()
+        
+        public void OnDisable()
         {
-            ViewManager.GetInstance().OpenView(ViewManager.GetInstance().LastViewType);
-        }
-
-        public void OnDestroy()
-        {
-            returnButton.onClick.RemoveListener(Return);
+            returnButton.onClick.RemoveAllListeners();
         }
     }
 }

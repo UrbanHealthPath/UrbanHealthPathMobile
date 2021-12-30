@@ -1,27 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
-using PolSl.UrbanHealthPath.UserInterface;
-using PolSl.UrbanHealthPath.UserInterface.Components;
+using System;
+using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
     [RequireComponent(typeof(RectTransform))]
-    public class LoginInView : MonoBehaviour, IDisplayable
+    public class LoginInView : MonoBehaviour, IDisplayable, IInitializable
     {
-        [SerializeField] private Button loginButton; 
-        
+        [SerializeField] private Button loginButton;
         [SerializeField] private Button continueWithoutLoginButton;
         
-       // [SerializeField] private Header header;
-        public void Start()
+        public void Initialize(Initializer initializer)
         {
-            loginButton.onClick.AddListener(LoginWithGoogle);
-            continueWithoutLoginButton.onClick.AddListener(ContinueWithoutLogin);
+            if (initializer is LogInViewInitializer init)
+            {
+                loginButton.onClick.AddListener(() => init.LogInEvent?.Invoke());
+                continueWithoutLoginButton.onClick.AddListener(() => init.ContinueWithoutLogInEvent?.Invoke());
+            }
         }
+
         public void Display()
         {
             this.enabled = true;
@@ -32,19 +32,11 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
             this.gameObject.SetActive(false);
         }
-        
-        private void ContinueWithoutLogin()
-        {
-            Debug.Log("Login without google");
-            
-            ViewManager.GetInstance().OpenView(ViewType.AppInfo);
-        }
 
-        private void LoginWithGoogle()
+        private void OnDisable()
         {
-            Debug.Log("Login with google");
-            
-            ViewManager.GetInstance().OpenView(ViewType.AppInfo);
+            loginButton.onClick.RemoveAllListeners();
+            continueWithoutLoginButton.onClick.RemoveAllListeners();
         }
     }
 }

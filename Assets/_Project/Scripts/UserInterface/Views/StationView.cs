@@ -13,98 +13,47 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
     [RequireComponent(typeof(RectTransform))]
     public class StationView : MonoBehaviour, IInitializable, IPopupable, IDisplayable
     {
-
-        private RectTransform _view;
-
         [SerializeField] private Button sensorialButton, motorialButton, historicInfoButton, mainMenuButton, returnButton;
+
         [SerializeField] private Header header;
 
-        [SerializeField]
-        private RectTransform _popupArea;
+        [SerializeField] private RectTransform _popupArea;
+
         public RectTransform PopupArea
         {
-            get { return _popupArea;  }
+            get { return _popupArea; }
         }
-        
-        public void Awake()
+        public void Initialize(Initializer initializer)
         {
-            _view = GetComponent<RectTransform>();
-            motorialButton.onClick.AddListener(DisplayMototialExercise);
-            sensorialButton.onClick.AddListener(DisplaySensorialExercise);
-            historicInfoButton.onClick.AddListener(DisplayHistoricInfo);
-            mainMenuButton.onClick.AddListener(GoToMainMenu);
-            returnButton.onClick.AddListener(Return);
-        }
-        
-        public void Initialize()
-        {
-            throw new NotImplementedException();
+            if (initializer is StationViewInitializer init)
+            {
+                motorialButton.onClick.AddListener(() => init.MotorialEvent?.Invoke());
+                sensorialButton.onClick.AddListener(() => init.SensorialEvent?.Invoke());
+                historicInfoButton.onClick.AddListener(() => init.HistoricInfoEvent?.Invoke());
+                mainMenuButton.onClick.AddListener(() => init.MainMenuEvent?.Invoke());
+                returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
+                
+                header.Initialize(init.HeaderText);
+            }
         }
 
         public void Display()
         {
-            this.enabled = true;
-            this.gameObject.SetActive(true);
+            gameObject.SetActive(true);
         }
 
         public void StopDisplay()
         {
-            throw new NotImplementedException();
-        }
-
-        public void Close()
-        {
-            this.enabled = false;
-            this.gameObject.SetActive(false);
-        }
-
-        private void DisplayMototialExercise()
-        {
-            Debug.Log("Motorial");
-            
-          //  ViewManager.GetInstance().OpenView(ViewType.Main);
-        }
-
-        private void DisplaySensorialExercise()
-        {
-            Debug.Log("Sensorial");
-            
-           // ViewManager.GetInstance().OpenView(ViewType.Main);
-        }
-
-        private void DisplayHistoricInfo()
-        {
-            Debug.Log("Historic info");
-            
-          //  ViewManager.GetInstance().OpenView(ViewType.Main);
-        }
-
-        private void Return()
-        {
-            Debug.Log("return");
-
-            ViewManager.GetInstance().OpenView(ViewType.Path);
-        }
-
-        private void GoToMainMenu()
-        {
-            Debug.Log("main menu");
-            
-            ViewManager.GetInstance().OpenView(ViewType.Main);
+            gameObject.SetActive(false);
         }
         
-        public void OnDestroy()
+        public void OnDisable()
         {
-            sensorialButton.onClick.RemoveListener(DisplaySensorialExercise);
-            motorialButton.onClick.RemoveListener(DisplayMototialExercise);
-            historicInfoButton.onClick.RemoveListener(DisplayHistoricInfo);
-            mainMenuButton.onClick.RemoveListener(GoToMainMenu);
-            returnButton.onClick.RemoveListener(Return);
-        }
-
-        public void Initialize(Initializer initializer)
-        {
-            throw new NotImplementedException();
+            sensorialButton.onClick.RemoveAllListeners();
+            motorialButton.onClick.RemoveAllListeners();
+            historicInfoButton.onClick.RemoveAllListeners();
+            mainMenuButton.onClick.RemoveAllListeners();
+            returnButton.onClick.RemoveAllListeners();
         }
     }
 }

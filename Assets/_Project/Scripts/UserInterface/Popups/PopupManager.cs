@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
 
@@ -68,7 +69,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
             return _instance;
         }
 
-        public GameObject OpenPopup(PopupType popupType, [CanBeNull] PopupPayload payload = null)
+        public GameObject OpenPopup(PopupType popupType, Initializer initializer = null, [CanBeNull] PopupPayload payload = null)
         {
             _instance.CurrentPopupType = popupType;
             _instance._currentPopup.Destroy();
@@ -81,6 +82,13 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
                 {
                     iPopup.InitSizeAndPosition(payload);
                 }
+                
+                if (initializer != null)
+                {
+                    IInitializable initializable = _instance._currentPopup.GetComponent<IInitializable>();
+                    initializable?.Initialize(initializer);
+                }
+                
                 return _currentPopup;
             }
             return null;

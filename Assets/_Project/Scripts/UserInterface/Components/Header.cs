@@ -7,16 +7,13 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components
 {
-    public class Header : MonoBehaviour, IInitializable
+    public class Header : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI text;
         
-        public void Initialize(Initializer initializer)
+        public void Initialize(string headerText)
         {
-            if (initializer is HeaderInitializer init)
-            {
-                text.text = init.Text;
-            }
+            text.text = headerText;
         }
     }
 }

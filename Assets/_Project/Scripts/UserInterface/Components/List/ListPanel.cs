@@ -12,7 +12,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
         [SerializeField] private GameObject page;
         [SerializeField] private Button backButton, forwardButton;
         [SerializeField] private GameObject frameBackButton, frameForwardButton, buttonsPanel;
-        private int _pageIndex = 0;
+        private int _pageIndex;
         private List<GameObject> _pages = new List<GameObject>();
 
         public void Initialize(List<ListElement> elements)

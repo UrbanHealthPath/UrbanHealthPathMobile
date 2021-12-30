@@ -100,9 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelElements:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6200804084626555741}
+  - {fileID: 5668240109430385322}
+  - {fileID: 6593152135390217642}
 --- !u!1 &207729169750365601
 GameObject:
   m_ObjectHideFlags: 0

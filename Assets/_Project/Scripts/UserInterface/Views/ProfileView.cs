@@ -1,24 +1,36 @@
 using PolSl.UrbanHealthPath.UserInterface.Components;
+using PolSl.UrbanHealthPath.UserInterface.Initializers;
+using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
-    public class ProfileView : MonoBehaviour
+    public class ProfileView : MonoBehaviour, IInitializable, IDisplayable
     {
-        [SerializeField] private Button  returnButton, statisticsButton, achievementsButton, shareButton;
+        [SerializeField] private Button returnButton, statisticsButton, achievementsButton, shareButton;
         [SerializeField] private Header header;
-        public void Start()
+
+        public void Awake()
         {
-            returnButton.onClick.AddListener(Return);
-            statisticsButton.onClick.AddListener(ShowStatistics);
-            achievementsButton.onClick.AddListener(ShowAchievements);
-            shareButton.onClick.AddListener(ShareStatistics);
+            header.Initialize("Twój profil");
+        }
+
+        public void Initialize(Initializer initializer)
+        {
+            if (initializer is ProfileViewInitializer init)
+            {
+                returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
+                statisticsButton.onClick.AddListener(() => init.StatisticsEvent?.Invoke());
+                achievementsButton.onClick.AddListener(() => init.AchievementsEvent?.Invoke());
+                shareButton.onClick.AddListener(() => init.ShareEvent?.Invoke());
+
+                header.Initialize(init.Header);
+            }
         }
 
         public void Display()
         {
-            this.enabled = true;
             this.gameObject.SetActive(true);
         }
 
@@ -26,35 +38,13 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
             this.gameObject.SetActive(false);
         }
-
-        private void Return()
+        
+        public void OnDisable()
         {
-            ViewManager.GetInstance().OpenView(ViewType.Main);
-        }
-
-        private void GoToMainMenu()
-        {
-            ViewManager.GetInstance().OpenView(ViewType.Main);
-        }
-
-        private void ShowStatistics()
-        {
-        }
-
-        private void ShowAchievements()
-        {
-        }
-
-        private void ShareStatistics()
-        {
-        }
-
-        public void OnDestroy()
-        {
-            returnButton.onClick.RemoveListener(Return);
-            statisticsButton.onClick.RemoveListener(ShowStatistics);
-            achievementsButton.onClick.RemoveListener(ShowAchievements);
-            shareButton.onClick.RemoveListener(ShareStatistics);
+            returnButton.onClick.RemoveAllListeners();
+            statisticsButton.onClick.RemoveAllListeners();
+            achievementsButton.onClick.RemoveAllListeners();
+            shareButton.onClick.RemoveAllListeners();
         }
     }
 }

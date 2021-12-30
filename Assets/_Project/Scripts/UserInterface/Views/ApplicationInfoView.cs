@@ -12,13 +12,12 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         [SerializeField] private Button backButton, forwardButton;
         [SerializeField] private Header header;
         
-        public void Start()
+        public void Awake()
         {
             backButton.onClick.AddListener(GoBack);
             forwardButton.onClick.AddListener(GoForward);
-
-            HeaderInitializer initializer = new HeaderInitializer("Wyjaśnienie ikon");
-            header.Initialize(initializer);
+            
+            header.Initialize("O aplikacji");
         }
         public void Display()
         {

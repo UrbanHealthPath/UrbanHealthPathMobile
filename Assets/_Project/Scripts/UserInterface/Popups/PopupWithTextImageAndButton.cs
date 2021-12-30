@@ -1,13 +1,15 @@
 ﻿using System;
+using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using PolSl.UrbanHealthPath.UserInterface.Views;
 using TMPro;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
-    public class PopupWithTextImageAndButton : MonoBehaviour, IPopup
+    public class PopupWithTextImageAndButton : MonoBehaviour, IPopup, IInitializable
     {
         [SerializeField] private Button buttonImHere;
         [SerializeField] private TextMeshProUGUI text;
@@ -43,18 +45,18 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
         {
             throw new NotImplementedException();
         }
-
-        public void Initialize()
-        {
-            throw new NotImplementedException();
-        }
-
+        
         private void ConfirmArrival()
         {
             PopupManager.GetInstance().ClosePopup();
             ViewManager.GetInstance().OpenView(ViewType.Station);
         }
         public void Close()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Initialize(Initializer initializer)
         {
             throw new NotImplementedException();
         }

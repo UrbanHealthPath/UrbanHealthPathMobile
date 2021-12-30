@@ -1,62 +1,52 @@
 using PolSl.UrbanHealthPath.UserInterface.Components;
+using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
-    public class SettingsView : MonoBehaviour, IDisplayable
+    public class SettingsView : MonoBehaviour, IDisplayable, IInitializable
     {
         [SerializeField] private Button revertButton, returnButton, fontButton, themeButton, audioButton;
         [SerializeField] private Header header;
 
-        public void Start()
+        public void Awake()
         {
-            returnButton.onClick.AddListener(Return);
-            revertButton.onClick.AddListener(RevertChanges);
-            fontButton.onClick.AddListener(AdjustFontSize);
-            themeButton.onClick.AddListener(AdjustTheme);
-            audioButton.onClick.AddListener(AdjustAudioDescription);
+            header.Initialize("Ustawienia");
+        }
+
+        public void Initialize(Initializer initializer)
+        {
+            if (initializer is SettingsInitializer init)
+            {
+                returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
+                revertButton.onClick.AddListener(() => init.RevertEvent?.Invoke());
+                fontButton.onClick.AddListener(() => init.FontEvent?.Invoke());
+                themeButton.onClick.AddListener(() => init.ThemeEvent?.Invoke());
+                audioButton.onClick.AddListener(() => init.AudioEvent?.Invoke());
+
+                header.Initialize(init.HeaderText);
+            }
         }
 
         public void Display()
         {
-            this.enabled = true;
-            this.gameObject.SetActive(true);
+            gameObject.SetActive(true);
         }
 
         public void StopDisplay()
         {
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
-
-        private void Return()
+        
+        public void OnDisable()
         {
-            ViewManager.GetInstance().OpenView(ViewManager.GetInstance().LastViewType);
-        }
-        private void RevertChanges()
-        {
-        }
-
-        private void AdjustFontSize()
-        {
-        }
-
-        private void AdjustTheme()
-        {
-        }
-
-        private void AdjustAudioDescription()
-        {
-        }
-
-        public void OnDestroy()
-        {
-            returnButton.onClick.RemoveListener(Return);
-            revertButton.onClick.RemoveListener(RevertChanges);
-            fontButton.onClick.RemoveListener(AdjustFontSize);
-            themeButton.onClick.RemoveListener(AdjustTheme);
-            audioButton.onClick.RemoveListener(AdjustAudioDescription);
+            returnButton.onClick.RemoveAllListeners();
+            revertButton.onClick.RemoveAllListeners();
+            fontButton.onClick.RemoveAllListeners();
+            themeButton.onClick.RemoveAllListeners();
+            audioButton.onClick.RemoveAllListeners();
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using PolSl.UrbanHealthPath.UserInterface.Components;
+using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
 
@@ -8,12 +9,11 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
     public class ViewManager : MonoBehaviour
     {
-        [Serializable]
-        public struct View
+        
+        [Serializable]public struct View
         {
             [SerializeField] private ViewType type;
             [SerializeField] private GameObject viewObject;
-            [SerializeField] private Header header;
             public ViewType GetViewType()
             {
                 return type;
@@ -58,7 +58,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
                 _views.Add(view.GetViewType(), view.GetViewObject());
             }
 
-            OpenView(ViewType.Login);
+           OpenView(ViewType.Path);
         }
 
         public static ViewManager GetInstance()
@@ -71,16 +71,23 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
             return _instance;
         }
 
-        public IDisplayable OpenView(ViewType viewType)
+        public IDisplayable OpenView(ViewType viewType, Initializer initializer = null)
         {
             _instance.LastViewType = _instance.CurrentViewType;
             _instance.CurrentViewType = viewType;
             
             _instance.CurrentView.Destroy();
             _instance.CurrentView = Instantiate(_views[viewType]);
+
+            if (initializer != null)
+            {
+                IInitializable initializable = _instance.CurrentView.GetComponent<IInitializable>();
+                initializable?.Initialize(initializer);
+            }
             
             IDisplayable displayable = CurrentView.GetComponent<IDisplayable>();
             displayable?.Display();
+            
             return displayable;
         }
     }
