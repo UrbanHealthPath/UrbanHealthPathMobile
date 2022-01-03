@@ -5,7 +5,7 @@ using Mapbox.Unity.Location;
 using Mapbox.Unity.Map;
 using UnityEngine;
 
-namespace PolSl.UrbanHealthPath.Navigation
+namespace PolSl.UrbanHealthPath.Map
 {
     public class LocationProviderMapInitializer : MonoBehaviour
     {
@@ -23,12 +23,12 @@ namespace PolSl.UrbanHealthPath.Navigation
         private void Start()
         {
             _locationProvider = _locationFactory.LocationProvider;
-            _locationProvider.OnLocationUpdated += LocationProvider_OnLocationUpdated;
+            _locationProvider.LocationUpdated += LocationProviderLocationUpdated;
         }
 
-        void LocationProvider_OnLocationUpdated(Location location)
+        private void LocationProviderLocationUpdated(Location location)
         {
-            _locationProvider.OnLocationUpdated -= LocationProvider_OnLocationUpdated;
+            _locationProvider.LocationUpdated -= LocationProviderLocationUpdated;
             _map.Initialize(location.LatitudeLongitude, _map.AbsoluteZoom);
         }
     }

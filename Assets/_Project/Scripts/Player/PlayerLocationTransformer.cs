@@ -1,37 +1,31 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Mapbox.Unity.Location;
 using Mapbox.Unity.Map;
-using PolSl.UrbanHealthPath.Navigation;
 using UnityEngine;
-using ILocationProvider = PolSl.UrbanHealthPath.Navigation.ILocationProvider;
+using PolSl.UrbanHealthPath.Map;
+
 
 namespace PolSl.UrbanHealthPath.Player
 {
     public class PlayerLocationTransformer : MonoBehaviour
     {
-        [SerializeField] private LocationFactory _locationFactory;
-        
         [SerializeField] private AbstractMap _map;
 
         private ILocationProvider _locationProvider;
 
-        private bool _initliazed;
+        private bool _mapInitliazed;
 
-        private void Start()
+        private bool _initialized;
+
+        public void Initialize(ILocationProvider locationProvider)
         {
-              _map.OnInitialized += () => _initliazed = true;
-              if (_locationProvider == null)
-              {
-                  _locationProvider = _locationFactory.LocationProvider;
-              }
-              _locationProvider.OnLocationUpdated += LocationProvider_OnLocationUpdated;
+            _map.OnInitialized += () => _mapInitliazed = true;
+            _locationProvider = locationProvider;
+            _locationProvider.LocationUpdated += LocationProviderLocationUpdated;
+            _initialized = true;
         }
 
-        void LocationProvider_OnLocationUpdated(Location location)
+        void LocationProviderLocationUpdated(Mapbox.Unity.Location.Location location)
         {
-            if (_initliazed)
+            if (_mapInitliazed&&_initialized)
             {
                 transform.position = _map.GeoToWorldPosition(location.LatitudeLongitude);
             }

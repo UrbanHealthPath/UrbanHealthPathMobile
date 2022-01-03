@@ -1,27 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using Mapbox.Unity.Location;
 using Mapbox.Unity.Map;
 using Mapbox.Utils;
-using PolSl.UrbanHealthPath.Navigation;
 using UnityEngine;
-using ILocationProvider = PolSl.UrbanHealthPath.Navigation.ILocationProvider;
 
-namespace PolSl.UrbanHealthPath
+namespace PolSl.UrbanHealthPath.Map
 {
     public class LocationProviderMapUpdater : MonoBehaviour
     {
-        [SerializeField] private LocationFactory _locationFactory;
+        [SerializeField] private AbstractMap _map;
         
-        [SerializeField] AbstractMap _map;
+        private LocationFactoryMode _factoryMode = LocationFactoryMode.Fake;
 
+        private LocationFactory _locationFactory;
+        
         private ILocationProvider _locationProvider;
         
-        private float _lerpTime;
-        
-        private bool _isMapInitialized = false;
+        private float _lerpTime = 1f;
 
-        private bool _isLerping;
+        private bool _isMapInitialized;
+
+        private bool _initialized;
 
         private Vector3 _startPosition;
 
@@ -33,31 +31,39 @@ namespace PolSl.UrbanHealthPath
 
         private float _lerpStartTime;
 
-        private void Awake()
+        public ILocationProvider LocationProvider
         {
-            _map.InitializeOnStart = false;
-        }
-        void Start()
-        {
-            if (_locationProvider == null)
+            get
             {
-                _locationProvider = _locationFactory.LocationProvider;
+                return _locationProvider;
             }
-            _locationProvider.OnLocationUpdated+=LocationProvider_OnFirstLocationUpdate;
+            private set
+            {
+                _locationProvider = value;
+            }
+        }
+
+        public void Initialize(LocationFactoryMode mode)
+        {
+            _factoryMode = mode;
+            _initialized = true;
+            _locationFactory = new LocationFactory(_factoryMode);
+            _locationProvider = _locationFactory.LocationProvider;
+            _locationProvider.LocationUpdated+=LocationProviderFirstLocationUpdate;
         }
         
-        void LocationProvider_OnFirstLocationUpdate(Location location)
+        private void LocationProviderFirstLocationUpdate(Location location)
         {
-            _locationProvider.OnLocationUpdated -= LocationProvider_OnFirstLocationUpdate;
+            _locationProvider.LocationUpdated -= LocationProviderFirstLocationUpdate;
             _map.OnInitialized += () =>
             {
                 _isMapInitialized = true;
-                _locationProvider.OnLocationUpdated += LocationProvider_OnLocationUpdated;
+                _locationProvider.LocationUpdated += LocationProviderLocationUpdated;
             };
-            _map.Initialize(location.LatitudeLongitude, _map.AbsoluteZoom);
+            _map.Initialize(_locationProvider.GetLocation().LatitudeLongitude, _map.AbsoluteZoom);
         }
         
-        void LocationProvider_OnLocationUpdated(Location location)
+        private void LocationProviderLocationUpdated(Location location)
         {
             if (_isMapInitialized && location.IsLocationUpdated)
             {
@@ -65,9 +71,8 @@ namespace PolSl.UrbanHealthPath
             }
         }
         
-        void StartLerping(Location location)
+        private void StartLerping(Location location)
         {
-            _isLerping = true;
             _lerpStartTime = Time.time;
             _lerpTime = Time.deltaTime;
             _startLatLong = _map.CenterLatitudeLongitude;
@@ -76,9 +81,9 @@ namespace PolSl.UrbanHealthPath
             _endPosition = _map.GeoToWorldPosition(_endLatLong, false);
         }
         
-        void LateUpdate()
+        private void LateUpdate()
         {
-            if (_isMapInitialized && _isLerping)
+            if (_isMapInitialized &&_initialized)
             {
                 float timeSinceStarted = Time.time - _lerpStartTime;
                 float percentageComplete = timeSinceStarted / _lerpTime;
@@ -87,10 +92,6 @@ namespace PolSl.UrbanHealthPath
                 var position = Vector3.Lerp(_startPosition, _endPosition, percentageComplete);
                 var latLong = _map.WorldToGeoPosition(position);
                 _map.UpdateMap(latLong, _map.Zoom);
-                if (percentageComplete >= 1.0f)
-                {
-                    _isLerping = false;
-                }
             }
         }
     }

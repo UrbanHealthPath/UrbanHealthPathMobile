@@ -2,12 +2,11 @@ using System;
 using Mapbox.Unity.Location;
 
 
-namespace PolSl.UrbanHealthPath.Navigation
+namespace PolSl.UrbanHealthPath.Map
 {
     public interface ILocationProvider
     {
+        public event Action<Location> LocationUpdated;
         public Location GetLocation();
-        
-        public event Action<Location> OnLocationUpdated;
     }
 }

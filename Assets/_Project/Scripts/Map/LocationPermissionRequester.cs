@@ -5,12 +5,19 @@ using Mapbox.Unity.Location;
 using UnityEngine;
 using UnityEngine.Android;
 
-namespace PolSl.UrbanHealthPath.Navigation
+namespace PolSl.UrbanHealthPath.Map
 {
     
-    public static class LocationPermissionRequester
+    public class LocationPermissionRequester
     {
-        public static bool RequestPermission()
+        private LocationPermissionRequester _instance;
+
+        public LocationPermissionRequester()
+        {
+            _instance = this;
+        }
+
+        public bool RequestPermission()
         {
             if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
             {

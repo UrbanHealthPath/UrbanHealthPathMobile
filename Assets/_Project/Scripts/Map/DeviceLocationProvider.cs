@@ -6,15 +6,19 @@ using Mapbox.Utils;
 using UnityEditor;
 using UnityEngine;
 
-namespace PolSl.UrbanHealthPath.Navigation
+namespace PolSl.UrbanHealthPath.Map
 {
-    public class DeviceLocationProvider : MonoBehaviour, ILocationProvider
-    {
-        [SerializeField] private float _desiredAccuracyInMeters = 1.0f;
-
-        [SerializeField] private float _updateDistanceInMeters = 0.0f;
+    public class DeviceLocationProvider : ILocationProvider
+    { 
+        public event Action<Location> LocationUpdated = delegate {};
         
-        [SerializeField] private AngleSmoothingAbstractBase _deviceOrientationSmoothing;
+        private float _desiredAccuracyInMeters = 1.0f;
+
+        private float _updateDistanceInMeters = 0.0f;
+
+        private System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture;
+        
+        private AngleSmootherLowPas _deviceOrientationSmoothing; 
 
         private Location _currentLocation;
 
@@ -23,61 +27,56 @@ namespace PolSl.UrbanHealthPath.Navigation
         private Vector2d _lastPosition;
 
         private double _lastLocationTimeStamp;
-
-        private WaitForSeconds _waitUpdateTime;
-
-        private Coroutine _locationCoroutine;
-
-        public void Awake()
+        
+        public DeviceLocationProvider()
         {
+            _deviceOrientationSmoothing = new AngleSmootherLowPas();
             _locationService = new MapboxLocationServiceUnityWrapper();
             _currentLocation.Provider = "unity";
             _currentLocation.IsLocationServiceEnabled = true;
             _locationService.Start(_desiredAccuracyInMeters, _updateDistanceInMeters);
             Input.compass.enabled = true;
-            _waitUpdateTime = new WaitForSeconds(1f);
         }
 
-        public void Start()
+        public DeviceLocationProvider(float updateDistanceInMeters, float desiredAccuracyInMeters)
         {
-            _locationCoroutine = StartCoroutine(PollLocation());
+            _updateDistanceInMeters = updateDistanceInMeters;
+            _desiredAccuracyInMeters = desiredAccuracyInMeters;
+            _locationService = new MapboxLocationServiceUnityWrapper();
+            _currentLocation.Provider = "unity";
+            _currentLocation.IsLocationServiceEnabled = true;
+            _locationService.Start(_desiredAccuracyInMeters, _updateDistanceInMeters);
+            Input.compass.enabled = true;
         }
-
-        private IEnumerator PollLocation()
-        {
-            System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture;
-            while (true)
-            {
-                IMapboxLocationInfo lastData = _locationService.lastData;
-                _currentLocation.IsLocationServiceEnabled = _locationService.status == LocationServiceStatus.Running ||
-                                                            lastData.timestamp > _lastLocationTimeStamp;
-                _deviceOrientationSmoothing.Add(Input.compass.trueHeading);
-                _currentLocation.UserHeading = (float) _deviceOrientationSmoothing.Calculate();
-                _currentLocation.IsUserHeadingUpdated = true;
-                double latitude = double.Parse(lastData.latitude.ToString("R", invariantCulture), invariantCulture);
-                double longitude = double.Parse(lastData.longitude.ToString("R", invariantCulture), invariantCulture);
-                _lastPosition = _currentLocation.LatitudeLongitude;
-                _currentLocation.LatitudeLongitude = new Vector2d(latitude, longitude);
-                _currentLocation.Accuracy = (float) Math.Floor(lastData.horizontalAccuracy);
-                _currentLocation.Timestamp = lastData.timestamp;
-                _currentLocation.IsLocationUpdated = _currentLocation.Timestamp > _lastLocationTimeStamp ||
-                                                     !_currentLocation.LatitudeLongitude.Equals(_lastPosition);
-                _lastLocationTimeStamp = _currentLocation.Timestamp;
-                SendLocation(_currentLocation);
-                yield return _waitUpdateTime;
-            }
-        }
-
+        
         public Location GetLocation()
         {
             return _currentLocation;
         }
         
-        public event Action<Location> OnLocationUpdated = delegate {};
+        private void PollLocation()
+        {
+            IMapboxLocationInfo lastData = _locationService.lastData;
+            _currentLocation.IsLocationServiceEnabled = _locationService.status == LocationServiceStatus.Running ||
+                                                        lastData.timestamp > _lastLocationTimeStamp;
+            _deviceOrientationSmoothing.Add(Input.compass.trueHeading);
+            _currentLocation.UserHeading = (float) _deviceOrientationSmoothing.Calculate();
+            _currentLocation.IsUserHeadingUpdated = true;
+            double latitude = double.Parse(lastData.latitude.ToString("R", invariantCulture), invariantCulture);
+            double longitude = double.Parse(lastData.longitude.ToString("R", invariantCulture), invariantCulture);
+            _lastPosition = _currentLocation.LatitudeLongitude;
+            _currentLocation.LatitudeLongitude = new Vector2d(latitude, longitude);
+            _currentLocation.Accuracy = (float) Math.Floor(lastData.horizontalAccuracy);
+            _currentLocation.Timestamp = lastData.timestamp;
+            _currentLocation.IsLocationUpdated = _currentLocation.Timestamp > _lastLocationTimeStamp ||
+                                                 !_currentLocation.LatitudeLongitude.Equals(_lastPosition);
+            _lastLocationTimeStamp = _currentLocation.Timestamp;
+            SendLocation(_currentLocation);
+        }
 
         private void SendLocation(Location location)
         {
-            OnLocationUpdated(location);
+            LocationUpdated(location);
         }
     }
 }

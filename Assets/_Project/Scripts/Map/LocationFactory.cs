@@ -1,28 +1,34 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Mapbox.Unity.Location;
-using Mapbox.Unity.Map;
-using PolSl.UrbanHealthPath.Navigation;
-using UnityEngine;
 
-namespace PolSl.UrbanHealthPath.Navigation
+namespace PolSl.UrbanHealthPath.Map
 {
-    public enum LocationFactoryMode
+    public class LocationFactory
     {
-        Fake,
-        Device
-    }
-    public class LocationFactory : MonoBehaviour
-    {
-        [SerializeField] private FakeLocationProvider _fakeLocationProvider;
+        private FakeLocationProvider _fakeLocationProvider;
 
-        [SerializeField] private DeviceLocationProvider _deviceLocationProvider;
+        private DeviceLocationProvider _deviceLocationProvider;
 
-        [SerializeField] private LocationFactoryMode _mode = LocationFactoryMode.Fake;
+        private LocationFactoryMode _mode;
 
+        private List<string> _latitudeLongitudeList;
+        
         private ILocationProvider _locationProvider;
 
+        public LocationFactory(LocationFactoryMode mode)
+        {
+            _mode = mode;
+            _latitudeLongitudeList = new List<string>();
+            InjectLocationProvider();
+        }
+
+        public LocationFactory(List<string> latitudeLongitudeList)
+        {
+            _latitudeLongitudeList = new List<string>();
+            latitudeLongitudeList.AddRange(latitudeLongitudeList);
+            _mode = LocationFactoryMode.Fake;
+            InjectLocationProvider();
+        }
+        
         public ILocationProvider LocationProvider
         {
             get
@@ -34,6 +40,16 @@ namespace PolSl.UrbanHealthPath.Navigation
                 _locationProvider = value;
             }
         }
+
+        public void PollCurrentLocation()
+        {
+            _locationProvider.GetLocation();
+        }
+        public void ChangeMode(LocationFactoryMode mode)
+        {
+            _mode = mode;
+            InjectLocationProvider();
+        }
         
         private void Awake()
         { 
@@ -42,20 +58,14 @@ namespace PolSl.UrbanHealthPath.Navigation
 
         private void InjectLocationProvider()
         {
-            if (_mode == LocationFactoryMode.Device && LocationPermissionRequester.RequestPermission())
+            if (_mode == LocationFactoryMode.Device && new LocationPermissionRequester().RequestPermission())
             {
-                _locationProvider = _deviceLocationProvider;
+                _locationProvider = new DeviceLocationProvider();
             }
             else
             {
-                _locationProvider = _fakeLocationProvider;
+                _locationProvider = new FakeLocationProvider(_latitudeLongitudeList);
             }
-        }
-
-        public void ChangeMode(LocationFactoryMode mode)
-        {
-            _mode = mode;
-            InjectLocationProvider();
         }
     }
 }
