@@ -9,11 +9,7 @@ namespace PolSl.UrbanHealthPath.Map
     {
         [SerializeField] private AbstractMap _map;
         
-        private LocationFactoryMode _factoryMode = LocationFactoryMode.Fake;
-
         private LocationFactory _locationFactory;
-        
-        private ILocationProvider _locationProvider;
         
         private float _lerpTime = 1f;
 
@@ -31,36 +27,42 @@ namespace PolSl.UrbanHealthPath.Map
 
         private float _lerpStartTime;
 
-        public ILocationProvider LocationProvider
+        private bool _lerping;
+        
+        public void UpdateLocation()
+        {
+            _locationFactory.PollCurrentLocation();
+        }
+
+        public LocationFactory LocationFactory
         {
             get
             {
-                return _locationProvider;
+                return _locationFactory;
             }
             private set
             {
-                _locationProvider = value;
+                _locationFactory = value;
             }
         }
 
         public void Initialize(LocationFactoryMode mode)
         {
-            _factoryMode = mode;
+            
             _initialized = true;
-            _locationFactory = new LocationFactory(_factoryMode);
-            _locationProvider = _locationFactory.LocationProvider;
-            _locationProvider.LocationUpdated+=LocationProviderFirstLocationUpdate;
+            _locationFactory = new LocationFactory(mode);
+            _locationFactory.LocationProvider.LocationUpdated+=LocationProviderFirstLocationUpdate;
         }
         
         private void LocationProviderFirstLocationUpdate(Location location)
         {
-            _locationProvider.LocationUpdated -= LocationProviderFirstLocationUpdate;
+            _locationFactory.LocationProvider.LocationUpdated -= LocationProviderFirstLocationUpdate;
             _map.OnInitialized += () =>
             {
                 _isMapInitialized = true;
-                _locationProvider.LocationUpdated += LocationProviderLocationUpdated;
+                _locationFactory.LocationProvider.LocationUpdated += LocationProviderLocationUpdated;
             };
-            _map.Initialize(_locationProvider.GetLocation().LatitudeLongitude, _map.AbsoluteZoom);
+            _map.Initialize(location.LatitudeLongitude, _map.AbsoluteZoom);
         }
         
         private void LocationProviderLocationUpdated(Location location)
@@ -73,6 +75,7 @@ namespace PolSl.UrbanHealthPath.Map
         
         private void StartLerping(Location location)
         {
+            _lerping = true;
             _lerpStartTime = Time.time;
             _lerpTime = Time.deltaTime;
             _startLatLong = _map.CenterLatitudeLongitude;
@@ -83,7 +86,7 @@ namespace PolSl.UrbanHealthPath.Map
         
         private void LateUpdate()
         {
-            if (_isMapInitialized &&_initialized)
+            if (_isMapInitialized &&_initialized&&_lerping)
             {
                 float timeSinceStarted = Time.time - _lerpStartTime;
                 float percentageComplete = timeSinceStarted / _lerpTime;
@@ -92,6 +95,10 @@ namespace PolSl.UrbanHealthPath.Map
                 var position = Vector3.Lerp(_startPosition, _endPosition, percentageComplete);
                 var latLong = _map.WorldToGeoPosition(position);
                 _map.UpdateMap(latLong, _map.Zoom);
+                if (percentageComplete >= 1.0f)
+                {
+                    _lerping = false;
+                }
             }
         }
     }

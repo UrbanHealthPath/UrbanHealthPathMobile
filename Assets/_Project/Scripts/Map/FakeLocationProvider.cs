@@ -27,7 +27,7 @@ namespace PolSl.UrbanHealthPath.Map
         public FakeLocationProvider(List<String> latitudeLongitude)
         {
             _latitudeLongitude = new List<string>();
-            if (latitudeLongitude != null)
+            if (latitudeLongitude != null && latitudeLongitude.Count!=0)
             {
                 _latitudeLongitude.AddRange(latitudeLongitude);
             }
@@ -36,13 +36,10 @@ namespace PolSl.UrbanHealthPath.Map
                 _latitudeLongitude.Add("50.29416712031348, 18.665418882944635");//neptun
             }
         }
-        public void PollNextLocation()
-        {
-            PollLocation();
-        }
         
         public Location GetLocation()
         {
+            PollLocation();
             return _currentLocation;
         }
         

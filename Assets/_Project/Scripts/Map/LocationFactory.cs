@@ -1,18 +1,17 @@
 using System.Collections.Generic;
+using Mapbox.Unity.Location;
 
 namespace PolSl.UrbanHealthPath.Map
 {
     public class LocationFactory
     {
-        private FakeLocationProvider _fakeLocationProvider;
-
-        private DeviceLocationProvider _deviceLocationProvider;
-
         private LocationFactoryMode _mode;
 
         private List<string> _latitudeLongitudeList;
         
         private ILocationProvider _locationProvider;
+
+        private Location _currentLocation;
 
         public LocationFactory(LocationFactoryMode mode)
         {
@@ -27,6 +26,18 @@ namespace PolSl.UrbanHealthPath.Map
             latitudeLongitudeList.AddRange(latitudeLongitudeList);
             _mode = LocationFactoryMode.Fake;
             InjectLocationProvider();
+        }
+
+        public LocationFactoryMode Mode
+        {
+            get
+            {
+                return _mode;
+            }
+            private set
+            {
+                _mode = value;
+            }
         }
         
         public ILocationProvider LocationProvider
@@ -43,7 +54,10 @@ namespace PolSl.UrbanHealthPath.Map
 
         public void PollCurrentLocation()
         {
-            _locationProvider.GetLocation();
+            if (_mode == LocationFactoryMode.Fake)
+            {
+                _currentLocation = _locationProvider.GetLocation();
+            }
         }
         public void ChangeMode(LocationFactoryMode mode)
         {
@@ -51,11 +65,6 @@ namespace PolSl.UrbanHealthPath.Map
             InjectLocationProvider();
         }
         
-        private void Awake()
-        { 
-            InjectLocationProvider();
-        }
-
         private void InjectLocationProvider()
         {
             if (_mode == LocationFactoryMode.Device && new LocationPermissionRequester().RequestPermission())
@@ -65,6 +74,7 @@ namespace PolSl.UrbanHealthPath.Map
             else
             {
                 _locationProvider = new FakeLocationProvider(_latitudeLongitudeList);
+                _mode = LocationFactoryMode.Fake;
             }
         }
     }
