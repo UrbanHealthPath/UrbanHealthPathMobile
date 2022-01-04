@@ -1,45 +1,34 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Mapbox.Unity.Map;
 using Mapbox.Unity.Utilities;
 using UnityEngine;
 
-namespace PolSl.UrbanHealthPath
+namespace PolSl.UrbanHealthPath.Map
 {
-    public class MapStyleInitializer : MonoBehaviour
+    public class MapStyleInitializer 
     {
-        [SerializeField] private string _styleURL;
-
-        [SerializeField] private AbstractMap _map;
-
-        [SerializeField] private string _latLong;
-
-        private bool _mapInitialized = false;
-
-        private void Awake()
+        public void SetMapImageLayer(AbstractMap map, string styleURL, string latLong, int zoom)
         {
-            _map.InitializeOnStart = false;
+            map.ImageLayer.SetProperties(ImagerySourceType.Custom, true, false, false);
+            map.ImageLayer.SetLayerSource(styleURL);
+            map.Initialize(Conversions.StringToLatLon(latLong), zoom);
         }
 
-        private void SetMapImageLayer()
+        public void UpdateMapImageLayer(AbstractMap map, string styleURL)
         {
-
-            _map.ImageLayer.SetProperties(ImagerySourceType.Custom, true, false, false);
-            _map.ImageLayer.SetLayerSource(_styleURL);
-            if (!_mapInitialized)
-            {
-                _map.Initialize(Conversions.StringToLatLon(_latLong), _map.AbsoluteZoom);
-                _mapInitialized = true;
-            }
-            else
-            {
-                _map.UpdateMap();            }
+            map.ImageLayer.SetProperties(ImagerySourceType.Custom, true, false, false);
+            map.ImageLayer.SetLayerSource(styleURL);
+            map.UpdateMap();
         }
 
-        public void ButtonClicked_SetMapImageLayer()
+        public void UpdateMapImageLayer(AbstractMap map, string styleURL,string latLong, int zoom)
         {
-            SetMapImageLayer();
+            map.ImageLayer.SetProperties(ImagerySourceType.Custom, true, false, false);
+            map.ImageLayer.SetLayerSource(styleURL);
+            map.UpdateMap(Conversions.StringToLatLon(latLong), zoom);
         }
     }
 }

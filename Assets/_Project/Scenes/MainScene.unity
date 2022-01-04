@@ -667,7 +667,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1793480576}
   - component: {fileID: 1793480577}
-  - component: {fileID: 1793480578}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -819,21 +818,6 @@ MonoBehaviour:
   _tileProvider: {fileID: 0}
   _previewOptions:
     isPreviewEnabled: 0
---- !u!114 &1793480578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1793480575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f73756e62c5dba64c9d3a65213b91325, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _styleURL: mapbox://styles/matadam667/ckww2yrcx49nb14pbs66fpbcw
-  _map: {fileID: 1793480577}
-  _latLong: 50.29416712031348, 18.665418882944635
 --- !u!1 &1892133567
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,7 +946,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1793480578}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PolSl.UrbanHealthPath.MapStyleInitializer, Assembly-CSharp
         m_MethodName: ButtonClicked_SetMapImageLayer
         m_Mode: 1
