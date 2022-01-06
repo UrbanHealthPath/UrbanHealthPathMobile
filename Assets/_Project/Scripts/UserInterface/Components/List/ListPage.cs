@@ -6,7 +6,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
 {
     public class ListPage : MonoBehaviour
     {
-        [SerializeField] private List<ListPanelElement> panelElements;
+        [SerializeField] private List<ListPanelElement> panelElements = new List<ListPanelElement>();
 
         private const int MaxElementsCount = 3;
 
@@ -23,12 +23,15 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
         {
             for (int i = 0; i < MaxElementsCount; i++)
             {
-                var element = elements[i];
-                var panelElem = panelElements[i];
-                
-                panelElem.gameObject.SetActive(true);
-                
-                panelElem.SetValues(element.ButtonText, element.IconText, element.Action, element.Icon);
+                if (i < elements.Count)
+                {
+                    var element = elements[i];
+                    var panelElem = panelElements[i];
+
+                    panelElem.gameObject.SetActive(true);
+
+                    panelElem.SetValues(element.ButtonText, element.IconText, element.Action, element.Icon);
+                }
             }
         }
     }

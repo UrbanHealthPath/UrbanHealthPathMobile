@@ -12,30 +12,57 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
         [SerializeField] private GameObject page;
         [SerializeField] private Button backButton, forwardButton;
         [SerializeField] private GameObject frameBackButton, frameForwardButton, buttonsPanel;
+        [SerializeField] private List<GameObject> pages = new List<GameObject>();
+        [SerializeField] private GameObject parentForPages;
         private int _pageIndex;
-        private List<GameObject> _pages = new List<GameObject>();
+
 
         public void Initialize(List<ListElement> elements)
         {
-            int pages = elements.Count / 3;
+            int pagesCount = elements.Count / 3 + 1;
+            int pagesInstantinated = pages.Count;
             int j = 0;
 
-            for (int i = 0; i < pages; i++)
+            Vector3 position = Vector3.zero;
+            
+            for (int i = 0; i < pagesCount; i++)
             {
-                var newPage = Instantiate(page);
-                _pages.Add(newPage);
+                GameObject newPage;
+
+                if (i + 1 > pagesInstantinated)
+                {
+                    newPage = Instantiate(page);
+                    pages.Add(newPage);
+                    
+                    var rectTrans = newPage.GetComponent<RectTransform>();
+                    rectTrans.SetParent(parentForPages.transform);
+                    rectTrans.anchoredPosition =position;
+                    rectTrans.localScale = new Vector3(1, 1, 1);
+                    newPage.SetActive(false);
+                }
+                else
+                {
+                    newPage = pages[i];
+                    var rectTrans = newPage.GetComponent<RectTransform>();
+                    position = rectTrans.anchoredPosition;
+
+                }
+
+               
 
                 List<ListElement> list = new List<ListElement>();
 
                 for (int k = 0; k < 3; k++)
                 {
                     if (j < elements.Count)
+                    {
                         list.Add(elements[j]);
-                    j++;
+                        j++;
+                    }
                 }
 
                 newPage.GetComponent<ListPage>().Initialize(list);
-                
+
                 list.Clear();
             }
 
@@ -50,7 +77,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
             backButton.gameObject.SetActive(false);
             frameBackButton.SetActive(false);
 
-            bool isNextPage = (_pages.Count > 1 ? true : false);
+            bool isNextPage = (pages.Count > 1 ? true : false);
 
             forwardButton.gameObject.SetActive(isNextPage);
             frameForwardButton.SetActive(isNextPage);
@@ -62,9 +89,9 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
             forwardButton.gameObject.SetActive(true);
             frameForwardButton.SetActive(true);
 
-            _pages[_pageIndex].SetActive(false);
+            pages[_pageIndex].SetActive(false);
             _pageIndex--;
-            _pages[Mathf.Clamp(_pageIndex, 0, _pages.Count - 1)].SetActive(true);
+            pages[Mathf.Clamp(_pageIndex, 0, pages.Count - 1)].SetActive(true);
 
             if (_pageIndex == 0)
             {
@@ -78,11 +105,11 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
             backButton.gameObject.SetActive(true);
             frameBackButton.SetActive(true);
 
-            _pages[_pageIndex].SetActive(false);
+            pages[_pageIndex].SetActive(false);
             _pageIndex++;
-            _pages[Mathf.Clamp(_pageIndex, 0, _pages.Count - 1)].SetActive(true);
+            pages[Mathf.Clamp(_pageIndex, 0, pages.Count - 1)].SetActive(true);
 
-            if (_pageIndex == _pages.Count - 1)
+            if (_pageIndex == pages.Count - 1)
             {
                 forwardButton.gameObject.SetActive(false);
                 frameForwardButton.SetActive(false);

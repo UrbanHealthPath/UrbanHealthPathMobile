@@ -16,6 +16,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         [SerializeField] private Button sensorialButton, motorialButton, historicInfoButton, mainMenuButton, returnButton;
 
         [SerializeField] private Header header;
+        
+        [SerializeField] private TextMeshProUGUI informationAboutStation;
 
         [SerializeField] private RectTransform _popupArea;
 
@@ -34,6 +36,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
                 returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
                 
                 header.Initialize(init.HeaderText);
+                informationAboutStation.text = init.InformationAboutStation;
             }
         }
 

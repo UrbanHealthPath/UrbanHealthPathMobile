@@ -10,9 +10,10 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
         public UnityAction MainMenuEvent { get; }
         public UnityAction ReturnEvent { get; }
         public string HeaderText { get; }
+        public string InformationAboutStation { get; }
 
         public StationViewInitializer(UnityAction sensorialEvent, UnityAction motorialEvent,
-            UnityAction historicInfoEvent, UnityAction mainMenuEvent, UnityAction returnEvent, string headerText)
+            UnityAction historicInfoEvent, UnityAction mainMenuEvent, UnityAction returnEvent, string headerText, string info)
         {
             SensorialEvent += sensorialEvent;
             MotorialEvent += motorialEvent;
@@ -20,6 +21,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
             MainMenuEvent += mainMenuEvent;
             ReturnEvent += returnEvent;
             HeaderText = headerText;
+            InformationAboutStation = info;
         }
     }
 }
