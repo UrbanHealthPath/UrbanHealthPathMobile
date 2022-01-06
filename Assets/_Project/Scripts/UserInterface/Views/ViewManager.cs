@@ -65,19 +65,19 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
             }
 
             History = new History();
-
-            ListElement r = new ListElement("aaaaa", null, "bbb", () => Debug.Log("jes"));
-            var a = new List<ListElement>();
-            a.Add(r);
-            r = new ListElement("aaaaa", null, "bbb", () => Debug.Log("jes"));
-            a.Add(r);
-            r = new ListElement("aaaaa", null, "bbb", () => Debug.Log("jes"));
-            a.Add(r);
-            r = new ListElement("aaaa2a", null, "bbb", () => Debug.Log("jes"));
-            a.Add(r);
-            
-            var init = new HelpViewInitializer(a, () => Debug.Log("return"));
-            OpenView(ViewType.Help, init);
+            //
+            // ListElement r = new ListElement("aaaaa", null, "bbb", () => Debug.Log("jes"));
+            // var a = new List<ListElement>();
+            // a.Add(r);
+            // r = new ListElement("aaaaa", null, "bbb", () => Debug.Log("jes"));
+            // a.Add(r);
+            // r = new ListElement("aaaaa", null, "bbb", () => Debug.Log("jes"));
+            // a.Add(r);
+            // r = new ListElement("aaaa2a", null, "bbb", () => Debug.Log("jes"));
+            // a.Add(r);
+            //
+            // var init = new HelpViewInitializer(a, () => Debug.Log("return"));
+            // OpenView(ViewType.Help, init);
         }
 
         public static ViewManager GetInstance()
