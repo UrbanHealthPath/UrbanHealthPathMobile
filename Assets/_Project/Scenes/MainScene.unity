@@ -229,6 +229,66 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
+--- !u!1 &328303297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 328303298}
+  - component: {fileID: 328303299}
+  m_Layer: 0
+  m_Name: StationFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &328303298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328303297}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &328303299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328303297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba85f6692868f4e4da998c3bd62e3ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _statation: {fileID: 23680002971963964, guid: 36a1c21795ef5e7409f523735e45ad95, type: 3}
+  _map: {fileID: 1793480577}
+  _coordinatesList:
+  - x: 50.29416712031348
+    y: 18.665418882944635
+  - x: 50.293877701686114
+    y: 18.665775076345152
+  - x: 50.293959890143874
+    y: 18.665973026994976
+  - x: 50.29412972812803
+    y: 18.665921153017187
+  - x: 50.29441236209267
+    y: 18.665831086127245
+  - x: 50.2946097951345
+    y: 18.66565155695886
+  - x: 50.29466866140864
+    y: 18.66539969209907
 --- !u!4 &551685608 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7261815612137441435, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
@@ -637,7 +697,8 @@ MonoBehaviour:
   _locationProviderMapUpdater: {fileID: 1793480579}
   _locationProviderRotator: {fileID: 65471519}
   _playerLocationTransformer: {fileID: 65471520}
-  _mode: 0
+  _mode: 1
+  _stationFactory: {fileID: 328303299}
 --- !u!4 &1562353124
 Transform:
   m_ObjectHideFlags: 0
@@ -811,7 +872,7 @@ MonoBehaviour:
         isActive: 1
         layerSource:
           Name: Streets
-          Id: mapbox://styles/matadam667/ckww2yrcx49nb14pbs66fpbcw
+          Id: mapbox://styles/matadam667/ckxn3iyihbqu214pbijxv32f1
           Modified: 
           UserName: 
       rasterOptions:
@@ -1037,7 +1098,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1793480579}
         m_TargetAssemblyTypeName: PolSl.UrbanHealthPath.Map.LocationProviderMapUpdater,
           Assembly-CSharp
-        m_MethodName: UpdateLocation
+        m_MethodName: ChangePollLocationDeviceCoroutineStatus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1171,6 +1232,10 @@ PrefabInstance:
     - target: {fileID: 7261815612953337451, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
       propertyPath: _logituteLatitiute
       value: 50.28531, 18.67893
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261815613947049674, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
+      propertyPath: m_Intensity
+      value: 0.55
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7261815612490402006, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}

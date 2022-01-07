@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using Mapbox.Unity.Location;
+using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.Map
 {
@@ -10,9 +12,9 @@ namespace PolSl.UrbanHealthPath.Map
         private List<string> _latitudeLongitudeList;
         
         private ILocationProvider _locationProvider;
-
+        
         private Location _currentLocation;
-
+        
         public LocationFactory(LocationFactoryMode mode)
         {
             _mode = mode;
@@ -54,11 +56,9 @@ namespace PolSl.UrbanHealthPath.Map
 
         public void PollCurrentLocation()
         {
-            if (_mode == LocationFactoryMode.Fake)
-            {
-                _currentLocation = _locationProvider.GetLocation();
-            }
+            _currentLocation = _locationProvider.GetLocation();
         }
+        
         public void ChangeMode(LocationFactoryMode mode)
         {
             _mode = mode;

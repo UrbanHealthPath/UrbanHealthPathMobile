@@ -14,7 +14,7 @@ namespace PolSl.UrbanHealthPath.Map
     { 
         public event Action<Location> LocationUpdated = delegate {};
         
-        private float _userHeading = 112;
+        private float _userHeading = 0;
 
         private int _accuracy = 5;
         
@@ -34,6 +34,23 @@ namespace PolSl.UrbanHealthPath.Map
             else
             {
                 _latitudeLongitude.Add("50.29416712031348, 18.665418882944635");//neptun
+                _latitudeLongitude.Add("50.293877701686114, 18.665775076345152");//neptun
+                _latitudeLongitude.Add("50.293959890143874, 18.665973026994976");//neptun
+                _latitudeLongitude.Add("50.29412972812803, 18.665921153017187");//neptun
+                _latitudeLongitude.Add("50.29441236209267, 18.665831086127245");//neptun
+                _latitudeLongitude.Add("50.2946097951345, 18.66565155695886");//neptun
+                _latitudeLongitude.Add("50.29466866140864, 18.66539969209907");//neptun
+                _latitudeLongitude.Add("50.29536639000551, 18.666095456379832");//neptun
+                _latitudeLongitude.Add("50.295569520229236, 18.66642735656821");//neptun
+                _latitudeLongitude.Add("50.29553157055134, 18.667213172415376");//neptun
+                _latitudeLongitude.Add("50.29560730745248, 18.667408155807326");//neptun
+                _latitudeLongitude.Add("50.295441927973094, 18.667570201774158");//neptun
+                _latitudeLongitude.Add("50.29550468525408, 18.66704212149742");//neptun
+                _latitudeLongitude.Add("50.29426620830372, 18.668441971344834");//neptun
+                _latitudeLongitude.Add("50.29342704663735, 18.66747600827502");//neptun
+                _latitudeLongitude.Add("50.293120518941855, 18.6672573220019");//neptun
+                _latitudeLongitude.Add("50.29291427963203, 18.665879989699373");//neptun
+                _latitudeLongitude.Add("50.29266077335537, 18.665643962775558");//neptun
             }
         }
         

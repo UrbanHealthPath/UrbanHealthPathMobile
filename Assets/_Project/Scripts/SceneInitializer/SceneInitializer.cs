@@ -17,11 +17,14 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
         [SerializeField] private LocationFactoryMode _mode;
 
+        [SerializeField] private StationFactory _stationFactory;
+
         private void Awake()
         {
             _locationProviderMapUpdater.Initialize(_mode);
             _locationProviderRotator.Initialize(_locationProviderMapUpdater.LocationFactory.LocationProvider);
             _playerLocationTransformer.Initialize(_locationProviderMapUpdater.LocationFactory.LocationProvider);
+            _stationFactory.Initialize(_locationProviderMapUpdater.LocationFactory.LocationProvider, null);
         }
     }
 }

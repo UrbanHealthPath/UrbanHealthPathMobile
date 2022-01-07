@@ -1,3 +1,4 @@
+using System.Collections;
 using Mapbox.Unity.Location;
 using Mapbox.Unity.Map;
 using Mapbox.Utils;
@@ -11,29 +12,14 @@ namespace PolSl.UrbanHealthPath.Map
         
         private LocationFactory _locationFactory;
         
-        private float _lerpTime = 1f;
-
         private bool _isMapInitialized;
 
         private bool _initialized;
 
-        private Vector3 _startPosition;
+        private Coroutine _deviceLocationPollCoroutine;
 
-        private Vector3 _endPosition;
-
-        private Vector2d _startLatLong;
-
-        private Vector2d _endLatLong;
-
-        private float _lerpStartTime;
-
-        private bool _lerping;
+        private bool isPolling = false;
         
-        public void UpdateLocation()
-        {
-            _locationFactory.PollCurrentLocation();
-        }
-
         public LocationFactory LocationFactory
         {
             get
@@ -53,6 +39,31 @@ namespace PolSl.UrbanHealthPath.Map
             _locationFactory = new LocationFactory(mode);
             _locationFactory.LocationProvider.LocationUpdated+=LocationProviderFirstLocationUpdate;
         }
+
+        public void UpdateFakeLocation()
+        {
+            if (_locationFactory.Mode == LocationFactoryMode.Fake)
+            {
+                _locationFactory.PollCurrentLocation();
+            }
+        }
+
+        public void ChangePollLocationDeviceCoroutineStatus()
+        {
+            if (!isPolling)
+            {
+                if (_locationFactory.Mode == LocationFactoryMode.Device && _initialized && _isMapInitialized)
+                {
+                    _deviceLocationPollCoroutine = StartCoroutine((PollDeviceLocation()));
+                    isPolling = true;
+                }
+            }
+            else
+            {
+                StopCoroutine(PollDeviceLocation());
+                isPolling = false;
+            }
+        }
         
         private void LocationProviderFirstLocationUpdate(Location location)
         {
@@ -60,44 +71,18 @@ namespace PolSl.UrbanHealthPath.Map
             _map.OnInitialized += () =>
             {
                 _isMapInitialized = true;
-                _locationFactory.LocationProvider.LocationUpdated += LocationProviderLocationUpdated;
             };
             _map.Initialize(location.LatitudeLongitude, _map.AbsoluteZoom);
         }
-        
-        private void LocationProviderLocationUpdated(Location location)
+
+        private IEnumerator PollDeviceLocation()
         {
-            if (_isMapInitialized && location.IsLocationUpdated)
+            if (_locationFactory.Mode == LocationFactoryMode.Device)
             {
-                StartLerping(location);
-            }
-        }
-        
-        private void StartLerping(Location location)
-        {
-            _lerping = true;
-            _lerpStartTime = Time.time;
-            _lerpTime = Time.deltaTime;
-            _startLatLong = _map.CenterLatitudeLongitude;
-            _endLatLong = location.LatitudeLongitude;
-            _startPosition = _map.GeoToWorldPosition(_startLatLong, false);
-            _endPosition = _map.GeoToWorldPosition(_endLatLong, false);
-        }
-        
-        private void LateUpdate()
-        {
-            if (_isMapInitialized &&_initialized&&_lerping)
-            {
-                float timeSinceStarted = Time.time - _lerpStartTime;
-                float percentageComplete = timeSinceStarted / _lerpTime;
-                _startPosition = _map.GeoToWorldPosition(_startLatLong, false);
-                _endPosition = _map.GeoToWorldPosition(_endLatLong, false);
-                var position = Vector3.Lerp(_startPosition, _endPosition, percentageComplete);
-                var latLong = _map.WorldToGeoPosition(position);
-                _map.UpdateMap(latLong, _map.Zoom);
-                if (percentageComplete >= 1.0f)
+                while (_isMapInitialized && _initialized)
                 {
-                    _lerping = false;
+                    _locationFactory.PollCurrentLocation();
+                    yield return new WaitForSeconds(1.0f);
                 }
             }
         }
