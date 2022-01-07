@@ -13,8 +13,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Scalers
         private RawImage _image;
         private float _width = 1;
         private float _height = 1;
-        private float _x = 0;
-        private float _y = 0;
+        private float _x;
+        private float _y;
         private float _rectWidth;
         private float _rectHeight;
 
@@ -55,7 +55,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Scalers
 
             if (!Mathf.Approximately(ratio, 0))
             {
-                float paramFirst = 0, paramSecond = 0;
+                float paramFirst, paramSecond;
                 if (ratio < 1)
                 {
                     _width = ratio;
