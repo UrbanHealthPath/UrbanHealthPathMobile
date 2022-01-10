@@ -26,20 +26,15 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         }
         public void Display()
         {
-            this.enabled = true;
-            this.gameObject.SetActive(true);
         }
 
         public void StopDisplay()
         {
-            this.gameObject.SetActive(false);
         }
 
         public void OnDisable()
         {
             menuButton.onClick.RemoveAllListeners();
         }
-
-
     }
 }

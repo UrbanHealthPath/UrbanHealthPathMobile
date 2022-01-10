@@ -7,11 +7,10 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
 {
     public class ListElement
     {
-        public string ButtonText { get; private set; }
-        public Sprite Icon { get; private set; }
-        public string IconText { get; private set; }
-        
-        public UnityAction Action { get; private set; }
+        public string ButtonText { get; }
+        public Sprite Icon { get; }
+        public string IconText { get; }
+        public UnityAction Action { get; }
 
         public ListElement(string buttonText, Sprite icon, string iconText, UnityAction action)
         {

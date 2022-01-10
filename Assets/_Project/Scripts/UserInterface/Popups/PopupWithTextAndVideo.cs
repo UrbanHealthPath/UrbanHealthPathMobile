@@ -16,7 +16,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
         [SerializeField] private TextMeshProUGUI text;
         [SerializeField] private RectTransform popupArea;
         [SerializeField] private VideoPlayer videoPlayer;
-
+        
         public void Initialize(Initializer initializer)
         {
             if (initializer is PopupWithTextAndVideoInitializer init)
@@ -30,7 +30,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
                 InitSizeAndPosition(init.Payload);
             }
         }
-
         public void InitSizeAndPosition(PopupPayload payload)
         {
             PopupArea.sizeDelta = new Vector2(payload.Size.x, payload.Size.y);

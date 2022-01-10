@@ -7,26 +7,24 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
         public UnityAction ProfileEvent { get; }
         public UnityAction HelpEvent { get; }
         public UnityAction SettingsEvent { get; }
-        public UnityAction CheckPathEvent { get; }
-        public UnityAction StartPathEvent { get; }
-        public UnityAction ContinuePathEvent { get; }
-        public UnityAction EndPathEvent { get; }
+        public UnityAction LowerButtonEvent { get; }
+        public UnityAction UpperButtonEvent { get; }
         public UnityAction ExitEvent { get; }
+        
+        public string UpperButtonText { get;  }
+        public string LowerButtonText { get; }
 
         public MainViewInitializer(UnityAction profileEvent, UnityAction helpEvent, UnityAction settingsEvent,
-            UnityAction
-                checkPathEvent, UnityAction startPathEvent, UnityAction continuePathEvent, UnityAction endPathEvent,
-            UnityAction
-                exitEvent)
+            UnityAction upperButtonEvent, UnityAction lowerButtonEvent, UnityAction exitEvent, string upperButtonText, string lowerButtonText)
         {
             ProfileEvent += profileEvent;
             HelpEvent += helpEvent;
             SettingsEvent += settingsEvent;
-            CheckPathEvent += checkPathEvent;
-            StartPathEvent += startPathEvent;
-            ContinuePathEvent += continuePathEvent;
-            EndPathEvent += endPathEvent;
+            LowerButtonEvent += lowerButtonEvent;
+            UpperButtonEvent += upperButtonEvent;
             ExitEvent += exitEvent;
+            LowerButtonText = lowerButtonText;
+            UpperButtonText = upperButtonText;
         }
     }
 }

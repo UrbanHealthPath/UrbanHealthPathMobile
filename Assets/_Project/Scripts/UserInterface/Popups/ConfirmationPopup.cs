@@ -1,22 +1,19 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
-    public class ConfirmationPopup : Popup, IPopup, IInitializable
+    public class ConfirmationPopup :MonoBehaviour, IPopup, IInitializable, IDisplayable
     {
-        [SerializeField] private Button buttonFirst, buttonSecond;
-        [SerializeField] private TextMeshProUGUI text;   
-        [SerializeField] private RectTransform popupArea;
         public RectTransform PopupArea => popupArea;
 
+        [SerializeField] private Button buttonFirst, buttonSecond;
+        [SerializeField] private TextMeshProUGUI text;
+        [SerializeField] private RectTransform popupArea;
         public void InitSizeAndPosition(PopupPayload payload)
         {
             PopupArea.sizeDelta = new Vector2(payload.Size.x, payload.Size.y);
@@ -33,8 +30,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
                 {
                     buttonFirst.gameObject.SetActive(false);
                     buttonSecond.gameObject.SetActive(false);
-                    
-                } else if (init.NumberOfButtons == 1)
+                }
+                else if (init.NumberOfButtons == 1)
                 {
                     buttonFirst.gameObject.SetActive(true);
                     buttonSecond.gameObject.SetActive(false);
@@ -53,7 +50,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
                 {
                     buttonFirst.gameObject.SetActive(true);
                     buttonSecond.gameObject.SetActive(true);
-                    
+
                     if (init.ButtonTexts.Length >= 2)
                     {
                         buttonFirst.GetComponentInChildren<TextMeshProUGUI>().text = init.ButtonTexts[0];
@@ -68,11 +65,20 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
                 }
             }
         }
-        private void OnDestroy()
+
+        public void Display()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StopDisplay()
+        {
+            throw new NotImplementedException();
+        }
+        private void OnDisable()
         {
             buttonFirst.onClick.RemoveAllListeners();
             buttonSecond.onClick.RemoveAllListeners();
         }
-
     }
 }

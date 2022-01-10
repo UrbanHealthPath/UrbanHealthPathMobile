@@ -44,7 +44,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
                 InitSizeAndPosition(init.Payload);
             }
         }
-
         public void InitSizeAndPosition(PopupPayload payload)
         {
             PopupArea.sizeDelta = new Vector2(payload.Size.x, payload.Size.y);

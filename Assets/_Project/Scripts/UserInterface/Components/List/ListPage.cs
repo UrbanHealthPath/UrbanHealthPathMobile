@@ -12,9 +12,9 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
 
         private void Awake()
         {
-            foreach (var panelElem in panelElements)
+            foreach (ListPanelElement panelElem in panelElements)
             {
-                if(panelElem.gameObject.activeSelf)
+                if (panelElem.gameObject.activeSelf)
                     panelElem.gameObject.SetActive(false);
             }
         }
@@ -25,11 +25,10 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
             {
                 if (i < elements.Count)
                 {
-                    var element = elements[i];
-                    var panelElem = panelElements[i];
+                    ListElement element = elements[i];
+                    ListPanelElement panelElem = panelElements[i];
 
                     panelElem.gameObject.SetActive(true);
-
                     panelElem.SetValues(element.ButtonText, element.IconText, element.Action, element.Icon);
                 }
             }

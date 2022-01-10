@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using PolSl.UrbanHealthPath.UserInterface;
 using PolSl.UrbanHealthPath.UserInterface.Components;
+using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,35 +16,28 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         
         public void Awake()
         {
-            backButton.onClick.AddListener(GoBack);
-            forwardButton.onClick.AddListener(GoForward);
-            
             header.Initialize("Wyjaśnienie ikon");
+        }
+        public void Initialize(Initializer initializer)
+        {
+            if (initializer is ApplicationInfoViewInitializer init)
+            {
+                backButton.onClick.AddListener(() => init.GoBack?.Invoke());
+                forwardButton.onClick.AddListener(() => init.GoForward?.Invoke());
+            }
         }
         public void Display()
         {
-            this.enabled = true;
-            this.gameObject.SetActive(true);
         }
 
         public void StopDisplay()
         {
-            this.gameObject.SetActive(false);
         }
-
-        private void GoBack()
-        {
-            ViewManager.GetInstance().OpenView(ViewType.AppInfo);
-        }
-
-        private void GoForward()
-        {
-            ViewManager.GetInstance().OpenView(ViewType.Main);
-        }
+        
         public void OnDisable()
         {
-            backButton.onClick.RemoveListener(GoBack);
-            forwardButton.onClick.RemoveListener(GoForward);
+            backButton.onClick.RemoveAllListeners();
+            forwardButton.onClick.RemoveAllListeners();
         }
     }
 }

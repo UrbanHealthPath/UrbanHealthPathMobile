@@ -44,8 +44,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
                 imageButton4.onClick.AddListener(() => init.ButtonTexture4Action?.Invoke());
             }
         }
-
-
         public void InitSizeAndPosition(PopupPayload payload)
         {
             PopupArea.sizeDelta = new Vector2(payload.Size.x, payload.Size.y);
@@ -54,7 +52,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
 
         private void OnDisable()
         {
-            Debug.Log("disable");
             imageButton1.onClick.RemoveAllListeners();
             imageButton2.onClick.RemoveAllListeners();
             imageButton3.onClick.RemoveAllListeners();

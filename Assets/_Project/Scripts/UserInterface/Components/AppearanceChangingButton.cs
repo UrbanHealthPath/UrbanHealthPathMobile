@@ -25,7 +25,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components
             {
                 return text;
             }
-
             public int GetOffset()
             {
                 return bottomOffset;
@@ -36,11 +35,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components
                  "First list element is a default button appearance. ")]
         [FormerlySerializedAs("_buttonAppearances")] 
         [SerializeField] private List<ButtonAppearance> buttonAppearances;
-
         [SerializeField] private Image image;
-
         [SerializeField] private TextMeshProUGUI text;
-
         [SerializeField] private Button button;
 
         private int _lastAppearanceIndex = 1;

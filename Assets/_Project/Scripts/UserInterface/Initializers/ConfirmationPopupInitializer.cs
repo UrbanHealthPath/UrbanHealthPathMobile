@@ -5,10 +5,10 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
     public class ConfirmationPopupInitializer : Initializer
     {
-        public string Information { get; private set; }
-        public int NumberOfButtons { get; private set; }
-        public string[] ButtonTexts { get; private set; }
-        public UnityAction[] Actions { get; private set; }
+        public string Information { get; }
+        public int NumberOfButtons { get; }
+        public string[] ButtonTexts { get; }
+        public UnityAction[] Actions { get; }
 
         public ConfirmationPopupInitializer(string information, int numberOfButtons = 0, string[] buttonTexts = null,
             UnityAction[] actions = null)
@@ -18,6 +18,5 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
             ButtonTexts = buttonTexts;
             Actions = actions;
         }
-        
     }
 }

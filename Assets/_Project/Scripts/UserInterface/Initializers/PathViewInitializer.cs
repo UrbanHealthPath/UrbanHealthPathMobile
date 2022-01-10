@@ -9,8 +9,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
         public UnityAction HelpEvent { get; }
         public UnityAction MainMenuEvent { get; }
         public string HeaderText { get; }
-        
-
         public PathViewInitializer(UnityAction endPathEvent, UnityAction nextStationInfoEvent, UnityAction helpEvent,
             UnityAction mainMenuEvent, string headerText)
         {

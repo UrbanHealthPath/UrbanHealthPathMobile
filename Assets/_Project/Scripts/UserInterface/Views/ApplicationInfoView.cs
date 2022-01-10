@@ -6,43 +6,37 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
-    public class ApplicationInfoView : MonoBehaviour, IDisplayable
+    public class ApplicationInfoView : MonoBehaviour, IDisplayable, IInitializable
     {
-
         [SerializeField] private Button backButton, forwardButton;
         [SerializeField] private Header header;
-        
+
         public void Awake()
         {
-            backButton.onClick.AddListener(GoBack);
-            forwardButton.onClick.AddListener(GoForward);
-            
             header.Initialize("O aplikacji");
         }
+
+        public void Initialize(Initializer initializer)
+        {
+            if (initializer is ApplicationInfoViewInitializer init)
+            {
+                backButton.onClick.AddListener(() => init.GoBack?.Invoke());
+                forwardButton.onClick.AddListener(() => init.GoForward?.Invoke());
+            }
+        }
+
         public void Display()
         {
-            this.enabled = true;
-            this.gameObject.SetActive(true);
         }
 
         public void StopDisplay()
         {
-            this.gameObject.SetActive(false);
         }
-
-        private void GoBack()
-        {
-            ViewManager.GetInstance().OpenView(ViewType.Login);
-        }
-
-        private void GoForward()
-        {
-            ViewManager.GetInstance().OpenView(ViewType.IconInfo);
-        }
+        
         public void OnDestroy()
         {
-            backButton.onClick.RemoveListener(GoBack);
-            forwardButton.onClick.RemoveListener(GoForward);
+            backButton.onClick.RemoveAllListeners();
+            forwardButton.onClick.RemoveAllListeners();
         }
     }
 }

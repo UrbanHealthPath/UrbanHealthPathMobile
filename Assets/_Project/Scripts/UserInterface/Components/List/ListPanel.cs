@@ -14,9 +14,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
         [SerializeField] private GameObject frameBackButton, frameForwardButton, buttonsPanel;
         [SerializeField] private List<GameObject> pages = new List<GameObject>();
         [SerializeField] private GameObject parentForPages;
+        
         private int _pageIndex;
-
-
         public void Initialize(List<ListElement> elements)
         {
             int pagesCount = elements.Count / 3 + 1;
@@ -47,9 +46,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
                     position = rectTrans.anchoredPosition;
 
                 }
-
-               
-
+                
                 List<ListElement> list = new List<ListElement>();
 
                 for (int k = 0; k < 3; k++)
@@ -60,9 +57,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
                         j++;
                     }
                 }
-
                 newPage.GetComponent<ListPage>().Initialize(list);
-
                 list.Clear();
             }
 
@@ -88,8 +83,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
         {
             forwardButton.gameObject.SetActive(true);
             frameForwardButton.SetActive(true);
-
             pages[_pageIndex].SetActive(false);
+            
             _pageIndex--;
             pages[Mathf.Clamp(_pageIndex, 0, pages.Count - 1)].SetActive(true);
 
@@ -104,8 +99,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
         {
             backButton.gameObject.SetActive(true);
             frameBackButton.SetActive(true);
-
             pages[_pageIndex].SetActive(false);
+            
             _pageIndex++;
             pages[Mathf.Clamp(_pageIndex, 0, pages.Count - 1)].SetActive(true);
 

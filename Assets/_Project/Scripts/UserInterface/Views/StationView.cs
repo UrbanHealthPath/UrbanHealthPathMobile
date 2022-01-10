@@ -75,12 +75,10 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
 
         public void Display()
         {
-            gameObject.SetActive(true);
         }
 
         public void StopDisplay()
         {
-            gameObject.SetActive(false);
         }
 
         private void SetUIForHistoricInfo()
@@ -119,7 +117,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         private void FinishExercise()
         {
             _currentButton.interactable = false;
-            PopupManager.GetInstance().ClosePopup();
+            PopupManager.GetInstance().CloseCurrentPopup();
             SetDefaultUI();
         }
         private void SetDefaultUI()
