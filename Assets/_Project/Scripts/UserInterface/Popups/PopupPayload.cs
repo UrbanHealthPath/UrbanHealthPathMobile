@@ -4,15 +4,13 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
     public class PopupPayload
     {
-        public Vector2 Position { get; private set; }
-        public Vector2 Size { get; private set; }
+        public Vector2 Position { get; }
+        public Vector2 Size { get; }
 
-        public PopupPayload(Vector2 position, Vector2 size)
+        public PopupPayload(RectTransform rectTransform)
         {
-            Position = position;
-            Size = size;
-            
-            
+            Position = rectTransform.transform.position;
+            Size = rectTransform.sizeDelta;
         }
     }
 }
