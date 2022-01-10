@@ -4,9 +4,10 @@
     {
         None,
         Confirmation,
-        WithTextImageAndButton,
+        ConfirmArrival,
         WithTextAndImage,
-        WithText,
-        OptionChoice
+        WithTextAndVideo,
+        QuizWithTexts,
+        QuizWithImages
     }
 }
