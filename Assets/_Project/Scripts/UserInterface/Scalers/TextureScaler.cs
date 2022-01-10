@@ -1,34 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Scalers
 {
-   public class TextureScaler
-{
-    public static Texture2D Scaled(Texture2D src, int width, int height, FilterMode mode = FilterMode.Trilinear)
+    public class TextureScaler
     {
-        Rect texR = new Rect(0,0,width,height);
-        GPUScale(src,width,height,mode);
+        public static Vector2 GetScaledTexture(RectTransform maxSize, Texture texture)
+        {
+            float maxWidth = maxSize.sizeDelta.x;
+            float maxHeight = maxSize.sizeDelta.y;
 
-        Texture2D result = new Texture2D(width, height, TextureFormat.ARGB32, true);
-        result.Resize(width, height);
-        result.ReadPixels(texR,0,0,true);
-        return result;          
+            float textureWidth = texture.width;
+            float texturHeight = texture.height;
+
+            float ratio = textureWidth / texturHeight;
+
+            float targetWidth = textureWidth, targetHeight = texturHeight;
+
+            if (textureWidth > texturHeight)
+            {
+                targetWidth = maxWidth;
+                targetHeight = targetWidth / ratio;
+
+                if (maxHeight < targetHeight)
+                {
+                    targetHeight = maxHeight;
+                    targetWidth = ratio * targetHeight;
+                }
+            }
+            else
+            {
+                targetHeight = maxHeight;
+                targetWidth = ratio * targetHeight;
+
+                if (maxWidth < targetWidth)
+                {
+                    targetWidth = maxWidth;
+                    targetHeight = targetWidth / ratio;
+                }
+            }
+
+            return new Vector2(targetWidth, targetHeight);
+        }
     }
-    static void GPUScale(Texture2D src, int width, int height, FilterMode fmode)
-    {
-        src.filterMode = fmode;
-        src.Apply(true);    
-        
-        RenderTexture rtt = new RenderTexture(width, height, 32);
-        
-        Graphics.SetRenderTarget(rtt);
-        
-        GL.LoadPixelMatrix(0,1,1,0);
-        
-        GL.Clear(true,true,new Color(0,0,0,0));
-        Graphics.DrawTexture(new Rect(0,0,1,1),src);
-    }
-}
 }
