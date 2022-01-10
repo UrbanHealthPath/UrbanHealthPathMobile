@@ -1,34 +1,24 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Mapbox.Unity.Location;
 using Mapbox.Unity.Map;
-using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.Map
 {
-    public class LocationProviderMapInitializer : MonoBehaviour
+    public class LocationProviderMapInitializer
     {
-        [SerializeField] private AbstractMap _map;
-
-        [SerializeField] private LocationFactory _locationFactory;
+        private AbstractMap _map;
 
         private ILocationProvider _locationProvider;
         
-        private void Awake()
+        public LocationProviderMapInitializer(AbstractMap map, ILocationProvider locationProvider)
         {
-            _map.InitializeOnStart = false;
+            _map = map;
+            _locationProvider = locationProvider;
+            _locationProvider.LocationUpdated+=LocationProviderFirstLocationUpdate;
         }
         
-        private void Start()
+        private void LocationProviderFirstLocationUpdate(Location location)
         {
-            _locationProvider = _locationFactory.LocationProvider;
-            _locationProvider.LocationUpdated += LocationProviderLocationUpdated;
-        }
-
-        private void LocationProviderLocationUpdated(Location location)
-        {
-            _locationProvider.LocationUpdated -= LocationProviderLocationUpdated;
+            _locationProvider.LocationUpdated -= LocationProviderFirstLocationUpdate;
             _map.Initialize(location.LatitudeLongitude, _map.AbsoluteZoom);
         }
     }

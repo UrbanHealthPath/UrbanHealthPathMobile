@@ -1,12 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Mapbox.Utils;
-using UnityEngine;
 
-namespace PolSl.UrbanHealthPath
+namespace PolSl.UrbanHealthPath.Map
 {
     public class AngleSmootherLowPas
     {

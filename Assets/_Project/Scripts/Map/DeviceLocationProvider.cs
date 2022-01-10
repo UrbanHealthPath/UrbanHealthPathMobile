@@ -38,19 +38,9 @@ namespace PolSl.UrbanHealthPath.Map
             Input.compass.enabled = true;
         }
 
-        public DeviceLocationProvider(float updateDistanceInMeters, float desiredAccuracyInMeters)
-        {
-            _updateDistanceInMeters = updateDistanceInMeters;
-            _desiredAccuracyInMeters = desiredAccuracyInMeters;
-            _locationService = new MapboxLocationServiceUnityWrapper();
-            _currentLocation.Provider = "unity";
-            _currentLocation.IsLocationServiceEnabled = true;
-            _locationService.Start(_desiredAccuracyInMeters, _updateDistanceInMeters);
-            Input.compass.enabled = true;
-        }
-        
         public Location GetLocation()
         {
+            PollLocation();
             return _currentLocation;
         }
         

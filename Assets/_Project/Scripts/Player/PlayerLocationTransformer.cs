@@ -7,7 +7,7 @@ namespace PolSl.UrbanHealthPath.Player
 {
     public class PlayerLocationTransformer : MonoBehaviour
     {
-        [SerializeField] private AbstractMap _map;
+        private AbstractMap _map;
 
         private ILocationProvider _locationProvider;
 
@@ -15,8 +15,9 @@ namespace PolSl.UrbanHealthPath.Player
 
         private bool _initialized;
 
-        public void Initialize(ILocationProvider locationProvider)
+        public void Initialize(AbstractMap map, ILocationProvider locationProvider)
         {
+            _map = map;
             _map.OnInitialized += () => _mapInitliazed = true;
             _locationProvider = locationProvider;
             _locationProvider.LocationUpdated += LocationProviderLocationUpdated;

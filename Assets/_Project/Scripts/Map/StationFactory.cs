@@ -1,9 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using Mapbox.Unity.Location;
 using Mapbox.Unity.Map;
-using Mapbox.Utils;
 using UnityEngine;
+using PolSl.UrbanHealthPath.PathData;
 
 
 namespace PolSl.UrbanHealthPath.Map
@@ -12,9 +11,11 @@ namespace PolSl.UrbanHealthPath.Map
     {
         [SerializeField] private Transform _statation;
 
-        [SerializeField] private AbstractMap _map;
-
-        [SerializeField] private List<Vector2d> _coordinatesList;
+        [SerializeField] private Transform _halo;
+        
+        private List<Coordinates> _coordinatesList;
+        
+        private AbstractMap _map;
 
         private ILocationProvider _locationProvider;
 
@@ -22,29 +23,56 @@ namespace PolSl.UrbanHealthPath.Map
 
         private Vector3 _offset = new Vector3(0, 1, 0);
 
-        public void Initialize(ILocationProvider locationProvider, List<Vector2d> coordinates)
+        private int _currentStationIndex = 0;
+
+        private Transform _currentStationTransform;
+
+        public void Initialize(AbstractMap map, ILocationProvider locationProvider, List<Coordinates> coordinates)
         {
+            _map = map;
             _locationProvider = locationProvider;
             if (coordinates != null && coordinates.Count != 0)
             {
-                _coordinatesList.AddRange(coordinates);
+                _coordinatesList = coordinates;
             }
-
             _locationProvider.LocationUpdated += LocationProviderFirstLocationUpdated;
             _initialized = true;
         }
         private void LocationProviderFirstLocationUpdated(Location location)
         {
             _locationProvider.LocationUpdated -= LocationProviderFirstLocationUpdated;
-            if (_initialized)
+            if (_initialized&&_coordinatesList!=null&&_coordinatesList.Count!=0)
             {
-                foreach(Vector2d coordinates in _coordinatesList)
+                CreateStationHalo();
+                foreach(Coordinates coordinates in _coordinatesList)
                 {
                     Vector3 worldPosition = _map.GeoToWorldPosition(coordinates, false);
                     Transform newStation = Instantiate(_statation, worldPosition+_offset, _statation.rotation);
                     newStation.SetParent(this.transform);
                 }
             }
+        }
+        
+        private void CreateStationHalo()
+        {
+            Vector3 worldPosition = _map.GeoToWorldPosition(_coordinatesList[_currentStationIndex], false);
+            _currentStationTransform =
+                Instantiate(_halo, worldPosition + _offset, _halo.rotation);
+            _currentStationTransform.SetParent(this.transform);
+            _currentStationIndex++;
+        }
+
+        //ultimately I think this should just be an event listener of station finished event
+        private void MoveStationHalo()
+        {
+            if (_currentStationTransform != null && _currentStationIndex == _coordinatesList.Count - 1)
+            {
+                Destroy(_currentStationTransform);
+                return;
+            }
+
+            _currentStationTransform.position =
+                _map.GeoToWorldPosition(_coordinatesList[_currentStationIndex], false) + _offset;
         }
     }
 }

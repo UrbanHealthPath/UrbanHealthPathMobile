@@ -1,81 +1,29 @@
-using System.Collections;
 using System.Collections.Generic;
-using Mapbox.Unity.Location;
-using UnityEngine;
+using PolSl.UrbanHealthPath.PathData;
 
 namespace PolSl.UrbanHealthPath.Map
 {
     public class LocationFactory
     {
-        private LocationFactoryMode _mode;
+        private LocationPermissionRequester _permissionRequester;
 
-        private List<string> _latitudeLongitudeList;
-        
-        private ILocationProvider _locationProvider;
-        
-        private Location _currentLocation;
-        
-        public LocationFactory(LocationFactoryMode mode)
+        public LocationFactory(LocationPermissionRequester permissionRequester)
         {
-            _mode = mode;
-            _latitudeLongitudeList = new List<string>();
-            InjectLocationProvider();
+            _permissionRequester = permissionRequester;
         }
-
-        public LocationFactory(List<string> latitudeLongitudeList)
+        public ILocationProvider CreateDeviceProvider()
         {
-            _latitudeLongitudeList = new List<string>();
-            latitudeLongitudeList.AddRange(latitudeLongitudeList);
-            _mode = LocationFactoryMode.Fake;
-            InjectLocationProvider();
+            if (_permissionRequester.RequestPermission())
+            {
+                return new DeviceLocationProvider();
+            }
+
+            return new FakeLocationProvider(new List<Coordinates>());
         }
 
-        public LocationFactoryMode Mode
+        public ILocationProvider CreateFakeProvider(List<Coordinates> latitudeLongitudeList)
         {
-            get
-            {
-                return _mode;
-            }
-            private set
-            {
-                _mode = value;
-            }
-        }
-        
-        public ILocationProvider LocationProvider
-        {
-            get
-            {
-                return _locationProvider;
-            }
-            set
-            {
-                _locationProvider = value;
-            }
-        }
-
-        public void PollCurrentLocation()
-        {
-            _currentLocation = _locationProvider.GetLocation();
-        }
-        
-        public void ChangeMode(LocationFactoryMode mode)
-        {
-            _mode = mode;
-            InjectLocationProvider();
-        }
-        
-        private void InjectLocationProvider()
-        {
-            if (_mode == LocationFactoryMode.Device && new LocationPermissionRequester().RequestPermission())
-            {
-                _locationProvider = new DeviceLocationProvider();
-            }
-            else
-            {
-                _locationProvider = new FakeLocationProvider(_latitudeLongitudeList);
-                _mode = LocationFactoryMode.Fake;
-            }
+            return new FakeLocationProvider(latitudeLongitudeList);
         }
     }
 }

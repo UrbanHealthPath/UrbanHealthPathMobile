@@ -258,7 +258,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &328303299
 MonoBehaviour:
@@ -341,11 +341,6 @@ Texture2D:
     offset: 0
     size: 0
     path: 
---- !u!4 &981675809 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7261815612386484303, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
-  m_PrefabInstance: {fileID: 7261815612663694707}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1035195842
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,7 +848,7 @@ MonoBehaviour:
           east: 1
           south: 1
         rangeAroundTransformOptions:
-          targetTransform: {fileID: 981675809}
+          targetTransform: {fileID: 0}
           visibleBuffer: 1
           disposeBuffer: 0
     placementOptions:
@@ -1155,7 +1150,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7261815612490402005, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7261815612490402005, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
       propertyPath: m_LocalPosition.x
