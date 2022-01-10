@@ -8,7 +8,11 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
     public class SettingsView : MonoBehaviour, IDisplayable, IInitializable
     {
-        [SerializeField] private Button revertButton, returnButton, fontButton, themeButton, audioButton;
+        [SerializeField] private Button revertButton;
+        [SerializeField] private Button returnButton;
+        [SerializeField] private Button fontButton;
+        [SerializeField] private Button themeButton; 
+        [SerializeField] private Button audioButton;
         [SerializeField] private Header header;
 
         public void Awake()
@@ -32,14 +36,12 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
 
         public void Display()
         {
-            gameObject.SetActive(true);
         }
 
         public void StopDisplay()
         {
-            gameObject.SetActive(false);
         }
-        
+
         public void OnDisable()
         {
             returnButton.onClick.RemoveAllListeners();

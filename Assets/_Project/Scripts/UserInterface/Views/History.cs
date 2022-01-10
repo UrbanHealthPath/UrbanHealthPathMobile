@@ -8,7 +8,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         private struct HistoryElement
         {
             public ViewType Type { get; }
-            public Initializer Data { get;  }
+            public Initializer Data { get; }
 
             public HistoryElement(ViewType type, Initializer data)
             {
@@ -16,18 +16,24 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
                 Data = data;
             }
         }
-        
-        private Stack<HistoryElement> history;
+
+        private Stack<HistoryElement> history = new Stack<HistoryElement>();
 
         public void AddToHistory(ViewType type, Initializer data)
         {
-            history.Push(new HistoryElement(type,data));
+            history.Push(new HistoryElement(type, data));
         }
 
         public (ViewType, Initializer) GetLastView()
         {
-            var element = history.Pop();
-            return (element.Type, element.Data);
+            if (history.Count > 0)
+            {
+                history.Pop();
+                var element = history.Pop();
+                return (element.Type, element.Data);
+            }
+
+            return (ViewType.None, null);
         }
     }
 }
