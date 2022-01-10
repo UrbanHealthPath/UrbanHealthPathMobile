@@ -2,6 +2,7 @@
 {
     public enum ViewType
     {
+        None,
         Main,
         Login,
         Path,
