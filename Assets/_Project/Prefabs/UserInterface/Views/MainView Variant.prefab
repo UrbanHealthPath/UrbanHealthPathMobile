@@ -1080,10 +1080,10 @@ RectTransform:
   m_Father: {fileID: 6243573069305853987}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 200}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 465, y: -871.24}
+  m_SizeDelta: {x: 830, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1480107740122113669
 GameObject:
@@ -1372,10 +1372,10 @@ RectTransform:
   m_Father: {fileID: 6243573069305853987}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 200}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 465, y: -528.76}
+  m_SizeDelta: {x: 830, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6104807575859270180
 GameObject:
@@ -3305,14 +3305,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 289492582927451193, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
   m_PrefabInstance: {fileID: 8746768830331920257}
   m_PrefabAsset: {fileID: 0}
---- !u!222 &6174124394723556785
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4576355984044632633}
-  m_CullTransparentMesh: 1
 --- !u!114 &8765697648450290279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3328,10 +3320,18 @@ MonoBehaviour:
   profileButton: {fileID: 7243012693806506760}
   helpButton: {fileID: 5902215131581328406}
   settingsButton: {fileID: 7243012693026190106}
-  startPathButton: {fileID: 636323229}
-  checkPathButton: {fileID: 8702921047468206302}
-  endPathButton: {fileID: 0}
-  continuePathButton: {fileID: 0}
+  upperButtonOnMap: {fileID: 636323229}
+  lowerButtonOnMap: {fileID: 8702921047468206302}
   exitButton: {fileID: 572857757447818923}
   header: {fileID: 9158856179939911083}
   popupArea: {fileID: 8970071458410528902}
+  lowerButtonText: {fileID: 4630741099537113183}
+  upperButtonText: {fileID: 7589152569718845124}
+--- !u!222 &6174124394723556785
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4576355984044632633}
+  m_CullTransparentMesh: 1

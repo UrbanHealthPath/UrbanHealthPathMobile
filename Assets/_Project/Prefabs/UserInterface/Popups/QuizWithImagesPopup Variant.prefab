@@ -467,10 +467,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Naro\u017Cna kamienica przy ulicy Jana Matejki posiada bogat\u0105 w zdobienia
-    i ciekaw\u0105 kolorystycznie elewacj\u0119.\r\nMo\u017Cesz si\u0119 doszuka\u0107
-    p\u0142askorze\u017Ab z herbami - jest to albo polski herb szlachecki albo cechowe
-    god\u0142o malarzy.\r\n"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

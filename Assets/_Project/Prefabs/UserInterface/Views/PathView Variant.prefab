@@ -33,7 +33,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.000030518}
+  m_AnchoredPosition: {x: 0, y: 0.000030517578}
   m_SizeDelta: {x: 940, y: 1400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3559992840796601088
@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 8197629875036193106}
   - component: {fileID: 8197629875036193104}
   - component: {fileID: 6472904974690554984}
+  - component: {fileID: 1705390098596554118}
   m_Layer: 5
   m_Name: map
   m_TagString: Untagged
@@ -219,10 +220,10 @@ RectTransform:
   m_Father: {fileID: 8197629874539868844}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -140, y: 0}
+  m_SizeDelta: {x: 940, y: 1400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8197629875036193104
 CanvasRenderer:
@@ -259,6 +260,18 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &1705390098596554118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8197629875036193107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a6abe1581bc3094984457c9663e6885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3942829239639809061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -604,6 +617,7 @@ MonoBehaviour:
   mainMenuButton: {fileID: 1347911384233159064}
   header: {fileID: 3517230557225297423}
   popupArea: {fileID: 8422413115062399032}
+  appearanceChangingButton: {fileID: 1755976144120382704}
 --- !u!222 &5943072357517235319
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1096,13 +1110,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0bdee0b71ddcc45b243595af7ac4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonAppearances:
-  - sprite: {fileID: 21300000, guid: 788e0e74133671e4f85ba5b040c999c2, type: 3}
-    text: Mapa
-    bottomOffset: 30
+  buttonAppearances:
   - sprite: {fileID: 21300000, guid: 2d323723b46e5a34fb25b20d3e9d35a1, type: 3}
     text: "Nast\u0119pna stacja"
     bottomOffset: 0
-  _image: {fileID: 8197629874848614068}
-  _text: {fileID: 8197629875184353165}
+  - sprite: {fileID: 21300000, guid: 788e0e74133671e4f85ba5b040c999c2, type: 3}
+    text: Mapa
+    bottomOffset: 30
+  image: {fileID: 8197629874848614068}
+  text: {fileID: 8197629875184353165}
   button: {fileID: 8197629874867160123}

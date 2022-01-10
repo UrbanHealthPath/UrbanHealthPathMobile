@@ -45,7 +45,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999480775}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: cf1883cef2325ac479f6d0bc7cecad73, type: 3}
+  m_VideoClip: {fileID: 0}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: -1
-  m_PreferredHeight: -1
+  m_PreferredHeight: 700
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -576,8 +576,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65
-  m_fontSizeBase: 65
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -715,7 +715,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 951984948468418030, guid: 494a37d5172098d47973e2504bf6fd6b, type: 3}
       propertyPath: m_Name
-      value: PopupTextAndVideo
+      value: PopupTextAndVideo Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1274816292192398786, guid: 494a37d5172098d47973e2504bf6fd6b, type: 3}
       propertyPath: m_IsActive
@@ -824,16 +824,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5066428923616039337, guid: 494a37d5172098d47973e2504bf6fd6b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 494a37d5172098d47973e2504bf6fd6b, type: 3}
---- !u!224 &1159305424301753624 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4179524159738239685, guid: 494a37d5172098d47973e2504bf6fd6b, type: 3}
-  m_PrefabInstance: {fileID: 3032621502570487773}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4298412726229594655 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1274816292192398786, guid: 494a37d5172098d47973e2504bf6fd6b, type: 3}
-  m_PrefabInstance: {fileID: 3032621502570487773}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5223648108019524198 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7090963205728107963, guid: 494a37d5172098d47973e2504bf6fd6b, type: 3}
@@ -849,6 +839,53 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 951984948466596151, guid: 494a37d5172098d47973e2504bf6fd6b, type: 3}
   m_PrefabInstance: {fileID: 3032621502570487773}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &2819297846600361870 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 951984947719026771, guid: 494a37d5172098d47973e2504bf6fd6b, type: 3}
+  m_PrefabInstance: {fileID: 3032621502570487773}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1159305424301753624 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4179524159738239685, guid: 494a37d5172098d47973e2504bf6fd6b, type: 3}
+  m_PrefabInstance: {fileID: 3032621502570487773}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4298412726229594655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1274816292192398786, guid: 494a37d5172098d47973e2504bf6fd6b, type: 3}
+  m_PrefabInstance: {fileID: 3032621502570487773}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7321926191081783077 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5731600337477968120, guid: 494a37d5172098d47973e2504bf6fd6b, type: 3}
+  m_PrefabInstance: {fileID: 3032621502570487773}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4634434932607883654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a3acd2afee8e284d98efa69d9a28d87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2819297846121355827 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 951984948468418030, guid: 494a37d5172098d47973e2504bf6fd6b, type: 3}
+  m_PrefabInstance: {fileID: 3032621502570487773}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &231744499777313089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2819297846121355827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1abd2ea457b3416e80a36a700f313ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: {fileID: 7321926191081783077}
+  text: {fileID: 6780179741643826054}
+  popupArea: {fileID: 2819297846600361870}
+  videoPlayer: {fileID: 1999480777}
 --- !u!114 &397129357179548566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -913,7 +950,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: -1
-  m_PreferredHeight: 2040
+  m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
