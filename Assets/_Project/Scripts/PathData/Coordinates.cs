@@ -1,5 +1,6 @@
 using Mapbox.Utils;
 
+
 namespace PolSl.UrbanHealthPath.PathData
 {
     public readonly struct Coordinates
