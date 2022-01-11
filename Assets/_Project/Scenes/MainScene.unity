@@ -123,6 +123,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &65471518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7261815612137441428, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
+  m_PrefabInstance: {fileID: 7261815612663694707}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &65471519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65471518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf885c8e52acfb40a2a9ac0f3398593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &65471520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65471518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 090e43b5f1b0c4342b266b478b73bf82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _map: {fileID: 1793480577}
 --- !u!21 &295772984
 Material:
   serializedVersion: 6
@@ -199,6 +229,66 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
+--- !u!1 &328303297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 328303298}
+  - component: {fileID: 328303299}
+  m_Layer: 0
+  m_Name: StationFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &328303298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328303297}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &328303299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328303297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba85f6692868f4e4da998c3bd62e3ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _statation: {fileID: 23680002971963964, guid: 36a1c21795ef5e7409f523735e45ad95, type: 3}
+  _map: {fileID: 1793480577}
+  _coordinatesList:
+  - x: 50.29416712031348
+    y: 18.665418882944635
+  - x: 50.293877701686114
+    y: 18.665775076345152
+  - x: 50.293959890143874
+    y: 18.665973026994976
+  - x: 50.29412972812803
+    y: 18.665921153017187
+  - x: 50.29441236209267
+    y: 18.665831086127245
+  - x: 50.2946097951345
+    y: 18.66565155695886
+  - x: 50.29466866140864
+    y: 18.66539969209907
 --- !u!4 &551685608 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7261815612137441435, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
@@ -251,29 +341,6 @@ Texture2D:
     offset: 0
     size: 0
     path: 
---- !u!1 &887394710 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1334597763213690, guid: fa49ad38da3e540fca722d2ca9e1d026, type: 3}
-  m_PrefabInstance: {fileID: 1350245048}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &887394713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 887394710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60712efc3153a4819b0c79437175846d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _accuracy: 0
-  _autoFireEvent: 0
-  _updateInterval: 0
-  _sendEvent: 0
-  _latitudeLongitude: 
-  _targetTransform: {fileID: 0}
 --- !u!1 &1035195842
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +354,7 @@ GameObject:
   - component: {fileID: 1035195846}
   - component: {fileID: 1035195845}
   - component: {fileID: 1035195848}
+  - component: {fileID: 1035195844}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -302,12 +370,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035195842}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 50, z: 2}
+  m_LocalPosition: {x: 0, y: 50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1559018854}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1035195844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035195842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9c387da74636a04c87868234b6ef736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 551685608}
+  _offset: {x: 0, y: 50, z: 0}
 --- !u!81 &1035195845
 AudioListener:
   m_ObjectHideFlags: 0
@@ -474,13 +556,12 @@ RectTransform:
   m_Children:
   - {fileID: 1892133568}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1167294280 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7261815612490402007, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
@@ -747,6 +828,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1562353122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1562353124}
+  - component: {fileID: 1562353123}
+  m_Layer: 0
+  m_Name: SceneInitializer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1562353123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562353122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad413096edf53440b4157829ac0cbc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _locationProviderMapUpdater: {fileID: 1793480579}
+  _locationProviderRotator: {fileID: 65471519}
+  _playerLocationTransformer: {fileID: 65471520}
+  _mode: 1
+  _stationFactory: {fileID: 328303299}
+--- !u!4 &1562353124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562353122}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.8655658, y: 0.85903835, z: 2.374246}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1691675488
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,49 +955,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691675488}
   m_CullTransparentMesh: 1
---- !u!1 &1729295912
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1729295914}
-  - component: {fileID: 1729295913}
-  m_Layer: 0
-  m_Name: ApplicationManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1729295913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1729295912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66639d2ddf549a2408192935cd5c2852, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1729295914
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1729295912}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1793480575
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,7 +965,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1793480576}
   - component: {fileID: 1793480577}
-  - component: {fileID: 1793480578}
   - component: {fileID: 1793480579}
   m_Layer: 0
   m_Name: Map
@@ -896,7 +981,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1793480575}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -916,8 +1001,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _options:
     locationOptions:
-      latitudeLongitude: 50,294167,18,665418
-      zoom: 17
+      latitudeLongitude: 
+      zoom: 18
     extentOptions:
       extentType: 0
       defaultExtents:
@@ -932,7 +1017,7 @@ MonoBehaviour:
           south: 1
         rangeAroundTransformOptions:
           targetTransform: {fileID: 0}
-          visibleBuffer: 0
+          visibleBuffer: 1
           disposeBuffer: 0
     placementOptions:
       placementType: 0
@@ -942,7 +1027,7 @@ MonoBehaviour:
       unityTileSize: 10
     loadingTexture: {fileID: 747119254}
     tileMaterial: {fileID: 295772984}
-  _initializeOnStart: 1
+  _initializeOnStart: 0
   _imagery:
     _layerProperty:
       sourceType: 6
@@ -950,7 +1035,7 @@ MonoBehaviour:
         isActive: 1
         layerSource:
           Name: Streets
-          Id: mapbox://styles/matadam667/ckww2yrcx49nb14pbs66fpbcw
+          Id: mapbox://styles/matadam667/ckxn3iyihbqu214pbijxv32f1
           Modified: 
           UserName: 
       rasterOptions:
@@ -1032,19 +1117,6 @@ MonoBehaviour:
   _tileProvider: {fileID: 0}
   _previewOptions:
     isPreviewEnabled: 0
---- !u!114 &1793480578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1793480575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96f0fa82f89d64bb9a6524c72d538179, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _map: {fileID: 1793480577}
 --- !u!114 &1793480579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1054,11 +1126,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1793480575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b45b6cb0c94914eb6a1fac86abfc6aba, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bb405489d48ce348840484b9520ba37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _map: {fileID: 1793480577}
-  timeTakenDuringLerp: 1
 --- !u!1 &1892133567
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,17 +1175,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892133567}
   m_CullTransparentMesh: 1
---- !u!114 &1934400280 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7261815612953337451, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
-  m_PrefabInstance: {fileID: 7261815612663694707}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac20070290bebc640a8341fa57151a93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2031685583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,10 +1258,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1934400280}
-        m_TargetAssemblyTypeName: PolSl.UrbanHealthPath.NavigationPointProvider,
+      - m_Target: {fileID: 1793480579}
+        m_TargetAssemblyTypeName: PolSl.UrbanHealthPath.Map.LocationProviderMapUpdater,
           Assembly-CSharp
-        m_MethodName: PutOnMap
+        m_MethodName: ChangePollLocationDeviceCoroutineStatus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1349,5 +1409,10 @@ PrefabInstance:
       propertyPath: _logituteLatitiute
       value: 50.28531, 18.67893
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7261815613947049674, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
+      propertyPath: m_Intensity
+      value: 0.55
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7261815612490402006, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
