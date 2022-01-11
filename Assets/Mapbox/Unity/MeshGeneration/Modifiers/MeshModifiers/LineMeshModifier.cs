@@ -23,7 +23,7 @@ namespace Mapbox.Unity.MeshGeneration.Modifiers
 
 		#region Line Parameters
 
-		private LineGeometryOptions _options;
+		[SerializeField]private LineGeometryOptions _options;
 
 		private float _scaledWidth;
 
