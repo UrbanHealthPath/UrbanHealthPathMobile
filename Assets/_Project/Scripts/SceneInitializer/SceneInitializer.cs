@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Mapbox.Unity.Map;
 using PolSl.UrbanHealthPath.Map;
 using PolSl.UrbanHealthPath.Navigation;
@@ -23,22 +24,26 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
         [SerializeField] private NavigationPointProvider _navigationPointProvider;
 
-        private ApplicationDataLoader _applicationDataLoader;
-        
         private void Awake()
         {
-            InitializeSceneMapSceneComponents();
+            IApplicationData applicationData = LoadApplicationData();
+            InitializeSceneMapSceneComponents(applicationData.UrbanPaths[0].Waypoints.Select(x => x.Value.Coordinates).ToList());
         }
 
-        private void LoadApplicationData()
+        private IApplicationData LoadApplicationData()
         {
-            string path = "UrbanHealthPathMobile\\Assets\\_Project\\Resources\\ExampleData\\";
+            string path = "ExampleData";
+
+            ILoadersFactory loadersFactory = new JsonFilesLoadersFactory(path, new JsonAssetFileReader(), new JsonDataLoaderParsersFactory().Create());
+            IApplicationDataLoader applicationDataLoader = new ApplicationDataLoader(loadersFactory);
+
+            return applicationDataLoader.LoadData();
         }
 
-        private void InitializeSceneMapSceneComponents()
+        private void InitializeSceneMapSceneComponents(List<Coordinates> coordinatesList)
         {
             ILocationProvider locationProvider =
-                new LocationFactory(new LocationPermissionRequester()).CreateFakeProvider(new List<Coordinates>());//if fake it needs to take take the stations from the file
+                new LocationFactory(new LocationPermissionRequester()).CreateFakeProvider(coordinatesList);//if fake it needs to take take the stations from the file
             InitializeWithAbstractMap(locationProvider);
             _locationProviderRotator.Initialize(locationProvider);
             _coroutinesManager.Initialize(locationProvider);
