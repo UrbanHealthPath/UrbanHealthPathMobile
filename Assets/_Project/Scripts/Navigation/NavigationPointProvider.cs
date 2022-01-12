@@ -12,14 +12,21 @@ namespace PolSl.UrbanHealthPath.Navigation
         
         private AbstractMap _map;
 
+        private bool _initialized = false;
+
         public void Initialize(AbstractMap map, Coordinates coordinates)
         {
             _map = map;
             _coordinates = coordinates;
+            _initialized = true;
         }
+
         public void PutOnMap()
         {
-            _point.position = _map.GeoToWorldPosition(_coordinates,false);
+            if (_initialized)
+            {
+                _point.position = _map.GeoToWorldPosition(_coordinates, false);
+            }
         }
     }
 }

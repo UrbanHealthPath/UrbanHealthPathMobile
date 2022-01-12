@@ -10,12 +10,12 @@ namespace PolSl.UrbanHealthPath.PathData.DataLoaders
         private IWaypointsLoader _waypointsLoader;
         private IUrbanPathsLoader _urbanPathsLoader;
 
-        public ApplicationDataLoader(ILoadersFactory loadersFactory)
+        public  ApplicationDataLoader(ILoadersFactory loadersFactory)
         {
             CreateLoaders(loadersFactory);
         }
 
-        public IApplicationData LoadData()
+        public IApplicationData LoadData()      
         {
             IList<MediaFile> mediaFiles = _mediaFilesLoader.LoadMediaFiles();
             IList<HistoricalFact> historicalFacts = _historicalFactsLoader.LoadHistoricalFacts();

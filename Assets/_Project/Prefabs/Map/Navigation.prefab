@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7261815612490402005}
-  - component: {fileID: 7261815612490402006}
   m_Layer: 0
   m_Name: Navigation
   m_TagString: Untagged
@@ -33,27 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7261815612490402006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7261815612490402007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44d601772d842a94cb5ab933dca6bd4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _map: {fileID: 0}
-  MeshModifiers:
-  - {fileID: 11400000, guid: d31b2cb2a75a54d5bb6402fe0bd8c6cf, type: 2}
-  - {fileID: 11400000, guid: cd4bcff551c0d418997f52b78da87a0e, type: 2}
-  _material: {fileID: 2100000, guid: ef6c956ca085647fba4624a08c344419, type: 2}
-  _waypoints:
-  - {fileID: 7261815612137441435}
-  - {fileID: 7261815612953337444}
-  UpdateFrequency: 1
 --- !u!1 &7261815612953337445
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,8 +76,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _point: {fileID: 7261815612953337444}
-  _logituteLatitiute: 50.29414876912223, 18.665425453862337
-  _map: {fileID: 0}
 --- !u!1001 &5963570796045970778
 PrefabInstance:
   m_ObjectHideFlags: 0
