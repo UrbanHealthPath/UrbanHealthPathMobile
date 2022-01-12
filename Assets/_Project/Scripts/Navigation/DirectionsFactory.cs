@@ -34,6 +34,22 @@ namespace PolSl.UrbanHealthPath.Navigation
             _initialized = true;
         }
         
+        public void Start()
+        {
+            if (_map == null)
+            {
+                _map = FindObjectOfType<AbstractMap>();
+            }
+            _directions = MapboxAccess.Instance.Directions;
+            _lineMeshModifier.Initialize();
+        }
+
+        protected void OnDestroy()
+        {
+            _map.OnInitialized -= Query;
+            _map.OnUpdated -= Query;
+        }
+        
         private void Query()
         {
             Vector2d[] wp = new Vector2d[2];
@@ -46,7 +62,7 @@ namespace PolSl.UrbanHealthPath.Navigation
             _directions.Query(directionResource, HandleDirectionsResponse);
         }
         
-        private void HandleDirectionsResponse(DirectionsResponse response)
+        void HandleDirectionsResponse(DirectionsResponse response)
         {
             if (response == null || null == response.Routes || response.Routes.Count < 1)
             {
@@ -99,3 +115,4 @@ namespace PolSl.UrbanHealthPath.Navigation
         }
     }
 }
+
