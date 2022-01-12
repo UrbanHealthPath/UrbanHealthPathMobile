@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace PolSl.UrbanHealthPath.PathData.DataLoaders
 {
@@ -6,9 +7,9 @@ namespace PolSl.UrbanHealthPath.PathData.DataLoaders
     {
         private readonly string _filesDirectoryPath;
         private readonly IJsonFileReader _fileReader;
-        private readonly DataLoaderParsers _parsers;
+        private readonly DataLoaderParsers<JObject> _parsers;
         
-        public JsonFilesLoadersFactory(string filesDirectoryPath, IJsonFileReader fileReader, DataLoaderParsers parsers)
+        public JsonFilesLoadersFactory(string filesDirectoryPath, IJsonFileReader fileReader, DataLoaderParsers<JObject> parsers)
         {
             _filesDirectoryPath = filesDirectoryPath;
             _fileReader = fileReader;
