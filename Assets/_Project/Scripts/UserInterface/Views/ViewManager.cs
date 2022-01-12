@@ -48,22 +48,32 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
             else
             {
                 _instance = this;
+                _instance.CurrentView = null;
+
+                _instance._views = new Dictionary<ViewType, GameObject>();
+
+                foreach (var view in viewsWithTypes)
+                {
+                    _views.Add(view.GetViewType(), view.GetViewObject());
+                }
+
+                History = new History();
             }
         }
 
-        private void Start()
-        {
-            _instance.CurrentView = null;
-
-            _instance._views = new Dictionary<ViewType, GameObject>();
-
-            foreach (var view in viewsWithTypes)
-            {
-                _views.Add(view.GetViewType(), view.GetViewObject());
-            }
-
-            History = new History();
-        }
+        // private void Start()
+        // {
+        //     _instance.CurrentView = null;
+        //
+        //     _instance._views = new Dictionary<ViewType, GameObject>();
+        //
+        //     foreach (var view in viewsWithTypes)
+        //     {
+        //         _views.Add(view.GetViewType(), view.GetViewObject());
+        //     }
+        //
+        //     History = new History();
+        // }
 
         public static ViewManager GetInstance()
         {
