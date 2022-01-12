@@ -11,6 +11,7 @@ using PolSl.UrbanHealthPath.Tools.TextLogger;
 using PolSl.UrbanHealthPath.UserInterface.Components.List;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Views;
+using PolSl.UrbanHealthPath.Utils.PersistentValue;
 using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.SceneInitializer
@@ -35,16 +36,19 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
         private IApplicationData _applicationData;
         
+        private IPersistentValue<bool> _isFirstRun;
+        
         
         private void Awake()
         {
             _logger = new UnityLogger();
+            _isFirstRun = new BoolPrefsValue("is_first_run", true);
             
             _applicationData = LoadApplicationData();
 
             GameObject uiManager = Instantiate(_uiManager);
 
-            BuildMainView();
+            BuildUI();
             //(applicationData.UrbanPaths[0].Waypoints.Select(x => x.Value.Coordinates).ToList());
         }
 
@@ -79,7 +83,25 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
         private void BuildUI()
         {
-            BuildMainView();
+            if (_isFirstRun.Value)
+            {
+                BuildLoginView();
+            }
+            else
+            {
+                BuildMainView();
+            }
+        }
+
+        private void BuildLoginView()
+        {
+            ViewManager.GetInstance().OpenView(ViewType.Login,
+                new LogInViewInitializer(() => _logger.Log(LogVerbosity.Debug,"Log in not supported!"), 
+                () => {
+                    _isFirstRun.Value = false;
+                    BuildMainView();
+                })
+            );
         }
 
         private void BuildMainView()
@@ -91,32 +113,37 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
         private void DemoPath()
         {
-            throw new NotImplementedException();
+            ViewManager.GetInstance().OpenView(ViewType.PathChoice, new PathChoiceViewInitializer(
+                GetAvailablePaths(path => _logger.Log(LogVerbosity.Debug, "Started demo path " + path.DisplayedName)),
+                BuildMainView));
         }
 
         private void StartPath()
         {
             ViewManager.GetInstance().OpenView(ViewType.PathChoice, new PathChoiceViewInitializer(
-                _applicationData.UrbanPaths.Select(x => 
-                    new ListElement(x.DisplayedName, null, "Ścieżka", () => _logger.Log(LogVerbosity.Debug, "Path started"))).ToList(), 
+                GetAvailablePaths(path => _logger.Log(LogVerbosity.Debug, "Started path " + path.DisplayedName)),
                 BuildMainView));
         }
         
 
         private void BuildSettingsView()
         {
-            throw new NotImplementedException();
+            ViewManager.GetInstance().OpenView(ViewType.Settings, new SettingsInitializer(BuildMainView, () => { },
+                () => { }, () => { }, () => { }));
         }
 
         private void BuildHelpView()
         {
-            //ViewManager.GetInstance().OpenView(ViewType.Help, new HelpViewInitializer())
+            ViewManager.GetInstance().OpenView(ViewType.Help, new HelpViewInitializer(new List<ListElement>()
+            {
+                new ListElement("Przykładowy przycisk pomocy", null, "Pomoc", () => { })
+            }, BuildMainView));
         }
 
         private void BuildProfileView()
         {
             ViewManager.GetInstance().OpenView(ViewType.Profile,
-                new ProfileViewInitializer(BuildStatisticsView, BuildAchievementsView, Share, BuildProfileView));
+                new ProfileViewInitializer(BuildStatisticsView, BuildAchievementsView, Share, BuildMainView));
         }
 
         private void Share()
@@ -132,6 +159,12 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         private void BuildStatisticsView()
         {
             _logger.Log(LogVerbosity.Debug, "Statistics");
+        }
+
+        private List<ListElement> GetAvailablePaths(Action<UrbanPath> pathChosenAction)
+        {
+            return _applicationData.UrbanPaths.Select(x => new ListElement(x.DisplayedName, null, "Ścieżka",
+                () => pathChosenAction(x))).ToList();
         }
     }
 }
