@@ -43,20 +43,20 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         private void InitializeSceneMapSceneComponents(List<Coordinates> coordinatesList)
         {
             ILocationProvider locationProvider =
-                new LocationFactory(new LocationPermissionRequester()).CreateFakeProvider(coordinatesList);//if fake it needs to take take the stations from the file
-            InitializeWithAbstractMap(locationProvider);
+                new LocationFactory(new LocationPermissionRequester()).CreateFakeProvider(coordinatesList);
+            InitializeWithAbstractMap(locationProvider, coordinatesList);
             _locationProviderRotator.Initialize(locationProvider);
             _coroutinesManager.Initialize(locationProvider);
             _coroutinesManager.StartCoroutines();
         }
 
-        private void InitializeWithAbstractMap(ILocationProvider locationProvider)
+        private void InitializeWithAbstractMap(ILocationProvider locationProvider, List<Coordinates> coordinatesList)
         {
             AbstractMap map = new MapSpawner().SpawnMap(_mapPrefab);
             new LocationProviderMapInitializer(map, locationProvider);
             _playerLocationTransformer.Initialize(map, locationProvider);
-            _navigationPointProvider.Initialize(_mapPrefab, new Coordinates());//need to take the first station from file
-            _stationFactory.Initialize(map, locationProvider, new List<Coordinates>());//needs to take the stations from file
+            _navigationPointProvider.Initialize(_mapPrefab, coordinatesList[0]);
+            _stationFactory.Initialize(map, locationProvider, coordinatesList);
         }
     }
 }
