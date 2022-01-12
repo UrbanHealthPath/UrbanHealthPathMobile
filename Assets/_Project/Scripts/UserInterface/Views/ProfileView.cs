@@ -1,4 +1,5 @@
 using PolSl.UrbanHealthPath.UserInterface.Components;
+using PolSl.UrbanHealthPath.UserInterface.Components.List;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         [FormerlySerializedAs("achievementsButton")] [SerializeField] private Button _achievementsButton;
         [FormerlySerializedAs("shareButton")] [SerializeField] private Button _shareButton;
         [FormerlySerializedAs("_header")] [FormerlySerializedAs("header")] [SerializeField] private HeaderPanel headerPanel;
-
+        [SerializeField] private ListPanel _list;
         private void Awake()
         {
             headerPanel.Initialize("Twój profil");
@@ -24,6 +25,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
             if (initializationParameters is ProfileViewInitializationParameters init)
             {
+                _list.Initialize(init.Elements);
                 _returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
                 _statisticsButton.onClick.AddListener(() => init.StatisticsEvent?.Invoke());
                 _achievementsButton.onClick.AddListener(() => init.AchievementsEvent?.Invoke());
