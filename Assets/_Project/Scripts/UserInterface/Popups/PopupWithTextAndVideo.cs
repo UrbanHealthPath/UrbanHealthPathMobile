@@ -4,28 +4,29 @@ using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Video;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
-    public class PopupWithTextAndVideo : MonoBehaviour, IPopup, IInitializable
+    public class PopupWithTextAndVideo : MonoBehaviour, IPopup, IInitializablePopup
     {
-        public RectTransform PopupArea => popupArea;
+        public RectTransform PopupArea => _popupArea;
 
-        [SerializeField] private Header header;
-        [SerializeField] private TextMeshProUGUI text;
-        [SerializeField] private RectTransform popupArea;
-        [SerializeField] private VideoPlayer videoPlayer;
+        [FormerlySerializedAs("_header")] [FormerlySerializedAs("header")] [SerializeField] private HeaderPanel headerPanel;
+        [FormerlySerializedAs("text")] [SerializeField] private TextMeshProUGUI _text;
+        [FormerlySerializedAs("popupArea")] [SerializeField] private RectTransform _popupArea;
+        [FormerlySerializedAs("videoPlayer")] [SerializeField] private VideoPlayer _videoPlayer;
         
-        public void Initialize(Initializer initializer)
+        public void Initialize(IPopupInitializationParameters initializationParameters)
         {
-            if (initializer is PopupWithTextAndVideoInitializer init)
+            if (initializationParameters is PopupWithTextAndVideoInitializationParameters init)
             {
-                header.Initialize(init.HeaderText);
-                text.text = init.Text;
+                headerPanel.Initialize(init.HeaderText);
+                _text.text = init.Text;
 
-                videoPlayer.clip = init.Clip;
-                videoPlayer.Play();
+                _videoPlayer.clip = init.Clip;
+                _videoPlayer.Play();
 
                 InitSizeAndPosition(init.Payload);
             }

@@ -2,7 +2,7 @@
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
-    public class ProfileViewInitializer : Initializer
+    public class ProfileViewInitializationParameters : IViewInitializationParameters
     {
         public UnityAction StatisticsEvent { get; }
         public UnityAction AchievementsEvent { get; }
@@ -10,7 +10,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
         public UnityAction ReturnEvent { get; }
         public string Header { get; }
 
-        public ProfileViewInitializer(UnityAction statisticsEvent, UnityAction achievementsEvent,
+        public ProfileViewInitializationParameters(UnityAction statisticsEvent, UnityAction achievementsEvent,
             UnityAction shareEvent, UnityAction returnEvent, string header = "Twój profil")
         {
             StatisticsEvent += statisticsEvent;

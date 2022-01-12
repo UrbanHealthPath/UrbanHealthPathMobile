@@ -3,38 +3,39 @@ using PolSl.UrbanHealthPath.UserInterface.Components.List;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
-    public class PathChoiceView : MonoBehaviour, IDisplayable, IInitializable
+    public class PathChoiceView : MonoBehaviour, IDisplayable, IInitializableView
     {
-        [SerializeField] private Button menuButton;
-        [SerializeField] private Header header;
-        [SerializeField] private ListPanel list;
-        public void Awake()
+        [FormerlySerializedAs("menuButton")] [SerializeField] private Button _menuButton;
+        [FormerlySerializedAs("_header")] [FormerlySerializedAs("header")] [SerializeField] private HeaderPanel headerPanel;
+        [FormerlySerializedAs("list")] [SerializeField] private ListPanel _list;
+        private void Awake()
         {
-            header.Initialize("Wybór ścieżki");
+            headerPanel.Initialize("Wybór ścieżki");
         }
-        public void Initialize(Initializer initializer)
+        public void Initialize(IViewInitializationParameters initializationParameters)
         {
-            if (initializer is PathChoiceViewInitializer init)
+            if (initializationParameters is PathChoiceViewInitializationParameters init)
             {
-                list.Initialize(init.Elements);
-                menuButton.onClick.AddListener(()=>init.MainMenuEvent?.Invoke());
+                _list.Initialize(init.Elements);
+                _menuButton.onClick.AddListener(()=>init.MainMenuEvent?.Invoke());
             }
         }
         public void Display()
         {
         }
 
-        public void StopDisplay()
+        public void Hide()
         {
         }
 
         public void OnDisable()
         {
-            menuButton.onClick.RemoveAllListeners();
+            _menuButton.onClick.RemoveAllListeners();
         }
     }
 }

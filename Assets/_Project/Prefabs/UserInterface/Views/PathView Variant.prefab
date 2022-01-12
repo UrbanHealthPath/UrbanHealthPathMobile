@@ -1111,12 +1111,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonAppearances:
-  - sprite: {fileID: 21300000, guid: 2d323723b46e5a34fb25b20d3e9d35a1, type: 3}
-    text: "Nast\u0119pna stacja"
-    bottomOffset: 0
-  - sprite: {fileID: 21300000, guid: 788e0e74133671e4f85ba5b040c999c2, type: 3}
-    text: Mapa
-    bottomOffset: 30
+  - _sprite: {fileID: 21300000, guid: 2d323723b46e5a34fb25b20d3e9d35a1, type: 3}
+    _text: "Nast\u0119pna stacja"
+    _bottomOffset: 0
+  - _sprite: {fileID: 21300000, guid: 788e0e74133671e4f85ba5b040c999c2, type: 3}
+    _text: Mapa
+    _bottomOffset: 30
   image: {fileID: 8197629874848614068}
   text: {fileID: 8197629875184353165}
   button: {fileID: 8197629874867160123}

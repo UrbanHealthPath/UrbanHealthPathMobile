@@ -3,27 +3,28 @@ using PolSl.UrbanHealthPath.UserInterface.Components.List;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
-    public class HelpView : MonoBehaviour, IDisplayable, IInitializable
+    public class HelpView : MonoBehaviour, IDisplayable, IInitializableView
     {
-        [SerializeField] private Button returnButton;
-        [SerializeField] private Header header;
-        [SerializeField] private ListPanel list;
+        [FormerlySerializedAs("returnButton")] [SerializeField] private Button _returnButton;
+        [FormerlySerializedAs("_header")] [FormerlySerializedAs("header")] [SerializeField] private HeaderPanel headerPanel;
+        [FormerlySerializedAs("list")] [SerializeField] private ListPanel _list;
 
-        public void Awake()
+        private void Awake()
         {
-            header.Initialize("Pomoc");
+            headerPanel.Initialize("Pomoc");
         }
 
-        public void Initialize(Initializer initializer)
+        public void Initialize(IViewInitializationParameters initializationParameters)
         {
-            if (initializer is HelpViewInitializer init)
+            if (initializationParameters is HelpViewInitializationParameters init)
             {
-                list.Initialize(init.Elements);
-                returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
+                _list.Initialize(init.Elements);
+                _returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
             }
         }
 
@@ -31,13 +32,13 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
         }
 
-        public void StopDisplay()
+        public void Hide()
         {
         }
         
         public void OnDisable()
         {
-            returnButton.onClick.RemoveAllListeners();
+            _returnButton.onClick.RemoveAllListeners();
         }
     }
 }

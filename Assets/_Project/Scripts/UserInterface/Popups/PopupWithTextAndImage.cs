@@ -5,41 +5,42 @@ using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using PolSl.UrbanHealthPath.UserInterface.Scalers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
-    public class PopupWithTextAndImage : MonoBehaviour, IPopup, IInitializable
+    public class PopupWithTextAndImage : MonoBehaviour, IPopup, IInitializablePopup
     {
-        public RectTransform PopupArea => popupArea;
+        public RectTransform PopupArea => _popupArea;
         
-        [SerializeField] private Header header;
-        [SerializeField] private TextMeshProUGUI text;
-        [SerializeField] private RectTransform popupArea;
-        [SerializeField] private ImageFitter fitter;
-        [SerializeField] private RectTransform textArea;
-        [SerializeField] private RectTransform imageArea;
+        [FormerlySerializedAs("_header")] [FormerlySerializedAs("header")] [SerializeField] private HeaderPanel headerPanel;
+        [FormerlySerializedAs("text")] [SerializeField] private TextMeshProUGUI _text;
+        [FormerlySerializedAs("popupArea")] [SerializeField] private RectTransform _popupArea;
+        [FormerlySerializedAs("fitter")] [SerializeField] private ImageFitter _fitter;
+        [FormerlySerializedAs("textArea")] [SerializeField] private RectTransform _textArea;
+        [FormerlySerializedAs("imageArea")] [SerializeField] private RectTransform _imageArea;
 
-        public void Initialize(Initializer initializer)
+        public void Initialize(IPopupInitializationParameters initializationParameters)
         {
-            if (initializer is PopupWithTextAndImageInitializer init)
+            if (initializationParameters is PopupWithTextAndImageInitializationParameters init)
             {
-                header.Initialize(init.HeaderText);
+                headerPanel.Initialize(init.HeaderText);
                 if (init.Text == String.Empty || init.Text is null)
                 {
-                    textArea.gameObject.SetActive(false);
+                    _textArea.gameObject.SetActive(false);
                 }
                 else
                 {
-                    text.text = init.Text;
+                    _text.text = init.Text;
                 }
 
                 if (init.Texture == null)
                 {
-                    imageArea.gameObject.SetActive(false);
+                    _imageArea.gameObject.SetActive(false);
                 }
                 else
                 {
-                    fitter.InitializeImage(init.Texture);
+                    _fitter.InitializeImage(init.Texture);
                 }
                 InitSizeAndPosition(init.Payload);
             }

@@ -2,30 +2,34 @@ using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
-    public class ProfileView : MonoBehaviour, IInitializable, IDisplayable
+    public class ProfileView : MonoBehaviour, IInitializableView, IDisplayable
     {
-        [SerializeField] private Button returnButton, statisticsButton, achievementsButton, shareButton;
-        [SerializeField] private Header header;
+        [FormerlySerializedAs("returnButton")] [SerializeField] private Button _returnButton;
+        [FormerlySerializedAs("statisticsButton")] [SerializeField] private Button _statisticsButton;
+        [FormerlySerializedAs("achievementsButton")] [SerializeField] private Button _achievementsButton;
+        [FormerlySerializedAs("shareButton")] [SerializeField] private Button _shareButton;
+        [FormerlySerializedAs("_header")] [FormerlySerializedAs("header")] [SerializeField] private HeaderPanel headerPanel;
 
-        public void Awake()
+        private void Awake()
         {
-            header.Initialize("Twój profil");
+            headerPanel.Initialize("Twój profil");
         }
 
-        public void Initialize(Initializer initializer)
+        public void Initialize(IViewInitializationParameters initializationParameters)
         {
-            if (initializer is ProfileViewInitializer init)
+            if (initializationParameters is ProfileViewInitializationParameters init)
             {
-                returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
-                statisticsButton.onClick.AddListener(() => init.StatisticsEvent?.Invoke());
-                achievementsButton.onClick.AddListener(() => init.AchievementsEvent?.Invoke());
-                shareButton.onClick.AddListener(() => init.ShareEvent?.Invoke());
+                _returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
+                _statisticsButton.onClick.AddListener(() => init.StatisticsEvent?.Invoke());
+                _achievementsButton.onClick.AddListener(() => init.AchievementsEvent?.Invoke());
+                _shareButton.onClick.AddListener(() => init.ShareEvent?.Invoke());
 
-                header.Initialize(init.Header);
+                headerPanel.Initialize(init.Header);
             }
         }
 
@@ -33,16 +37,16 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
         }
 
-        public void StopDisplay()
+        public void Hide()
         {
         }
         
         public void OnDisable()
         {
-            returnButton.onClick.RemoveAllListeners();
-            statisticsButton.onClick.RemoveAllListeners();
-            achievementsButton.onClick.RemoveAllListeners();
-            shareButton.onClick.RemoveAllListeners();
+            _returnButton.onClick.RemoveAllListeners();
+            _statisticsButton.onClick.RemoveAllListeners();
+            _achievementsButton.onClick.RemoveAllListeners();
+            _shareButton.onClick.RemoveAllListeners();
         }
     }
 }

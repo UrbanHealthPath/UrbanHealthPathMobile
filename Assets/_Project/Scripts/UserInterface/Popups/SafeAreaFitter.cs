@@ -9,13 +9,13 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
         private RectTransform _panel;
         private Rect _lastSafeArea = new Rect(0, 0, 0, 0);
 
-        public void Awake()
+        private void Awake()
         {
             _panel = GetComponent<RectTransform>();
             Refresh();
         }
 
-        public void Update()
+        private void Update()
         {
             Refresh();
         }

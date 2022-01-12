@@ -2,35 +2,36 @@ using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
-    public class SettingsView : MonoBehaviour, IDisplayable, IInitializable
+    public class SettingsView : MonoBehaviour, IDisplayable, IInitializableView
     {
-        [SerializeField] private Button revertButton;
-        [SerializeField] private Button returnButton;
-        [SerializeField] private Button fontButton;
-        [SerializeField] private Button themeButton; 
-        [SerializeField] private Button audioButton;
-        [SerializeField] private Header header;
+        [FormerlySerializedAs("revertButton")] [SerializeField] private Button _revertButton;
+        [FormerlySerializedAs("returnButton")] [SerializeField] private Button _returnButton;
+        [FormerlySerializedAs("fontButton")] [SerializeField] private Button _fontButton;
+        [FormerlySerializedAs("themeButton")] [SerializeField] private Button _themeButton; 
+        [FormerlySerializedAs("audioButton")] [SerializeField] private Button _audioButton;
+        [FormerlySerializedAs("_header")] [FormerlySerializedAs("header")] [SerializeField] private HeaderPanel headerPanel;
 
-        public void Awake()
+        private void Awake()
         {
-            header.Initialize("Ustawienia");
+            headerPanel.Initialize("Ustawienia");
         }
 
-        public void Initialize(Initializer initializer)
+        public void Initialize(IViewInitializationParameters initializationParameters)
         {
-            if (initializer is SettingsInitializer init)
+            if (initializationParameters is SettingsInitializationParameters init)
             {
-                returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
-                revertButton.onClick.AddListener(() => init.RevertEvent?.Invoke());
-                fontButton.onClick.AddListener(() => init.FontEvent?.Invoke());
-                themeButton.onClick.AddListener(() => init.ThemeEvent?.Invoke());
-                audioButton.onClick.AddListener(() => init.AudioEvent?.Invoke());
+                _returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
+                _revertButton.onClick.AddListener(() => init.RevertEvent?.Invoke());
+                _fontButton.onClick.AddListener(() => init.FontEvent?.Invoke());
+                _themeButton.onClick.AddListener(() => init.ThemeEvent?.Invoke());
+                _audioButton.onClick.AddListener(() => init.AudioEvent?.Invoke());
 
-                header.Initialize(init.HeaderText);
+                headerPanel.Initialize(init.HeaderText);
             }
         }
 
@@ -38,17 +39,17 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
         }
 
-        public void StopDisplay()
+        public void Hide()
         {
         }
 
         public void OnDisable()
         {
-            returnButton.onClick.RemoveAllListeners();
-            revertButton.onClick.RemoveAllListeners();
-            fontButton.onClick.RemoveAllListeners();
-            themeButton.onClick.RemoveAllListeners();
-            audioButton.onClick.RemoveAllListeners();
+            _returnButton.onClick.RemoveAllListeners();
+            _revertButton.onClick.RemoveAllListeners();
+            _fontButton.onClick.RemoveAllListeners();
+            _themeButton.onClick.RemoveAllListeners();
+            _audioButton.onClick.RemoveAllListeners();
         }
     }
 }

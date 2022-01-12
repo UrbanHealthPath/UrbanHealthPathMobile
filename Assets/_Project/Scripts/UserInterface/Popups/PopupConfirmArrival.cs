@@ -4,27 +4,28 @@ using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using PolSl.UrbanHealthPath.UserInterface.Scalers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
-    public class PopupConfirmArrival : MonoBehaviour, IPopup, IInitializable
+    public class PopupConfirmArrival : MonoBehaviour, IPopup, IInitializablePopup
     {
-        public RectTransform PopupArea => popupArea;
+        public RectTransform PopupArea => _popupArea;
 
-        [SerializeField] private Button buttonImHere;
-        [SerializeField] private TextMeshProUGUI text;
-        [SerializeField] private RectTransform popupArea;
-        [SerializeField] private ImageFitter fitter;
+        [FormerlySerializedAs("buttonImHere")] [SerializeField] private Button _buttonImHere;
+        [FormerlySerializedAs("text")] [SerializeField] private TextMeshProUGUI _text;
+        [FormerlySerializedAs("popupArea")] [SerializeField] private RectTransform _popupArea;
+        [FormerlySerializedAs("fitter")] [SerializeField] private ImageFitter _fitter;
         
-        public void Initialize(Initializer initializer)
+        public void Initialize(IPopupInitializationParameters initializationParameters)
         {
-            if (initializer is PopupConfirmArrivalInitializer init)
+            if (initializationParameters is PopupConfirmArrivalInitializationParameters init)
             {
-                buttonImHere.onClick.AddListener(init.ButtonAction);
-                text.text = init.Text;
+                _buttonImHere.onClick.AddListener(init.ButtonAction);
+                _text.text = init.Text;
                 InitSizeAndPosition(init.Payload);
-                fitter.InitializeImage(init.Texture);
+                _fitter.InitializeImage(init.Texture);
             }
         }
 

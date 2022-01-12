@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
-    public class QuizWithTextPopupInitializer : Initializer
+    public class QuizWithTextPopupInitializationParameters : IPopupInitializationParameters
     {
         public string Question { get;  }
         public PopupPayload Payload { get;  }
@@ -19,7 +19,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
         public string Text4 { get; }
         public UnityAction ButtonText4Action { get; }
         
-        public QuizWithTextPopupInitializer(string question, PopupPayload payload, string text1, 
+        public QuizWithTextPopupInitializationParameters(string question, PopupPayload payload, string text1, 
             UnityAction buttonText1Action, string text2, UnityAction buttonText2Action, string text3, 
             UnityAction buttonText3Action, string text4, UnityAction buttonText4Action)
         {

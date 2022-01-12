@@ -3,54 +3,55 @@ using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
     [RequireComponent(typeof(RectTransform))]
-    public class MainView : MonoBehaviour, IInitializable, IPopupable
+    public class MainView : MonoBehaviour, IInitializableView, IPopupable
     {
-        public RectTransform PopupArea => popupArea;
+        public RectTransform PopupArea => _popupArea;
 
-        [SerializeField] private Button profileButton;
-        [SerializeField] private Button helpButton;
-        [SerializeField] private Button settingsButton;
-        [SerializeField] private Button upperButtonOnMap;
-        [SerializeField] private Button lowerButtonOnMap;
-        [SerializeField] private Button exitButton;
-        [SerializeField] private Header header;
-        [SerializeField] private RectTransform popupArea;
-        [SerializeField] private TextMeshProUGUI lowerButtonText;
-        [SerializeField] private TextMeshProUGUI upperButtonText;
+        [FormerlySerializedAs("profileButton")] [SerializeField] private Button _profileButton;
+        [FormerlySerializedAs("helpButton")] [SerializeField] private Button _helpButton;
+        [FormerlySerializedAs("settingsButton")] [SerializeField] private Button _settingsButton;
+        [FormerlySerializedAs("upperButtonOnMap")] [SerializeField] private Button _upperButtonOnMap;
+        [FormerlySerializedAs("lowerButtonOnMap")] [SerializeField] private Button _lowerButtonOnMap;
+        [FormerlySerializedAs("exitButton")] [SerializeField] private Button _exitButton;
+        [FormerlySerializedAs("_header")] [FormerlySerializedAs("header")] [SerializeField] private HeaderPanel headerPanel;
+        [FormerlySerializedAs("popupArea")] [SerializeField] private RectTransform _popupArea;
+        [FormerlySerializedAs("lowerButtonText")] [SerializeField] private TextMeshProUGUI _lowerButtonText;
+        [FormerlySerializedAs("upperButtonText")] [SerializeField] private TextMeshProUGUI _upperButtonText;
 
-        public void Awake()
+        private void Awake()
         {
-            header.Initialize("Menu");
+            headerPanel.Initialize("Menu");
         }
 
-        public void Initialize(Initializer initializer)
+        public void Initialize(IViewInitializationParameters initializationParameters)
         {
-            if (initializer is MainViewInitializer init)
+            if (initializationParameters is MainViewInitializationParameters init)
             {
-                profileButton.onClick.AddListener(() => init.ProfileEvent?.Invoke());
-                settingsButton.onClick.AddListener(() => init.SettingsEvent?.Invoke());
-                helpButton.onClick.AddListener(() => init.HelpEvent?.Invoke());
-                upperButtonOnMap.onClick.AddListener(() => init.UpperButtonEvent?.Invoke());
-                lowerButtonOnMap.onClick.AddListener(() => init.LowerButtonEvent?.Invoke());
-                exitButton.onClick.AddListener(() => init.ExitEvent?.Invoke());
-                lowerButtonText.text = init.LowerButtonText;
-                upperButtonText.text = init.UpperButtonText;
+                _profileButton.onClick.AddListener(() => init.ProfileEvent?.Invoke());
+                _settingsButton.onClick.AddListener(() => init.SettingsEvent?.Invoke());
+                _helpButton.onClick.AddListener(() => init.HelpEvent?.Invoke());
+                _upperButtonOnMap.onClick.AddListener(() => init.UpperButtonEvent?.Invoke());
+                _lowerButtonOnMap.onClick.AddListener(() => init.LowerButtonEvent?.Invoke());
+                _exitButton.onClick.AddListener(() => init.ExitEvent?.Invoke());
+                _lowerButtonText.text = init.LowerButtonText;
+                _upperButtonText.text = init.UpperButtonText;
             }
         }
 
         public void OnDisable()
         {
-            profileButton.onClick.RemoveAllListeners();
-            settingsButton.onClick.RemoveAllListeners();
-            helpButton.onClick.RemoveAllListeners();
-            upperButtonOnMap.onClick.RemoveAllListeners();
-            lowerButtonOnMap.onClick.RemoveAllListeners();
-            exitButton.onClick.RemoveAllListeners();
+            _profileButton.onClick.RemoveAllListeners();
+            _settingsButton.onClick.RemoveAllListeners();
+            _helpButton.onClick.RemoveAllListeners();
+            _upperButtonOnMap.onClick.RemoveAllListeners();
+            _lowerButtonOnMap.onClick.RemoveAllListeners();
+            _exitButton.onClick.RemoveAllListeners();
         }
     }
 }

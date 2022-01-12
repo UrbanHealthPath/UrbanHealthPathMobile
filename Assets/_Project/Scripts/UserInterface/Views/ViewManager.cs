@@ -7,6 +7,7 @@ using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
@@ -16,88 +17,48 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         public GameObject CurrentView { get; private set; }
         public ViewType LastViewType { get; private set; }
         public History History { get; private set; }
-
-        [Serializable] public struct View
-        {
-            [SerializeField] private ViewType type;
-            [SerializeField] private GameObject viewObject;
-
-            public ViewType GetViewType()
-            {
-                return type;
-            }
-
-            public GameObject GetViewObject()
-            {
-                return viewObject;
-            }
-        }
-
-        [SerializeField] private View[] viewsWithTypes;
+        
+        [FormerlySerializedAs("viewsWithTypes")] [SerializeField] private View[] _viewsWithTypes;
 
         private Dictionary<ViewType, GameObject> _views;
-
-        private static ViewManager _instance;
-
-        private void Awake()
-        {
-            if (_instance != null && _instance != this)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                _instance = this;
-            }
-        }
-
+        
         private void Start()
         {
-            _instance.CurrentView = null;
+            CurrentView = null;
 
-            _instance._views = new Dictionary<ViewType, GameObject>();
+            _views = new Dictionary<ViewType, GameObject>();
 
-            foreach (var view in viewsWithTypes)
+            foreach (var view in _viewsWithTypes)
             {
                 _views.Add(view.GetViewType(), view.GetViewObject());
             }
 
             History = new History();
         }
-
-        public static ViewManager GetInstance()
+        
+        public GameObject OpenView(ViewType viewType, IViewInitializationParameters initializationParameters = null)
         {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<ViewManager>();
-            }
+            LastViewType = CurrentViewType;
+            CurrentViewType = viewType;
 
-            return _instance;
-        }
-
-        public GameObject OpenView(ViewType viewType, Initializer initializer = null)
-        {
-            _instance.LastViewType = _instance.CurrentViewType;
-            _instance.CurrentViewType = viewType;
-
-            _instance.CurrentView.Destroy();
+            CurrentView.Destroy();
 
             if (viewType != ViewType.None)
             {
-                _instance.CurrentView = Instantiate(_views[viewType]);
-                _instance.History.AddToHistory(viewType, initializer);
-                InitializeCurrentView(initializer);
+                CurrentView = Instantiate(_views[viewType]);
+                History.AddToHistory(viewType, initializationParameters);
+                InitializeCurrentView(initializationParameters);
             }
 
-            return _instance.CurrentView;
+            return CurrentView;
         }
 
-        public void InitializeCurrentView(Initializer initializer)
+        public void InitializeCurrentView(IViewInitializationParameters initializationParameters)
         {
-            if (initializer != null)
+            if (initializationParameters != null)
             {
-                IInitializable initializable = _instance.CurrentView.GetComponent<IInitializable>();
-                initializable?.Initialize(initializer);
+                IInitializableView initializableView = CurrentView.GetComponent<IInitializableView>();
+                initializableView?.Initialize(initializationParameters);
             }
         }
     }

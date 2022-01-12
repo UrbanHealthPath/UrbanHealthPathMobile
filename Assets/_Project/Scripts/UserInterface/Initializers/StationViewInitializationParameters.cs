@@ -2,7 +2,7 @@
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
-    public class StationViewInitializer : Initializer
+    public class StationViewInitializationParameters : IViewInitializationParameters
     {
         public UnityAction SensorialEvent { get; }
         public UnityAction MotorialEvent { get; }
@@ -13,7 +13,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
         public string HeaderText { get; }
         public string InformationAboutStation { get; }
 
-        public StationViewInitializer(UnityAction sensorialEvent, UnityAction motorialEvent,
+        public StationViewInitializationParameters(UnityAction sensorialEvent, UnityAction motorialEvent,
             UnityAction historicInfoEvent, UnityAction mainMenuEvent, UnityAction returnEvent,
             UnityAction finishExerciseEvent, string headerText, string info)
         {

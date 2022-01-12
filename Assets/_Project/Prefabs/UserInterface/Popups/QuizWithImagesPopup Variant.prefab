@@ -122,9 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56eab05b5f8943442a95cba6bb6d9c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageArea: {fileID: 962432452}
-  imageRect: {fileID: 103472109}
-  image: {fileID: 103472111}
+  _imageArea: {fileID: 962432452}
+  _imageRect: {fileID: 103472109}
+  _image: {fileID: 103472111}
 --- !u!114 &2194842773728740885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,9 +255,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56eab05b5f8943442a95cba6bb6d9c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageArea: {fileID: 96858312}
-  imageRect: {fileID: 135040642}
-  image: {fileID: 135040644}
+  _imageArea: {fileID: 96858312}
+  _imageRect: {fileID: 135040642}
+  _image: {fileID: 135040644}
 --- !u!114 &7198496406071764903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,9 +658,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56eab05b5f8943442a95cba6bb6d9c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageArea: {fileID: 441420617}
-  imageRect: {fileID: 865849613}
-  image: {fileID: 865849615}
+  _imageArea: {fileID: 441420617}
+  _imageRect: {fileID: 865849613}
+  _image: {fileID: 865849615}
 --- !u!114 &2252795768103121839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1012,9 +1012,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56eab05b5f8943442a95cba6bb6d9c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageArea: {fileID: 693996110}
-  imageRect: {fileID: 1944661563}
-  image: {fileID: 1944661565}
+  _imageArea: {fileID: 693996110}
+  _imageRect: {fileID: 1944661563}
+  _image: {fileID: 1944661565}
 --- !u!114 &4408980608111677464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1251,13 +1251,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb06cea88248d844ba8902b3cf6c5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 654887157}
-  popupArea: {fileID: 4039301977824534626}
-  fitter1: {fileID: 135040643}
-  fitter2: {fileID: 865849614}
-  fitter3: {fileID: 1944661564}
-  fitter4: {fileID: 103472110}
-  imageButton1: {fileID: 7198496406071764903}
-  imageButton2: {fileID: 2252795768103121839}
-  imageButton3: {fileID: 4408980608111677464}
-  imageButton4: {fileID: 2194842773728740885}
+  _text: {fileID: 654887157}
+  _popupArea: {fileID: 4039301977824534626}
+  _buttonFitterConnections:
+  - _imageFitter: {fileID: 135040643}
+    _button: {fileID: 7198496406071764903}
+  - _imageFitter: {fileID: 865849614}
+    _button: {fileID: 2252795768103121839}
+  - _imageFitter: {fileID: 1944661564}
+    _button: {fileID: 4408980608111677464}
+  - _imageFitter: {fileID: 103472110}
+    _button: {fileID: 2194842773728740885}

@@ -4,16 +4,17 @@ using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components
 {
-    public class Header : MonoBehaviour
+    public class HeaderPanel : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI text;
+        [FormerlySerializedAs("text")] [SerializeField] private TextMeshProUGUI _text;
         
         public void Initialize(string headerText)
         {
-            text.text = headerText;
+            _text.text = headerText;
         }
     }
 }

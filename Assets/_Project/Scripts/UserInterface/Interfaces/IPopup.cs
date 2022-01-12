@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Interfaces
 {
-    //It can later be transformed into an abstract class. 
     public interface IPopup
     {
         public RectTransform PopupArea { get;  }

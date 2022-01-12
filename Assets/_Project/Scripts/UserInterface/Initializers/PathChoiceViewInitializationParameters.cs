@@ -4,15 +4,15 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
-    public class HelpViewInitializer : Initializer
+    public class PathChoiceViewInitializationParameters : IViewInitializationParameters
     {
         public List<ListElement> Elements { get; }
-        public UnityAction ReturnEvent { get; }
+        public UnityAction MainMenuEvent { get; }
 
-        public HelpViewInitializer(List<ListElement> elements, UnityAction returnEvent)
+        public PathChoiceViewInitializationParameters(List<ListElement> elements, UnityAction mainMenuEvent)
         {
             Elements = elements;
-            ReturnEvent += returnEvent;
+            MainMenuEvent += mainMenuEvent;
         }
     }
 }

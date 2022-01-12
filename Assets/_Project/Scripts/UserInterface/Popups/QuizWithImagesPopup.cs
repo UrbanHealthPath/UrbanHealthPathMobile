@@ -7,41 +7,31 @@ using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Scalers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
-    public class QuizWithImagesPopup : MonoBehaviour, IPopup, IInitializable
+    public class QuizWithImagesPopup : MonoBehaviour, IPopup, IInitializablePopup
     {
-        public RectTransform PopupArea => popupArea;
+        public RectTransform PopupArea => _popupArea;
 
-        [SerializeField] private TextMeshProUGUI text;
-        [SerializeField] private RectTransform popupArea;
-        [SerializeField] private ImageFitter fitter1;
-        [SerializeField] private ImageFitter fitter2;
-        [SerializeField] private ImageFitter fitter3;
-        [SerializeField] private ImageFitter fitter4;
-        [SerializeField] private Button imageButton1;
-        [SerializeField] private Button imageButton2;
-        [SerializeField] private Button imageButton3;
-        [SerializeField] private Button imageButton4;
+        [FormerlySerializedAs("text")] [SerializeField] private TextMeshProUGUI _text;
+        [FormerlySerializedAs("popupArea")] [SerializeField] private RectTransform _popupArea;
+        [SerializeField] private ButtonFitterConnection[] _buttonFitterConnections;
         
-        public void Initialize(Initializer initializer)
+        public void Initialize(IPopupInitializationParameters initializationParameters)
         {
-            if (initializer is QuizWithImagesPopupInitializer init)
+            if (initializationParameters is QuizWithImagesPopupInitializationParameters init)
             {
                 InitSizeAndPosition(init.Payload);
-                text.text = init.Question;
-
-                fitter1.InitializeImage(init.Texture1);
-                fitter2.InitializeImage(init.Texture2);
-                fitter3.InitializeImage(init.Texture3);
-                fitter4.InitializeImage(init.Texture4);
-
-                imageButton1.onClick.AddListener(() => init.ButtonTexture1Action?.Invoke());
-                imageButton2.onClick.AddListener(() => init.ButtonTexture2Action?.Invoke());
-                imageButton3.onClick.AddListener(() => init.ButtonTexture3Action?.Invoke());
-                imageButton4.onClick.AddListener(() => init.ButtonTexture4Action?.Invoke());
+                _text.text = init.Question;
+                
+                for (int i = 0; i < _buttonFitterConnections.Length; i++)
+                {
+                    _buttonFitterConnections[i].ImageFitter.InitializeImage(init.QuizElementOptions[i].Texture);
+                    _buttonFitterConnections[i].Button.onClick.AddListener(()=>init.QuizElementOptions[i].ButtonTextureAction?.Invoke());
+                }
             }
         }
         public void InitSizeAndPosition(PopupPayload payload)
@@ -52,10 +42,10 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
 
         private void OnDisable()
         {
-            imageButton1.onClick.RemoveAllListeners();
-            imageButton2.onClick.RemoveAllListeners();
-            imageButton3.onClick.RemoveAllListeners();
-            imageButton4.onClick.RemoveAllListeners();
+            foreach (var buttonFitterConnection in _buttonFitterConnections)
+            {
+                buttonFitterConnection.Button.onClick.RemoveAllListeners();
+            }
         }
     }
 }

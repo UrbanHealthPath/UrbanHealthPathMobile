@@ -5,26 +5,13 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
     public class History
     {
-        private struct HistoryElement
-        {
-            public ViewType Type { get; }
-            public Initializer Data { get; }
-
-            public HistoryElement(ViewType type, Initializer data)
-            {
-                Type = type;
-                Data = data;
-            }
-        }
-
         private Stack<HistoryElement> history = new Stack<HistoryElement>();
-
-        public void AddToHistory(ViewType type, Initializer data)
+        public void AddToHistory(ViewType type, IViewInitializationParameters data)
         {
             history.Push(new HistoryElement(type, data));
         }
 
-        public (ViewType, Initializer) GetLastView()
+        public (ViewType, IViewInitializationParameters) GetLastView()
         {
             if (history.Count > 0)
             {

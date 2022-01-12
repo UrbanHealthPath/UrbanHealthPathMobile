@@ -3,22 +3,23 @@ using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
     [RequireComponent(typeof(RectTransform))]
-    public class LoginInView : MonoBehaviour, IDisplayable, IInitializable
+    public class LoginInView : MonoBehaviour, IDisplayable, IInitializableView
     {
-        [SerializeField] private Button loginButton;
-        [SerializeField] private Button continueWithoutLoginButton;
+        [FormerlySerializedAs("loginButton")] [SerializeField] private Button _loginButton;
+        [FormerlySerializedAs("continueWithoutLoginButton")] [SerializeField] private Button _continueWithoutLoginButton;
         
-        public void Initialize(Initializer initializer)
+        public void Initialize(IViewInitializationParameters initializationParameters)
         {
-            if (initializer is LogInViewInitializer init)
+            if (initializationParameters is LogInViewInitializationParameters init)
             {
-                loginButton.onClick.AddListener(() => init.LogInEvent?.Invoke());
-                continueWithoutLoginButton.onClick.AddListener(() => init.ContinueWithoutLogInEvent?.Invoke());
+                _loginButton.onClick.AddListener(() => init.LogInEvent?.Invoke());
+                _continueWithoutLoginButton.onClick.AddListener(() => init.ContinueWithoutLogInEvent?.Invoke());
             }
         }
 
@@ -26,14 +27,14 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
         }
 
-        public void StopDisplay()
+        public void Hide()
         {
         }
 
         private void OnDisable()
         {
-            loginButton.onClick.RemoveAllListeners();
-            continueWithoutLoginButton.onClick.RemoveAllListeners();
+            _loginButton.onClick.RemoveAllListeners();
+            _continueWithoutLoginButton.onClick.RemoveAllListeners();
         }
     }
 }

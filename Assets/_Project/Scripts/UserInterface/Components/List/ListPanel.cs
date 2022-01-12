@@ -1,51 +1,53 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
+
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components.List
 {
     public class ListPanel : MonoBehaviour
     {
-        [SerializeField] private GameObject page;
-        [SerializeField] private Button backButton, forwardButton;
-        [SerializeField] private GameObject frameBackButton, frameForwardButton, buttonsPanel;
-        [SerializeField] private List<GameObject> pages = new List<GameObject>();
-        [SerializeField] private GameObject parentForPages;
-        
+        [FormerlySerializedAs("page")] [SerializeField]
+        private GameObject _page;
+
+        [FormerlySerializedAs("backButton")] [SerializeField]
+        private Button _backButton;
+
+        [FormerlySerializedAs("forwardButton")] [SerializeField]
+        private Button _forwardButton;
+
+        [FormerlySerializedAs("frameBackButton")] [SerializeField]
+        private GameObject _frameBackButton;
+
+        [FormerlySerializedAs("frameForwardButton")] [SerializeField]
+        private GameObject _frameForwardButton;
+
+        [FormerlySerializedAs("buttonsPanel")] [SerializeField]
+        private GameObject _buttonsPanel;
+
+        [FormerlySerializedAs("pages")] [SerializeField]
+        private List<GameObject> _pages = new List<GameObject>();
+
+        [FormerlySerializedAs("parentForPages")] [SerializeField]
+        private GameObject _parentForPages;
+
         private int _pageIndex;
+
+        private Vector3 _position;
+
+        private int _pagesInstantinated;
+
         public void Initialize(List<ListElement> elements)
         {
             int pagesCount = elements.Count / 3 + 1;
-            int pagesInstantinated = pages.Count;
+            _pagesInstantinated = _pages.Count;
             int j = 0;
+            _position = Vector3.zero;
 
-            Vector3 position = Vector3.zero;
-            
             for (int i = 0; i < pagesCount; i++)
             {
-                GameObject newPage;
-
-                if (i + 1 > pagesInstantinated)
-                {
-                    newPage = Instantiate(page);
-                    pages.Add(newPage);
-                    
-                    var rectTrans = newPage.GetComponent<RectTransform>();
-                    rectTrans.SetParent(parentForPages.transform);
-                    rectTrans.anchoredPosition =position;
-                    rectTrans.localScale = new Vector3(1, 1, 1);
-                    newPage.SetActive(false);
-                }
-                else
-                {
-                    newPage = pages[i];
-                    var rectTrans = newPage.GetComponent<RectTransform>();
-                    position = rectTrans.anchoredPosition;
-
-                }
+                GameObject newPage = CreateNewPage(i);
                 
                 List<ListElement> list = new List<ListElement>();
 
@@ -57,6 +59,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
                         j++;
                     }
                 }
+
                 newPage.GetComponent<ListPage>().Initialize(list);
                 list.Clear();
             }
@@ -66,55 +69,75 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
 
         private void InitializeButtons()
         {
-            backButton.onClick.AddListener(GoBack);
-            forwardButton.onClick.AddListener(GoForward);
-
-            backButton.gameObject.SetActive(false);
-            frameBackButton.SetActive(false);
-
-            bool isNextPage = (pages.Count > 1 ? true : false);
-
-            forwardButton.gameObject.SetActive(isNextPage);
-            frameForwardButton.SetActive(isNextPage);
-            buttonsPanel.SetActive(isNextPage);
+            _backButton.onClick.AddListener(GoBack);
+            _forwardButton.onClick.AddListener(GoForward);
+            _backButton.gameObject.SetActive(false);
+            _frameBackButton.SetActive(false);
+            bool isNextPage = (_pages.Count > 1 ? true : false);
+            _forwardButton.gameObject.SetActive(isNextPage);
+            _frameForwardButton.SetActive(isNextPage);
+            _buttonsPanel.SetActive(isNextPage);
         }
 
         private void GoBack()
         {
-            forwardButton.gameObject.SetActive(true);
-            frameForwardButton.SetActive(true);
-            pages[_pageIndex].SetActive(false);
-            
+            _forwardButton.gameObject.SetActive(true);
+            _frameForwardButton.SetActive(true);
+            _pages[_pageIndex].SetActive(false);
             _pageIndex--;
-            pages[Mathf.Clamp(_pageIndex, 0, pages.Count - 1)].SetActive(true);
+            _pages[Mathf.Clamp(_pageIndex, 0, _pages.Count - 1)].SetActive(true);
 
             if (_pageIndex == 0)
             {
-                backButton.gameObject.SetActive(false);
-                frameBackButton.SetActive(false);
+                _backButton.gameObject.SetActive(false);
+                _frameBackButton.SetActive(false);
             }
         }
 
         private void GoForward()
         {
-            backButton.gameObject.SetActive(true);
-            frameBackButton.SetActive(true);
-            pages[_pageIndex].SetActive(false);
-            
+            _backButton.gameObject.SetActive(true);
+            _frameBackButton.SetActive(true);
+            _pages[_pageIndex].SetActive(false);
             _pageIndex++;
-            pages[Mathf.Clamp(_pageIndex, 0, pages.Count - 1)].SetActive(true);
+            _pages[Mathf.Clamp(_pageIndex, 0, _pages.Count - 1)].SetActive(true);
 
-            if (_pageIndex == pages.Count - 1)
+            if (_pageIndex == _pages.Count - 1)
             {
-                forwardButton.gameObject.SetActive(false);
-                frameForwardButton.SetActive(false);
+                _forwardButton.gameObject.SetActive(false);
+                _frameForwardButton.SetActive(false);
             }
+        }
+
+        private GameObject CreateNewPage(int i)
+        {
+            GameObject newPage = new GameObject();
+                
+            if (i + 1 > _pagesInstantinated)
+            {
+                newPage = Instantiate(_page);
+                _pages.Add(newPage);
+
+                var rectTrans = newPage.GetComponent<RectTransform>();
+                rectTrans.SetParent(_parentForPages.transform);
+                rectTrans.anchoredPosition = _position;
+                rectTrans.localScale = new Vector3(1, 1, 1);
+                newPage.SetActive(false);
+            }
+            else
+            {
+                newPage = _pages[i];
+                var rectTrans = newPage.GetComponent<RectTransform>();
+                _position = rectTrans.anchoredPosition;
+            }
+
+            return newPage;
         }
 
         public void OnDestroy()
         {
-            backButton.onClick.RemoveListener(GoBack);
-            forwardButton.onClick.RemoveListener(GoForward);
+            _backButton.onClick.RemoveListener(GoBack);
+            _forwardButton.onClick.RemoveListener(GoForward);
         }
     }
 }
