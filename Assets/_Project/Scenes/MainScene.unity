@@ -197,6 +197,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _statation: {fileID: 23680002971963964, guid: 36a1c21795ef5e7409f523735e45ad95, type: 3}
   _halo: {fileID: 8923245969625236670, guid: 604c9f9d3f642064ea8cf5fcf6bcec2d, type: 3}
+--- !u!114 &425469030 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7261815612953337451, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
+  m_PrefabInstance: {fileID: 7261815612663694707}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac20070290bebc640a8341fa57151a93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &508621937
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,13 +492,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1320727505}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72896e3f1119af441ae825d711b188a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e42e6f16a2231347a03c948d3129311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lineMeshModifier: {fileID: 0}
-  _material: {fileID: 0}
-  _navigatedObject: {fileID: 0}
-  _destination: {fileID: 0}
+  _lineMeshModifier: {fileID: 11400000, guid: 77c995c806984234d9ef321a503a24dc, type: 2}
+  _material: {fileID: 2100000, guid: ef6c956ca085647fba4624a08c344419, type: 2}
+  _navigatedObject: {fileID: 551685608}
+  _destination: {fileID: 7261815612663694708}
 --- !u!1 &1548284183
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,7 +630,7 @@ MonoBehaviour:
   _stationFactory: {fileID: 328303299}
   _coroutinesManager: {fileID: 508621938}
   _mapPrefab: {fileID: 4445545303355898499, guid: b21dcd81619eaec4880e5d10b7711b51, type: 3}
-  _navigationPointProvider: {fileID: 0}
+  _navigationPointProvider: {fileID: 425469030}
 --- !u!4 &1562353124
 Transform:
   m_ObjectHideFlags: 0
@@ -943,26 +954,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: _map
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: MeshModifiers.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: MeshModifiers.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 2f8c4f9c9a0e2534c8b707d01b5c79ff, type: 2}
-    - target: {fileID: 0}
-      propertyPath: MeshModifiers.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: d31b2cb2a75a54d5bb6402fe0bd8c6cf, type: 2}
-    - target: {fileID: 0}
-      propertyPath: MeshModifiers.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: cd4bcff551c0d418997f52b78da87a0e, type: 2}
     - target: {fileID: 7261815612490402007, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
       propertyPath: m_Name
       value: Navigation
@@ -985,3 +976,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
+--- !u!4 &7261815612663694708 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7261815612953337444, guid: 72c46d5b8c9812c44b1c614d0ef7313e, type: 3}
+  m_PrefabInstance: {fileID: 7261815612663694707}
+  m_PrefabAsset: {fileID: 0}
