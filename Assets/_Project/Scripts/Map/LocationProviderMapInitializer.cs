@@ -5,9 +5,8 @@ namespace PolSl.UrbanHealthPath.Map
 {
     public class LocationProviderMapInitializer
     {
-        private AbstractMap _map;
-
-        private ILocationProvider _locationProvider;
+        private readonly AbstractMap _map;
+        private readonly ILocationProvider _locationProvider;
         
         public LocationProviderMapInitializer(AbstractMap map, ILocationProvider locationProvider)
         {
