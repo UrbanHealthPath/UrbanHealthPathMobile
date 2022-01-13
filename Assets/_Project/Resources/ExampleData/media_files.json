@@ -33,7 +33,7 @@
     "media_id": "image.station.gliwice.neptun.icon",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Ikona punktu_1. Fontanna Neptuna"
+    "path": "images/game_images/Ikona_punktu_1_Fontanna_Neptuna"
   },
   {
     "media_id": "audio.navigation.neptun",
@@ -99,36 +99,36 @@
     "media_id": "image.station.gliwice.ratusz.icon",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Ikona punktu_2. Rzeźba Madonny"
+    "path": "images/game_images/Ikona_punktu_2_Rzezba_Madonny"
   },
   {
     "media_id": "image.station.gliwice.arkady.icon",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Ikona punktu_3.Arkady"
+    "path": "images/game_images/Ikona_punktu_3_Arkady"
   },
   {
     "media_id": "image.station.gliwice.pilastry.icon",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Ikona punktu_4. P(i)LASTERKI DLA 18tki"
+    "path": "images/game_images/Ikona_punktu_4_PiLASTERKI_DLA_18tki"
   },
   {
     "media_id": "image.station.gliwice.podcienie.icon",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Ikona punktu_5.Galeria sztuki w podcieniach"
+    "path": "images/game_images/Ikona_punktu_5_Galeria_sztuki_w_podcieniach"
   },
   {
     "media_id": "image.station.gliwice.rog.icon",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Ikona punktu_6. Rzeźba kobiety broniącej Gliwic"
+    "path": "images/game_images/Ikona_punktu_6_Rzezba_kobiety_broniacej_Gliwic"
   },
   {
     "media_id": "image.station.gliwice.plebanska.icon",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Ikona punktu_7. Plebańska"
+    "path": "images/game_images/Ikona_punktu_7_Plebanska"
   }
 ]
