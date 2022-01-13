@@ -18,7 +18,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
 
         private GameObject _currentPopup;
         
-        private void Awake()
+        public void Initialize()
         {
             _currentPopup = null;
             _popups = new Dictionary<PopupType, GameObject>();

@@ -17,12 +17,13 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         public GameObject CurrentView { get; private set; }
         public ViewType LastViewType { get; private set; }
         public History History { get; private set; }
-        
-        [FormerlySerializedAs("viewsWithTypes")] [SerializeField] private View[] _viewsWithTypes;
+
+        [FormerlySerializedAs("viewsWithTypes")] [SerializeField]
+        private View[] _viewsWithTypes;
 
         private Dictionary<ViewType, GameObject> _views;
-        
-        private void Start()
+
+        public void Initialize()
         {
             CurrentView = null;
 
@@ -35,7 +36,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
 
             History = new History();
         }
-        
+
         public GameObject OpenView(ViewType viewType, IViewInitializationParameters initializationParameters = null)
         {
             LastViewType = CurrentViewType;
