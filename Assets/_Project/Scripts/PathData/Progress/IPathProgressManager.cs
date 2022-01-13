@@ -7,6 +7,7 @@ namespace PolSl.UrbanHealthPath.PathData.Progress
         event EventHandler CheckpointReached;
         
         bool IsPathInProgress { get; }
+        PathProgressCheckpoint LastCheckpoint { get; }
 
         bool TryRestoreProgress();
         void StartNewPath();
