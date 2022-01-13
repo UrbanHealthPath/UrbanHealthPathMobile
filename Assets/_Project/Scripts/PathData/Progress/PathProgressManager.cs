@@ -12,6 +12,7 @@ namespace PolSl.UrbanHealthPath.PathData.Progress
         private PathProgress _currentProgress;
 
         public bool IsPathInProgress => _currentProgress is {WasFinished: false};
+        public PathProgressCheckpoint LastCheckpoint => _currentProgress?.LastCheckpoint;
 
         public PathProgressManager(IPathProgressPersistor persistor)
         {
