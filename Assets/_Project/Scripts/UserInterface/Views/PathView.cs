@@ -41,7 +41,16 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
                 _mainMenuButton.onClick.AddListener(() => init.MainMenuEvent?.Invoke());
             }
         }
+
+        public void ShowPopup()
+        {
+            _nextStationInfoButton.onClick?.Invoke();
+        }
         
+        public void HidePopup()
+        {
+            _nextStationInfoButton.onClick?.Invoke();
+        }
         public void OnDisable()
         {
             _endPathButton.onClick.RemoveAllListeners();
