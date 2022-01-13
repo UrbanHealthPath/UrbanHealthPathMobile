@@ -14,8 +14,6 @@ namespace PolSl.UrbanHealthPath.Navigation
 {
     public class DirectionsFactory : MonoBehaviour
     {
-        [SerializeField] private AbstractMap _map;
-
         [SerializeField] private LineMeshModifier _lineMeshModifier;
         
         [SerializeField] private Material _material;
@@ -23,25 +21,28 @@ namespace PolSl.UrbanHealthPath.Navigation
         [SerializeField] private Transform _navigatedObject;
         
         [SerializeField] private Transform _destination;
+
+        private bool _initialized = false;
+
+        private bool _mapInitialized = false;
+        
+        private AbstractMap _map;
         
         private Directions _directions;
         
-        public void Start()
+        public void Initialize(AbstractMap map)
         {
-            if (_map == null)
+            if (map != null)
             {
-                _map = FindObjectOfType<AbstractMap>();
+                _map = map;
+                map.OnInitialized+=() => _mapInitialized = true;
             }
+            
             _directions = MapboxAccess.Instance.Directions;
             _lineMeshModifier.Initialize();
+            _initialized = true;
         }
-
-        protected void OnDestroy()
-        {
-            _map.OnInitialized -= Query;
-            _map.OnUpdated -= Query;
-        }
-
+        
         private void Query()
         {
             Vector2d[] wp = new Vector2d[2];
@@ -100,7 +101,10 @@ namespace PolSl.UrbanHealthPath.Navigation
 
         public void CallQuery()
         {
-            Query();
+            if (_initialized && _mapInitialized)
+            {
+                Query();
+            }
         }
     }
 }
