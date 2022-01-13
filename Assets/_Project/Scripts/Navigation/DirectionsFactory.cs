@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using Mapbox.Directions;
 using Mapbox.Unity;
@@ -19,35 +21,26 @@ namespace PolSl.UrbanHealthPath.Navigation
         [SerializeField] private Transform _navigatedObject;
         
         [SerializeField] private Transform _destination;
+
+        private bool _initialized = false;
+
+        private bool _mapInitialized = false;
         
         private AbstractMap _map;
         
         private Directions _directions;
-
-        private bool _initialized = false;
         
         public void Initialize(AbstractMap map)
         {
-            _map = map;
+            if (map != null)
+            {
+                _map = map;
+                map.OnInitialized+=() => _mapInitialized = true;
+            }
+            
             _directions = MapboxAccess.Instance.Directions;
             _lineMeshModifier.Initialize();
             _initialized = true;
-        }
-        
-        public void Start()
-        {
-            if (_map == null)
-            {
-                _map = FindObjectOfType<AbstractMap>();
-            }
-            _directions = MapboxAccess.Instance.Directions;
-            _lineMeshModifier.Initialize();
-        }
-
-        protected void OnDestroy()
-        {
-            _map.OnInitialized -= Query;
-            _map.OnUpdated -= Query;
         }
         
         private void Query()
@@ -108,11 +101,10 @@ namespace PolSl.UrbanHealthPath.Navigation
 
         public void CallQuery()
         {
-            if (_initialized)
+            if (_initialized && _mapInitialized)
             {
                 Query();
             }
         }
     }
 }
-
