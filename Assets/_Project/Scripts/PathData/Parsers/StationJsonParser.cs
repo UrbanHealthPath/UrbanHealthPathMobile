@@ -16,11 +16,12 @@ namespace PolSl.UrbanHealthPath
         private const string DISPLAYED_NAME_KEY = "displayed_name";
         private const string HISTORICAL_FACTS_KEY = "historical_facts";
         private const string NAVIGATION_AUDIO_KEY = "navigation_audio";
+        private const string IMAGE_KEY = "image";
 
         public StationJsonParser() : base(new[]
         {
             ID_KEY, COORDINATES_KEY, ZONE_NAME_KEY, EXERCISES_KEY, DISPLAYED_NAME_KEY, HISTORICAL_FACTS_KEY,
-            NAVIGATION_AUDIO_KEY
+            NAVIGATION_AUDIO_KEY, IMAGE_KEY
         })
         {
         }
@@ -42,9 +43,10 @@ namespace PolSl.UrbanHealthPath
             List<LateBoundValue<HistoricalFact>> historicalFacts = ParseHistoricalFacts(json);
             LateBoundValue<MediaFile> navigationAudio =
                 new LateBoundValue<MediaFile>(json[NAVIGATION_AUDIO_KEY].Value<string>());
+            LateBoundValue<MediaFile> image = new LateBoundValue<MediaFile>(json[IMAGE_KEY].Value<string>());
 
             return new Station(json[ID_KEY].Value<string>(), coordinates, json[ZONE_NAME_KEY].Value<string>(),
-                json[DISPLAYED_NAME_KEY].Value<string>(), exercises, historicalFacts, navigationAudio);
+                json[DISPLAYED_NAME_KEY].Value<string>(), exercises, historicalFacts, navigationAudio, image);
         }
 
         private Coordinates ParseCoordinates(JObject json)

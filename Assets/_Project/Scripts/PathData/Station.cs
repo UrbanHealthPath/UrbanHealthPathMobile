@@ -10,6 +10,7 @@ namespace PolSl.UrbanHealthPath.PathData
         public IList<LateBoundValue<Exercise>> Exercises { get; }
         public IList<LateBoundValue<HistoricalFact>> HistoricalFacts { get; }
         public LateBoundValue<MediaFile> NavigationAudio { get; }
+        public LateBoundValue<MediaFile> Image { get; }
 
         public override void Trigger()
         {
@@ -18,12 +19,13 @@ namespace PolSl.UrbanHealthPath.PathData
 
         public Station(string waypointId, Coordinates coordinates, string zoneName, string displayedName,
             IList<LateBoundValue<Exercise>> exercises, IList<LateBoundValue<HistoricalFact>> historicalFacts,
-            LateBoundValue<MediaFile> navigationAudio) : base(waypointId, coordinates, zoneName)
+            LateBoundValue<MediaFile> navigationAudio, LateBoundValue<MediaFile> image) : base(waypointId, coordinates, zoneName)
         {
             DisplayedName = displayedName;
             Exercises = exercises;
             HistoricalFacts = historicalFacts;
             NavigationAudio = navigationAudio;
+            Image = image;
         }
 
         public IReadOnlyList<Exercise> GetExercisesOfCategory(ExerciseCategory category)

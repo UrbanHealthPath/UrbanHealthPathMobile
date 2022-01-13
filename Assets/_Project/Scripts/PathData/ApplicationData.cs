@@ -46,6 +46,7 @@ namespace PolSl.UrbanHealthPath.PathData
                 }
                 
                 station.NavigationAudio.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == station.NavigationAudio.Key));
+                station.Image.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == station.Image.Key));
             }
         }
 
