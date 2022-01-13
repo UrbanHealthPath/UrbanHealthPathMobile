@@ -236,17 +236,17 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
         private void ShowNextStationConfirmation(Station nextStation)
         {
-            StartCoroutine(ShowNextStationConfirmationPopup(() =>
+            StartCoroutine(ShowNextStationConfirmationPopup(nextStation, () =>
             {
                 _popupManager.CloseCurrentPopup();
                 BuildStationView(nextStation);
             }));
         }
 
-        private IEnumerator ShowNextStationConfirmationPopup(UnityAction confirmationButtonAction)
+        private IEnumerator ShowNextStationConfirmationPopup(Station nextStation, UnityAction confirmationButtonAction)
         {
             yield return new WaitForEndOfFrame();
-            Texture2D texture = Texture2D.blackTexture;
+            Texture2D texture = new TextureFileAccessor(nextStation.Image).GetMedia();
             RectTransform transform = _viewManager.CurrentView.GetComponent<PathView>().PopupArea;
 
             _popupManager.OpenPopup(PopupType.ConfirmArrival,
@@ -402,6 +402,8 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
         private void FinishStation(Station station)
         {
+            _logger.Log(LogVerbosity.Debug, $"Finished station {station.WaypointId}");
+            
             _pathProgressManager.AddCheckpoint(new PathProgressCheckpoint(station.WaypointId, DateTime.Now));
 
             if (IsPathFinished())
