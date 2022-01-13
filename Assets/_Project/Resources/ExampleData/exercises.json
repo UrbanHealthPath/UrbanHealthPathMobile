@@ -1,35 +1,101 @@
 ﻿[
   {
-    "exercise_id": "2_quick_breaths",
-    "displayed_name": "2 quick breaths",
-    "category": "sensorial",
-    "subcategory": "lungs",
+    "exercise_id": "gliwice.neptun.1a",
+    "displayed_name": "1a",
+    "category": "motorical",
+    "subcategory": "Legs",
     "levels": [
       {
         "min_difficulty": 1,
         "max_difficulty": 3,
         "type": "text",
-        "description": "Breathe in and out"
+        "description": "Maszeruj dookoła fontanny w prawą stronę trzymając dłoń na murku fontanny. Po jednym okrążeniu, zmień kierunek ruchu. Zwracaj uwagę, aby Twoje plecy były cały czas proste, a kroki stawiane były w równej odległości. Dopilnuj aby marsz odbywał się w jednym tempie w trakcie całego okrążenia",
+        "video_file": "video.exercise.1A_ĆWICZENIE"
       },
       {
         "min_difficulty": 2,
         "max_difficulty": 3,
         "type": "text",
-        "description": "Breathe in and out faster"
+        "description": "Zrób ponowne okrążenie wokół fontanny, tym razem idąc tyłem. Możesz przytrzymywać się brzegu murka fontanny. Zwróć uwagę na nawierzchnię pod stopami.",
+        "video_file": "video.exercise.1B_ĆWICZENIE"
+      },
+      {
+        "min_difficulty": 3,
+        "max_difficulty": 3,
+        "type": "text",
+        "description": "Oprzyj się o murek za plecami mając Neptuna. Spójrz na kamienice przed Tobą. Wodząc wzrokiem wzdłuż linii dachów od ciemno żółtej kamienicy do ceglanej poruszaj głową. W jedną i w drugą stronę. Pamiętaj, aby Twoja sylwetka i kręgosłup były proste. Nogi lekko rozchylone, aby było łatwiej utrzymać Ci równowagę w trakcie ruchów głowy. W trakcie jednego powtórzenia w prawą i lewą stronę zrób chwilę przerwy, opuść głowę w dół i weź kilka swobodnych oddechów przed kolejnym powtórzeniem."
       }
     ]
   },
   {
-    "exercise_id": "jumping_jacks",
-    "displayed_name": "Jumping jacks",
-    "category": "motorical",
-    "subcategory": "arms",
+    "exercise_id": "gliwice.neptun.2a",
+    "displayed_name": "2a",
+    "category": "sensorial",
+    "subcategory": "Lungs",
     "levels": [
       {
-        "min_difficulty": 3,
+        "min_difficulty": 1,
         "max_difficulty": 5,
         "type": "text",
-        "description": "Do three jumping jacks"
+        "description": "Oprzyj się o murek fontanny lub usiądź na ławce. Oddychaj wolno i głęboko nosem. Przymknij oczy i uważnie skoncentruj się na dźwiękach, które docierają do Ciebie na Rynku. Może to szum wody z fontanny Neptuna, a może gruchanie gołębi?"
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.neptun.game",
+    "displayed_name": "Neptun Gra Miejska",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "image_selection",
+        "question": "Jest wiele miast, w których znajdują się rzeźby Neptuna - Gdańsk, Bolonia, Berlin, Poznań, Rzym. Która z poniższych fotografii przedstawia Neptuna z gliwickiego rynku",
+        "images": [
+          "image.game.gliwice.Gra_Miejska_Zdjęcie_1_1.Fontanna_Neptuna",
+          "image.game.gliwice.Gra_Miejska_Zdjęcie_2_1.Fontanna_Neptuna",
+          "image.game.gliwice.Gra_Miejska_Zdjęcie_3_1.Fontanna_Neptuna",
+          "image.game.gliwice.Gra_Miejska_Zdjęcie_4_1.Fontanna_Neptuna"
+        ],
+        "correct_answer": 1
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.ratusz.cwiczenie",
+    "displayed_name": "2",
+    "category": "motorical",
+    "subcategory": "Arms",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "text",
+        "description": "Stań naprzeciwko rzeźby Matki Boskiej na ratuszu. Staraj się naśladować ruch rąk wskazanej postaci. Prawą rękę zegnij w łokciu i przyłóż prawą dłoń do lewego ramienia. Lewą rękę wyprostuj. Teraz wykonaj półobrót i stań tyłem do rzeźby. Wykonaj ruch odwrotny. Zegnij lewą rękę w łokciu, połóż na ramieniu, natomiast prawą wyprostuj. Powtórz całość 4 razy. ",
+        "video_file": "video.exercise.2_ĆWICZENIE"
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.ratusz.game",
+    "displayed_name": "Ratusz Gra Miejska",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "image_selection",
+        "question": "Jest wiele miast, w których znajdują się rzeźby Neptuna - Gdańsk, Bolonia, Berlin, Poznań, Rzym. Która z poniższych fotografii przedstawia Neptuna z gliwickiego rynku",
+        "images": [
+          "image.game.gliwice.Gra_Miejska_Zdjęcie2_Wieża_Budynku_Czerwonej_Chemii_2.Rzeźba_Madonny",
+          "image.game.gliwice.Gra_Miejska_Zdjęcie1_Okno_willi_caro_2.Rzeźba madonny",
+          "image.game.gliwice.Gra_Miejska_Zdjęcie3_Ratusz_2.Rzeźba_Madonny",
+          "image.game.gliwice.Gra_Miejska_Zdjęcie4_Budynek_Szarej_Chemii_2.Rzeźba_Madonny",
+          "image.game.gliwice.Gra_Miejska_Zdjęcie5_Kościół_Wszystkich_Świętych_2.Rzeźba_Madonny"
+        ],
+        "correct_answer": 3
       }
     ]
   }
