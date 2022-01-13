@@ -5,45 +5,49 @@ using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
     [RequireComponent(typeof(RectTransform))]
-    public class PathView : MonoBehaviour, IInitializable, IPopupable
+    public class PathView : MonoBehaviour, IInitializableView, IPopupable
     {
-        public RectTransform PopupArea => popupArea;
+        public RectTransform PopupArea => _popupArea;
         
-        [SerializeField] private Button endPathButton, nextStationInfoButton, helpButton, mainMenuButton;
-        [SerializeField] private Header header;
-        [SerializeField] private RectTransform popupArea;
-        [SerializeField] private AppearanceChangingButton appearanceChangingButton;
+        [FormerlySerializedAs("endPathButton")] [SerializeField] private Button _endPathButton;
+        [FormerlySerializedAs("nextStationInfoButton")] [SerializeField] private Button _nextStationInfoButton;
+        [FormerlySerializedAs("helpButton")] [SerializeField] private Button _helpButton;
+        [FormerlySerializedAs("mainMenuButton")] [SerializeField] private Button _mainMenuButton;
+        [FormerlySerializedAs("_header")] [FormerlySerializedAs("header")] [SerializeField] private HeaderPanel headerPanel;
+        [FormerlySerializedAs("popupArea")] [SerializeField] private RectTransform _popupArea;
+        [FormerlySerializedAs("appearanceChangingButton")] [SerializeField] private AppearanceChangingButton _appearanceChangingButton;
 
         private void Awake()
         {
-            endPathButton.onClick.AddListener(appearanceChangingButton.SetDefaultAppearance);
-            helpButton.onClick.AddListener(appearanceChangingButton.SetDefaultAppearance);
-            mainMenuButton.onClick.AddListener(appearanceChangingButton.SetDefaultAppearance);
+            _endPathButton.onClick.AddListener(_appearanceChangingButton.SetDefaultAppearance);
+            _helpButton.onClick.AddListener(_appearanceChangingButton.SetDefaultAppearance);
+            _mainMenuButton.onClick.AddListener(_appearanceChangingButton.SetDefaultAppearance);
         }
 
-        public void Initialize(Initializer initializer)
+        public void Initialize(IViewInitializationParameters initializationParameters)
         {
-            if (initializer is PathViewInitializer init)
+            if (initializationParameters is PathViewInitializationParameters init)
             {
-                header.Initialize(init.HeaderText);
-                endPathButton.onClick.AddListener(() => init.EndPathEvent?.Invoke());
-                helpButton.onClick.AddListener(()=>init.HelpEvent?.Invoke());
-                nextStationInfoButton.onClick.AddListener(()=>init.NextStationInfoEvent.Invoke());
-                mainMenuButton.onClick.AddListener(() => init.MainMenuEvent?.Invoke());
+                headerPanel.Initialize(init.HeaderText);
+                _endPathButton.onClick.AddListener(() => init.EndPathEvent?.Invoke());
+                _helpButton.onClick.AddListener(()=>init.HelpEvent?.Invoke());
+                _nextStationInfoButton.onClick.AddListener(()=>init.NextStationInfoEvent.Invoke());
+                _mainMenuButton.onClick.AddListener(() => init.MainMenuEvent?.Invoke());
             }
         }
         
         public void OnDisable()
         {
-            endPathButton.onClick.RemoveAllListeners();
-            helpButton.onClick.RemoveAllListeners();
-            nextStationInfoButton.onClick.RemoveAllListeners();
-            mainMenuButton.onClick.RemoveAllListeners();
+            _endPathButton.onClick.RemoveAllListeners();
+            _helpButton.onClick.RemoveAllListeners();
+            _nextStationInfoButton.onClick.RemoveAllListeners();
+            _mainMenuButton.onClick.RemoveAllListeners();
         }
     }
 }

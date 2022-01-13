@@ -8,71 +8,50 @@ using UnityEngine.UI;
 namespace PolSl.UrbanHealthPath.UserInterface.Components
 {
     [RequireComponent(typeof(Button))]
-    public class AppearanceChangingButton : MonoBehaviour
+    public partial class AppearanceChangingButton : MonoBehaviour
     {
-        [Serializable] public struct ButtonAppearance
-        {
-            [SerializeField] private Sprite sprite;
-            [SerializeField] private String text;
-            [SerializeField] private int bottomOffset;
-
-            public Sprite GetSprite()
-            {
-                return sprite;
-            }
-
-            public String GetText()
-            {
-                return text;
-            }
-            public int GetOffset()
-            {
-                return bottomOffset;
-            }
-        }
-
+        [FormerlySerializedAs("buttonAppearances")]
         [Tooltip("List with button appearances, that changes every time user click on the button. " +
                  "First list element is a default button appearance. ")]
-        [FormerlySerializedAs("_buttonAppearances")] 
-        [SerializeField] private List<ButtonAppearance> buttonAppearances;
-        [SerializeField] private Image image;
-        [SerializeField] private TextMeshProUGUI text;
-        [SerializeField] private Button button;
+        [SerializeField] private List<ButtonAppearance> _buttonAppearances;
+        [FormerlySerializedAs("image")] [SerializeField] private Image _image;
+        [FormerlySerializedAs("text")] [SerializeField] private TextMeshProUGUI _text;
+        [FormerlySerializedAs("button")] [SerializeField] private Button _button;
 
         private int _lastAppearanceIndex = 1;
 
         private void Awake()
         {
-            button.onClick.AddListener(ChangeImageAndText);
+            _button.onClick.AddListener(ChangeImageAndText);
         }
         
         public void SetDefaultAppearance()
         {
-            if (buttonAppearances != null)
+            if (_buttonAppearances != null)
             {
-                image.sprite = buttonAppearances[0].GetSprite();
-                text.text = buttonAppearances[0].GetText();
-                text.margin = new Vector4(0, 0, 0, buttonAppearances[0].GetOffset());
+                _image.sprite = _buttonAppearances[0].GetSprite();
+                _text.text = _buttonAppearances[0].GetText();
+                _text.margin = new Vector4(0, 0, 0, _buttonAppearances[0].GetOffset());
                 _lastAppearanceIndex++;
             }
         }
 
         private void ChangeImageAndText()
         {
-            if (_lastAppearanceIndex > buttonAppearances.Count - 1)
+            if (_lastAppearanceIndex > _buttonAppearances.Count - 1)
             {
                 _lastAppearanceIndex = 0;
             }
 
-            image.sprite = buttonAppearances[_lastAppearanceIndex].GetSprite();
-            text.text = buttonAppearances[_lastAppearanceIndex].GetText();
-            text.margin = new Vector4(0, 0, 0, buttonAppearances[_lastAppearanceIndex].GetOffset());
+            _image.sprite = _buttonAppearances[_lastAppearanceIndex].GetSprite();
+            _text.text = _buttonAppearances[_lastAppearanceIndex].GetText();
+            _text.margin = new Vector4(0, 0, 0, _buttonAppearances[_lastAppearanceIndex].GetOffset());
             _lastAppearanceIndex++;
         }
 
         private void OnDestroy()
         {
-            button.onClick.RemoveListener(ChangeImageAndText);
+            _button.onClick.RemoveListener(ChangeImageAndText);
         }
     }
 }

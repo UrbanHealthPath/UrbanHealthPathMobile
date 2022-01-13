@@ -2,7 +2,7 @@
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
-    public class SettingsInitializer : Initializer
+    public class SettingsInitializationParameters : IViewInitializationParameters
     {
         public string HeaderText { get;}
         public UnityAction ReturnEvent { get; }
@@ -11,7 +11,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
         public UnityAction ThemeEvent { get; }
         public UnityAction AudioEvent { get; }
 
-        public SettingsInitializer(UnityAction returnEvent, UnityAction revertEvent, UnityAction
+        public SettingsInitializationParameters(UnityAction returnEvent, UnityAction revertEvent, UnityAction
             fontEvent, UnityAction themeEvent, UnityAction audioEvent,string headerText = "Ustawienia")
         {
             HeaderText = headerText;

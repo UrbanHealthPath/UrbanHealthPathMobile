@@ -1,19 +1,20 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Scalers
 {
     public class ImageFitter : MonoBehaviour
     {
-        [SerializeField] private RectTransform imageArea;
-        [SerializeField] private RectTransform imageRect;
-        [SerializeField] private RawImage image;
+        [FormerlySerializedAs("imageArea")] [SerializeField] private RectTransform _imageArea;
+        [FormerlySerializedAs("imageRect")] [SerializeField] private RectTransform _imageRect;
+        [FormerlySerializedAs("image")] [SerializeField] private RawImage _image;
         private void Awake()
         {
-            if (image.texture)
+            if (_image.texture)
             {
-                InitializeImage(image.texture);
+                InitializeImage(_image.texture);
             }
         }
 
@@ -26,10 +27,10 @@ namespace PolSl.UrbanHealthPath.UserInterface.Scalers
         {
             yield return new WaitForEndOfFrame();
 
-            Vector2 size = TextureScaler.GetScaledTexture(imageArea, texture);
-            image.texture = texture;
-            imageRect.sizeDelta = new Vector2(size.x, size.y);
-            Debug.Log(imageRect.sizeDelta);
+            Vector2 size = TextureScaler.GetScaledTexture(_imageArea, texture);
+            _image.texture = texture;
+            _imageRect.sizeDelta = new Vector2(size.x, size.y);
+            Debug.Log(_imageRect.sizeDelta);
         }
     }
 }

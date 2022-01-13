@@ -2,12 +2,12 @@
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
-    public class LogInViewInitializer : Initializer
+    public class LogInViewInitializationParameters : IViewInitializationParameters
     {
         public UnityAction LogInEvent { get; }
         public UnityAction ContinueWithoutLogInEvent { get; }
 
-        public LogInViewInitializer(UnityAction logInEvent, UnityAction continueWithoutLogInEvent)
+        public LogInViewInitializationParameters(UnityAction logInEvent, UnityAction continueWithoutLogInEvent)
         {
             LogInEvent += logInEvent;
             ContinueWithoutLogInEvent += continueWithoutLogInEvent;

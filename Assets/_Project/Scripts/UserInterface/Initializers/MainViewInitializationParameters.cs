@@ -2,7 +2,7 @@
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
-    public class MainViewInitializer : Initializer
+    public class MainViewInitializationParameters : IViewInitializationParameters
     {
         public UnityAction ProfileEvent { get; }
         public UnityAction HelpEvent { get; }
@@ -14,7 +14,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
         public string UpperButtonText { get;  }
         public string LowerButtonText { get; }
 
-        public MainViewInitializer(UnityAction profileEvent, UnityAction helpEvent, UnityAction settingsEvent,
+        public MainViewInitializationParameters(UnityAction profileEvent, UnityAction helpEvent, UnityAction settingsEvent,
             UnityAction upperButtonEvent, UnityAction lowerButtonEvent, UnityAction exitEvent, string upperButtonText, string lowerButtonText)
         {
             ProfileEvent += profileEvent;

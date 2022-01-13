@@ -5,39 +5,41 @@ using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
     public class IconInfoView : MonoBehaviour, IDisplayable
     {
-        [SerializeField] private Button backButton, forwardButton;
-        [SerializeField] private Header header;
+        [FormerlySerializedAs("backButton")] [SerializeField] private Button _backButton;
+        [FormerlySerializedAs("forwardButton")] [SerializeField] private Button _forwardButton;
+        [FormerlySerializedAs("_header")] [FormerlySerializedAs("header")] [SerializeField] private HeaderPanel headerPanel;
         
-        public void Awake()
+        private void Awake()
         {
-            header.Initialize("Wyjaśnienie ikon");
+            headerPanel.Initialize("Wyjaśnienie ikon");
         }
-        public void Initialize(Initializer initializer)
+        public void Initialize(IViewInitializationParameters initializationParameters)
         {
-            if (initializer is ApplicationInfoViewInitializer init)
+            if (initializationParameters is ApplicationInfoViewInitializationParameters init)
             {
-                backButton.onClick.AddListener(() => init.GoBack?.Invoke());
-                forwardButton.onClick.AddListener(() => init.GoForward?.Invoke());
+                _backButton.onClick.AddListener(() => init.GoBack?.Invoke());
+                _forwardButton.onClick.AddListener(() => init.GoForward?.Invoke());
             }
         }
         public void Display()
         {
         }
 
-        public void StopDisplay()
+        public void Hide()
         {
         }
         
         public void OnDisable()
         {
-            backButton.onClick.RemoveAllListeners();
-            forwardButton.onClick.RemoveAllListeners();
+            _backButton.onClick.RemoveAllListeners();
+            _forwardButton.onClick.RemoveAllListeners();
         }
     }
 }

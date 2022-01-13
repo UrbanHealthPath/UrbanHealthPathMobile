@@ -21,7 +21,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         [SerializeField] private LocationProviderRotator _locationProviderRotator;
 
         [SerializeField] private PlayerLocationTransformer _playerLocationTransformer;
-        
+
         [SerializeField] private StationFactory _stationFactory;
 
         [SerializeField] private CoroutinesManager _coroutinesManager;
@@ -35,18 +35,22 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         private ITextLogger _logger;
 
         private IApplicationData _applicationData;
-        
+
         private IPersistentValue<bool> _isFirstRun;
-        
-        
+
+        private ViewManager _viewManager;
+
         private void Awake()
         {
             _logger = new UnityLogger();
             _isFirstRun = new BoolPrefsValue("is_first_run", true);
-            
+
             _applicationData = LoadApplicationData();
 
             GameObject uiManager = Instantiate(_uiManager);
+
+            _viewManager = uiManager.GetComponent<ViewManager>();
+            _viewManager.Initialize();
 
             BuildUI();
             //(applicationData.UrbanPaths[0].Waypoints.Select(x => x.Value.Coordinates).ToList());
@@ -56,7 +60,8 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         {
             string path = "ExampleData";
 
-            ILoadersFactory loadersFactory = new JsonFilesLoadersFactory(path, new JsonAssetFileReader(), new JsonDataLoaderParsersFactory().Create());
+            ILoadersFactory loadersFactory = new JsonFilesLoadersFactory(path, new JsonAssetFileReader(),
+                new JsonDataLoaderParsersFactory().Create());
             IApplicationDataLoader applicationDataLoader = new ApplicationDataLoader(loadersFactory);
 
             return applicationDataLoader.LoadData();
@@ -95,46 +100,46 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
         private void BuildLoginView()
         {
-            ViewManager.GetInstance().OpenView(ViewType.Login,
-                new LogInViewInitializer(() => _logger.Log(LogVerbosity.Debug,"Log in not supported!"), 
-                () => {
-                    _isFirstRun.Value = false;
-                    BuildMainView();
-                })
+            _viewManager.OpenView(ViewType.Login,
+                new LogInViewInitializationParameters(() => _logger.Log(LogVerbosity.Debug, "Log in not supported!"),
+                    () =>
+                    {
+                        _isFirstRun.Value = false;
+                        BuildMainView();
+                    })
             );
         }
 
         private void BuildMainView()
         {
-            ViewManager.GetInstance().OpenView(ViewType.Main,
-                new MainViewInitializer(BuildProfileView, BuildHelpView, BuildSettingsView, StartPath,
+            _viewManager.OpenView(ViewType.Main,
+                new MainViewInitializationParameters(BuildProfileView, BuildHelpView, BuildSettingsView, StartPath,
                     DemoPath, Application.Quit, "Rozpocznij ścieżkę", "Zobacz ścieżkę"));
         }
 
         private void DemoPath()
         {
-            ViewManager.GetInstance().OpenView(ViewType.PathChoice, new PathChoiceViewInitializer(
+            _viewManager.OpenView(ViewType.PathChoice, new PathChoiceViewInitializationParameters(
                 GetAvailablePaths(path => _logger.Log(LogVerbosity.Debug, "Started demo path " + path.DisplayedName)),
                 BuildMainView));
         }
 
         private void StartPath()
         {
-            ViewManager.GetInstance().OpenView(ViewType.PathChoice, new PathChoiceViewInitializer(
+            _viewManager.OpenView(ViewType.PathChoice, new PathChoiceViewInitializationParameters(
                 GetAvailablePaths(path => _logger.Log(LogVerbosity.Debug, "Started path " + path.DisplayedName)),
                 BuildMainView));
         }
-        
 
         private void BuildSettingsView()
         {
-            ViewManager.GetInstance().OpenView(ViewType.Settings, new SettingsInitializer(BuildMainView, () => { },
+            _viewManager.OpenView(ViewType.Settings, new SettingsInitializationParameters(BuildMainView, () => { },
                 () => { }, () => { }, () => { }));
         }
 
         private void BuildHelpView()
         {
-            ViewManager.GetInstance().OpenView(ViewType.Help, new HelpViewInitializer(new List<ListElement>()
+            _viewManager.OpenView(ViewType.Help, new HelpViewInitializationParameters(new List<ListElement>()
             {
                 new ListElement("Przykładowy przycisk pomocy", null, "Pomoc", () => { })
             }, BuildMainView));
@@ -142,8 +147,9 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
         private void BuildProfileView()
         {
-            ViewManager.GetInstance().OpenView(ViewType.Profile,
-                new ProfileViewInitializer(BuildStatisticsView, BuildAchievementsView, Share, BuildMainView));
+            _viewManager.OpenView(ViewType.Profile,
+                new ProfileViewInitializationParameters(new List<ListElement>(), BuildStatisticsView,
+                    BuildAchievementsView, Share, BuildMainView));
         }
 
         private void Share()

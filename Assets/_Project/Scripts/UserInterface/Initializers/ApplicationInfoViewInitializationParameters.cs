@@ -2,12 +2,12 @@
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
-    public class ApplicationInfoViewInitializer : Initializer
+    public class ApplicationInfoViewInitializationParameters : IViewInitializationParameters
     {
         public UnityAction GoBack { get; }
         public UnityAction GoForward { get; }
 
-        public ApplicationInfoViewInitializer(UnityAction goBack, UnityAction goForward)
+        public ApplicationInfoViewInitializationParameters(UnityAction goBack, UnityAction goForward)
         {
             GoBack += goBack;
             GoForward += goForward;

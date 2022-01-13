@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Interfaces
 {
-    public interface IInitializable
+    public interface IInitializablePopup
     {
-        public void Initialize(Initializer initializer);
+        public void Initialize(IPopupInitializationParameters initializationParameters);
     }
 }

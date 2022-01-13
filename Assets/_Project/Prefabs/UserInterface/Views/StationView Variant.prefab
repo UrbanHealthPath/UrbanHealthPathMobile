@@ -395,6 +395,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3504776101127341341}
     m_Modifications:
+    - target: {fileID: 318407422579135306, guid: abb1e5bcf74c0cf44ab701294d3cd94e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 900298029707568822, guid: abb1e5bcf74c0cf44ab701294d3cd94e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1292,24 +1296,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438d142092237ba43ae0bd0cb2bac928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightButton: {fileID: 709630922376138387}
-  middleButton: {fileID: 4374584440600428941}
-  leftButton: {fileID: 709630922133020289}
-  mainMenuButton: {fileID: 7687212608182985520}
-  returnButton: {fileID: 5710931451441638750}
-  header: {fileID: 7187806186055862328}
-  historicInfoIcon: {fileID: 21300000, guid: 5838fb23a9ff7154091262958987de1f, type: 3}
-  motorialIcon: {fileID: 21300000, guid: f08a4e61762f3f042a2a1893c1c536d0, type: 3}
-  sensorialIcon: {fileID: 21300000, guid: bf945be39dc74c8449918adbf7380cd1, type: 3}
-  finishIcon: {fileID: 21300000, guid: d540d55a2d18de840b9ff9b15a30f39a, type: 3}
-  leftButtonImage: {fileID: 9206871969525236448}
-  middleButtonImage: {fileID: 1799542846597256348}
-  rightButtonImage: {fileID: 709630922348153884}
-  leftButtonText: {fileID: 709630921310387393}
-  middleButtonText: {fileID: 8601380250074113826}
-  rightButtonText: {fileID: 709630921073276197}
-  informationAboutStation: {fileID: 2041459616}
-  popupArea: {fileID: 6580923888322296622}
+  _rightButton: {fileID: 709630922376138387}
+  _middleButton: {fileID: 4374584440600428941}
+  _leftButton: {fileID: 709630922133020289}
+  _mainMenuButton: {fileID: 7687212608182985520}
+  _returnButton: {fileID: 5710931451441638750}
+  _headerPanel: {fileID: 7187806186055862328}
+  _icons:
+  - {fileID: 21300000, guid: 5838fb23a9ff7154091262958987de1f, type: 3}
+  - {fileID: 21300000, guid: f08a4e61762f3f042a2a1893c1c536d0, type: 3}
+  - {fileID: 21300000, guid: bf945be39dc74c8449918adbf7380cd1, type: 3}
+  - {fileID: 21300000, guid: d540d55a2d18de840b9ff9b15a30f39a, type: 3}
+  _buttonImages:
+  - {fileID: 9206871969525236448}
+  - {fileID: 1799542846597256348}
+  - {fileID: 709630922348153884}
+  _buttonTexts:
+  - {fileID: 709630921310387393}
+  - {fileID: 8601380250074113826}
+  - {fileID: 709630921073276197}
+  _informationAboutStation: {fileID: 2041459616}
+  _popupArea: {fileID: 6580923888322296622}
 --- !u!114 &5837457309128004455
 MonoBehaviour:
   m_ObjectHideFlags: 0

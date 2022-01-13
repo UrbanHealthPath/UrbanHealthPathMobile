@@ -8,37 +8,36 @@ using PolSl.UrbanHealthPath.UserInterface.Popups;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
     [RequireComponent(typeof(RectTransform))]
-    public class StationView : MonoBehaviour, IInitializable, IPopupable, IDisplayable
+    public class StationView : MonoBehaviour, IInitializableView, IPopupable, IDisplayable
     {
-        public RectTransform PopupArea => popupArea;
+        public RectTransform PopupArea => _popupArea;
 
-        [SerializeField] private Button rightButton;
-        [SerializeField] private Button middleButton;
-        [SerializeField] private Button leftButton;
-        [SerializeField] private Button mainMenuButton;
-        [SerializeField] private Button returnButton;
-        [SerializeField] private Header header;
+        [FormerlySerializedAs("rightButton")] [SerializeField] private Button _rightButton;
+        
+        [FormerlySerializedAs("middleButton")] [SerializeField] private Button _middleButton;
+        
+        [FormerlySerializedAs("leftButton")] [SerializeField] private Button _leftButton;
+        
+        [FormerlySerializedAs("mainMenuButton")] [SerializeField] private Button _mainMenuButton;
+        
+        [FormerlySerializedAs("returnButton")] [SerializeField] private Button _returnButton;
+        
+        [SerializeField] private HeaderPanel _headerPanel;
 
-        [SerializeField] private Sprite historicInfoIcon;
-        [SerializeField] private Sprite motorialIcon;
-        [SerializeField] private Sprite sensorialIcon;
-        [SerializeField] private Sprite finishIcon;
+        [SerializeField] private Sprite[] _icons;
 
-        [SerializeField] private Image leftButtonImage;
-        [SerializeField] private Image middleButtonImage;
-        [SerializeField] private Image rightButtonImage;
+        [SerializeField] private Image[] _buttonImages;
 
-        [SerializeField] private TextMeshProUGUI leftButtonText;
-        [SerializeField] private TextMeshProUGUI middleButtonText;
-        [SerializeField] private TextMeshProUGUI rightButtonText;
+        [SerializeField] private TextMeshProUGUI[] _buttonTexts;
 
-        [SerializeField] private TextMeshProUGUI informationAboutStation;
-        [SerializeField] private RectTransform popupArea;
+        [FormerlySerializedAs("informationAboutStation")] [SerializeField] private TextMeshProUGUI _informationAboutStation;
+        [FormerlySerializedAs("popupArea")] [SerializeField] private RectTransform _popupArea;
 
         private UnityAction _historicButtonAction;
         private UnityAction _motorialButtonAction;
@@ -54,20 +53,20 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
             _finish += FinishExercise;
         }
 
-        public void Initialize(Initializer initializer)
+        public void Initialize(IViewInitializationParameters initializationParameters)
         {
-            if (initializer is StationViewInitializer init)
+            if (initializationParameters is StationViewInitializationParameters init)
             {
                 _motorialButtonAction += init.MotorialEvent;
                 _sensoricButtonAction += init.SensorialEvent;
                 _historicButtonAction += init.HistoricInfoEvent;
                 _finish += init.FinishExerciseEvent;
                 
-                mainMenuButton.onClick.AddListener(() => init.MainMenuEvent?.Invoke());
-                returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
+                _mainMenuButton.onClick.AddListener(() => init.MainMenuEvent?.Invoke());
+                _returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
 
-                header.Initialize(init.HeaderText);
-                informationAboutStation.text = init.InformationAboutStation;
+                _headerPanel.Initialize(init.HeaderText);
+                _informationAboutStation.text = init.InformationAboutStation;
 
                 SetDefaultUI();
             }
@@ -77,79 +76,78 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
         }
 
-        public void StopDisplay()
+        public void Hide()
         {
         }
 
         private void SetUIForHistoricInfo()
         {
             SetDefaultUI();
-            leftButton.onClick.RemoveAllListeners();
-            leftButtonText.text = "Zatwierdź";
-            leftButtonText.margin = new Vector4(0, 0, 0, 30);
-            leftButtonImage.sprite = finishIcon;
-            leftButton.onClick.AddListener(() => _finish?.Invoke());
-            _currentButton = leftButton;
+            _leftButton.onClick.RemoveAllListeners();
+            _buttonTexts[(int)ButtonTypes.Left].text = "Zatwierdź";
+            _buttonTexts[(int)ButtonTypes.Left].margin = new Vector4(0, 0, 0, 30);
+            _buttonImages[(int)ButtonTypes.Left].sprite = _icons[(int)ButtonTypes.Clicked];
+            _leftButton.onClick.AddListener(() => _finish?.Invoke());
+            _currentButton = _leftButton;
         }
 
         private void SetUIForMotorialExercise()
         {
             SetDefaultUI();
-            middleButton.onClick.RemoveAllListeners();
-            middleButtonText.text = "Zatwierdź";
-            middleButtonText.margin = new Vector4(0, 0, 0, 30);
-            middleButtonImage.sprite = finishIcon;
-            middleButton.onClick.AddListener(() => _finish?.Invoke());
-            _currentButton = middleButton;
+            _middleButton.onClick.RemoveAllListeners();
+            _buttonTexts[(int)ButtonTypes.Middle].text = "Zatwierdź";
+            _buttonTexts[(int)ButtonTypes.Middle].margin = new Vector4(0, 0, 0, 30);
+            _buttonImages[(int)ButtonTypes.Middle].sprite = _icons[(int)ButtonTypes.Clicked];
+            _middleButton.onClick.AddListener(() => _finish?.Invoke());
+            _currentButton = _middleButton;
         }
 
         private void SetUIForSensorialExercise()
         {
             SetDefaultUI();
-            rightButton.onClick.RemoveAllListeners();
-            rightButtonText.text = "Zatwierdź";
-            rightButtonText.margin = new Vector4(0, 0, 0, 30);
-            rightButtonImage.sprite = finishIcon;
-            rightButton.onClick.AddListener(() => _finish?.Invoke());
-            _currentButton = rightButton;
+            _rightButton.onClick.RemoveAllListeners();
+            _buttonTexts[(int)ButtonTypes.Right].text = "Zatwierdź";
+            _buttonTexts[(int)ButtonTypes.Right].margin = new Vector4(0, 0, 0, 30);
+            _buttonImages[(int)ButtonTypes.Right].sprite = _icons[(int)ButtonTypes.Clicked];
+            _rightButton.onClick.AddListener(() => _finish?.Invoke());
+            _currentButton = _rightButton;
         }
-
+        
         private void FinishExercise()
         {
             _currentButton.interactable = false;
-            PopupManager.GetInstance().CloseCurrentPopup();
             SetDefaultUI();
         }
+        
         private void SetDefaultUI()
         {
-            leftButtonImage.sprite = historicInfoIcon;
-            middleButtonImage.sprite = motorialIcon;
-            rightButtonImage.sprite = sensorialIcon;
+            _buttonImages[(int)ButtonTypes.Left].sprite = _icons[(int)ButtonTypes.Left];
+            _buttonImages[(int)ButtonTypes.Middle].sprite = _icons[(int)ButtonTypes.Middle];
+            _buttonImages[(int)ButtonTypes.Right].sprite = _icons[(int)ButtonTypes.Right];
 
-            leftButtonText.text = "Gra    miejska";
-            leftButtonText.margin = new Vector4(0, 0, 0, 0);
-            middleButtonText.text = "Ruch";
-            middleButtonText.margin = new Vector4(0, 0, 0, 30);
-            rightButtonText.text = "Oddech";
-            rightButtonText.margin = new Vector4(0, 0, 0, 30);
+            _buttonTexts[(int)ButtonTypes.Left].text = "Gra    miejska";
+            _buttonTexts[(int)ButtonTypes.Left].margin = new Vector4(0, 0, 0, 0);
+            _buttonTexts[(int)ButtonTypes.Middle].text = "Ruch";
+            _buttonTexts[(int)ButtonTypes.Middle].margin = new Vector4(0, 0, 0, 30);
+            _buttonTexts[(int)ButtonTypes.Right].text = "Oddech";
+            _buttonTexts[(int)ButtonTypes.Right].margin = new Vector4(0, 0, 0, 30);
 
-            rightButton.onClick.RemoveAllListeners();
-            middleButton.onClick.RemoveAllListeners();
-            leftButton.onClick.RemoveAllListeners();
+            _rightButton.onClick.RemoveAllListeners();
+            _middleButton.onClick.RemoveAllListeners();
+            _leftButton.onClick.RemoveAllListeners();
 
-            rightButton.onClick.AddListener(() => _sensoricButtonAction?.Invoke());
-            middleButton.onClick.AddListener(() => _motorialButtonAction?.Invoke());
-            leftButton.onClick.AddListener(() => _historicButtonAction?.Invoke());
+            _rightButton.onClick.AddListener(() => _sensoricButtonAction?.Invoke());
+            _middleButton.onClick.AddListener(() => _motorialButtonAction?.Invoke());
+            _leftButton.onClick.AddListener(() => _historicButtonAction?.Invoke());
         }
-
-
+        
         public void OnDisable()
         {
-            rightButton.onClick.RemoveAllListeners();
-            middleButton.onClick.RemoveAllListeners();
-            leftButton.onClick.RemoveAllListeners();
-            mainMenuButton.onClick.RemoveAllListeners();
-            returnButton.onClick.RemoveAllListeners();
+            _rightButton.onClick.RemoveAllListeners();
+            _middleButton.onClick.RemoveAllListeners();
+            _leftButton.onClick.RemoveAllListeners();
+            _mainMenuButton.onClick.RemoveAllListeners();
+            _returnButton.onClick.RemoveAllListeners();
         }
     }
 }
