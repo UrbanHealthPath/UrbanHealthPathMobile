@@ -3,6 +3,7 @@
     public enum ExerciseCategory
     {
         Sensorial,
-        Motorical
+        Motorical,
+        Game
     }
 }
