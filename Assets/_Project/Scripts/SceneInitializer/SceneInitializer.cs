@@ -99,9 +99,10 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
                 return;
             }
 
+            _coroutinesManager.StopLocationCoroutine();
             _mapHolder.Camera.enabled = false;
             _mainCamera.enabled = true;
-            Destroy(_mapHolder);
+            Destroy(_mapHolder.gameObject);
             _mapHolder = null;
         }
 
