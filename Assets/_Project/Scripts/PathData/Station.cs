@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
 
 namespace PolSl.UrbanHealthPath.PathData
 {
@@ -16,12 +16,19 @@ namespace PolSl.UrbanHealthPath.PathData
             throw new NotImplementedException();
         }
 
-        public Station(string waypointId, Coordinates coordinates, string zoneName, string displayedName, IList<LateBoundValue<Exercise>> exercises, IList<LateBoundValue<HistoricalFact>> historicalFacts, LateBoundValue<MediaFile> navigationAudio) : base(waypointId, coordinates, zoneName)
+        public Station(string waypointId, Coordinates coordinates, string zoneName, string displayedName,
+            IList<LateBoundValue<Exercise>> exercises, IList<LateBoundValue<HistoricalFact>> historicalFacts,
+            LateBoundValue<MediaFile> navigationAudio) : base(waypointId, coordinates, zoneName)
         {
             DisplayedName = displayedName;
             Exercises = exercises;
             HistoricalFacts = historicalFacts;
             NavigationAudio = navigationAudio;
+        }
+
+        public IReadOnlyList<Exercise> GetExercisesOfCategory(ExerciseCategory category)
+        {
+            return Exercises.Select(x => x.Value).Where(x => x.Category == category).ToArray();
         }
     }
 }
