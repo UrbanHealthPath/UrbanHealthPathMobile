@@ -111,7 +111,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
 
         private GameObject CreateNewPage(int i)
         {
-            GameObject newPage = new GameObject();
+            GameObject newPage;
                 
             if (i + 1 > _pagesInstantinated)
             {

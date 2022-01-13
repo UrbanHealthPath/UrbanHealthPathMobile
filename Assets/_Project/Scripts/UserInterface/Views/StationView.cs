@@ -5,6 +5,7 @@ using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
+using PolSl.UrbanHealthPath.UserInterface.Scalers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,23 +20,17 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         public RectTransform PopupArea => _popupArea;
 
         [FormerlySerializedAs("rightButton")] [SerializeField] private Button _rightButton;
-        
         [FormerlySerializedAs("middleButton")] [SerializeField] private Button _middleButton;
-        
         [FormerlySerializedAs("leftButton")] [SerializeField] private Button _leftButton;
-        
         [FormerlySerializedAs("mainMenuButton")] [SerializeField] private Button _mainMenuButton;
-        
         [FormerlySerializedAs("returnButton")] [SerializeField] private Button _returnButton;
-        
         [SerializeField] private HeaderPanel _headerPanel;
 
         [SerializeField] private Sprite[] _icons;
-
         [SerializeField] private Image[] _buttonImages;
-
         [SerializeField] private TextMeshProUGUI[] _buttonTexts;
-
+        [SerializeField] private ImageFitter _fitter;
+        
         [FormerlySerializedAs("informationAboutStation")] [SerializeField] private TextMeshProUGUI _informationAboutStation;
         [FormerlySerializedAs("popupArea")] [SerializeField] private RectTransform _popupArea;
 
@@ -68,6 +63,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
                 _headerPanel.Initialize(init.HeaderText);
                 _informationAboutStation.text = init.InformationAboutStation;
 
+                _fitter.InitializeImage(init.Texture);
                 SetDefaultUI();
             }
         }
