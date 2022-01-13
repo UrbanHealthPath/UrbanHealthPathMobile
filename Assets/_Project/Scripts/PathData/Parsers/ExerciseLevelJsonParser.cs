@@ -11,10 +11,11 @@ namespace PolSl.UrbanHealthPath
 
         private readonly IDictionary<string, IParser<JObject, ExerciseLevel>> _registeredTypesParsers;
 
-        public ExerciseLevelJsonParser(JsonObjectParser<TextExerciseLevel> textExerciseParser) : base(new []{TYPE_KEY})
+        public ExerciseLevelJsonParser(JsonObjectParser<TextExerciseLevel> textExerciseParser, JsonObjectParser<VideoExerciseLevel> videoExerciseParser) : base(new []{TYPE_KEY})
         {
             _registeredTypesParsers = new Dictionary<string, IParser<JObject, ExerciseLevel>>();
             _registeredTypesParsers.Add("text", textExerciseParser);
+            _registeredTypesParsers.Add("video", videoExerciseParser);
         }
 
         protected override void ValidateJson(JObject json)

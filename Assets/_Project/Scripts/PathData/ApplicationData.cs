@@ -26,6 +26,7 @@ namespace PolSl.UrbanHealthPath.PathData
         {
             SetStationsLateBindings();
             SetUrbanPathsLateBindings();
+            SetExercisesLateBindings();
         }
 
         private void SetStationsLateBindings()
@@ -58,6 +59,19 @@ namespace PolSl.UrbanHealthPath.PathData
                 }
                 
                 urbanPath.PreviewImage.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == urbanPath.PreviewImage.Key));
+            }
+        }
+
+        private void SetExercisesLateBindings()
+        {
+            foreach (Exercise exercise in Exercises)
+            {
+                List<VideoExerciseLevel> videoExerciseLevels = exercise.Levels.OfType<VideoExerciseLevel>().ToList();
+                
+                foreach (VideoExerciseLevel videoExerciseLevel in videoExerciseLevels)
+                {
+                    videoExerciseLevel.VideoFile.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == videoExerciseLevel.VideoFile.Key));
+                }
             }
         }
     }
