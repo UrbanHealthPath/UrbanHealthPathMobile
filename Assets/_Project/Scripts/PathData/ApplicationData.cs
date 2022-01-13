@@ -72,6 +72,25 @@ namespace PolSl.UrbanHealthPath.PathData
                 {
                     videoExerciseLevel.VideoFile.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == videoExerciseLevel.VideoFile.Key));
                 }
+
+                List<ImageExerciseLevel> imageExerciseLevels = exercise.Levels.OfType<ImageExerciseLevel>().ToList();
+
+                foreach (ImageExerciseLevel imageExerciseLevel in imageExerciseLevels)
+                {
+                    imageExerciseLevel.ImageFile.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == imageExerciseLevel.ImageFile.Key));
+                }
+
+                List<ImageSelectionExerciseLevel> imageSelectionExerciseLevels =
+                    exercise.Levels.OfType<ImageSelectionExerciseLevel>().ToList();
+
+                foreach (ImageSelectionExerciseLevel imageSelectionExerciseLevel in imageSelectionExerciseLevels)
+                {
+                    foreach (LateBoundValue<MediaFile> image in imageSelectionExerciseLevel.Images)
+                    {
+                        image.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == image.Key));
+                    }
+                }
+
             }
         }
     }

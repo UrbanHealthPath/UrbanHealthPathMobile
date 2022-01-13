@@ -1,0 +1,33 @@
+﻿using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
+using PolSl.UrbanHealthPath.PathData;
+
+namespace PolSl.UrbanHealthPath
+{
+    public class ImageSelectionExerciseLevelJsonParser : ValidatedJsonObjectParser<ImageSelectionExerciseLevel>
+    {
+        private const string QUESTION_KEY = "question";
+        private const string MIN_DIFFICULTY_KEY = "min_difficulty";
+        private const string MAX_DIFFICULTY_KEY = "max_difficulty";
+        private const string IMAGES_KEY = "images";
+        private const string CORRECT_ANSWER_KEY = "correct_answer";
+
+        public ImageSelectionExerciseLevelJsonParser() : base(new[] {QUESTION_KEY, MIN_DIFFICULTY_KEY, MAX_DIFFICULTY_KEY, IMAGES_KEY})
+        {
+        }
+        
+        protected override ImageSelectionExerciseLevel ParseJsonObject(JObject json)
+        {
+            DifficultyRange difficultyRange = new DifficultyRange(json[MIN_DIFFICULTY_KEY].Value<int>(), json[MAX_DIFFICULTY_KEY].Value<int>());
+            
+            List<LateBoundValue<MediaFile>> images = new List<LateBoundValue<MediaFile>>();
+            
+            foreach (JToken image in json[IMAGES_KEY])
+            {
+                images.Add(new LateBoundValue<MediaFile>(image.Value<string>()));
+            }
+
+            return new ImageSelectionExerciseLevel(difficultyRange, json[QUESTION_KEY].Value<string>(), images, json[CORRECT_ANSWER_KEY].Value<int>());
+        }
+    }
+}
