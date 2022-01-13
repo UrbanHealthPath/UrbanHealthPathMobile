@@ -117,7 +117,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
             {
                 return;
             }
-            
+
             _mapHolder.Camera.enabled = false;
             _mainCamera.enabled = true;
             Destroy(_mapHolder.gameObject);
@@ -331,22 +331,35 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         {
             //TODO: Gets random exercise, fix it
 
-            GameObject view = _viewManager.OpenView(ViewType.Station);
+            _viewManager.OpenView(ViewType.Station);
 
             IReadOnlyList<Exercise> gameExercises = station.GetExercisesOfCategory(ExerciseCategory.Game);
             IReadOnlyList<Exercise> motoricalExercises = station.GetExercisesOfCategory(ExerciseCategory.Motorical);
             IReadOnlyList<Exercise> sensorialExercises = station.GetExercisesOfCategory(ExerciseCategory.Sensorial);
 
-            Exercise gameExercise = gameExercises.Count > 0 ? gameExercises.ElementAt(Random.Range(0, gameExercises.Count)) : null;
-            Exercise motoricalExercise = motoricalExercises.Count > 0 ? motoricalExercises.ElementAt(Random.Range(0, motoricalExercises.Count)) : null;
-            Exercise sensorialExercise = sensorialExercises.Count > 0 ? sensorialExercises.ElementAt(Random.Range(0, sensorialExercises.Count)) : null;
+            Exercise gameExercise = gameExercises.Count > 0
+                ? gameExercises.ElementAt(Random.Range(0, gameExercises.Count))
+                : null;
+            Exercise motoricalExercise = motoricalExercises.Count > 0
+                ? motoricalExercises.ElementAt(Random.Range(0, motoricalExercises.Count))
+                : null;
+            Exercise sensorialExercise = sensorialExercises.Count > 0
+                ? sensorialExercises.ElementAt(Random.Range(0, sensorialExercises.Count))
+                : null;
+
+            HistoricalFact fact = station.HistoricalFacts.Count > 0
+                ? station.HistoricalFacts.ElementAt(Random.Range(0, station.HistoricalFacts.Count))
+                : null;
+
+            Texture2D stationImage = new TextureFileAccessor(station.Image).GetMedia();
 
             StationViewInitializationParameters initParams =
                 new StationViewInitializationParameters(() => CreatePopupForExercise(gameExercise),
                     () => CreatePopupForExercise(motoricalExercise),
                     () => CreatePopupForExercise(sensorialExercise),
-                    () => FinishStation(station), BuildPathView, () => FinishExercise(_currentExercise), station.DisplayedName, "Info");
-            
+                    () => FinishStation(station), BuildPathView, () => FinishExercise(_currentExercise),
+                    station.DisplayedName, fact?.Description ?? station.DisplayedName, stationImage);
+
             _viewManager.InitializeCurrentView(initParams);
         }
 
@@ -409,7 +422,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         private bool IsPathFinished()
         {
             return _pathProgressManager.LastCheckpoint.WaypointId ==
-                _currentPath.Waypoints[_currentPath.Waypoints.Count - 1].Value.WaypointId;
+                   _currentPath.Waypoints[_currentPath.Waypoints.Count - 1].Value.WaypointId;
         }
 
         private void FinishPath()
