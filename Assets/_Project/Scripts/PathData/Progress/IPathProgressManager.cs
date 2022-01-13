@@ -12,6 +12,7 @@ namespace PolSl.UrbanHealthPath.PathData.Progress
         bool TryRestoreProgress();
         void StartNewPath();
         bool AddCheckpoint(PathProgressCheckpoint checkpoint);
+        void CompletePath();
         void CancelPath();
         
     }

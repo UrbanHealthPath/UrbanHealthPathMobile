@@ -61,6 +61,17 @@ namespace PolSl.UrbanHealthPath.PathData.Progress
             return wasAdded;
         }
 
+        public void CompletePath()
+        {
+            if (_currentProgress == null)
+            {
+                return;
+            }
+            
+            _currentProgress.CompletePath();
+            SavePathProgress();
+        }
+
         public void CancelPath()
         {
             if (_currentProgress == null)
