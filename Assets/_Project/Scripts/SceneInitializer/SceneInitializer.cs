@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Mapbox.Unity.Map;
+using Newtonsoft.Json;
 using PolSl.UrbanHealthPath.Camera;
 using PolSl.UrbanHealthPath.Map;
 using PolSl.UrbanHealthPath.Navigation;
 using PolSl.UrbanHealthPath.PathData;
 using PolSl.UrbanHealthPath.PathData.DataLoaders;
+using PolSl.UrbanHealthPath.PathData.Progress;
 using PolSl.UrbanHealthPath.Player;
 using PolSl.UrbanHealthPath.Tools.TextLogger;
 using PolSl.UrbanHealthPath.UserInterface.Components.List;
@@ -30,6 +32,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
         private ITextLogger _logger;
         private IApplicationData _applicationData;
+        private IPathProgressManager _pathProgressManager;
         private IPersistentValue<bool> _isFirstRun;
         private ViewManager _viewManager;
         private MapHolder _mapHolder;
@@ -41,6 +44,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
             _isFirstRun = new BoolPrefsValue("is_first_run", true);
 
             _applicationData = LoadApplicationData();
+            _pathProgressManager = new PathProgressManager(new JsonFilePathProgressPersistor(Application.dataPath + "/progress.json", JsonSerializer.Create()));
 
             GameObject uiManager = Instantiate(_uiManager);
 
@@ -132,14 +136,36 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
         private void BuildMainView()
         {
-            _viewManager.OpenView(ViewType.Main,
-                new MainViewInitializationParameters(BuildProfileView, () => BuildHelpView(BuildMainView), BuildSettingsView, StartPath,
+            MainViewInitializationParameters initParams;
+            if (_pathProgressManager.IsPathInProgress)
+            {
+                initParams = new MainViewInitializationParameters(BuildProfileView,
+                    () => BuildHelpView(BuildMainView), BuildSettingsView,
+                    CancelPath,
                     () =>
                     {
                         UrbanPath path = _applicationData.UrbanPaths[0];
-                        StartUrbanPath(path);
                         BuildPathView(path);
-                    }, Application.Quit, "Rozpocznij ścieżkę", "Zobacz ścieżkę"));
+                    }, Application.Quit, "Rozpocznij nową ścieżkę", "Kontynuuj ścieżkę");
+            }
+            else
+            {
+                initParams = new MainViewInitializationParameters(BuildProfileView, 
+                    () => BuildHelpView(BuildMainView), BuildSettingsView, 
+                    () => {
+                        UrbanPath path = _applicationData.UrbanPaths[0];
+                        StartNewPath(path);
+                        BuildPathView(path);
+                    },
+                    () =>
+                    {
+                        UrbanPath path = _applicationData.UrbanPaths[0];
+                        StartNewDemoPath(path);
+                        BuildPathView(path);
+                    }, Application.Quit, "Rozpocznij ścieżkę", "Zobacz ścieżkę");
+            }
+            
+            _viewManager.OpenView(ViewType.Main, initParams);
         }
 
         private void DemoPath()
@@ -156,15 +182,22 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
                 BuildMainView));
         }
 
-        private void StartUrbanPath(UrbanPath urbanPath)
+        private void StartNewPath(UrbanPath urbanPath)
         {
+            _pathProgressManager.StartNewPath();
+            InitializeMap(urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
+        }
+
+        private void StartNewDemoPath(UrbanPath urbanPath)
+        {
+            _pathProgressManager.StartNewPath();
             InitializeDemoMap(urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
         }
 
         private void BuildPathView(UrbanPath path)
         {
             _viewManager.OpenView(ViewType.Path, new PathViewInitializationParameters(
-                BuildMainView, ShowNextStation, () => BuildHelpView(() => BuildPathView(path)), BuildMainView, path.DisplayedName
+                CancelPath, ShowNextStation, () => BuildHelpView(() => BuildPathView(path)), BuildMainView, path.DisplayedName
             ));
         }
 
@@ -217,7 +250,8 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
         private void CancelPath()
         {
-            _coroutinesManager.StopLocationCoroutine();
+            _pathProgressManager.CancelPath();
+            BuildMainView();
         }
     }
 }
