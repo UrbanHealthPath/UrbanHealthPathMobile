@@ -3,12 +3,16 @@
     "path_id": "gliwice.mala_trasa",
     "displayed_name": "Mala trasa",
     "approximate_distance_in_meters": 1000,
-    "is_cyclic": false,
-    "map_url": "mapbox://styles/arhenox/ckvur5lrr38y614p8u2w7iboi/draft",
+    "is_cyclic": true,
+    "map_url": "mapbox://styles/matadam667/ckxn3iyihbqu214pbijxv32f1",
     "waypoints": [
       "gliwice.rynek.neptun",
       "gliwice.rynek.ratusz",
-      "gliwice.rynek.arkady"
+      "gliwice.rynek.arkady",
+      "gliwice.rynek.pilastry",
+      "gliwice.rynek.podcienie",
+      "gliwice.rynek.rog",
+      "gliwice.rynek.plebanska"
     ],
     "preview_image": "image.preview.gliwice.mala_trasa"
   }

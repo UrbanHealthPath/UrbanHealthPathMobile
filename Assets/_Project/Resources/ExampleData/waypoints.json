@@ -8,11 +8,16 @@
     "zone_name": "Rynek",
     "type": "station",
     "exercises": [
-      "2_quick_breaths"
+      "gliwice.neptun.1a",
+      "gliwice.neptun.2a",
+      "gliwice.neptun.game"
     ],
-    "displayed_name": "Rynek - Neptun",
+    "displayed_name": "Rynek Fontanna Neptuna",
     "historical_facts": [
-      "gliwice.neptun"
+      "gliwice.neptun.wykonanie",
+      "gliwice.neptun.autor",
+      "gliwice.neptun.material",
+      "gliwice.neptun.delfin"
     ],
     "navigation_audio": "audio.navigation.neptun"
   },
@@ -25,16 +30,14 @@
     "zone_name": "Rynek",
     "type": "station",
     "exercises": [
-      [
-        "2_quick_breaths"
-      ],
-      [
-        "jumping_jacks"
-      ]
+      "gliwice.ratusz.cwiczenie"
     ],
-    "displayed_name": "Rynek - Rzeźba na ratuszu",
+    "displayed_name": "Rynek Rzezba na Ratuszu",
     "historical_facts": [
-      "gliwice.ratusz"
+      "gliwice.ratusz.autor",
+      "gliwice.ratusz.rzeba",
+      "gliwice.ratusz.wojna",
+      "gliwice.ratusz.slubowanie"
     ],
     "navigation_audio": "audio.navigation.ratusz"
   },
@@ -50,7 +53,79 @@
       "2_quick_breaths",
       "jumping_jacks"
     ],
-    "displayed_name": "Rynek - Arkady",
+    "displayed_name": "Rynek Arkady",
+    "historical_facts": [
+      "gliwice.arkady"
+    ],
+    "navigation_audio": "audio.navigation.arkady"
+  },
+  {
+    "waypoint_id": "gliwice.rynek.pilastry",
+    "coordinates": [
+      50.29412,
+      18.66592
+    ],
+    "zone_name": "Rynek",
+    "type": "station",
+    "exercises": [
+      "2_quick_breaths",
+      "jumping_jacks"
+    ],
+    "displayed_name": "Rynek Pilastry",
+    "historical_facts": [
+      "gliwice.arkady"
+    ],
+    "navigation_audio": "audio.navigation.arkady"
+  },
+  {
+    "waypoint_id": "gliwice.rynek.podcienie",
+    "coordinates": [
+      50.29441,
+      18.66583
+    ],
+    "zone_name": "Rynek",
+    "type": "station",
+    "exercises": [
+      "2_quick_breaths",
+      "jumping_jacks"
+    ],
+    "displayed_name": "Rynek Podcienie",
+    "historical_facts": [
+      "gliwice.arkady"
+    ],
+    "navigation_audio": "audio.navigation.arkady"
+  },
+  {
+    "waypoint_id": "gliwice.rynek.rog",
+    "coordinates": [
+      50.29460,
+      18.66565
+    ],
+    "zone_name": "Rynek",
+    "type": "station",
+    "exercises": [
+      "2_quick_breaths",
+      "jumping_jacks"
+    ],
+    "displayed_name": "RYNEK Rzezba na Rogu",
+    "historical_facts": [
+      "gliwice.arkady"
+    ],
+    "navigation_audio": "audio.navigation.arkady"
+  },
+  {
+    "waypoint_id": "gliwice.rynek.plebanska",
+    "coordinates": [
+      50.29466,
+      18.66539
+    ],
+    "zone_name": "Rynek",
+    "type": "station",
+    "exercises": [
+      "2_quick_breaths",
+      "jumping_jacks"
+    ],
+    "displayed_name": "Portale na Plebanskiej",
     "historical_facts": [
       "gliwice.arkady"
     ],

@@ -1,17 +1,42 @@
 ﻿[
   {
-    "historical_fact_id": "gliwice.neptun",
-    "name": "Neptun",
-    "description": "Fajny Neptun"
+    "historical_fact_id": "gliwice.neptun.wykonanie",
+    "name": "Neptun Wykonanie",
+    "description": "Fontanna została wykonana w XVIII wieku z okazji budowy kanału Kłodnickiego, który połączył Gliwice z morzem. Umożliwiło to transport węgla kamiennego drogą wodną z Zabrza i Gliwic do Odry, a następnie dalej do Morza Bałtyckiego."
   },
   {
-    "historical_fact_id": "gliwice.ratusz",
-    "name": "Ratusz",
-    "description": "Fajniejszy Ratusz"
+    "historical_fact_id": "gliwice.neptun.autor",
+    "name": "Neptun Autor",
+    "description": "Fontanna została wykonana przez rzeźbiarza Johannesa Nitchego, który wyrzeźbił również figurę św. Jana Nepomucena, która znajduje się  przed kościołem ormiańskim przy ulicy Mikołowskiej w Gliwicach."
   },
   {
-    "historical_fact_id": "gliwice.arkady",
-    "name": "Arkady",
-    "description": "Najfajniejsze Arkady"
+    "historical_fact_id": "gliwice.neptun.material",
+    "name": "Neptun Material",
+    "description": "Rzeźba jest wykonana z piaskowca."
+  },
+  {
+    "historical_fact_id": "gliwice.neptun.delfin",
+    "name": "Neptun Deflin",
+    "description": "Neptun został przedstawiony jako siedzący na delfinie. Zyskał przydomek \"Jerzy z widłami\"."
+  },
+  {
+    "historical_fact_id": "gliwice.ratusz.autor",
+    "name": "Ratusz Madonna",
+    "description": "Tę barokową rzeźbę wykonał Johanness Nitsche."
+  },
+  {
+    "historical_fact_id": "gliwice.ratusz.rzeba",
+    "name": "Ratusz rzeźba",
+    "description": "Stoisz przed bardzo ważną osobą dla Gliwiczan. Rzeźba umieszczona na fasadzie ratusza przedstawia Matkę Boską Niepokalanie Poczętą."
+  },
+  {
+    "historical_fact_id": "gliwice.ratusz.wojna",
+    "name": "Ratusz Wojna",
+    "description": "W trakcie wojny trzydziestoletniej mieszkańcy złożyli ślubowanie Bogu, że jeżeli Matka Boska uratuje miasto, to po wszystkie czasy gliwiczanie z wdzięcznością będą pielgrzymować na Jasną Górę. Następnego dnia wojska odstąpiły bram miasta. Mieszkańcy powędrowali wówczas do Kaplicy Matki Boskiej Częstochowskiej i tak co roku wędrują po dziś dzień.Na pamiątkę tego wydarzenia wizerunek Matki Boskiej znalazł się na sztandarze i w herbie miejskim."
+  },
+  {
+    "historical_fact_id": "gliwice.ratusz.slubowanie",
+    "name": "Ratusz Slubowanie",
+    "description": "W trakcie wojny trzydziestoletniej mieszkańcy złożyli ślubowanie Bogu, że jeżeli Matka Boska uratuje miasto, to po wszystkie czasy gliwiczanie z wdzięcznością będą pielgrzymować na Jasną Górę. Następnego dnia wojska odstąpiły bram miasta. Mieszkańcy powędrowali wówczas do Kaplicy Matki Boskiej Częstochowskiej i tak co roku wędrują po dziś dzień.Na pamiątkę tego wydarzenia wizerunek Matki Boskiej znalazł się na sztandarze i w herbie miejskim."
   }
 ]
