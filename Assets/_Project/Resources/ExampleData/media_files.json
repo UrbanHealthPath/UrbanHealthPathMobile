@@ -100,5 +100,35 @@
     "type": "image",
     "storage_type": "local",
     "path": "images/game_images/Ikona punktu_2.Rzeźba_Madonny.jpg"
+  },
+  {
+    "media_id": "image.station.gliwice.arkady.icon",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Ikona punktu_3.Arkady.jpg"
+  },
+  {
+    "media_id": "image.station.gliwice.pilastry.icon",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Ikona punktu_2.Rzeźba_Madonny.jpg"
+  },
+  {
+    "media_id": "image.station.gliwice.podcienie.icon",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Ikona punktu_5.Galeria sztuki w podcieniach.jpg"
+  },
+  {
+    "media_id": "image.station.gliwice.rog.icon",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Ikona punktu_6. Rzeźba kobiety broniącej Gliwic.jpg"
+  },
+  {
+    "media_id": "image.station.gliwice.plebanska.icon",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Ikona punktu_7. Plebańska.jpg"
   }
 ]

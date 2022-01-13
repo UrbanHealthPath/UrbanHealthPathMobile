@@ -19,7 +19,8 @@
       "gliwice.neptun.material",
       "gliwice.neptun.delfin"
     ],
-    "navigation_audio": "audio.navigation.neptun"
+    "navigation_audio": "audio.navigation.neptun",
+    "image": "image.station.gliwice.neptun.icon"
   },
   {
     "waypoint_id": "gliwice.rynek.ratusz",
@@ -39,7 +40,8 @@
       "gliwice.ratusz.wojna",
       "gliwice.ratusz.slubowanie"
     ],
-    "navigation_audio": "audio.navigation.ratusz"
+    "navigation_audio": "audio.navigation.ratusz",
+    "image": "image.station.gliwice.ratusz.icon"
   },
   {
     "waypoint_id": "gliwice.rynek.arkady",
@@ -57,7 +59,8 @@
     "historical_facts": [
       "gliwice.arkady"
     ],
-    "navigation_audio": "audio.navigation.arkady"
+    "navigation_audio": "audio.navigation.arkady",
+    "image": "image.station.gliwice.arkady.icon"
   },
   {
     "waypoint_id": "gliwice.rynek.pilastry",
@@ -75,7 +78,8 @@
     "historical_facts": [
       "gliwice.arkady"
     ],
-    "navigation_audio": "audio.navigation.arkady"
+    "navigation_audio": "audio.navigation.arkady",
+    "image": "image.station.gliwice.pilastry.icon"
   },
   {
     "waypoint_id": "gliwice.rynek.podcienie",
@@ -93,7 +97,8 @@
     "historical_facts": [
       "gliwice.arkady"
     ],
-    "navigation_audio": "audio.navigation.arkady"
+    "navigation_audio": "audio.navigation.arkady",
+    "image": "image.station.gliwice.podcienie.icon"
   },
   {
     "waypoint_id": "gliwice.rynek.rog",
@@ -111,7 +116,8 @@
     "historical_facts": [
       "gliwice.arkady"
     ],
-    "navigation_audio": "audio.navigation.arkady"
+    "navigation_audio": "audio.navigation.arkady",
+    "image": "image.station.gliwice.rog.icon"
   },
   {
     "waypoint_id": "gliwice.rynek.plebanska",
@@ -129,6 +135,7 @@
     "historical_facts": [
       "gliwice.arkady"
     ],
-    "navigation_audio": "audio.navigation.arkady"
+    "navigation_audio": "audio.navigation.arkady",
+    "image": "image.station.gliwice.plebanska.icon"
   }
 ]
