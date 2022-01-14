@@ -30,7 +30,7 @@ namespace PolSl.UrbanHealthPath.PathData
 
         public IReadOnlyList<Exercise> GetExercisesOfCategory(ExerciseCategory category)
         {
-            return Exercises.Select(x => x.Value).Where(x => x.Category == category).ToArray();
+            return Exercises.Select(x => x.Value).Where(x => x != null && x.Category == category).ToArray();
         }
     }
 }
