@@ -431,6 +431,13 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
                             quizElementOptions.ToArray()
                         ));
                     break;
+                case TextExerciseLevel textExerciseLevel:
+                    _popupManager.OpenPopup(PopupType.WithTextAndImage,
+                        new PopupWithTextAndImageInitializationParameters(exercise.DisplayedName,
+                            textExerciseLevel.Description,
+                            null,
+                            new PopupPayload(popupableView.PopupArea)));
+                    break;
                 default:
                     break;
             }
