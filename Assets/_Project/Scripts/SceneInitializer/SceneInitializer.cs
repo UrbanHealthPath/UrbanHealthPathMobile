@@ -351,13 +351,30 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
                 ? station.HistoricalFacts.ElementAt(Random.Range(0, station.HistoricalFacts.Count))
                 : null;
 
+            UnityAction sensorialEvent = null;
+            UnityAction motoricalEvent = null;
+            UnityAction gameEvent = null;
+
+            if (gameExercise != null)
+            {
+                gameEvent = () => CreatePopupForExercise(gameExercise);
+            }
+
+            if (motoricalExercise != null)
+            {
+                motoricalEvent = () => CreatePopupForExercise(motoricalExercise);
+            }
+
+            if (sensorialExercise != null)
+            {
+                sensorialEvent = () => CreatePopupForExercise(sensorialExercise);
+            }
+
             Texture2D stationImage = new TextureFileAccessor(station.Image).GetMedia();
 
             StationViewInitializationParameters initParams =
-                new StationViewInitializationParameters(() => CreatePopupForExercise(gameExercise),
-                    () => CreatePopupForExercise(motoricalExercise),
-                    () => CreatePopupForExercise(sensorialExercise),
-                    () => FinishStation(station), BuildPathView, () => FinishExercise(_currentExercise),
+                new StationViewInitializationParameters(sensorialEvent, motoricalEvent,
+                    gameEvent, () => FinishStation(station), BuildPathView, () => FinishExercise(_currentExercise),
                     station.DisplayedName, fact?.Description ?? station.DisplayedName, stationImage);
 
             _viewManager.InitializeCurrentView(initParams);
@@ -395,6 +412,25 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
                             new TextureFileAccessor(imageExerciseLevel.ImageFile).GetMedia(),
                             new PopupPayload(popupableView.PopupArea)));
                     break;
+                case ImageSelectionExerciseLevel imageSelectionExerciseLevel:
+                    List<QuizElementOption> quizElementOptions = new List<QuizElementOption>();
+
+                    foreach (LateBoundValue<MediaFile> image in imageSelectionExerciseLevel.Images)
+                    {
+                        Texture2D texture = new TextureFileAccessor(image).GetMedia();
+                        bool isCorrect = imageSelectionExerciseLevel.Images.IndexOf(image) ==
+                                         imageSelectionExerciseLevel.CorrectAnswer;
+
+                        quizElementOptions.Add(new QuizElementOption(texture,
+                            () => _logger.Log(LogVerbosity.Debug, isCorrect ? "Correct answer" : "Wrong answer")));
+                    }
+
+                    _popupManager.OpenPopup(PopupType.QuizWithImages,
+                        new QuizWithImagesPopupInitializationParameters(imageSelectionExerciseLevel.Question,
+                            new PopupPayload(popupableView.PopupArea),
+                            quizElementOptions.ToArray()
+                        ));
+                    break;
                 default:
                     break;
             }
@@ -403,7 +439,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         private void FinishStation(Station station)
         {
             _logger.Log(LogVerbosity.Debug, $"Finished station {station.WaypointId}");
-            
+
             _pathProgressManager.AddCheckpoint(new PathProgressCheckpoint(station.WaypointId, DateTime.Now));
 
             if (IsPathFinished())
