@@ -157,6 +157,7 @@ MonoBehaviour:
   _locationProviderRotator: {fileID: 5105587868775202303}
   _map: {fileID: 8893218364264424236}
   _camera: {fileID: 5105587868000545831}
+  _renderTexture: {fileID: 8400000, guid: 2c51699034e111b42b4411509d981efa, type: 2}
 --- !u!1 &5105587868501621537
 GameObject:
   m_ObjectHideFlags: 0

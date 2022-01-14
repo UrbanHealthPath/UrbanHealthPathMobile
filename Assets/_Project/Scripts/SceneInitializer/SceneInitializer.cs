@@ -32,8 +32,6 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
         [SerializeField] private GameObject _uiManager;
 
-        [SerializeField] private UnityEngine.Camera _mainCamera;
-
         private ITextLogger _logger;
         private IApplicationData _applicationData;
         private IPathProgressManager _pathProgressManager;
@@ -48,7 +46,6 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
         private void Awake()
         {
-            _mainCamera = UnityEngine.Camera.main;
             _logger = new UnityLogger();
             _isFirstRun = new BoolPrefsValue("is_first_run", true);
             _distanceCalculator = new DistanceCalculator();
@@ -91,8 +88,6 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
             
             _mapHolder = Instantiate(_mapHolderPrefab);
             _mapHolder.Initialize(locationProvider, coordinatesList);
-            _mainCamera.enabled = false;
-            _mapHolder.Camera.enabled = true;
             //_coroutinesManager.Initialize(locationProvider);
             //_coroutinesManager.StartCoroutines();
             locationProvider.GetLocation();
@@ -109,8 +104,6 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
             
             _mapHolder = Instantiate(_mapHolderPrefab);
             _mapHolder.Initialize(locationProvider, coordinatesList);
-            _mainCamera.enabled = false;
-            _mapHolder.Camera.enabled = true;
         }
 
         private void DestroyMap()
@@ -119,9 +112,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
             {
                 return;
             }
-
-            _mapHolder.Camera.enabled = false;
-            _mainCamera.enabled = true;
+            
             Destroy(_mapHolder.gameObject);
             _mapHolder = null;
         }

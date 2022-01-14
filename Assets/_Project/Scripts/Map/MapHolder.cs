@@ -19,6 +19,7 @@ namespace PolSl.UrbanHealthPath
         [SerializeField] private LocationProviderRotator _locationProviderRotator;
         [SerializeField] private AbstractMap _map;
         [SerializeField] private UnityEngine.Camera _camera;
+        [SerializeField] private RenderTexture _renderTexture;
 
         private bool _isInitialized;
 
@@ -27,7 +28,6 @@ namespace PolSl.UrbanHealthPath
         public PlayerLocationTransformer PlayerLocationTransformer => _playerLocationTransformer;
         public LocationProviderRotator LocationProviderRotator => _locationProviderRotator;
         public AbstractMap Map => _map;
-        public UnityEngine.Camera Camera => _camera;
 
         public void Initialize(ILocationProvider locationProvider, List<Coordinates> stationsCoordinates)
         {
@@ -36,6 +36,8 @@ namespace PolSl.UrbanHealthPath
             _playerLocationTransformer.Initialize(_map, locationProvider);
             _navigationPointProvider.Initialize(_map, stationsCoordinates[0]);
             _stationFactory.Initialize(_map, locationProvider, stationsCoordinates);
+            _camera.targetTexture = _renderTexture;
+            _camera.enabled = true;
             _isInitialized = true;
         }
 
@@ -43,7 +45,8 @@ namespace PolSl.UrbanHealthPath
         {
             if (_isInitialized)
             {
-                // TODO: Finish destruction
+                _camera.enabled = false;
+                _camera.targetTexture = null;
             }
         }
     }
