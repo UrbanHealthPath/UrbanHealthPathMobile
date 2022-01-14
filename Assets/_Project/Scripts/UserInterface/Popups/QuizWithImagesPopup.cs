@@ -29,8 +29,9 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
                 
                 for (int i = 0; i < _buttonFitterConnections.Length; i++)
                 {
-                    _buttonFitterConnections[i].ImageFitter.InitializeImage(init.QuizElementOptions[i].Texture);
-                    _buttonFitterConnections[i].Button.onClick.AddListener(()=>init.QuizElementOptions[i].ButtonTextureAction?.Invoke());
+                    int index = i;
+                    _buttonFitterConnections[index].ImageFitter.InitializeImage(init.QuizElementOptions[index].Texture);
+                    _buttonFitterConnections[index].Button.onClick.AddListener(()=>init.QuizElementOptions[index].ButtonTextureAction?.Invoke());
                 }
             }
         }
