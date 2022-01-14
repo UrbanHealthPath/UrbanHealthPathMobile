@@ -1087,15 +1087,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 289492582470421250, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_Color.b
-      value: 0.7882353
+      value: 0.20392157
       objectReference: {fileID: 0}
     - target: {fileID: 289492582470421250, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_Color.g
-      value: 0.9137255
+      value: 0.81960785
       objectReference: {fileID: 0}
     - target: {fileID: 289492582470421250, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_Color.r
-      value: 0.79607844
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 289492582470421252, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_IsActive
@@ -1201,6 +1201,18 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2331206287740777611, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2331206287740777611, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2331206287740777611, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6132574673904301839, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1251,11 +1263,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7784142738594222900, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7784142738594222900, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7784142738594222900, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1354,14 +1366,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6132574673904301839, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
   m_PrefabInstance: {fileID: 8358515997732285410}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8645523682971676635 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 289492582927451193, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
-  m_PrefabInstance: {fileID: 8358515997732285410}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5627686721617894353 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4460504552914235443, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
+  m_PrefabInstance: {fileID: 8358515997732285410}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8645523682971676635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 289492582927451193, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
   m_PrefabInstance: {fileID: 8358515997732285410}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &6060710336729827675
@@ -1412,33 +1424,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5627686721617894353}
   m_CullTransparentMesh: 1
---- !u!114 &1550416578052960283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5627686721617894353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1

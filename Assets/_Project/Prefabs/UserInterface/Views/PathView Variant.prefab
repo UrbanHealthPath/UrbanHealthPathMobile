@@ -301,11 +301,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 289492582470421250, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0.20392157
       objectReference: {fileID: 0}
     - target: {fileID: 289492582470421250, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.81960785
       objectReference: {fileID: 0}
     - target: {fileID: 289492582470421250, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_Color.r
@@ -423,6 +423,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4460504552914235443, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4797847203019582513, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -437,7 +441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6132574673904301839, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6132574673904301839, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_AnchorMax.x
@@ -473,7 +477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6438709754629333776, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6703147326153999823, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_Enabled
@@ -490,6 +494,10 @@ PrefabInstance:
     - target: {fileID: 6703147326153999823, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_ChildControlHeight
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784142738594222900, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8137891713008752404, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_AnchorMin.x
@@ -533,7 +541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8137891713143239243, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8137891713143239243, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_AnchorMax.y
@@ -611,13 +619,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291bc95b9010b4a47b18610fdee1c714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endPathButton: {fileID: 8197629874019865641}
-  nextStationInfoButton: {fileID: 8197629874867160123}
-  helpButton: {fileID: 4949293534948231973}
-  mainMenuButton: {fileID: 1347911384233159064}
-  header: {fileID: 3517230557225297423}
-  popupArea: {fileID: 8422413115062399032}
-  appearanceChangingButton: {fileID: 1755976144120382704}
+  _endPathButton: {fileID: 8197629874019865641}
+  _nextStationInfoButton: {fileID: 8197629874867160123}
+  _helpButton: {fileID: 4949293534948231973}
+  _mainMenuButton: {fileID: 1347911384233159064}
+  headerPanel: {fileID: 3517230557225297423}
+  _popupArea: {fileID: 8422413115062399032}
+  _appearanceChangingButton: {fileID: 1755976144120382704}
 --- !u!222 &5943072357517235319
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1110,13 +1118,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0bdee0b71ddcc45b243595af7ac4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonAppearances:
+  _buttonAppearances:
   - _sprite: {fileID: 21300000, guid: 2d323723b46e5a34fb25b20d3e9d35a1, type: 3}
     _text: "Nast\u0119pna stacja"
     _bottomOffset: 0
   - _sprite: {fileID: 21300000, guid: 788e0e74133671e4f85ba5b040c999c2, type: 3}
     _text: Mapa
     _bottomOffset: 30
-  image: {fileID: 8197629874848614068}
-  text: {fileID: 8197629875184353165}
-  button: {fileID: 8197629874867160123}
+  _image: {fileID: 8197629874848614068}
+  _text: {fileID: 8197629875184353165}
+  _button: {fileID: 8197629874867160123}
