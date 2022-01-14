@@ -370,7 +370,11 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
             StationViewInitializationParameters initParams =
                 new StationViewInitializationParameters(sensorialEvent, motoricalEvent,
-                    gameEvent, () => FinishStation(station), BuildPathView, () => FinishExercise(_currentExercise),
+                    gameEvent, () => FinishStation(station), () =>
+                    {
+                        ClearPopup();
+                        BuildPathView();
+                    }, () => FinishExercise(_currentExercise),
                     station.DisplayedName, fact?.Description ?? station.DisplayedName, stationImage);
 
             _viewManager.InitializeCurrentView(initParams);
@@ -387,10 +391,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
             yield return new WaitForEndOfFrame();
             IPopupable popupableView = _viewManager.CurrentView.GetComponent<IPopupable>();
 
-            if (_popupManager.CurrentPopupType != PopupType.None)
-            {
-                _popupManager.CloseCurrentPopup();
-            }
+            ClearPopup();
 
             switch (exercise.Levels[0])
             {
@@ -445,10 +446,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
             _pathProgressManager.AddCheckpoint(new PathProgressCheckpoint(station.WaypointId, DateTime.Now));
 
-            if (_popupManager.CurrentPopupType != PopupType.None)
-            {
-                _popupManager.CloseCurrentPopup();
-            }
+            ClearPopup();
 
             if (IsPathFinished())
             {
@@ -476,6 +474,14 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         {
             _pathProgressManager.CompletePath();
             BuildMainView();
+        }
+
+        private void ClearPopup()
+        {
+            if (_popupManager.CurrentPopupType != PopupType.None)
+            {
+                _popupManager.CloseCurrentPopup();
+            }
         }
     }
 }
