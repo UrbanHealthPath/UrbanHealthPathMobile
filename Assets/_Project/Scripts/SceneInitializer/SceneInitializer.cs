@@ -44,6 +44,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         private IDistanceCalculator _distanceCalculator;
         private UrbanPath _currentPath;
         private Exercise _currentExercise;
+        private ILocationProvider _currentLocationProvider;
 
         private void Awake()
         {
@@ -79,36 +80,37 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
             return applicationDataLoader.LoadData();
         }
 
-        private ILocationProvider InitializeDemoMap(List<Coordinates> coordinatesList)
+        private void InitializeDemoMap(List<Coordinates> coordinatesList)
         {
             DestroyMap();
 
             ILocationProvider locationProvider =
                 new LocationFactory(new LocationPermissionRequester()).CreateFakeProvider(coordinatesList);
 
+            _currentLocationProvider = locationProvider;
+            
             _mapHolder = Instantiate(_mapHolderPrefab);
             _mapHolder.Initialize(locationProvider, coordinatesList);
             _mainCamera.enabled = false;
             _mapHolder.Camera.enabled = true;
             //_coroutinesManager.Initialize(locationProvider);
             //_coroutinesManager.StartCoroutines();
-
-            return locationProvider;
+            locationProvider.GetLocation();
         }
 
-        private ILocationProvider InitializeMap(List<Coordinates> coordinatesList)
+        private void InitializeMap(List<Coordinates> coordinatesList)
         {
             DestroyMap();
 
             ILocationProvider locationProvider =
                 new LocationFactory(new LocationPermissionRequester()).CreateDeviceProvider();
 
+            _currentLocationProvider = locationProvider;            
+            
             _mapHolder = Instantiate(_mapHolderPrefab);
             _mapHolder.Initialize(locationProvider, coordinatesList);
             _mainCamera.enabled = false;
             _mapHolder.Camera.enabled = true;
-
-            return locationProvider;
         }
 
         private void DestroyMap()
@@ -170,60 +172,54 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
                 initParams = new MainViewInitializationParameters(BuildProfileView,
                     () => BuildHelpView(BuildMainView), BuildSettingsView,
                     CancelPath,
-                    () =>
-                    {
-                        _currentPath = _applicationData.UrbanPaths[0];
-                        BuildPathView();
-                    }, Application.Quit, "Rozpocznij nową ścieżkę", "Kontynuuj ścieżkę");
+                    BuildPathView, Application.Quit, "Rozpocznij nową ścieżkę", "Kontynuuj ścieżkę");
             }
             else
             {
                 initParams = new MainViewInitializationParameters(BuildProfileView,
                     () => BuildHelpView(BuildMainView), BuildSettingsView,
-                    () =>
-                    {
-                        _currentPath = _applicationData.UrbanPaths[0];
-                        ILocationProvider provider = StartNewPath(_currentPath);
-                        BuildPathView();
-                        provider.LocationUpdated += CheckIfInStationVicinity;
-                    },
-                    () =>
-                    {
-                        _currentPath = _applicationData.UrbanPaths[0];
-                        ILocationProvider provider = StartNewDemoPath(_currentPath);
-                        BuildPathView();
-                        provider.LocationUpdated += CheckIfInStationVicinity;
-                        provider.GetLocation();
-                    }, Application.Quit, "Rozpocznij ścieżkę", "Zobacz ścieżkę");
+                    StartPath, StartDemoPath, Application.Quit, "Rozpocznij ścieżkę", "Zobacz ścieżkę");
             }
 
             _viewManager.OpenView(ViewType.Main, initParams);
         }
 
-        private void DemoPath()
+        private void StartDemoPath()
         {
             _viewManager.OpenView(ViewType.PathChoice, new PathChoiceViewInitializationParameters(
-                GetAvailablePaths(path => _logger.Log(LogVerbosity.Debug, "Started demo path " + path.DisplayedName)),
+                GetAvailablePaths(path =>
+                {
+                    _logger.Log(LogVerbosity.Debug, "Started demo path " + path.DisplayedName);
+                    _currentPath = path;
+                    StartNewDemoPath(_currentPath);
+                    BuildPathView();
+                }),
                 BuildMainView));
         }
 
         private void StartPath()
         {
             _viewManager.OpenView(ViewType.PathChoice, new PathChoiceViewInitializationParameters(
-                GetAvailablePaths(path => _logger.Log(LogVerbosity.Debug, "Started path " + path.DisplayedName)),
+                GetAvailablePaths(path =>
+                {
+                    _logger.Log(LogVerbosity.Debug, "Started path " + path.DisplayedName);
+                    _currentPath = path;
+                    StartNewPath(_currentPath);
+                    BuildPathView();
+                }),
                 BuildMainView));
         }
 
-        private ILocationProvider StartNewPath(UrbanPath urbanPath)
+        private void StartNewPath(UrbanPath urbanPath)
         {
             _pathProgressManager.StartNewPath();
-            return InitializeMap(urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
+            InitializeMap(urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
         }
 
-        private ILocationProvider StartNewDemoPath(UrbanPath urbanPath)
+        private void StartNewDemoPath(UrbanPath urbanPath)
         {
             _pathProgressManager.StartNewPath();
-            return InitializeDemoMap(urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
+            InitializeDemoMap(urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
         }
 
         private void BuildPathView()
@@ -264,7 +260,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         {
             _viewManager.OpenView(ViewType.Help, new HelpViewInitializationParameters(new List<ListElement>()
             {
-                new ListElement("Przykładowy przycisk pomocy", null, "Pomoc", () => { })
+                new ListElement("Przykładowy przycisk pomocy", null, "Pomoc", () => { _logger.Log(LogVerbosity.Debug, "Pomoc");})
             }, returnAction));
         }
 
@@ -449,12 +445,18 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
             _pathProgressManager.AddCheckpoint(new PathProgressCheckpoint(station.WaypointId, DateTime.Now));
 
+            if (_popupManager.CurrentPopupType != PopupType.None)
+            {
+                _popupManager.CloseCurrentPopup();
+            }
+
             if (IsPathFinished())
             {
                 FinishPath();
             }
             else
             {
+                _currentLocationProvider.GetLocation();
                 BuildPathView();
             }
         }
