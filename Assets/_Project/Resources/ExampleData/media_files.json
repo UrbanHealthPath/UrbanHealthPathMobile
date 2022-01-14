@@ -130,5 +130,23 @@
     "type": "image",
     "storage_type": "local",
     "path": "images/game_images/Ikona_punktu_7_Plebanska"
+  },
+  {
+    "media_id": "video.station.arkady.exercise.3a",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/exercises/CWICZENIE_3A"
+  },
+  {
+    "media_id": "video.station.arkady.exercise.3b",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/exercises/CWICZENIE_3B"
+  },
+  {
+    "media_id": "video.station.arkady.exercise.3c",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/exercises/CWICZENIE_3C"
   }
 ]

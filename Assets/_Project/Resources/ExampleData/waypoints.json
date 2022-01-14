@@ -52,8 +52,8 @@
     "zone_name": "Rynek",
     "type": "station",
     "exercises": [
-      "2_quick_breaths",
-      "jumping_jacks"
+      "gliwice.arkady.1",
+      "gliwice.arkady.2"
     ],
     "displayed_name": "Rynek Arkady",
     "historical_facts": [
