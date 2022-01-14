@@ -125,5 +125,85 @@
         "description": "Stań na wprost wybranej arkady. Podnieś ręce w górę, wykonując głęboki wdech nosem. Następnie wolno opuść dłonie naśladując łuk arkad i wolno wydychając powietrze nosem. Powtórz ćwiczenie trzy razy."
       }
     ]
+  },
+  {
+    "exercise_id": "gliwice.podcienie.1",
+    "displayed_name" : "5a",
+    "category": "motorical",
+    "subcategory": "legs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "video",
+        "description": "Przejdź slalomem pomiędzy filarami podcienia w odpowiednim dla siebie tempie. Pamiętaj, żeby kroki stawiane były w równych długościach, a plecy były proste.",
+        "video_file": "video.station.podcienie.exercise.5a"
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.podcienie.2",
+    "displayed_name" : "5b",
+    "category": "motorical",
+    "subcategory": "legs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "video",
+        "description": "Stań pod jedną z arkad. Połóż dłonie na biodra, napnij mięśnie pośladkowe i staraj się odchylić do tyłu naśladując łuk arkady. W ocenie Twoich możliwości pomogą Ci podziały na filarze. Odchylając się powoli policz do trzech i wróć do pozycji wyjściowej. Wykonaj 2 razy.",
+        "video_file": "video.station.podcienie.exercise.5b"
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.podcienie.3",
+    "displayed_name": "5c",
+    "category": "sensorial",
+    "subcategory": "lungs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "text",
+        "description": "Stań pod arkadami i oprzyj się o filar. Możesz przymknąć oczy, a następnie wykonaj długi wdech i wydech nosem. Przez dłuższą chwilę wyobraź sobie piękny przedmiot, który kiedyś widziałaś/-eś lub posiadasz. Jaki ma kształt? Jakie ma kolory? Jaki jest w dotyku?"
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.rog.1",
+    "displayed_name": "6",
+    "category": "motorical",
+    "subcategory": "legs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "text",
+        "description": "Wyobraź sobie, że trzymasz, podobnie, jak Gliwiczanka, w obydwu rękach dzban. Jest on blisko Twojego ciała, po prawej stronie. Teraz musisz nabrać do niego wody z wyobrażonej studni znajdującej się przed Tobą. Nabierz wody poprzez ugięcie kolan i delikatny skłon w przód. Powtórz 3 razy. A następnie wyobraź sobie, że przekładasz dzban na drugą stronę i teraz jest blisko Twojego lewego boku. Powtórz nabieranie wody. Napnij brzuch, gdy podnosisz dzban z wodą, wyobraź sobie jego ciężar. Nie śpiesz się."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.rog.2",
+    "displayed_name": "Rzeźba - Gra Miejska",
+    "category": "game",
+    "subcategory": "eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "answer_selection",
+        "question": "Stoisz na narożniku Rynku przy ulicy Plebańskiej przed ważną dla gliwiczan rzeźbą. Czy pamiętasz kogo przedstawia i jak jest potocznie nazywana? Zaznacz poprawną odpowiedź.",
+        "answers": [
+          "Duńska kobieta",
+          "Gliwiczanka/gliwicka baba",
+          "Matka Boska",
+          "Wandzia"
+        ],
+        "image": "",
+        "correct_answer": 0
+      }
+    ]
   }
 ]

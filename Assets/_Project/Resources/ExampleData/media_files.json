@@ -148,5 +148,23 @@
     "type": "video",
     "storage_type": "local",
     "path": "videos/exercises/CWICZENIE_3C"
+  },
+  {
+    "media_id": "video.station.podcienie.exercise.5a",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/exercises/CWICZENIE_5A"
+  },
+  {
+    "media_id": "video.station.podcienie.exercise.5b",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/exercises/CWICZENIE_5B"
+  },
+  {
+    "media_id": "image.game.gliwice.Gra_miejska_Zdjecie_6_Rzezba_kobiety_broniacej_Gliwic",
+    "type": "image",
+    "storage_type": "local",
+    "path": "image/game_images/Gra_miejska_Zdjecie_6_Rzezba_kobiety_broniacej_Gliwic"
   }
 ]
