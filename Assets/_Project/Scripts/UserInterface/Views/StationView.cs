@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
-using PolSl.UrbanHealthPath.UserInterface.Popups;
-using PolSl.UrbanHealthPath.UserInterface.Scalers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -39,7 +34,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         [SerializeField] private Sprite[] _icons;
         [SerializeField] private Image[] _buttonImages;
         [SerializeField] private TextMeshProUGUI[] _buttonTexts;
-        [SerializeField] private ImageFitter _fitter;
 
         [FormerlySerializedAs("informationAboutStation")] [SerializeField]
         private TextMeshProUGUI _informationAboutStation;
@@ -85,8 +79,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
                 _returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
                 _headerPanel.Initialize(init.HeaderText);
                 _informationAboutStation.text = init.InformationAboutStation;
-                _fitter.InitializeImage(init.Texture);
-                
+
                 SetDefaultUI();
             }
         }

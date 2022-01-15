@@ -13,11 +13,10 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
         public UnityAction FinishExerciseEvent { get; }
         public string HeaderText { get; }
         public string InformationAboutStation { get; }
-        public Texture2D Texture { get; }
 
         public StationViewInitializationParameters(UnityAction sensorialEvent, UnityAction motorialEvent,
             UnityAction historicInfoEvent, UnityAction mainMenuEvent, UnityAction returnEvent,
-            UnityAction finishExerciseEvent, string headerText, string info, Texture2D texture)
+            UnityAction finishExerciseEvent, string headerText, string info)
         {
             SensorialEvent += sensorialEvent;
             MotorialEvent += motorialEvent;
@@ -27,7 +26,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
             FinishExerciseEvent += finishExerciseEvent;
             HeaderText = headerText;
             InformationAboutStation = info;
-            Texture = texture;
         }
     }
 }

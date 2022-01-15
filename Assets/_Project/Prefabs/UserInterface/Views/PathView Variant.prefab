@@ -873,6 +873,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3203113940377597972, guid: abb1e5bcf74c0cf44ab701294d3cd94e, type: 3}
+      propertyPath: m_text
+      value: Punkt
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203113940377597972, guid: abb1e5bcf74c0cf44ab701294d3cd94e, type: 3}
+      propertyPath: m_margin.w
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3297926872203794931, guid: abb1e5bcf74c0cf44ab701294d3cd94e, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1121,7 +1129,7 @@ MonoBehaviour:
   _buttonAppearances:
   - _sprite: {fileID: 21300000, guid: 2d323723b46e5a34fb25b20d3e9d35a1, type: 3}
     _text: "Nast\u0119pna stacja"
-    _bottomOffset: 0
+    _bottomOffset: 30
   - _sprite: {fileID: 21300000, guid: 788e0e74133671e4f85ba5b040c999c2, type: 3}
     _text: Mapa
     _bottomOffset: 30
