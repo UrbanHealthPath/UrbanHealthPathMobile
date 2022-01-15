@@ -36,10 +36,10 @@
     "path": "images/game_images/Ikona_punktu_1_Fontanna_Neptuna"
   },
   {
-    "media_id": "audio.navigation.neptun",
+    "media_id": "audio.introduction.neptun",
     "type": "audio",
     "storage_type": "local",
-    "path": "audios/navigation/Audio_1"
+    "path": "audios/introductions/Audio_1"
   },
   {
     "media_id": "video.exercise.1B_ĆWICZENIE",
@@ -60,10 +60,10 @@
     "path": "videos/exercises/2_ĆWICZENIE"
   },
   {
-    "media_id": "audio.navigation.ratusz",
+    "media_id": "audio.introduction.ratusz",
     "type": "audio",
     "storage_type": "local",
-    "path": "audios/navigation/Audio_2"
+    "path": "audios/introductions/Audio_2"
   },
   {
     "media_id": "image.game.gliwice.Gra_Miejska_Zdjęcie5_Kościół_Wszystkich_Świętych_2.Rzeźba_Madonny",
@@ -166,5 +166,65 @@
     "type": "image",
     "storage_type": "local",
     "path": "image/game_images/Gra_miejska_Zdjecie_6_Rzezba_kobiety_broniacej_Gliwic"
+  },
+  {
+    "media_id": "audio.introduction.arkady",
+    "type": "audio",
+    "storage_type": "local",
+    "path": "audios/introductions/Audio_3"
+  },
+  {
+    "media_id": "audio.introduction.pilastry",
+    "type": "audio",
+    "storage_type": "local",
+    "path": "audios/introductions/Audio_4"
+  },
+  {
+    "media_id": "audio.introduction.rog",
+    "type": "audio",
+    "storage_type": "local",
+    "path": "audios/introductions/Audio_6"
+  },
+  {
+    "media_id": "audio.introduction.plebanska",
+    "type": "audio",
+    "storage_type": "local",
+    "path": "audios/introductions/Audio_7"
+  },
+  {
+    "media_id": "video.station.pilastry.exercise.4a",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/exercises/CWICZENIE_4B"
+  },
+  {
+    "media_id": "video.station.pilastry.exercise.4b",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/exercises/CWICZENIE_4B"
+  },
+  {
+    "media_id": "image.game.gliwice.pilastry.gra.miejska",
+    "type": "image",
+    "storage_type": "local",
+    "path": ""
+  },
+  {
+    "media_id": "video.station.plebaska.exercise.7a",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/exercises/CWICZENIE_7A"
+  },
+  {
+    "media_id": "video.station.plebaska.exercise.7b",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/exercises/CWICZENIE_7B"
+  },
+  {
+    "media_id": "image.game.gliwice.Gra_miejska_zdjecie_7.Plebanska.jpg",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_zdjecie_7_Plebanska.jpg"
   }
 ]

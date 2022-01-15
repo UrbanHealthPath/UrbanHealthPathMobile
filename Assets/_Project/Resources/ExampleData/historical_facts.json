@@ -38,5 +38,64 @@
     "historical_fact_id": "gliwice.ratusz.slubowanie",
     "name": "Ratusz Slubowanie",
     "description": "W trakcie wojny trzydziestoletniej mieszkańcy złożyli ślubowanie Bogu, że jeżeli Matka Boska uratuje miasto, to po wszystkie czasy gliwiczanie z wdzięcznością będą pielgrzymować na Jasną Górę. Następnego dnia wojska odstąpiły bram miasta. Mieszkańcy powędrowali wówczas do Kaplicy Matki Boskiej Częstochowskiej i tak co roku wędrują po dziś dzień.Na pamiątkę tego wydarzenia wizerunek Matki Boskiej znalazł się na sztandarze i w herbie miejskim."
+  },
+  {
+    "historical_fact_id": "gliwice.arkady.ciekawostka",
+    "name": "Arkady Ciekawostka",
+    "description": "średniowieczna zabudowa Rynku dziś już nie istnieje. Większość obecnych kamienic pochodzi głównie z XIX i XX wieku. Wyglądem swoim luźno nawiązują do stylu klasycystycznego, a charakterystyczne arkady są wyraźnym nawiązaniem do stylu renesansowego. Jest to efekt powojennej odbudowy części gliwickiej starówki, kierowanej przez architekta Franciszka Maurera."
+  },
+  {
+    "historical_fact_id": "gliwice.pilastry.kamienica",
+    "name": "Pilastry Kamienica",
+    "description": "Kamienica z numerem 18 to klasycystyczny budynek z pierwszej połowy 19 wieku."  
+  },
+  {
+    "historical_fact_id": "gliwice.pilastry.hotel",
+    "name": "Pilastry Hotel",
+    "description": "Dawniej znajdował się tam najstarszy i najbardziej prestiżowy gliwicki hotel “Deutsches Haus”."},
+  {
+    "historical_fact_id": "gliwice.pilastry.dyrekcja",
+    "name": "Pilastry ród Schaffgotschów",
+    "description": "Później w kamienicy mieściła się dyrekcja zarządu dóbr koncernu należącego do rodu Schaffgotschów."
+  },
+  {
+    "historical_fact_id": "gliwice.rog.rzezba",
+    "name": "Rog Rzeźba",
+    "description": "Rzeźba, którą zobaczysz na narożniku kamienicy, upamiętnia bohaterskie kobiety, które broniły miasta podczas wojny trzydziestoletniej, wylewając na wojska duńskie gorącą kaszę."
+  },
+  {
+    "historical_fact_id": "gliwice.rog.gliwiczanka",
+    "name": "Rog Gliwiczanka",
+    "description": "Potocznie zwaną “Gliwiczankę” wyrzeźbiła Wanda Demczyn-Wiśniewska. Rzeźba została odsłonięta w 1956 roku."
+  },
+  {
+    "historical_fact_id": "gliwice.plebanska.niemiecka_nazwa",
+    "name": "Plebanska dawna nazwa",
+    "description": "Obecnie ulica Plebańska w niemieckich Gliwicach nazywała się Pfarrstrasse, czyli w wolnym tłumaczeniu ulica parafialna."
+  },
+  {
+    "historical_fact_id": "gliwice.plebanska.polaczenie",
+    "name": "Plebanska polaczenie",
+    "description": "Ulica łączy Rynek z Placem Wszystkich Świętych."
+  },
+  {
+    "historical_fact_id": "gliwice.plebanska.plebania",
+    "name": "Plebanska plebania",
+    "description": "Kiedyś jej najważniejszymi punktami była plebania Kościoła Wszystkich Świętych oraz najstarsza gliwicka szkoła."
+  },
+  {
+    "historical_fact_id": "gliwice.plebanska.piwo",
+    "name": "Plebanska piekarnia",
+    "description": "Dawniej mieścił się tutaj skład piwa, restauracja i piekarnia."
+  },
+  {
+    "historical_fact_id": "gliwice.plebanska.mieszkancy",
+    "name": "Plebanska mieszkancy",
+    "description": "Mieszkańcami ulicy Plebańskiej byli Bernhard Bermann - właściciel składu piwa oraz Richard Koban - budowniczy kościołów."
+  },
+  {
+    "historical_fact_id": "gliwice.plebanska.restauracja",
+    "name": "Plebanska restauracja",
+    "description": "W 2014 roku budynek pod numerem 3 został odrestaurowany."
   }
 ]
