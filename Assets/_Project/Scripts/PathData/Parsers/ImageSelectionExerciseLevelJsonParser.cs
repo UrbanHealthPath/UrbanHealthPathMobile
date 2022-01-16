@@ -10,9 +10,9 @@ namespace PolSl.UrbanHealthPath
         private const string MIN_DIFFICULTY_KEY = "min_difficulty";
         private const string MAX_DIFFICULTY_KEY = "max_difficulty";
         private const string IMAGES_KEY = "images";
-        private const string CORRECT_ANSWER_KEY = "correct_answer";
+        private const string CORRECT_ANSWERS_KEY = "correct_answers";
 
-        public ImageSelectionExerciseLevelJsonParser() : base(new[] {QUESTION_KEY, MIN_DIFFICULTY_KEY, MAX_DIFFICULTY_KEY, IMAGES_KEY})
+        public ImageSelectionExerciseLevelJsonParser() : base(new[] {QUESTION_KEY, MIN_DIFFICULTY_KEY, MAX_DIFFICULTY_KEY, IMAGES_KEY, CORRECT_ANSWERS_KEY})
         {
         }
         
@@ -27,7 +27,14 @@ namespace PolSl.UrbanHealthPath
                 images.Add(new LateBoundValue<MediaFile>(image.Value<string>()));
             }
 
-            return new ImageSelectionExerciseLevel(difficultyRange, json[QUESTION_KEY].Value<string>(), images, json[CORRECT_ANSWER_KEY].Value<int>());
+            List<int> correctAnswers = new List<int>();
+
+            foreach (JToken correctAnswerIndex in json[CORRECT_ANSWERS_KEY])
+            {
+                correctAnswers.Add(correctAnswerIndex.Value<int>());
+            }
+
+            return new ImageSelectionExerciseLevel(difficultyRange, json[QUESTION_KEY].Value<string>(), images, correctAnswers);
         }
     }
 }

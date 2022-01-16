@@ -391,8 +391,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
                     foreach (LateBoundValue<MediaFile> image in imageSelectionExerciseLevel.Images)
                     {
                         Texture2D texture = new TextureFileAccessor(image).GetMedia();
-                        bool isCorrect = imageSelectionExerciseLevel.Images.IndexOf(image) ==
-                                         imageSelectionExerciseLevel.CorrectAnswer;
+                        bool isCorrect = imageSelectionExerciseLevel.CorrectAnswers.Contains(imageSelectionExerciseLevel.Images.IndexOf(image));
 
                         quizElementOptions.Add(new QuizElementOption(texture,
                             () => _logger.Log(LogVerbosity.Debug, isCorrect ? "Correct answer" : "Wrong answer")));

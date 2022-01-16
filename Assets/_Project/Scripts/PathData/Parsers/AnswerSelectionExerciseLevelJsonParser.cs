@@ -10,9 +10,9 @@ namespace PolSl.UrbanHealthPath
         private const string MIN_DIFFICULTY_KEY = "min_difficulty";
         private const string MAX_DIFFICULTY_KEY = "max_difficulty";
         private const string ANSWERS_KEY = "answers";
-        private const string CORRECT_ANSWER_KEY = "correct_answer";
+        private const string CORRECT_ANSWERS_KEY = "correct_answers";
         
-        public AnswerSelectionExerciseLevelJsonParser() : base(new[] {QUESTION_KEY, MIN_DIFFICULTY_KEY, MAX_DIFFICULTY_KEY, ANSWERS_KEY})
+        public AnswerSelectionExerciseLevelJsonParser() : base(new[] {QUESTION_KEY, MIN_DIFFICULTY_KEY, MAX_DIFFICULTY_KEY, ANSWERS_KEY, CORRECT_ANSWERS_KEY})
         {
         }
         
@@ -26,8 +26,15 @@ namespace PolSl.UrbanHealthPath
             {
                 answers.Add(answer.Value<string>());
             }
+            
+            List<int> correctAnswers = new List<int>();
 
-            return new AnswerSelectionExerciseLevel(difficultyRange, json[QUESTION_KEY].Value<string>(), answers, json[CORRECT_ANSWER_KEY].Value<int>());
+            foreach (JToken correctAnswerIndex in json[CORRECT_ANSWERS_KEY])
+            {
+                correctAnswers.Add(correctAnswerIndex.Value<int>());
+            }
+
+            return new AnswerSelectionExerciseLevel(difficultyRange, json[QUESTION_KEY].Value<string>(), answers, correctAnswers);
         }
     }
 }

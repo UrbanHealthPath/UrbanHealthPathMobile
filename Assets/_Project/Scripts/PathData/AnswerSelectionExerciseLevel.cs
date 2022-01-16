@@ -6,14 +6,14 @@ namespace PolSl.UrbanHealthPath.PathData
     {
         public string Question { get; }
         public IList<string> Answers { get; }
-        public int CorrectAnswer { get; }
+        public IList<int> CorrectAnswers { get; }
 
         public AnswerSelectionExerciseLevel(DifficultyRange difficultyRange, string question,
-            IList<string> answers, int correctAnswer) : base(difficultyRange)
+            IList<string> answers, IList<int> correctAnswers) : base(difficultyRange)
         {
             Question = question;
             Answers = answers;
-            CorrectAnswer = correctAnswer;
+            CorrectAnswers = correctAnswers;
         }
     }
 }
