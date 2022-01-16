@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using PolSl.UrbanHealthPath.Controllers;
 using PolSl.UrbanHealthPath.Map;
 using PolSl.UrbanHealthPath.MediaAccess;
 using PolSl.UrbanHealthPath.PathData;
 using PolSl.UrbanHealthPath.PathData.DataLoaders;
 using PolSl.UrbanHealthPath.PathData.Progress;
 using PolSl.UrbanHealthPath.Tools.TextLogger;
+using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Components.List;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
@@ -60,7 +62,9 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
             _popupManager = uiManager.GetComponent<PopupManager>();
             _popupManager.Initialize();
 
-            BuildUI();
+            MainController mainController = new MainController(_viewManager, _popupManager, _pathProgressManager);
+
+            //BuildUI();
         }
 
         private IApplicationData LoadApplicationData()
@@ -321,23 +325,23 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
                 ? station.HistoricalFacts.ElementAt(Random.Range(0, station.HistoricalFacts.Count))
                 : null;
 
-            UnityAction sensorialEvent = null;
-            UnityAction motoricalEvent = null;
-            UnityAction gameEvent = null;
+            UnityAction<ChangingButton> sensorialEvent = null;
+            UnityAction<ChangingButton> motoricalEvent = null;
+            UnityAction<ChangingButton> gameEvent = null;
 
             if (gameExercise != null)
             {
-                gameEvent = () => CreatePopupForExercise(gameExercise);
+                gameEvent = (btn) => CreatePopupForExercise(gameExercise);
             }
 
             if (motoricalExercise != null)
             {
-                motoricalEvent = () => CreatePopupForExercise(motoricalExercise);
+                motoricalEvent = (btn) => CreatePopupForExercise(motoricalExercise);
             }
 
             if (sensorialExercise != null)
             {
-                sensorialEvent = () => CreatePopupForExercise(sensorialExercise);
+                sensorialEvent = (btn) => CreatePopupForExercise(sensorialExercise);
             }
 
             StationViewInitializationParameters initParams =
@@ -346,7 +350,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
                     {
                         ClearPopup();
                         BuildPathView();
-                    }, () => FinishExercise(_currentExercise),
+                    },
                     station.DisplayedName, fact?.Description ?? station.DisplayedName);
 
             _viewManager.InitializeCurrentView(initParams);

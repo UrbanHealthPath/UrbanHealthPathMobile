@@ -23,10 +23,12 @@ namespace PolSl.UrbanHealthPath.PathData.DataLoaders
             JsonObjectParser<ImageExerciseLevel> imageExerciseLevelParser = new ImageExerciseLevelJsonParser();
             JsonObjectParser<ImageSelectionExerciseLevel> imageSelectionExerciseLevelParser =
                 new ImageSelectionExerciseLevelJsonParser();
+            JsonObjectParser<AnswerSelectionExerciseLevel> answerSelectionExerciseLevelParser =
+                new AnswerSelectionExerciseLevelJsonParser();
 
             JsonObjectParser<ExerciseLevel>
                 exerciseLevelsParser = new ExerciseLevelJsonParser(textExerciseLevelsParser, videoExerciseLevelParser,
-                    imageExerciseLevelParser, imageSelectionExerciseLevelParser);
+                    imageExerciseLevelParser, imageSelectionExerciseLevelParser, answerSelectionExerciseLevelParser);
 
             return new ExerciseJsonParser(exerciseLevelsParser);
         }
