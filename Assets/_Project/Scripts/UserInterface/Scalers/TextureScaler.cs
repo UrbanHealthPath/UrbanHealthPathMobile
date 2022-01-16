@@ -4,7 +4,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Scalers
 {
     public class TextureScaler
     {
-        public static Vector2 GetScaledTexture(RectTransform maxSize, Texture texture)
+        public static Vector2 GetScaledTexture(RectTransform maxSize, Texture texture, float borderSize)
         {
             float maxWidth = maxSize.sizeDelta.x;
             float maxHeight = maxSize.sizeDelta.y;
@@ -39,7 +39,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Scalers
                 }
             }
 
-            return new Vector2(targetWidth, targetHeight);
+            return new Vector2(targetWidth - borderSize, targetHeight - borderSize);
         }
     }
 }

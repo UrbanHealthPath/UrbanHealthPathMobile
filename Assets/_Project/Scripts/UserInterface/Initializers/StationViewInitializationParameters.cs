@@ -1,29 +1,29 @@
-﻿using UnityEngine;
+﻿using PolSl.UrbanHealthPath.UserInterface.Components;
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
     public class StationViewInitializationParameters : IViewInitializationParameters
     {
-        public UnityAction SensorialEvent { get; }
-        public UnityAction MotorialEvent { get; }
-        public UnityAction HistoricInfoEvent { get; }
+        public UnityAction<ChangingButton> SensorialEvent { get; }
+        public UnityAction<ChangingButton> MotorialEvent { get; }
+        public UnityAction<ChangingButton> HistoricInfoEvent { get; }
         public UnityAction MainMenuEvent { get; }
         public UnityAction ReturnEvent { get; }
-        public UnityAction FinishExerciseEvent { get; }
         public string HeaderText { get; }
         public string InformationAboutStation { get; }
 
-        public StationViewInitializationParameters(UnityAction sensorialEvent, UnityAction motorialEvent,
-            UnityAction historicInfoEvent, UnityAction mainMenuEvent, UnityAction returnEvent,
-            UnityAction finishExerciseEvent, string headerText, string info)
+        public StationViewInitializationParameters(UnityAction<ChangingButton> sensorialEvent, UnityAction<ChangingButton> motorialEvent,
+            UnityAction<ChangingButton> historicInfoEvent, UnityAction mainMenuEvent, UnityAction returnEvent,
+            string headerText, string info)
         {
             SensorialEvent += sensorialEvent;
             MotorialEvent += motorialEvent;
             HistoricInfoEvent += historicInfoEvent;
             MainMenuEvent += mainMenuEvent;
             ReturnEvent += returnEvent;
-            FinishExerciseEvent += finishExerciseEvent;
             HeaderText = headerText;
             InformationAboutStation = info;
         }
