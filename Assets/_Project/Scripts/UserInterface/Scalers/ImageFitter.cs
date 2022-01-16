@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -10,14 +11,14 @@ namespace PolSl.UrbanHealthPath.UserInterface.Scalers
         [FormerlySerializedAs("imageArea")] [SerializeField] private RectTransform _imageArea;
         [FormerlySerializedAs("imageRect")] [SerializeField] private RectTransform _imageRect;
         [FormerlySerializedAs("image")] [SerializeField] private RawImage _image;
-        private void Awake()
+        
+        private void Start()
         {
             if (_image.texture)
             {
                 InitializeImage(_image.texture);
             }
         }
-
         public void InitializeImage(Texture texture)
         {
             StartCoroutine(SetTextureSize(texture));
@@ -27,6 +28,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Scalers
         {
             yield return new WaitForEndOfFrame();
 
+            Debug.Log(_imageArea.sizeDelta);
             Vector2 size = TextureScaler.GetScaledTexture(_imageArea, texture);
             _image.texture = texture;
             _imageRect.sizeDelta = new Vector2(size.x, size.y);

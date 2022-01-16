@@ -1379,9 +1379,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2fbeedd72222849834ff33a252d4aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backButton: {fileID: 2161983006985771444}
-  forwardButton: {fileID: 4318902366280554458}
-  header: {fileID: 3884741723928419257}
+  _backButton: {fileID: 2161983006985771444}
+  _forwardButton: {fileID: 4318902366280554458}
+  headerPanel: {fileID: 3884741723928419257}
 --- !u!114 &1971232216
 MonoBehaviour:
   m_ObjectHideFlags: 0

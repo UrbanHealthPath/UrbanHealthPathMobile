@@ -1427,7 +1427,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 8
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1703,7 +1703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 951984948468418030, guid: 494a37d5172098d47973e2504bf6fd6b, type: 3}
       propertyPath: m_Name
-      value: QuizWithTextsPopup
+      value: QuizWithTextsPopup Variant
       objectReference: {fileID: 0}
     - target: {fileID: 951984948468418030, guid: 494a37d5172098d47973e2504bf6fd6b, type: 3}
       propertyPath: m_IsActive
@@ -1806,13 +1806,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd051a48a49443db6dd15533c751018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  question: {fileID: 1345099322516265002}
-  popupArea: {fileID: 4755531571587105612}
-  text1: {fileID: 1075657265}
-  text2: {fileID: 1958043978}
-  text3: {fileID: 1118003828}
-  text4: {fileID: 1174662300}
-  button1: {fileID: 463074393}
-  button2: {fileID: 1737734097}
-  button3: {fileID: 1767570343}
-  button4: {fileID: 798338821}
+  _question: {fileID: 1345099322516265002}
+  _popupArea: {fileID: 4755531571587105612}
+  _text1: {fileID: 1075657265}
+  _text2: {fileID: 1958043978}
+  _text3: {fileID: 1118003828}
+  _text4: {fileID: 1174662300}
+  _button1: {fileID: 463074393}
+  _button2: {fileID: 1737734097}
+  _button3: {fileID: 1767570343}
+  _button4: {fileID: 798338821}
