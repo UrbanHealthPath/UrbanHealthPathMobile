@@ -13,21 +13,9 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
 
         [SerializeField] private Button _button;
 
-        public ImageFitter ImageFitter
-        {
-            get
-            {
-                return _imageFitter;
-            }
-        }
+        public ImageFitter ImageFitter => _imageFitter;
 
-        public Button Button
-        {
-            get
-            {
-                return _button;
-            }
-        }
+        public Button Button => _button;
 
         public ButtonFitterConnection(ImageFitter imageFitter, Button button)
         {

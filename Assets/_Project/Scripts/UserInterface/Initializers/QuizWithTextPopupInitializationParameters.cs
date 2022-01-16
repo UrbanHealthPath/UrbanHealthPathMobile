@@ -1,4 +1,5 @@
-﻿using PolSl.UrbanHealthPath.UserInterface.Popups;
+﻿using PolSl.UrbanHealthPath.UserInterface.Components;
+using PolSl.UrbanHealthPath.UserInterface.Popups;
 using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
@@ -8,20 +9,20 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
         public string Question { get;  }
         public PopupPayload Payload { get;  }
         public string Text1 { get; }
-        public UnityAction ButtonText1Action { get; }
+        public UnityAction<QuizOptionButton> ButtonText1Action { get; }
         
         public string Text2 { get; }
-        public UnityAction ButtonText2Action { get; }
+        public UnityAction<QuizOptionButton> ButtonText2Action { get; }
         
         public string Text3 { get; }
-        public UnityAction ButtonText3Action { get; }
+        public UnityAction<QuizOptionButton> ButtonText3Action { get; }
         
         public string Text4 { get; }
-        public UnityAction ButtonText4Action { get; }
+        public UnityAction<QuizOptionButton> ButtonText4Action { get; }
         
         public QuizWithTextPopupInitializationParameters(string question, PopupPayload payload, string text1, 
-            UnityAction buttonText1Action, string text2, UnityAction buttonText2Action, string text3, 
-            UnityAction buttonText3Action, string text4, UnityAction buttonText4Action)
+            UnityAction<QuizOptionButton> buttonText1Action, string text2, UnityAction<QuizOptionButton> buttonText2Action, string text3, 
+            UnityAction<QuizOptionButton> buttonText3Action, string text4, UnityAction<QuizOptionButton> buttonText4Action)
         {
             Question = question;
             Payload = payload;
