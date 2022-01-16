@@ -8,6 +8,7 @@
         WithTextAndImage,
         WithTextAndVideo,
         QuizWithTexts,
-        QuizWithImages
+        QuizWithImages,
+        WithTextAndAudio
     }
 }
