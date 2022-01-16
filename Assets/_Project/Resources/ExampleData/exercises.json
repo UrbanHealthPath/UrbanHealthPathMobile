@@ -125,5 +125,195 @@
         "description": "Stań na wprost wybranej arkady. Podnieś ręce w górę, wykonując głęboki wdech nosem. Następnie wolno opuść dłonie naśladując łuk arkad i wolno wydychając powietrze nosem. Powtórz ćwiczenie trzy razy."
       }
     ]
+  },
+  {
+    "exercise_id": "gliwice.podcienie.1",
+    "displayed_name" : "5a",
+    "category": "motorical",
+    "subcategory": "legs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "video",
+        "description": "Przejdź slalomem pomiędzy filarami podcienia w odpowiednim dla siebie tempie. Pamiętaj, żeby kroki stawiane były w równych długościach, a plecy były proste.",
+        "video_file": "video.station.podcienie.exercise.5a"
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.podcienie.2",
+    "displayed_name" : "5b",
+    "category": "motorical",
+    "subcategory": "legs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "video",
+        "description": "Stań pod jedną z arkad. Połóż dłonie na biodra, napnij mięśnie pośladkowe i staraj się odchylić do tyłu naśladując łuk arkady. W ocenie Twoich możliwości pomogą Ci podziały na filarze. Odchylając się powoli policz do trzech i wróć do pozycji wyjściowej. Wykonaj 2 razy.",
+        "video_file": "video.station.podcienie.exercise.5b"
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.podcienie.3",
+    "displayed_name": "5c",
+    "category": "sensorial",
+    "subcategory": "lungs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "text",
+        "description": "Stań pod arkadami i oprzyj się o filar. Możesz przymknąć oczy, a następnie wykonaj długi wdech i wydech nosem. Przez dłuższą chwilę wyobraź sobie piękny przedmiot, który kiedyś widziałaś/-eś lub posiadasz. Jaki ma kształt? Jakie ma kolory? Jaki jest w dotyku?"
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.rog.1",
+    "displayed_name": "6",
+    "category": "motorical",
+    "subcategory": "legs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "text",
+        "description": "Wyobraź sobie, że trzymasz, podobnie, jak Gliwiczanka, w obydwu rękach dzban. Jest on blisko Twojego ciała, po prawej stronie. Teraz musisz nabrać do niego wody z wyobrażonej studni znajdującej się przed Tobą. Nabierz wody poprzez ugięcie kolan i delikatny skłon w przód. Powtórz 3 razy. A następnie wyobraź sobie, że przekładasz dzban na drugą stronę i teraz jest blisko Twojego lewego boku. Powtórz nabieranie wody. Napnij brzuch, gdy podnosisz dzban z wodą, wyobraź sobie jego ciężar. Nie śpiesz się."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.rog.2",
+    "displayed_name": "Rzeźba - Gra Miejska",
+    "category": "game",
+    "subcategory": "eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "answer_selection",
+        "question": "Stoisz na narożniku Rynku przy ulicy Plebańskiej przed ważną dla gliwiczan rzeźbą. Czy pamiętasz kogo przedstawia i jak jest potocznie nazywana? Zaznacz poprawną odpowiedź.",
+        "answers": [
+          "Duńska kobieta",
+          "Gliwiczanka/gliwicka baba",
+          "Matka Boska",
+          "Wandzia"
+        ],
+        "image": "image.game.gliwice.Gra_miejska_Zdjecie_6_Rzezba_kobiety_broniacej_Gliwic",
+        "correct_answer": 1
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.pilastry.4a",
+    "displayed_name": "4a",
+    "category": "motorical",
+    "subcategory": "Legs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 3,
+        "type": "video",
+        "description": "Zatrzymaj się przed kamienicą Rynek 18. Znajdź wzrokiem budynek z kolumnami. Policz je, a następnie maszeruj wzdłuż budynku szybkim krokiem defiladowym. Wykonaj tyle szybkich kroków ile kolumn naliczyłeś.",
+        "video_file": "video.station.pilastry.exercise.4a"
+      },
+      {
+        "min_difficulty": 2,
+        "max_difficulty": 3,
+        "type": "video",
+        "description": "Wykonaj tyle szybkich kroków ile kolumn naliczyłeś, a do kroku defiladowego dołącz ruch prostymi rękoma do przodu i do tyłu.",
+        "video_file": "video.station.pilastry.exercise.4b"
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.pilastry.4b",
+    "displayed_name": "4b",
+    "category": "sensorial",
+    "subcategory": "lungs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "text",
+        "description": "Stań przed wejściem do kamienicy. Spleć ręce z przodu i wolno podnoś je w górę. Wykonaj w tym czasie długi wdech nosem podnosząc ręce najwyżej jak potrafisz. Powoli opuść ręce z przodu wykonując wydech nosem. Powtórz tyle razy, ile to dla Ciebie wygodne."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.pilastry.game",
+    "displayed_name": "Pilastry Gra Miejska",
+    "category": "game",
+    "subcategory": "eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "answer_selection",
+        "question": "Stań naprzeciwko budynku i postaraj się zliczyć wszystkie pilastry. Następnie zaznacz jedną prawidłową odpowiedź.",
+        "answers": [
+          "8",
+          "9",
+          "10",
+          "11"
+        ],
+        "image": "image.game.gliwice.pilastry.gra.miejska",
+        "correct_answer": 2
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.plebanska.1",
+    "displayed_name" : "7a",
+    "category": "motorical",
+    "subcategory": "legs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "video",
+        "description": "Stań na chodniku naprzeciwko drzwi na Plebańskiej 4. Pozycja początkowa: barki w dół, łopatki ściągnięte,  plecy proste Pochyl głowę w lewą stronę zbliżając lewe ucho do ramienia. Następnie poruszaj głową w płaszczyźnie czołowej w prawą stronę naśladując kształt łuku i zbliż prawe ucho do prawego ramienia. Wykonaj ćwiczenie w wolnym rytmie dwukrotnie.",
+        "video_file": "video.station.plebaska.exercise.7a"
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.plebanska.2",
+    "displayed_name" : "7a",
+    "category": "motorical",
+    "subcategory": "legs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "video",
+        "description": " Stań we wnęce naprzeciwko drzwi na Plebańskiej 6.Wykonuj ruch głową wodząc wzrokiem od podłoża z prawej strony przez całą linię obramowania drzwi po szczyt arkady, a następnie w dół w lewą stronę do samego dołu.",
+        "video_file": "video.station.plebaska.exercise.7b"
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.plebanska.game",
+    "displayed_name": "Plebanska Gra",
+    "category": "game",
+    "subcategory": "eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "answer_selection",
+        "question": "Ulica Plebańska, na którą właśnie wchodzisz jest łącznikiem pomiędzy Rynkiem, a Placem Wszystkich Świętych. Czy pamiętasz jaką nazwę nosiła w czasach, gdy Gliwice należały do Niemiec?",
+        "answers": [
+          "Brunnenstraße",
+          "Löwenstraße",
+          "Wilhelmstraße",
+          "Pfarrstraße"
+        ],
+        "image": "image.game.gliwice.Gra_miejska_zdjecie_7.Plebanska.jpg",
+        "correct_answer": 3
+      }
+    ]
   }
 ]
