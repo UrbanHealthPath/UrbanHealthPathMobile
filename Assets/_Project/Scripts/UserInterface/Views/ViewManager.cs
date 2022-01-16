@@ -23,7 +23,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
 
         private Dictionary<ViewType, GameObject> _views;
 
-        public void Awake()
+        public void Initialize()
         {
             CurrentView = null;
 
@@ -35,19 +35,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
             }
 
             History = new History();
-            
-            ListElement r = new ListElement("aaaaa", null, "bbb", () => Debug.Log("jes"));
-            var a = new List<ListElement>();
-            a.Add(r);
-            r = new ListElement("aaaaa", null, "bbb", () => Debug.Log("jes"));
-            a.Add(r);
-            r = new ListElement("aaaaa", null, "bbb", () => Debug.Log("jes"));
-            a.Add(r);
-            r = new ListElement("aaaa2a", null, "bbb", () => Debug.Log("jes"));
-            a.Add(r);
-            
-            var init = new PathChoiceViewInitializationParameters(a, () => Debug.Log("return"));
-            OpenView(ViewType.PathChoice, init);
         }
 
         public GameObject OpenView(ViewType viewType, IViewInitializationParameters initializationParameters = null)
