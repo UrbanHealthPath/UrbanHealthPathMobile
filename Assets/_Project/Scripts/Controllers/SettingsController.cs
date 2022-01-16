@@ -4,13 +4,10 @@ using PolSl.UrbanHealthPath.UserInterface.Views;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
-    public class SettingsController
+    public class SettingsController : BaseController
     {
-        private readonly ViewManager _viewManager;
-
-        public SettingsController(ViewManager viewManager)
+        public SettingsController(ViewManager viewManager) : base(viewManager)
         {
-            _viewManager = viewManager;
         }
 
         public void ShowSettings(Action returnButtonPressed, Action revertDefaultsButtonPressed)
@@ -18,7 +15,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             IViewInitializationParameters initParams = new SettingsInitializationParameters(() => returnButtonPressed.Invoke(),
                 () => revertDefaultsButtonPressed.Invoke(), OnChangeFontSizeButtonPressed, OnChangeThemeButtonPressed,
                 OnToggleAudioButtonPressed);
-            _viewManager.OpenView(ViewType.Settings, initParams);
+            ViewManager.OpenView(ViewType.Settings, initParams);
         }
 
         private void OnChangeFontSizeButtonPressed()

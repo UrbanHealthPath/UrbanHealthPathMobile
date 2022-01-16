@@ -23,7 +23,7 @@ namespace PolSl.UrbanHealthPath
         {
             if (!CheckIfAllRequiredKeysExists(json))
             {
-                throw new ParsingException();
+                throw new ParsingException($"Not all required keys found! {json}");
             }
         }
         

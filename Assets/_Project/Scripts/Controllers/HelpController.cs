@@ -7,24 +7,21 @@ using PolSl.UrbanHealthPath.UserInterface.Views;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
-    public class HelpController
+    public class HelpController : BaseController
     {
-        private readonly ViewManager _viewManager;
-
-        public HelpController(ViewManager viewManager)
+        public HelpController(ViewManager viewManager) : base(viewManager)
         {
-            _viewManager = viewManager;
         }
 
-        public void ShowHelp(Action returnFromView)
+        public void ShowHelp()
         {
             IViewInitializationParameters initParams = new HelpViewInitializationParameters(new List<ListElement>()
             {
                 new ListElement("Objaśnienia ikon", null, "Pomoc",
                     () => { })
-            }, () => returnFromView.Invoke());
+            }, ReturnToPreviousView);
             
-            _viewManager.OpenView(ViewType.Help, initParams);
+            ViewManager.OpenView(ViewType.Help, initParams);
         }
     }
 }

@@ -3,11 +3,11 @@ using PolSl.UrbanHealthPath.PathData;
 
 namespace PolSl.UrbanHealthPath.Map
 {
-    public class LocationFactory
+    public class LocationProviderFactory : ILocationProviderFactory
     {
         private LocationPermissionRequester _permissionRequester;
 
-        public LocationFactory(LocationPermissionRequester permissionRequester)
+        public LocationProviderFactory(LocationPermissionRequester permissionRequester)
         {
             _permissionRequester = permissionRequester;
         }
@@ -21,9 +21,9 @@ namespace PolSl.UrbanHealthPath.Map
             return new FakeLocationProvider(new List<Coordinates>());
         }
 
-        public ILocationProvider CreateFakeProvider(List<Coordinates> latitudeLongitudeList)
+        public ILocationProvider CreateFakeProvider(List<Coordinates> coordinates)
         {
-            return new FakeLocationProvider(latitudeLongitudeList);
+            return new FakeLocationProvider(coordinates);
         }
     }
 }

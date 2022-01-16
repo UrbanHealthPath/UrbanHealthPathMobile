@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
-    public class MenuController
+    public class MenuController : BaseController
     {
         public event Action ProfileButtonPressed;
         public event Action HelpButtonPressed;
@@ -13,13 +13,8 @@ namespace PolSl.UrbanHealthPath.Controllers
         public event Action TopMenuButtonPressed;
         public event Action BottomMenuButtonPressed;
 
-        private readonly MainController _mainController;
-        private readonly ViewManager _viewManager;
-
-        public MenuController(MainController mainController, ViewManager viewManager)
+        public MenuController(ViewManager viewManager) : base(viewManager)
         {
-            _mainController = mainController;
-            _viewManager = viewManager;
         }
 
         public void ShowMenu(bool isPathInProgress)
@@ -32,7 +27,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                 () => OnTopMenuButtonPressed(isPathInProgress), () => OnBottomMenuButtonPressed(isPathInProgress),
                 OnQuitApplicationButtonPressed, upperButtonText, lowerButtonText);
 
-            _viewManager.OpenView(ViewType.Main, initParams);
+            ViewManager.OpenView(ViewType.Main, initParams);
         }
 
         private void OnProfileButtonPressed()

@@ -16,7 +16,7 @@ namespace PolSl.UrbanHealthPath
         [SerializeField] private StationFactory _stationFactory;
         [SerializeField] private NavigationPointProvider _navigationPointProvider;
         [SerializeField] private PlayerLocationTransformer _playerLocationTransformer;
-        [SerializeField] private TransformHeadingRotator _locationProviderRotator;
+        [SerializeField] private TransformHeadingRotator _transformHeadingRotator;
         [SerializeField] private AbstractMap _map;
         [SerializeField] private UnityEngine.Camera _camera;
         [SerializeField] private RenderTexture _renderTexture;
@@ -26,12 +26,12 @@ namespace PolSl.UrbanHealthPath
         public StationFactory StationFactory => _stationFactory;
         public NavigationPointProvider NavigationPointProvider => _navigationPointProvider;
         public PlayerLocationTransformer PlayerLocationTransformer => _playerLocationTransformer;
-        public TransformHeadingRotator LocationProviderRotator => _locationProviderRotator;
+        public TransformHeadingRotator LocationProviderRotator => _transformHeadingRotator;
         public AbstractMap Map => _map;
 
         public void Initialize(ILocationUpdater locationUpdater, List<Coordinates> stationsCoordinates)
         {
-            _locationProviderRotator.Initialize(locationUpdater);
+            _transformHeadingRotator.Initialize(locationUpdater);
             new DelayedMapInitializer(_map, locationUpdater);
             _playerLocationTransformer.Initialize(_map, locationUpdater);
             _navigationPointProvider.Initialize(_map, stationsCoordinates[0]);

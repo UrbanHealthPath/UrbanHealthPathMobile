@@ -5,14 +5,12 @@ using PolSl.UrbanHealthPath.Utils.PersistentValue;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
-    public class LoginController
+    public class LoginController : BaseController
     {
-        private readonly ViewManager _viewManager;
         private readonly BoolPrefsValue _isFirstRun;
 
-        public LoginController(ViewManager viewManager)
+        public LoginController(ViewManager viewManager) : base(viewManager)
         {
-            _viewManager = viewManager;
             _isFirstRun = new BoolPrefsValue("is_first_run", true);
         }
 
@@ -30,7 +28,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                 loginComplete.Invoke();
             });
 
-            _viewManager.OpenView(ViewType.Login, initParams);
+            ViewManager.OpenView(ViewType.Login, initParams);
         }
     }
 }

@@ -48,6 +48,8 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         private void Awake()
         {
             _logger = new UnityLogger();
+            
+            _isFirstRun = new BoolPrefsValue("is_first_run", true);
 
             _applicationData = LoadApplicationData();
             _pathProgressManager =
@@ -62,9 +64,9 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
             _popupManager = uiManager.GetComponent<PopupManager>();
             _popupManager.Initialize();
 
-            MainController mainController = new MainController(_viewManager, _popupManager, _pathProgressManager);
+            //MainController mainController = new MainController(_viewManager, _popupManager, _pathProgressManager, _applicationData, _mapHolderPrefab,  _coroutineManager);
 
-            //BuildUI();
+            BuildUI();
         }
 
         private IApplicationData LoadApplicationData()
@@ -83,7 +85,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
             DestroyMap();
 
             ILocationProvider locationProvider =
-                new LocationFactory(new LocationPermissionRequester()).CreateFakeProvider(coordinatesList);
+                new LocationProviderFactory(new LocationPermissionRequester()).CreateFakeProvider(coordinatesList);
             ILocationUpdater locationUpdater = new LocationUpdater(locationProvider);
 
             _mapHolder = Instantiate(_mapHolderPrefab);
@@ -97,7 +99,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
             DestroyMap();
 
             ILocationProvider locationProvider =
-                new LocationFactory(new LocationPermissionRequester()).CreateDeviceProvider();
+                new LocationProviderFactory(new LocationPermissionRequester()).CreateDeviceProvider();
             ILocationUpdater locationUpdater = new LocationUpdater(locationProvider);
 
             _currentLocationProvider = locationProvider;            
