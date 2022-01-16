@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Mapbox.Unity.Location;
 using Newtonsoft.Json;
 using PolSl.UrbanHealthPath.Map;
 using PolSl.UrbanHealthPath.MediaAccess;
@@ -15,10 +14,11 @@ using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
-using PolSl.UrbanHealthPath.Utils.DistanceCalculator;
+using PolSl.UrbanHealthPath.Utils.CoroutineManager;
 using PolSl.UrbanHealthPath.Utils.PersistentValue;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using ILocationProvider = PolSl.UrbanHealthPath.Map.ILocationProvider;
 using Random = UnityEngine.Random;
 
@@ -26,7 +26,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 {
     public class SceneInitializer : MonoBehaviour
     {
-        [SerializeField] private CoroutinesManager _coroutinesManager;
+        [FormerlySerializedAs("_coroutinesManager")] [SerializeField] private CoroutineManager _coroutineManager;
 
         [SerializeField] private MapHolder _mapHolderPrefab;
 
@@ -39,7 +39,6 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         private ViewManager _viewManager;
         private PopupManager _popupManager;
         private MapHolder _mapHolder;
-        private IDistanceCalculator _distanceCalculator;
         private UrbanPath _currentPath;
         private Exercise _currentExercise;
         private ILocationProvider _currentLocationProvider;
@@ -48,8 +47,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         {
             _logger = new UnityLogger();
             _isFirstRun = new BoolPrefsValue("is_first_run", true);
-            _distanceCalculator = new DistanceCalculator();
-
+            
             _applicationData = LoadApplicationData();
             _pathProgressManager =
                 new PathProgressManager(new JsonFilePathProgressPersistor(Application.dataPath + "/progress.json",
@@ -83,14 +81,12 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
             ILocationProvider locationProvider =
                 new LocationFactory(new LocationPermissionRequester()).CreateFakeProvider(coordinatesList);
+            ILocationUpdater locationUpdater = new LocationUpdater(locationProvider);
 
-            _currentLocationProvider = locationProvider;
-            
             _mapHolder = Instantiate(_mapHolderPrefab);
-            _mapHolder.Initialize(locationProvider, coordinatesList);
-            //_coroutinesManager.Initialize(locationProvider);
-            //_coroutinesManager.StartCoroutines();
-            locationProvider.GetLocation();
+            _mapHolder.Initialize(locationUpdater, coordinatesList);
+            
+            locationUpdater.UpdateLocation();
         }
 
         private void InitializeMap(List<Coordinates> coordinatesList)
@@ -99,11 +95,12 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
             ILocationProvider locationProvider =
                 new LocationFactory(new LocationPermissionRequester()).CreateDeviceProvider();
+            ILocationUpdater locationUpdater = new LocationUpdater(locationProvider);
 
             _currentLocationProvider = locationProvider;            
             
             _mapHolder = Instantiate(_mapHolderPrefab);
-            _mapHolder.Initialize(locationProvider, coordinatesList);
+            _mapHolder.Initialize(locationUpdater, coordinatesList);
         }
 
         private void DestroyMap()
@@ -115,19 +112,6 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
             
             Destroy(_mapHolder.gameObject);
             _mapHolder = null;
-        }
-
-        private void CheckIfInStationVicinity(Location location)
-        {
-            Station nextStation = GetNextStation();
-
-            IDistance distanceBetweenStationAndUser = _distanceCalculator.CalculateDistance(nextStation.Coordinates,
-                new Coordinates(location.LatitudeLongitude.x, location.LatitudeLongitude.y));
-
-            if (distanceBetweenStationAndUser.LessThan(Distance.FromMeters(3)))
-            {
-                ShowNextStationConfirmation(nextStation);
-            }
         }
 
         private void BuildUI()
@@ -357,8 +341,6 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
                 sensorialEvent = () => CreatePopupForExercise(sensorialExercise);
             }
 
-            Texture2D stationImage = new TextureFileAccessor(station.Image).GetMedia();
-
             StationViewInitializationParameters initParams =
                 new StationViewInitializationParameters(sensorialEvent, motoricalEvent,
                     gameEvent, () => FinishStation(station), () =>
@@ -366,7 +348,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
                         ClearPopup();
                         BuildPathView();
                     }, () => FinishExercise(_currentExercise),
-                    station.DisplayedName, fact?.Description ?? station.DisplayedName, stationImage);
+                    station.DisplayedName, fact?.Description ?? station.DisplayedName);
 
             _viewManager.InitializeCurrentView(initParams);
         }

@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using Mapbox.Unity.Location;
 using Mapbox.Unity.Map;
 using UnityEngine;
 using PolSl.UrbanHealthPath.PathData;
-
 
 namespace PolSl.UrbanHealthPath.Map
 {
@@ -17,7 +17,7 @@ namespace PolSl.UrbanHealthPath.Map
         
         private AbstractMap _map;
 
-        private ILocationProvider _locationProvider;
+        private ILocationUpdater _locationUpdater;
 
         private bool _initialized = false;
 
@@ -27,30 +27,55 @@ namespace PolSl.UrbanHealthPath.Map
 
         private Transform _currentStationTransform;
 
-        public void Initialize(AbstractMap map, ILocationProvider locationProvider, List<Coordinates> coordinates)
+        private bool _isSubscribedToLocationUpdatedEvent;
+
+        public void Initialize(AbstractMap map, ILocationUpdater locationUpdater, List<Coordinates> coordinates)
         {
             _map = map;
-            _locationProvider = locationProvider;
+            _locationUpdater = locationUpdater;
+            
             if (coordinates != null && coordinates.Count != 0)
             {
                 _coordinatesList = coordinates;
             }
-            _locationProvider.LocationUpdated += LocationProviderFirstLocationUpdated;
+
+            SubscribeToLocationUpdatedEvent();
             _initialized = true;
         }
-        private void LocationProviderFirstLocationUpdated(Location location)
+
+        private void OnDestroy()
         {
-            _locationProvider.LocationUpdated -= LocationProviderFirstLocationUpdated;
-            if (_initialized&&_coordinatesList!=null&&_coordinatesList.Count!=0)
+            if (_isSubscribedToLocationUpdatedEvent)
+            {
+                UnsubscribeFromLocationUpdatedEvent();
+            }
+        }
+
+        private void InitializeStations(LocationUpdatedArgs args)
+        {
+            UnsubscribeFromLocationUpdatedEvent();
+            if (_initialized && _coordinatesList != null && _coordinatesList.Count != 0)
             {
                 CreateStationHalo();
                 foreach(Coordinates coordinates in _coordinatesList)
                 {
                     Vector3 worldPosition = _map.GeoToWorldPosition(coordinates, false);
                     Transform newStation = Instantiate(_statation, worldPosition+_offset, _statation.rotation);
-                    newStation.SetParent(this.transform);
+                    newStation.SetParent(transform);
                 }
             }
+        }
+
+        private void SubscribeToLocationUpdatedEvent()
+        {
+            _locationUpdater.LocationUpdated += InitializeStations;
+            _isSubscribedToLocationUpdatedEvent = true;
+        }
+
+        private void UnsubscribeFromLocationUpdatedEvent()
+        {
+            _locationUpdater.LocationUpdated -= InitializeStations;
+            _isSubscribedToLocationUpdatedEvent = false;
         }
         
         private void CreateStationHalo()

@@ -6,7 +6,7 @@ namespace PolSl.UrbanHealthPath.Map
 {
     public interface ILocationProvider
     {
-        public event Action<Location> LocationUpdated;
+        //public event Action<Location> LocationUpdated;
         public Location GetLocation();
     }
 }

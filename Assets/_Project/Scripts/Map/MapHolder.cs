@@ -16,7 +16,7 @@ namespace PolSl.UrbanHealthPath
         [SerializeField] private StationFactory _stationFactory;
         [SerializeField] private NavigationPointProvider _navigationPointProvider;
         [SerializeField] private PlayerLocationTransformer _playerLocationTransformer;
-        [SerializeField] private LocationProviderRotator _locationProviderRotator;
+        [SerializeField] private TransformHeadingRotator _locationProviderRotator;
         [SerializeField] private AbstractMap _map;
         [SerializeField] private UnityEngine.Camera _camera;
         [SerializeField] private RenderTexture _renderTexture;
@@ -26,16 +26,16 @@ namespace PolSl.UrbanHealthPath
         public StationFactory StationFactory => _stationFactory;
         public NavigationPointProvider NavigationPointProvider => _navigationPointProvider;
         public PlayerLocationTransformer PlayerLocationTransformer => _playerLocationTransformer;
-        public LocationProviderRotator LocationProviderRotator => _locationProviderRotator;
+        public TransformHeadingRotator LocationProviderRotator => _locationProviderRotator;
         public AbstractMap Map => _map;
 
-        public void Initialize(ILocationProvider locationProvider, List<Coordinates> stationsCoordinates)
+        public void Initialize(ILocationUpdater locationUpdater, List<Coordinates> stationsCoordinates)
         {
-            _locationProviderRotator.Initialize(locationProvider);
-            new LocationProviderMapInitializer(_map, locationProvider);
-            _playerLocationTransformer.Initialize(_map, locationProvider);
+            _locationProviderRotator.Initialize(locationUpdater);
+            new DelayedMapInitializer(_map, locationUpdater);
+            _playerLocationTransformer.Initialize(_map, locationUpdater);
             _navigationPointProvider.Initialize(_map, stationsCoordinates[0]);
-            _stationFactory.Initialize(_map, locationProvider, stationsCoordinates);
+            _stationFactory.Initialize(_map, locationUpdater, stationsCoordinates);
             _camera.targetTexture = _renderTexture;
             _camera.enabled = true;
             _isInitialized = true;

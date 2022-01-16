@@ -1,32 +1,24 @@
+using Mapbox.Unity.Location;
 using PolSl.UrbanHealthPath.Map;
 using UnityEngine;
 
 
 namespace PolSl.UrbanHealthPath.Player
 {
-    public class LocationProviderRotator : MonoBehaviour
+    public class TransformHeadingRotator : MonoBehaviour
     {
+        private ILocationUpdater _locationUpdater;
         private Quaternion _targetRotation;
-        
-        private ILocationProvider _locationProvider;
+        private bool _initialized;
 
-        private bool _initialized = false;
-
-        public void Initialize(ILocationProvider locationProvider)
+        public void Initialize(ILocationUpdater locationUpdater)
         {
-            _locationProvider = locationProvider;
+            _locationUpdater = locationUpdater;
+            _locationUpdater.LocationUpdated += RecalculateTargetRotation;
             _initialized = true;
         }
 
-        void Start()
-        {
-            if (_initialized)
-            {
-                _locationProvider.LocationUpdated += LocationProviderLocationUpdated;
-            }
-        }
-        
-        void Update()
+        private void Update()
         {
             if (_initialized)
             {
@@ -37,15 +29,16 @@ namespace PolSl.UrbanHealthPath.Player
 
         private void OnDestroy()
         {
-            if (_locationProvider != null)
+            if (_initialized)
             {
-                _locationProvider.LocationUpdated -= LocationProviderLocationUpdated;
+                _locationUpdater.LocationUpdated -= RecalculateTargetRotation;
             }
         }
 
-        void LocationProviderLocationUpdated(Mapbox.Unity.Location.Location location)
+        void RecalculateTargetRotation(LocationUpdatedArgs args)
         {
-
+            Location location = args.Location;
+            
             float rotationAngle = location.UserHeading * -1f;
             if (location.IsUserHeadingUpdated)
             {
@@ -63,6 +56,5 @@ namespace PolSl.UrbanHealthPath.Player
             euler.z = currentEuler.z;
             return euler;
         }
-
     }
 }

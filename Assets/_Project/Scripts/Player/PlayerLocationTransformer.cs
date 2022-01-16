@@ -1,3 +1,4 @@
+using System;
 using Mapbox.Unity.Map;
 using UnityEngine;
 using PolSl.UrbanHealthPath.Map;
@@ -9,26 +10,34 @@ namespace PolSl.UrbanHealthPath.Player
     {
         private AbstractMap _map;
 
-        private ILocationProvider _locationProvider;
+        private ILocationUpdater _locationUpdater;
 
         private bool _mapInitliazed;
 
         private bool _initialized;
 
-        public void Initialize(AbstractMap map, ILocationProvider locationProvider)
+        public void Initialize(AbstractMap map, ILocationUpdater locationUpdater)
         {
             _map = map;
             _map.OnInitialized += () => _mapInitliazed = true;
-            _locationProvider = locationProvider;
-            _locationProvider.LocationUpdated += LocationProviderLocationUpdated;
+            _locationUpdater = locationUpdater;
+            _locationUpdater.LocationUpdated += UpdatePosition;
             _initialized = true;
         }
 
-        void LocationProviderLocationUpdated(Mapbox.Unity.Location.Location location)
+        private void OnDestroy()
         {
-            if (_mapInitliazed&&_initialized)
+            if (_initialized)
             {
-                transform.position = _map.GeoToWorldPosition(location.LatitudeLongitude);
+                _locationUpdater.LocationUpdated -= UpdatePosition;
+            }
+        }
+
+        void UpdatePosition(LocationUpdatedArgs args)
+        {
+            if (_mapInitliazed && _initialized)
+            {
+                transform.position = _map.GeoToWorldPosition(args.Location.LatitudeLongitude);
             }
         }
     }
