@@ -46,8 +46,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         private void Awake()
         {
             _logger = new UnityLogger();
-            _isFirstRun = new BoolPrefsValue("is_first_run", true);
-            
+
             _applicationData = LoadApplicationData();
             _pathProgressManager =
                 new PathProgressManager(new JsonFilePathProgressPersistor(Application.dataPath + "/progress.json",
