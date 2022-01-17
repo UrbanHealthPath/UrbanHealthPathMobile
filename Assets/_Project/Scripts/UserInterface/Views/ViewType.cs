@@ -12,6 +12,7 @@
         Settings,
         IconInfo,
         AppInfo,
-        PathChoice
+        PathChoice,
+        PathPresentation
     }
 }
