@@ -13,6 +13,7 @@
         IconInfo,
         AppInfo,
         PathChoice,
-        PathPresentation
+        PathPresentation,
+        PathSummary
     }
 }
