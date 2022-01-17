@@ -222,9 +222,15 @@
     "path": "videos/exercises/CWICZENIE_7B"
   },
   {
-    "media_id": "image.game.gliwice.Gra_miejska_zdjecie_7.Plebanska.jpg",
+    "media_id": "image.game.gliwice.Gra_miejska_zdjecie_7.Plebanska",
     "type": "image",
     "storage_type": "local",
     "path": "images/game_images/Gra_miejska_zdjecie_7_Plebanska.jpg"
+  },
+  {
+    "media_id": "image.game.gliwice.Gra_miejska_zdjęcie1_3.Arkady",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_zdjęcie1_3.Arkady.png"
   }
 ]

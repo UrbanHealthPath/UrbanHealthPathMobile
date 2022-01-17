@@ -103,12 +103,11 @@
     "exercises": [
       "gliwice.podcienie.1",
       "gliwice.podcienie.2",
-      "gliwice.podcienie.3"
+      "gliwice.podcienie.3",
+      "gliwice.podcienie.game"
     ],
     "displayed_name": "Rynek Podcienie",
-    "historical_facts": [
-      "gliwice.arkady"
-    ],
+    "historical_facts": [],
     "navigation_audio": "",
     "image": "image.station.gliwice.podcienie.icon",
     "introduction": "Na jednym z filarów arkad został umieszczony napis: GALERIA SZTUKI. Nasz wzrok musi powędrować w górę po kilku dekoracyjnych rowkach czyli boniowaniach, aby go dojrzeć na szczycie filara. To tak jak przy budowaniu swojej coraz lepszej formy – stopniowo i krok po kroku.",

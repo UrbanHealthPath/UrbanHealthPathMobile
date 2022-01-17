@@ -58,7 +58,7 @@
           "image.game.gliwice.Gra_Miejska_Zdjęcie_3_1.Fontanna_Neptuna",
           "image.game.gliwice.Gra_Miejska_Zdjęcie_4_1.Fontanna_Neptuna"
         ],
-        "correct_answer": 0
+        "correct_answers": [0]
       }
     ]
   },
@@ -93,7 +93,7 @@
           "image.game.gliwice.Gra_Miejska_Zdjęcie2_Wieża_Budynku_Czerwonej_Chemii_2.Rzeźba_Madonny",
           "image.game.gliwice.Gra_Miejska_Zdjęcie3_Ratusz_2.Rzeźba_Madonny"
         ],
-        "correct_answer": 2
+        "correct_answers": [2]
       }
     ]
   },
@@ -171,6 +171,28 @@
     ]
   },
   {
+    "exercise_id": "gliwice.podcienie.game",
+    "displayed_name": "Podcienie - Gra Miejska",
+    "category": "game",
+    "subcategory": "eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "answer_selection",
+        "question": "Warto zwrócić uwagę na kamienice na Rynku. Wiele z nich kryje ciekawe historie, tak jak ta pod nr. 25, która znajduje się w narożniku Rynku przy ul. Bytomskiej. Należała do rodziny Troplowitzów, gliwickich Żydów, który zapisali się w historii miasta. Czy wiesz co wynalazł Oscar Troplowitz?",
+        "answers": [
+          "krem Nivea",
+          "perfumy",
+          "plaster opatrunkowy",
+          "pasta do zębów w tubce"
+        ],
+        "image": "image.game.gliwice.Gra_miejska_zdjęcie1_3.Arkady",
+        "correct_answers": [0,2,3]
+      }
+    ]
+  },
+  {
     "exercise_id": "gliwice.rog.1",
     "displayed_name": "6",
     "category": "motorical",
@@ -202,7 +224,7 @@
           "Wandzia"
         ],
         "image": "image.game.gliwice.Gra_miejska_Zdjecie_6_Rzezba_kobiety_broniacej_Gliwic",
-        "correct_answer": 1
+        "correct_answers": [1]
       }
     ]
   },
@@ -260,7 +282,7 @@
           "11"
         ],
         "image": "image.game.gliwice.pilastry.gra.miejska",
-        "correct_answer": 2
+        "correct_answers": [2]
       }
     ]
   },
@@ -312,7 +334,7 @@
           "Pfarrstraße"
         ],
         "image": "image.game.gliwice.Gra_miejska_zdjecie_7.Plebanska.jpg",
-        "correct_answer": 3
+        "correct_answers": [3]
       }
     ]
   }
