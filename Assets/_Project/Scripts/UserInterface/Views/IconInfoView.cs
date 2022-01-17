@@ -24,8 +24,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
             if (initializationParameters is ApplicationInfoViewInitializationParameters init)
             {
-                _backButton.onClick.AddListener(() => init.GoBack?.Invoke());
-                _forwardButton.onClick.AddListener(() => init.GoForward?.Invoke());
+                _backButton.onClick.AddListener(() => init.LeftButton?.Invoke());
+                _forwardButton.onClick.AddListener(() => init.RightButton?.Invoke());
             }
         }
         public void Display()
