@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
@@ -31,7 +32,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
                 {
                     int index = i;
                     _buttonFitterConnections[index].ImageFitter.InitializeImage(init.QuizElementOptions[index].Texture);
-                    _buttonFitterConnections[index].Button.onClick.AddListener(()=>init.QuizElementOptions[index].ButtonTextureAction?.Invoke());
+                    _buttonFitterConnections[index].Button.onClick.AddListener(()=>
+                        init.QuizElementOptions[index].ButtonTextureAction?.Invoke(_buttonFitterConnections[index].Button.GetComponent<QuizWithImageOptionButton>()));
                 }
             }
         }

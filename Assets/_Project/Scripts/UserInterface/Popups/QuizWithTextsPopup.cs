@@ -1,4 +1,5 @@
-﻿using PolSl.UrbanHealthPath.UserInterface.Initializers;
+﻿using PolSl.UrbanHealthPath.UserInterface.Components;
+using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using TMPro;
 using UnityEngine;
@@ -34,10 +35,10 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
                 _text3.text = init.Text3;
                 _text4.text = init.Text4;
 
-                _button1.onClick.AddListener(() => init.ButtonText1Action?.Invoke());
-                _button2.onClick.AddListener(() => init.ButtonText2Action?.Invoke());
-                _button3.onClick.AddListener(() => init.ButtonText3Action?.Invoke());
-                _button4.onClick.AddListener(() => init.ButtonText4Action?.Invoke());
+                _button1.onClick.AddListener(() => init.ButtonText1Action?.Invoke(_button1.GetComponent<QuizOptionButton>()));
+                _button2.onClick.AddListener(() => init.ButtonText2Action?.Invoke(_button2.GetComponent<QuizOptionButton>()));
+                _button3.onClick.AddListener(() => init.ButtonText3Action?.Invoke(_button3.GetComponent<QuizOptionButton>()));
+                _button4.onClick.AddListener(() => init.ButtonText4Action?.Invoke(_button4.GetComponent<QuizOptionButton>()));
             }
         }
         public void InitSizeAndPosition(PopupPayload payload)

@@ -4,13 +4,13 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
     public class ApplicationInfoViewInitializationParameters : IViewInitializationParameters
     {
-        public UnityAction GoBack { get; }
-        public UnityAction GoForward { get; }
+        public UnityAction LeftButton { get; }
+        public UnityAction RightButton { get; }
 
-        public ApplicationInfoViewInitializationParameters(UnityAction goBack, UnityAction goForward)
+        public ApplicationInfoViewInitializationParameters(UnityAction leftButton, UnityAction rightButton)
         {
-            GoBack += goBack;
-            GoForward += goForward;
+            LeftButton += leftButton;
+            RightButton += rightButton;
         }
     }
 }
