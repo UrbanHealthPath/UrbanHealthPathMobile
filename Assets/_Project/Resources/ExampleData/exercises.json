@@ -171,6 +171,28 @@
     ]
   },
   {
+    "exercise_id": "gliwice.podcienie.game",
+    "displayed_name": "Podcienie - Gra Miejska",
+    "category": "game",
+    "subcategory": "eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "answer_selection",
+        "question": "Warto zwrócić uwagę na kamienice na Rynku. Wiele z nich kryje ciekawe historie, tak jak ta pod nr. 25, która znajduje się w narożniku Rynku przy ul. Bytomskiej. Należała do rodziny Troplowitzów, gliwickich Żydów, który zapisali się w historii miasta. Czy wiesz co wynalazł Oscar Troplowitz?",
+        "answers": [
+          "krem Nivea",
+          "perfumy",
+          "plaster opatrunkowy",
+          "pasta do zębów w tubce"
+        ],
+        "image": "image.game.gliwice.Gra_miejska_zdjęcie1_3.Arkady",
+        "correct_answers": [0,2,3]
+      }
+    ]
+  },
+  {
     "exercise_id": "gliwice.rog.1",
     "displayed_name": "6",
     "category": "motorical",
