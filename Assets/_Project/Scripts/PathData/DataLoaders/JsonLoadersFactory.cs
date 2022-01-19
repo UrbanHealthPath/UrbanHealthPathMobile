@@ -21,12 +21,6 @@ namespace PolSl.UrbanHealthPath.PathData.DataLoaders
             return new JsonMediaFilesLoader(_fileReader.ReadJsonFromFile(GetFullFilePath("media_files")), _parsers.MediaFileParser);
         }
 
-        public IHistoricalFactsLoader CreateHistoricalFactsLoader()
-        {
-            return new JsonHistoricalFactsLoader(_fileReader.ReadJsonFromFile(GetFullFilePath("historical_facts")),
-                _parsers.HistoricalFactParser);
-        }
-
         public IExercisesLoader CreateExercisesLoader()
         {
             return new JsonExercisesLoader(_fileReader.ReadJsonFromFile(GetFullFilePath("exercises")),

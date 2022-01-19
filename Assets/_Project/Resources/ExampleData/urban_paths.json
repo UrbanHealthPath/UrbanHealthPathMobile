@@ -1,8 +1,8 @@
 ﻿[
   {
-    "path_id": "gliwice.mala_trasa",
-    "displayed_name": "Mala trasa",
-    "approximate_distance_in_meters": 1000,
+    "path_id": "gliwice.rynek",
+    "displayed_name": "Gliwice - Rynek",
+    "approximate_distance_in_meters": 180,
     "is_cyclic": true,
     "map_url": "mapbox://styles/matadam667/ckxn3iyihbqu214pbijxv32f1",
     "waypoints": [
@@ -14,6 +14,6 @@
       "gliwice.rynek.rog",
       "gliwice.rynek.plebanska"
     ],
-    "preview_image": "image.preview.gliwice.mala_trasa"
+    "preview_image": "image.preview.gliwice.rynek"
   }
 ]

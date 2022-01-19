@@ -15,7 +15,8 @@ namespace PolSl.UrbanHealthPath
             JsonObjectParser<VideoExerciseLevel> videoExerciseParser,
             JsonObjectParser<ImageExerciseLevel> imageExerciseParser,
             JsonObjectParser<ImageSelectionExerciseLevel> imageSelectionExerciseParser,
-            JsonObjectParser<AnswerSelectionExerciseLevel> answerSelectionExerciseParser) : base(new[] {TYPE_KEY})
+            JsonObjectParser<AnswerSelectionExerciseLevel> answerSelectionExerciseParser,
+            JsonObjectParser<HistoricalFactExerciseLevel> historicalFactExerciseParser) : base(new[] {TYPE_KEY})
         {
             _registeredTypesParsers = new Dictionary<string, IParser<JObject, ExerciseLevel>>();
             _registeredTypesParsers.Add("text", textExerciseParser);
@@ -23,6 +24,7 @@ namespace PolSl.UrbanHealthPath
             _registeredTypesParsers.Add("image", imageExerciseParser);
             _registeredTypesParsers.Add("answer_selection", answerSelectionExerciseParser);
             _registeredTypesParsers.Add("image_selection", imageSelectionExerciseParser);
+            _registeredTypesParsers.Add("historical_fact", historicalFactExerciseParser);
         }
 
         protected override void ValidateJson(JObject json)

@@ -15,11 +15,12 @@ namespace PolSl.UrbanHealthPath.Controllers
     public class ExerciseController : BaseController
     {
         public Action<Exercise> ExerciseFinished;
-        
+
         private readonly PopupManager _popupManager;
         private readonly CoroutineManager _coroutineManager;
 
-        public ExerciseController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager) : base(viewManager)
+        public ExerciseController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager)
+            : base(viewManager)
         {
             _popupManager = popupManager;
             _coroutineManager = coroutineManager;
@@ -29,7 +30,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             _coroutineManager.StartCoroutine(CreatePopupForExercise(exercise));
         }
-        
+
         private IEnumerator CreatePopupForExercise(Exercise exercise)
         {
             yield return new WaitForEndOfFrame();
@@ -59,7 +60,9 @@ namespace PolSl.UrbanHealthPath.Controllers
                     foreach (LateBoundValue<MediaFile> image in imageSelectionExerciseLevel.Images)
                     {
                         Texture2D texture = new TextureFileAccessor(image).GetMedia();
-                        bool isCorrect = imageSelectionExerciseLevel.CorrectAnswers.Contains(imageSelectionExerciseLevel.Images.IndexOf(image));
+                        bool isCorrect =
+                            imageSelectionExerciseLevel.CorrectAnswers.Contains(
+                                imageSelectionExerciseLevel.Images.IndexOf(image));
 
                         quizElementOptions.Add(new QuizElementOption(texture,
                             (button) =>
@@ -97,7 +100,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             ExerciseFinished?.Invoke(exercise);
         }
-        
+
         private void ClearPopup()
         {
             if (_popupManager.CurrentPopupType != PopupType.None)

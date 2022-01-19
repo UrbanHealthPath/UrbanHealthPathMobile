@@ -323,10 +323,6 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
                 ? sensorialExercises.ElementAt(Random.Range(0, sensorialExercises.Count))
                 : null;
 
-            HistoricalFact fact = station.HistoricalFacts.Count > 0
-                ? station.HistoricalFacts.ElementAt(Random.Range(0, station.HistoricalFacts.Count))
-                : null;
-
             UnityAction<ChangingButton> sensorialEvent = null;
             UnityAction<ChangingButton> motoricalEvent = null;
             UnityAction<ChangingButton> gameEvent = null;
@@ -353,7 +349,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
                         ClearPopup();
                         BuildPathView();
                     },
-                    station.DisplayedName, fact?.Description ?? station.DisplayedName);
+                    station.DisplayedName, "" ?? station.DisplayedName);
 
             _viewManager.InitializeCurrentView(initParams);
         }

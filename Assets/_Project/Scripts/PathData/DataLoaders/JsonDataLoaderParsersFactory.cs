@@ -7,12 +7,11 @@ namespace PolSl.UrbanHealthPath.PathData.DataLoaders
         public DataLoaderParsers<JObject> Create()
         {
             JsonObjectParser<MediaFile> mediaFilesParser = new MediaFileJsonParser();
-            JsonObjectParser<HistoricalFact> historicalFactsParser = new HistoricalFactJsonParser();
             JsonObjectParser<Exercise> exercisesParser = CreateExercisesParser();
             JsonObjectParser<Waypoint> waypointsParser = CreateWaypointsParser();
             JsonObjectParser<UrbanPath> urbanPathsParser = new UrbanPathJsonParser();
 
-            return new DataLoaderParsers<JObject>(mediaFilesParser, historicalFactsParser, exercisesParser,
+            return new DataLoaderParsers<JObject>(mediaFilesParser, exercisesParser,
                 waypointsParser, urbanPathsParser);
         }
 
@@ -25,10 +24,13 @@ namespace PolSl.UrbanHealthPath.PathData.DataLoaders
                 new ImageSelectionExerciseLevelJsonParser();
             JsonObjectParser<AnswerSelectionExerciseLevel> answerSelectionExerciseLevelParser =
                 new AnswerSelectionExerciseLevelJsonParser();
+            JsonObjectParser<HistoricalFactExerciseLevel> historicalFactExerciseLevelParser =
+                new HistoricalFactExerciseLevelJsonParser();
 
             JsonObjectParser<ExerciseLevel>
                 exerciseLevelsParser = new ExerciseLevelJsonParser(textExerciseLevelsParser, videoExerciseLevelParser,
-                    imageExerciseLevelParser, imageSelectionExerciseLevelParser, answerSelectionExerciseLevelParser);
+                    imageExerciseLevelParser, imageSelectionExerciseLevelParser, answerSelectionExerciseLevelParser,
+                    historicalFactExerciseLevelParser);
 
             return new ExerciseJsonParser(exerciseLevelsParser);
         }

@@ -3,7 +3,6 @@
     public interface ILoadersFactory
     {
         IMediaFilesLoader CreateMediaFilesLoader();
-        IHistoricalFactsLoader CreateHistoricalFactsLoader();
         IExercisesLoader CreateExercisesLoader();
         IWaypointsLoader CreateWaypointsLoader();
         IUrbanPathsLoader CreateUrbanPathsLoader();
