@@ -196,6 +196,40 @@ namespace PolSl.UrbanHealthPath.Controllers
             _selectedPath = null;
         }
 
+        public void ShowCompletedPathSummary(UrbanPath completedPath, Action shareButtonClicked)
+        {
+            ShowPathSummary(completedPath, shareButtonClicked, completedPath.GetWaypointsOfType<Station>().Count,
+                completedPath.ApproximateDistanceInMeters);
+        }
+
+        public void ShowCancelledPathSummary(UrbanPath cancelledPath, Action shareButtonClicked)
+        {
+            IList<Station> stations = cancelledPath.GetWaypointsOfType<Station>();
+
+            int visitedPointsCount;
+
+            if (_pathProgressManager.LastCheckpoint is null)
+            {
+                visitedPointsCount = 0;
+            }
+            else
+            {
+                Station lastStation = stations.First(x => x.WaypointId == _pathProgressManager.LastCheckpoint.WaypointId);
+                visitedPointsCount = stations.IndexOf(lastStation) + 1;
+            }
+
+            int distance = cancelledPath.ApproximateDistanceInMeters * visitedPointsCount / stations.Count;
+
+            ShowPathSummary(cancelledPath, shareButtonClicked, visitedPointsCount, distance);
+        }
+
+        private void ShowPathSummary(UrbanPath path, Action shareButtonClicked, int visitedPointCount, int distance)
+        {
+            ViewManager.OpenView(ViewType.PathSummary,
+                new PathSummaryViewInitializationParameters(() => _returnToMainMenu.Invoke(),
+                    () => shareButtonClicked.Invoke(), visitedPointCount, distance));
+        }
+
         private void OnPathStarted(UrbanPath path)
         {
             PathStarted?.Invoke(path);

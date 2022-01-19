@@ -6,6 +6,7 @@ using PolSl.UrbanHealthPath.PathData;
 using PolSl.UrbanHealthPath.PathData.DataLoaders;
 using PolSl.UrbanHealthPath.PathData.Progress;
 using PolSl.UrbanHealthPath.Systems;
+using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
 using PolSl.UrbanHealthPath.Utils.CoroutineManager;
@@ -29,10 +30,12 @@ namespace PolSl.UrbanHealthPath.Controllers
         private PathController _pathController;
         private StationController _stationController;
         private ExerciseController _exerciseController;
+        private ShareController _shareController;
 
         public MainController(ViewManager viewManager, PopupManager popupManager,
             IPathProgressManager pathProgressManager, IApplicationData applicationData, MapHolder mapHolderPrefab,
-            CoroutineManager coroutineManager, Settings settings, AudioSource audioSource) : base(viewManager, popupManager)
+            CoroutineManager coroutineManager, Settings settings, AudioSource audioSource) : base(viewManager,
+            popupManager)
         {
             _pathProgressManager = pathProgressManager;
             _applicationData = applicationData;
@@ -45,7 +48,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         public void Run()
         {
             SubscribeToSettingsEvents();
-            
+
             CreateControllers();
             SubscribeToMenuEvents();
             SubscribeToPathEvents();
@@ -57,7 +60,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             _settings.IsAudioEnabledChanged += ChangeAudioStatus;
         }
-        
+
         private void SubscribeToMenuEvents()
         {
             _menuController.SettingsButtonPressed += () => _settingsController.ShowSettings(
@@ -80,19 +83,17 @@ namespace PolSl.UrbanHealthPath.Controllers
                     _stationController.ShowNextStationConfirmation(nextStation,
                         () =>
                         {
-                            _stationController.ShowStation(nextStation, _exerciseController.ShowPopupForExercise, exercise => PopupManager.CloseCurrentPopup(), (
-                                () =>
-                                {
-                                    _pathProgressManager.AddCheckpoint(
-                                        new PathProgressCheckpoint(nextStation.WaypointId, DateTime.Now));
-                                } ));
+                            _stationController.ShowStation(nextStation, _exerciseController.ShowPopupForExercise,
+                                exercise => PopupManager.CloseCurrentPopup(), (
+                                    () =>
+                                    {
+                                        _pathProgressManager.AddCheckpoint(
+                                            new PathProgressCheckpoint(nextStation.WaypointId, DateTime.Now));
+                                    }));
                         });
-                }, () =>
-                {
-                    PopupManager.CloseCurrentPopup();
-                }, _helpController.ShowHelp);
-            _pathController.PathCancelled += path => ReturnToMenu();
-            _pathController.PathCompleted += path => ReturnToMenu();
+                }, () => { PopupManager.CloseCurrentPopup(); }, _helpController.ShowHelp);
+            _pathController.PathCancelled += path => _pathController.ShowCancelledPathSummary(path, () => _shareController.ShareWhatsapp("Ruch i zwiedzanie w jednym, sprawdź Miejską Ścieżkę Zdrowia!"));
+            _pathController.PathCompleted += path => _pathController.ShowCompletedPathSummary(path, () => _shareController.ShareWhatsapp("Ruch i zwiedzanie w jednym, sprawdź Miejską Ścieżkę Zdrowia!"));
         }
 
         private void CreateControllers()
@@ -103,8 +104,10 @@ namespace PolSl.UrbanHealthPath.Controllers
             _helpController = new HelpController(ViewManager, PopupManager);
             _pathController = new PathController(ViewManager, PopupManager, _pathProgressManager, ReturnToMenu,
                 new LocationProviderFactory(new LocationPermissionRequester()), _mapHolderPrefab);
-            _stationController = new StationController(ViewManager, PopupManager, _coroutineManager, _pathProgressManager, _audioSource);
+            _stationController = new StationController(ViewManager, PopupManager, _coroutineManager,
+                _pathProgressManager, _audioSource);
             _exerciseController = new ExerciseController(ViewManager, PopupManager, _coroutineManager);
+            _shareController = new ShareController();
         }
 
         private void ReturnToMenu()
@@ -128,11 +131,11 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             _pathController.ShowPathSelectionView(_applicationData.UrbanPaths, true);
         }
-        
+
         private Station GetNextStation(UrbanPath path)
         {
             IList<Waypoint> pathWaypoints = path.Waypoints.Select(waypoint => waypoint.Value).ToList();
-            
+
             PathProgressCheckpoint lastCheckpoint = _pathProgressManager.LastCheckpoint;
 
             if (lastCheckpoint is null)
