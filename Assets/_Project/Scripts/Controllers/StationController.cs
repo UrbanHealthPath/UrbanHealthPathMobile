@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using PolSl.UrbanHealthPath.MediaAccess;
 using PolSl.UrbanHealthPath.PathData;
 using PolSl.UrbanHealthPath.PathData.Progress;
+using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
@@ -19,56 +21,121 @@ namespace PolSl.UrbanHealthPath.Controllers
         private readonly CoroutineManager _coroutineManager;
         private readonly IPathProgressManager _pathProgressManager;
 
-        public StationController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager, IPathProgressManager pathProgressManager) : base(viewManager)
+        private Station _currentStation;
+        private StationProgress _currentStationProgress;
+
+        public StationController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager,
+            IPathProgressManager pathProgressManager) : base(viewManager)
         {
             _popupManager = popupManager;
             _coroutineManager = coroutineManager;
             _pathProgressManager = pathProgressManager;
         }
 
-        public void ShowNextStationConfirmation(UrbanPath path)
+        public void ShowNextStationConfirmation(Station nextStation, Action confirmed)
         {
-            Station nextStation = GetNextStation(path.Waypoints.Select(waypoint => waypoint.Value).ToList());
-            
-            _coroutineManager.StartCoroutine(ShowNextStationConfirmationPopup(nextStation, () =>
-            {
-                _popupManager.CloseCurrentPopup();
-                //BuildStationView(nextStation);
-            }));
+            _coroutineManager.StartCoroutine(ShowNextStationConfirmationPopup(nextStation, confirmed));
         }
-        
-        private IEnumerator ShowNextStationConfirmationPopup(Station nextStation, UnityAction confirmationButtonAction)
+
+        public void ShowStation(Station station, Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding, Action stationFinished)
+        {
+            SetCurrentStation(station);
+
+            ViewManager.OpenView(ViewType.Station);
+
+            UnityAction<ChangingButton> sensorialEvent = null;
+            UnityAction<ChangingButton> motoricalEvent = null;
+            UnityAction<ChangingButton> gameEvent = null;
+
+            Dictionary<ChangingButton, bool> buttonsStates = new Dictionary<ChangingButton, bool>();
+
+            if (_currentStationProgress.GetCurrentExercise(ExerciseCategory.Game) != null)
+            {
+                gameEvent = (btn) =>
+                    ConfigureExerciseButton(buttonsStates, btn, exerciseStarting, exerciseEnding, ExerciseCategory.Game);
+            }
+
+            if (_currentStationProgress.GetCurrentExercise(ExerciseCategory.Motorical) != null)
+            {
+                motoricalEvent = (btn) => ConfigureExerciseButton(buttonsStates, btn, exerciseStarting, exerciseEnding, ExerciseCategory.Motorical);
+            }
+
+            if (_currentStationProgress.GetCurrentExercise(ExerciseCategory.Sensorial) != null)
+            {
+                sensorialEvent = (btn) => ConfigureExerciseButton(buttonsStates, btn, exerciseStarting, exerciseEnding, ExerciseCategory.Sensorial);
+            }
+
+            StationViewInitializationParameters initParams =
+                new StationViewInitializationParameters(sensorialEvent, motoricalEvent,
+                    gameEvent, () => stationFinished.Invoke(), () =>
+                    {
+                        if (_popupManager.CurrentPopupType != PopupType.None)
+                        {
+                            _popupManager.CloseCurrentPopup();
+                        }
+                        
+                        ReturnToPreviousView();
+                    },
+                    station.DisplayedName, station.Introduction);
+
+            ViewManager.InitializeCurrentView(initParams);
+        }
+
+        private void ConfigureExerciseButton(Dictionary<ChangingButton, bool> buttonsStates, ChangingButton btn,
+            Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding, ExerciseCategory category)
+        {
+            btn.SetDefaultAppearance();
+
+            buttonsStates[btn] = buttonsStates.ContainsKey(btn) ? !buttonsStates[btn] : true;
+            Exercise currentExercise = _currentStationProgress.GetCurrentExercise(category);
+
+            if (buttonsStates[btn])
+            {
+                SetConfirmExerciseButton(btn);
+                exerciseStarting.Invoke(currentExercise);
+                return;
+            }
+            
+            _currentStationProgress.CompleteCurrentExercise(category);
+
+            if (_currentStationProgress.IsCategoryFinished(category))
+            {
+                SetCategoryFinishedButton(btn);
+            }
+
+            exerciseEnding.Invoke(currentExercise);
+        }
+
+        private void SetCategoryFinishedButton(ChangingButton btn)
+        {
+            btn.SetInteractable(false);
+        }
+
+        private void SetConfirmExerciseButton(ChangingButton btn)
+        {
+            btn.SetButtonText("Zatwierdź", new Vector4(10, 10, 10, 10));
+        }
+
+        private IEnumerator ShowNextStationConfirmationPopup(Station nextStation, Action confirmed)
         {
             yield return new WaitForEndOfFrame();
             Texture2D texture = new TextureFileAccessor(nextStation.Image).GetMedia();
             RectTransform transform = ViewManager.CurrentView.GetComponent<PathView>().PopupArea;
 
             _popupManager.OpenPopup(PopupType.ConfirmArrival,
-                new PopupConfirmArrivalInitializationParameters(confirmationButtonAction, "Czy jesteś tutaj?", texture,
+                new PopupConfirmArrivalInitializationParameters(() =>
+                    {
+                        _popupManager.CloseCurrentPopup();
+                        confirmed.Invoke();
+                    },
+                    "Czy jesteś tutaj?", texture,
                     new PopupPayload(transform)));
         }
-        
-        private Station GetNextStation(IList<Waypoint> pathWaypoints)
+
+        private void SetCurrentStation(Station station)
         {
-            PathProgressCheckpoint lastCheckpoint = _pathProgressManager.LastCheckpoint;
-
-            if (lastCheckpoint is null)
-            {
-                return (Station) pathWaypoints.FirstOrDefault(x => x is Station);
-            }
-
-            Waypoint lastWaypoint = pathWaypoints.Single(x => x.WaypointId == lastCheckpoint.WaypointId);
-            int indexOfLastWaypoint = pathWaypoints.IndexOf(lastWaypoint);
-
-            for (int i = indexOfLastWaypoint + 1; i < pathWaypoints.Count; i++)
-            {
-                if (pathWaypoints[i] is Station station)
-                {
-                    return station;
-                }
-            }
-
-            return null;
+            _currentStation = station;
+            _currentStationProgress = new StationProgress(station);
         }
     }
 }

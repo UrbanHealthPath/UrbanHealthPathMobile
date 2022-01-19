@@ -51,8 +51,11 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
 
         public void CloseCurrentPopup()
         {
-            CurrentPopupType = PopupType.None;
-            _currentPopup.Destroy();
+            if (CurrentPopupType != PopupType.None)
+            {
+                CurrentPopupType = PopupType.None;
+                _currentPopup.Destroy();
+            }
         }
     }
 }

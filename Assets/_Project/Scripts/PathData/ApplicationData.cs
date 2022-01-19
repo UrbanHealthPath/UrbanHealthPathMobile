@@ -44,9 +44,10 @@ namespace PolSl.UrbanHealthPath.PathData
                 {
                     historicalFact.InitializeValue(HistoricalFacts.FirstOrDefault(x => x.HistoricalFactId == historicalFact.Key));
                 }
-                
+
                 station.NavigationAudio.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == station.NavigationAudio.Key));
                 station.Image.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == station.Image.Key));
+                station.IntroductionAudio.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == station.IntroductionAudio.Key));
             }
         }
 

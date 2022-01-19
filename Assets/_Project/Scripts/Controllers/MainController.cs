@@ -1,4 +1,8 @@
-﻿using PolSl.UrbanHealthPath.Map;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using PolSl.UrbanHealthPath.Map;
+using PolSl.UrbanHealthPath.PathData;
 using PolSl.UrbanHealthPath.PathData.DataLoaders;
 using PolSl.UrbanHealthPath.PathData.Progress;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
@@ -21,6 +25,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         private HelpController _helpController;
         private PathController _pathController;
         private StationController _stationController;
+        private ExerciseController _exerciseController;
 
         public MainController(ViewManager viewManager, PopupManager popupManager,
             IPathProgressManager pathProgressManager, IApplicationData applicationData, MapHolder mapHolderPrefab,
@@ -55,8 +60,21 @@ namespace PolSl.UrbanHealthPath.Controllers
         private void SubscribeToPathEvents()
         {
             _pathController.PathStarted += path =>
-                _pathController.ShowPathView(() => _stationController.ShowNextStationConfirmation(path),
-                    _helpController.ShowHelp);
+                _pathController.ShowPathView(() =>
+                {
+                    Station nextStation = GetNextStation(path);
+                    _stationController.ShowNextStationConfirmation(nextStation,
+                        () =>
+                        {
+                            _stationController.ShowStation(nextStation, _exerciseController.ShowPopupForExercise, exercise => _popupManager.CloseCurrentPopup(), (
+                                () =>
+                                {
+                                    _pathProgressManager.AddCheckpoint(
+                                        new PathProgressCheckpoint(nextStation.WaypointId, DateTime.Now));
+                                    ReturnToPreviousView();
+                                } ));
+                        });
+                }, _helpController.ShowHelp);
             _pathController.PathCancelled += path => ReturnToMenu();
         }
 
@@ -69,6 +87,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             _pathController = new PathController(ViewManager, _pathProgressManager, ReturnToMenu,
                 new LocationProviderFactory(new LocationPermissionRequester()), _mapHolderPrefab);
             _stationController = new StationController(ViewManager, _popupManager, _coroutineManager, _pathProgressManager);
+            _exerciseController = new ExerciseController(ViewManager, _popupManager, _coroutineManager);
         }
 
         private void ReturnToMenu()
@@ -91,6 +110,31 @@ namespace PolSl.UrbanHealthPath.Controllers
         private void HandleBottomButtonClick()
         {
             _pathController.ShowPathSelectionView(_applicationData.UrbanPaths, true);
+        }
+        
+        private Station GetNextStation(UrbanPath path)
+        {
+            IList<Waypoint> pathWaypoints = path.Waypoints.Select(waypoint => waypoint.Value).ToList();
+            
+            PathProgressCheckpoint lastCheckpoint = _pathProgressManager.LastCheckpoint;
+
+            if (lastCheckpoint is null)
+            {
+                return (Station) pathWaypoints.FirstOrDefault(x => x is Station);
+            }
+
+            Waypoint lastWaypoint = pathWaypoints.Single(x => x.WaypointId == lastCheckpoint.WaypointId);
+            int indexOfLastWaypoint = pathWaypoints.IndexOf(lastWaypoint);
+
+            for (int i = indexOfLastWaypoint + 1; i < pathWaypoints.Count; i++)
+            {
+                if (pathWaypoints[i] is Station station)
+                {
+                    return station;
+                }
+            }
+
+            return null;
         }
     }
 }

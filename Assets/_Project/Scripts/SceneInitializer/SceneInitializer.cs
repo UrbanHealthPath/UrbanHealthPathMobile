@@ -64,9 +64,9 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
             _popupManager = uiManager.GetComponent<PopupManager>();
             _popupManager.Initialize();
 
-            //MainController mainController = new MainController(_viewManager, _popupManager, _pathProgressManager, _applicationData, _mapHolderPrefab,  _coroutineManager);
+            MainController mainController = new MainController(_viewManager, _popupManager, _pathProgressManager, _applicationData, _mapHolderPrefab,  _coroutineManager);
 
-            BuildUI();
+            //BuildUI();
         }
 
         private IApplicationData LoadApplicationData()
@@ -395,8 +395,8 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
                         Texture2D texture = new TextureFileAccessor(image).GetMedia();
                         bool isCorrect = imageSelectionExerciseLevel.CorrectAnswers.Contains(imageSelectionExerciseLevel.Images.IndexOf(image));
 
-                        quizElementOptions.Add(new QuizElementOption(texture,
-                            () => _logger.Log(LogVerbosity.Debug, isCorrect ? "Correct answer" : "Wrong answer")));
+                        //quizElementOptions.Add(new QuizElementOption(texture,
+                            //() => _logger.Log(LogVerbosity.Debug, isCorrect ? "Correct answer" : "Wrong answer")));
                     }
 
                     _popupManager.OpenPopup(PopupType.QuizWithImages,
