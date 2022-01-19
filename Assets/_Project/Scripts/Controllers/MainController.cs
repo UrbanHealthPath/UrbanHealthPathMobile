@@ -71,11 +71,11 @@ namespace PolSl.UrbanHealthPath.Controllers
                                 {
                                     _pathProgressManager.AddCheckpoint(
                                         new PathProgressCheckpoint(nextStation.WaypointId, DateTime.Now));
-                                    ReturnToPreviousView();
                                 } ));
                         });
                 }, _helpController.ShowHelp);
             _pathController.PathCancelled += path => ReturnToMenu();
+            _pathController.PathCompleted += path => ReturnToMenu();
         }
 
         private void CreateControllers()

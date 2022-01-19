@@ -14,6 +14,7 @@ namespace PolSl.UrbanHealthPath.Controllers
     {
         public event Action<UrbanPath> PathStarted;
         public event Action<UrbanPath> PathCancelled;
+        public event Action<UrbanPath> PathCompleted;
         
         private readonly IPathProgressManager _pathProgressManager;
         private readonly Action _returnToMainMenu;
@@ -61,7 +62,6 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             _pathProgressManager.CancelPath();
             OnPathCancelled(_selectedPath);
-            _selectedPath = null;
         }
 
         private void SelectPath(UrbanPath path)
@@ -114,6 +114,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         private void StartNewPath(UrbanPath urbanPath)
         {
             SelectPath(urbanPath);
+            _pathProgressManager.CheckpointReached += CheckpointReachedHandler;
             _pathProgressManager.StartNewPath();
             InitializeMapHolder(urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
             OnPathStarted(urbanPath);
@@ -122,9 +123,34 @@ namespace PolSl.UrbanHealthPath.Controllers
         private void StartNewDemoPath(UrbanPath urbanPath)
         {
             SelectPath(urbanPath);
+            _pathProgressManager.CheckpointReached += CheckpointReachedHandler;
             _pathProgressManager.StartNewPath();
             InitializeMapHolderForDemoPath(urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
             OnPathStarted(urbanPath);
+        }
+
+        private void CheckpointReachedHandler(object sender, CheckpointReachedEventArgs e)
+        {
+            if (e.Checkpoint.WaypointId == _selectedPath.Waypoints[_selectedPath.Waypoints.Count - 1].Value.WaypointId)
+            {
+                CompletePath();
+            }
+            else
+            {
+                ReturnToPreviousView();
+            }
+        }
+
+        private void CompletePath()
+        {
+            _pathProgressManager.CompletePath();
+            OnPathComplete(_selectedPath);
+        }
+
+        private void FinishPath()
+        {
+            _pathProgressManager.CheckpointReached -= CheckpointReachedHandler;
+            _selectedPath = null;
         }
 
         private void OnPathStarted(UrbanPath path)
@@ -134,7 +160,14 @@ namespace PolSl.UrbanHealthPath.Controllers
         
         private void OnPathCancelled(UrbanPath path)
         {
+            FinishPath();
             PathCancelled?.Invoke(path);
+        }
+
+        private void OnPathComplete(UrbanPath path)
+        {
+            FinishPath();
+            PathCompleted?.Invoke(path);
         }
     }
 }

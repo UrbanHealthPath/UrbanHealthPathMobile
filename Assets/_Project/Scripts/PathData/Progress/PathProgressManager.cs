@@ -5,7 +5,7 @@ namespace PolSl.UrbanHealthPath.PathData.Progress
 {
     public class PathProgressManager : IPathProgressManager
     {
-        public event EventHandler CheckpointReached;
+        public event EventHandler<CheckpointReachedEventArgs> CheckpointReached;
         
         private readonly IPathProgressPersistor _persistor;
         
@@ -54,7 +54,7 @@ namespace PolSl.UrbanHealthPath.PathData.Progress
 
             if (wasAdded)
             {
-                OnCheckpointReached();
+                OnCheckpointReached(checkpoint);
                 SavePathProgress();
             }
             
@@ -83,9 +83,9 @@ namespace PolSl.UrbanHealthPath.PathData.Progress
             SavePathProgress();
         }
 
-        protected virtual void OnCheckpointReached()
+        protected virtual void OnCheckpointReached(PathProgressCheckpoint checkpoint)
         {
-            CheckpointReached?.Invoke(this, EventArgs.Empty);
+            CheckpointReached?.Invoke(this, new CheckpointReachedEventArgs(checkpoint));
         }
 
         private void SavePathProgress()

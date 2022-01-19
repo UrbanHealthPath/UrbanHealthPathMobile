@@ -4,7 +4,7 @@ namespace PolSl.UrbanHealthPath.PathData.Progress
 {
     public interface IPathProgressManager
     {
-        event EventHandler CheckpointReached;
+        event EventHandler<CheckpointReachedEventArgs> CheckpointReached;
         
         bool IsPathInProgress { get; }
         PathProgressCheckpoint LastCheckpoint { get; }
