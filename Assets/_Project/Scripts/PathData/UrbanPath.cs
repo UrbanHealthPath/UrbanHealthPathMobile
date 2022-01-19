@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace PolSl.UrbanHealthPath.PathData
 {
@@ -21,6 +22,11 @@ namespace PolSl.UrbanHealthPath.PathData
             MapUrl = mapUrl;
             Waypoints = waypoints;
             PreviewImage = previewImage;
+        }
+
+        public IList<T> GetWaypointsOfType<T>() where T : Waypoint
+        {
+            return Waypoints.Where(x => x.Value is T).Select(x => (T) x.Value).ToList();
         }
     }
 }

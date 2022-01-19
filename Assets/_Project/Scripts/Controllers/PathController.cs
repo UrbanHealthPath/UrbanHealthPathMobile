@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using PolSl.UrbanHealthPath.Map;
+using PolSl.UrbanHealthPath.MediaAccess;
 using PolSl.UrbanHealthPath.PathData;
 using PolSl.UrbanHealthPath.PathData.Progress;
 using PolSl.UrbanHealthPath.UserInterface.Components.List;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Views;
+using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
@@ -15,7 +17,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         public event Action<UrbanPath> PathStarted;
         public event Action<UrbanPath> PathCancelled;
         public event Action<UrbanPath> PathCompleted;
-        
+
         private readonly IPathProgressManager _pathProgressManager;
         private readonly Action _returnToMainMenu;
         private readonly ILocationProviderFactory _locationProviderFactory;
@@ -25,7 +27,8 @@ namespace PolSl.UrbanHealthPath.Controllers
         private MapHolder _mapHolder;
 
         public PathController(ViewManager viewManager, IPathProgressManager pathProgressManager,
-            Action returnToMainMenu, ILocationProviderFactory locationProviderFactory, MapHolder mapHolderPrefab) : base(viewManager)
+            Action returnToMainMenu, ILocationProviderFactory locationProviderFactory,
+            MapHolder mapHolderPrefab) : base(viewManager)
         {
             _pathProgressManager = pathProgressManager;
             _returnToMainMenu = returnToMainMenu;
@@ -38,11 +41,23 @@ namespace PolSl.UrbanHealthPath.Controllers
             IViewInitializationParameters initParams =
                 new PathChoiceViewInitializationParameters(
                     areDemoPaths
-                        ? BuildButtonsForAvailablePaths(availablePaths, StartNewDemoPath)
-                        : BuildButtonsForAvailablePaths(availablePaths, StartNewPath),
+                        ? BuildButtonsForAvailablePaths(availablePaths, path => ShowPathPresentationView(path, StartNewDemoPath))
+                        : BuildButtonsForAvailablePaths(availablePaths, path => ShowPathPresentationView(path, StartNewPath)),
                     () => _returnToMainMenu.Invoke());
 
             ViewManager.OpenView(ViewType.PathChoice, initParams);
+        }
+
+        public void ShowPathPresentationView(UrbanPath path, Action<UrbanPath> startPath)
+        {
+            int stationsCount = path.GetWaypointsOfType<Station>().Count;
+            Texture mapTexture = new TextureFileAccessor(path.PreviewImage).GetMedia();
+
+            IViewInitializationParameters initParams = new PathPresentationViewInitializationParameters(
+                () => _returnToMainMenu.Invoke(), ReturnToPreviousView, () => startPath.Invoke(path), ReturnToPreviousView,
+                path.DisplayedName, stationsCount, path.ApproximateDistanceInMeters, mapTexture);
+
+            ViewManager.OpenView(ViewType.PathPresentation, initParams);
         }
 
         public void ShowPathView(Action nextStationButtonPressed, Action helpButtonPressed)
@@ -51,13 +66,13 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 return;
             }
-            
+
             ViewManager.OpenView(ViewType.Path, new PathViewInitializationParameters(
                 CancelPath, () => nextStationButtonPressed.Invoke(), () => helpButtonPressed.Invoke(),
                 () => _returnToMainMenu.Invoke(), _selectedPath.DisplayedName
             ));
         }
-        
+
         public void CancelPath()
         {
             _pathProgressManager.CancelPath();
@@ -70,10 +85,10 @@ namespace PolSl.UrbanHealthPath.Controllers
         }
 
         private List<ListElement> BuildButtonsForAvailablePaths(IList<UrbanPath> availablePaths,
-            Action<UrbanPath> startPath)
+            Action<UrbanPath> presentPath)
         {
             return availablePaths.Select(path => new ListElement(path.DisplayedName, null, "",
-                () => startPath.Invoke(path))).ToList();
+                () => presentPath.Invoke(path))).ToList();
         }
 
         private void InitializeMapHolderForDemoPath(List<Coordinates> coordinatesList)
@@ -157,7 +172,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             PathStarted?.Invoke(path);
         }
-        
+
         private void OnPathCancelled(UrbanPath path)
         {
             FinishPath();
