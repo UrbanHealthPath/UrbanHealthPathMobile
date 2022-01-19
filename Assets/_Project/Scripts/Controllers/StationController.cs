@@ -20,7 +20,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         private readonly IPathProgressManager _pathProgressManager;
         private readonly AudioSource _audioSource;
 
-        private Station _currentStation;
+        private Dictionary<ChangingButton, bool> _stationButtonStates;
         private StationProgress _currentStationProgress;
 
         public StationController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager,
@@ -29,6 +29,8 @@ namespace PolSl.UrbanHealthPath.Controllers
             _coroutineManager = coroutineManager;
             _pathProgressManager = pathProgressManager;
             _audioSource = audioSource;
+            
+            _stationButtonStates = new Dictionary<ChangingButton, bool>();
         }
 
         public void ShowNextStationConfirmation(Station nextStation, Action confirmed)
@@ -36,7 +38,8 @@ namespace PolSl.UrbanHealthPath.Controllers
             _coroutineManager.StartCoroutine(ShowNextStationConfirmationPopup(nextStation, confirmed));
         }
 
-        public void ShowStation(Station station, Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding, Action stationFinished)
+        public void ShowStation(Station station, Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding,
+            Action stationFinished)
         {
             SetCurrentStation(station);
 
@@ -46,43 +49,38 @@ namespace PolSl.UrbanHealthPath.Controllers
             UnityAction<ChangingButton> motoricalEvent = null;
             UnityAction<ChangingButton> gameEvent = null;
 
-            Dictionary<ChangingButton, bool> buttonsStates = new Dictionary<ChangingButton, bool>();
-
             if (_currentStationProgress.GetCurrentExercise(ExerciseCategory.Game) != null)
             {
                 gameEvent = (btn) =>
-                    ConfigureExerciseButton(buttonsStates, btn, exerciseStarting, exerciseEnding, ExerciseCategory.Game);
+                    ConfigureExerciseButton(_stationButtonStates, btn, exerciseStarting, exerciseEnding,
+                        ExerciseCategory.Game);
             }
 
             if (_currentStationProgress.GetCurrentExercise(ExerciseCategory.Motorical) != null)
             {
-                motoricalEvent = (btn) => ConfigureExerciseButton(buttonsStates, btn, exerciseStarting, exerciseEnding, ExerciseCategory.Motorical);
+                motoricalEvent = (btn) => ConfigureExerciseButton(_stationButtonStates, btn, exerciseStarting, exerciseEnding,
+                    ExerciseCategory.Motorical);
             }
 
             if (_currentStationProgress.GetCurrentExercise(ExerciseCategory.Sensorial) != null)
             {
-                sensorialEvent = (btn) => ConfigureExerciseButton(buttonsStates, btn, exerciseStarting, exerciseEnding, ExerciseCategory.Sensorial);
+                sensorialEvent = (btn) => ConfigureExerciseButton(_stationButtonStates, btn, exerciseStarting, exerciseEnding,
+                    ExerciseCategory.Sensorial);
             }
 
             StationViewInitializationParameters initParams =
                 new StationViewInitializationParameters(sensorialEvent, motoricalEvent,
-                    gameEvent, () =>
+                    gameEvent,
+                    () => ShowConfirmation("Czy na pewno chcesz zakończyć ćwiczenia na tym punkcie?",
+                        () => stationFinished.Invoke()), () =>
                     {
-                        
-                        stationFinished.Invoke();
-                    }, () =>
-                    {
-                        if (PopupManager.CurrentPopupType != PopupType.None)
-                        {
-                            PopupManager.CloseCurrentPopup();
-                        }
-                        
+                        PopupManager.CloseCurrentPopup();
                         ReturnToPreviousView();
                     },
                     station.DisplayedName, station.Introduction);
 
             ViewManager.InitializeCurrentView(initParams);
-            
+
             PlayIntroductionAudio(station.IntroductionAudio);
         }
 
@@ -100,7 +98,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                 exerciseStarting.Invoke(currentExercise);
                 return;
             }
-            
+
             _currentStationProgress.CompleteCurrentExercise(category);
 
             if (_currentStationProgress.IsCategoryFinished(category))
@@ -139,7 +137,6 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private void SetCurrentStation(Station station)
         {
-            _currentStation = station;
             _currentStationProgress = new StationProgress(station);
         }
 
@@ -153,6 +150,27 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             _audioSource.Stop();
             _audioSource.clip = null;
+        }
+
+        protected override void ViewOpenedHandler(ViewType type)
+        {
+            base.ViewOpenedHandler(type);
+
+            if (type == ViewType.Station)
+            {
+                _stationButtonStates.Clear(); 
+            }
+        }
+
+        protected override void PopupClosedHandler(PopupType type)
+        {
+            base.PopupClosedHandler(type);
+
+            if (ViewManager.CurrentViewType == ViewType.Station && type == PopupType.Confirmation)
+            {
+                _stationButtonStates.Clear();
+                ViewManager.CurrentView.GetComponent<StationView>().ResetActiveButtons();
+            }
         }
     }
 }

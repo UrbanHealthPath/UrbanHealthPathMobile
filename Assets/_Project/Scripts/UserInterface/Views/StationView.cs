@@ -68,6 +68,24 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
             }
         }
 
+        public void ResetActiveButtons()
+        {
+            if (_rightButton.Button.IsInteractable())
+            {
+                _rightButton.SetDefaultAppearance();
+            }
+
+            if (_middleButton.Button.IsInteractable())
+            {
+                _middleButton.SetDefaultAppearance();
+            }
+
+            if (_leftButton.Button.IsInteractable())
+            {
+                _leftButton.SetDefaultAppearance();
+            }
+        }
+
         public void OnDisable()
         {
             _rightButton.Button.onClick.RemoveAllListeners();

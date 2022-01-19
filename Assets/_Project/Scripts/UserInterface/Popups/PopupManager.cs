@@ -11,6 +11,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
     public class PopupManager : MonoBehaviour
     {
         public event Action<PopupType> PopupOpened;
+        public event Action<PopupType> PopupClosed;
         
         public PopupType CurrentPopupType { get; private set; }
         
@@ -56,8 +57,10 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
         {
             if (CurrentPopupType != PopupType.None)
             {
+                PopupType oldType = CurrentPopupType;
                 CurrentPopupType = PopupType.None;
                 _currentPopup.Destroy();
+                PopupClosed?.Invoke(oldType);
             }
         }
     }

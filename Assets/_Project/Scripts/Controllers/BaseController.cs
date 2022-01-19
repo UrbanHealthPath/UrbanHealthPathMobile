@@ -22,6 +22,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             //TODO: We should find a place to unsubscribe
             ViewManager.ViewOpened += ViewOpenedHandler;
             PopupManager.PopupOpened += PopupOpenedHandler;
+            PopupManager.PopupClosed += PopupClosedHandler;
         }
 
         protected void ReturnToPreviousView()
@@ -35,6 +36,10 @@ namespace PolSl.UrbanHealthPath.Controllers
         }
 
         protected virtual void PopupOpenedHandler(PopupType type)
+        {
+        }
+
+        protected virtual void PopupClosedHandler(PopupType type)
         {
         }
 
