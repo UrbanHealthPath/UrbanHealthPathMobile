@@ -1416,6 +1416,7 @@ MonoBehaviour:
   _imageArea: {fileID: 5901376165516408554}
   _imageRect: {fileID: 8033119025981049209}
   _image: {fileID: 6933362021146497590}
+  _borderSize: 0
 --- !u!222 &2157288502868448416
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2733,6 +2734,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2644299053656229197, guid: abb1e5bcf74c0cf44ab701294d3cd94e, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203113938957271970, guid: abb1e5bcf74c0cf44ab701294d3cd94e, type: 3}
+      propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3203113938957271973, guid: abb1e5bcf74c0cf44ab701294d3cd94e, type: 3}
