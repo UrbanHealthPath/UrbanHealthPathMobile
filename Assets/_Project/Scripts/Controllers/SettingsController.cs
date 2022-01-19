@@ -1,6 +1,7 @@
 ﻿using System;
 using PolSl.UrbanHealthPath.Systems;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
+using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
 
 namespace PolSl.UrbanHealthPath.Controllers
@@ -9,7 +10,7 @@ namespace PolSl.UrbanHealthPath.Controllers
     {
         private readonly Settings _settings;
         
-        public SettingsController(ViewManager viewManager, Settings settings) : base(viewManager)
+        public SettingsController(ViewManager viewManager, PopupManager popupManager, Settings settings) : base(viewManager, popupManager)
         {
             _settings = settings;
         }

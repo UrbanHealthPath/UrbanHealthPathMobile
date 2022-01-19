@@ -1,5 +1,6 @@
 ﻿using System;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
+using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         public event Action TopMenuButtonPressed;
         public event Action BottomMenuButtonPressed;
 
-        public MenuController(ViewManager viewManager) : base(viewManager)
+        public MenuController(ViewManager viewManager, PopupManager popupManager) : base(viewManager, popupManager)
         {
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using PolSl.UrbanHealthPath.Map;
@@ -7,6 +8,7 @@ using PolSl.UrbanHealthPath.PathData;
 using PolSl.UrbanHealthPath.PathData.Progress;
 using PolSl.UrbanHealthPath.UserInterface.Components.List;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
+using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
 using UnityEngine;
 using UnityEngine.Events;
@@ -29,9 +31,10 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private bool _isNextStationButtonActive;
 
-        public PathController(ViewManager viewManager, IPathProgressManager pathProgressManager,
+        public PathController(ViewManager viewManager, PopupManager popupManager,
+            IPathProgressManager pathProgressManager,
             Action returnToMainMenu, ILocationProviderFactory locationProviderFactory,
-            MapHolder mapHolderPrefab) : base(viewManager)
+            MapHolder mapHolderPrefab) : base(viewManager, popupManager)
         {
             _pathProgressManager = pathProgressManager;
             _returnToMainMenu = returnToMainMenu;
@@ -74,7 +77,8 @@ namespace PolSl.UrbanHealthPath.Controllers
             }
 
             ViewManager.OpenView(ViewType.Path, new PathViewInitializationParameters(
-                CancelPath, BuildNextStationButton(nextStationButtonPressed, nextStationButtonCanceled),
+                () => ShowConfirmation("Czy na pewno chcesz zakończyć?", CancelPath),
+                BuildNextStationButton(nextStationButtonPressed, nextStationButtonCanceled),
                 () => helpButtonPressed.Invoke(),
                 () => _returnToMainMenu.Invoke(), _selectedPath.DisplayedName
             ));
@@ -209,15 +213,14 @@ namespace PolSl.UrbanHealthPath.Controllers
             PathCompleted?.Invoke(path);
         }
 
-        protected override void HandleViewChange(ViewType type)
+        protected override void ViewOpenedHandler(ViewType type)
         {
-            base.HandleViewChange(type);
+            base.ViewOpenedHandler(type);
 
             if (type == ViewType.Path)
             {
                 _isNextStationButtonActive = false;
             }
         }
-        
     }
 }

@@ -16,7 +16,6 @@ namespace PolSl.UrbanHealthPath.Controllers
 {
     public class StationController : BaseController
     {
-        private readonly PopupManager _popupManager;
         private readonly CoroutineManager _coroutineManager;
         private readonly IPathProgressManager _pathProgressManager;
         private readonly AudioSource _audioSource;
@@ -25,9 +24,8 @@ namespace PolSl.UrbanHealthPath.Controllers
         private StationProgress _currentStationProgress;
 
         public StationController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager,
-            IPathProgressManager pathProgressManager, AudioSource audioSource) : base(viewManager)
+            IPathProgressManager pathProgressManager, AudioSource audioSource) : base(viewManager, popupManager)
         {
-            _popupManager = popupManager;
             _coroutineManager = coroutineManager;
             _pathProgressManager = pathProgressManager;
             _audioSource = audioSource;
@@ -74,9 +72,9 @@ namespace PolSl.UrbanHealthPath.Controllers
                         stationFinished.Invoke();
                     }, () =>
                     {
-                        if (_popupManager.CurrentPopupType != PopupType.None)
+                        if (PopupManager.CurrentPopupType != PopupType.None)
                         {
-                            _popupManager.CloseCurrentPopup();
+                            PopupManager.CloseCurrentPopup();
                         }
                         
                         ReturnToPreviousView();
@@ -129,10 +127,10 @@ namespace PolSl.UrbanHealthPath.Controllers
             Texture2D texture = new TextureFileAccessor(nextStation.Image).GetMedia();
             RectTransform transform = ViewManager.CurrentView.GetComponent<PathView>().PopupArea;
 
-            _popupManager.OpenPopup(PopupType.ConfirmArrival,
+            PopupManager.OpenPopup(PopupType.ConfirmArrival,
                 new PopupConfirmArrivalInitializationParameters(() =>
                     {
-                        _popupManager.CloseCurrentPopup();
+                        PopupManager.CloseCurrentPopup();
                         confirmed.Invoke();
                     },
                     "Czy jesteś tutaj?", texture,

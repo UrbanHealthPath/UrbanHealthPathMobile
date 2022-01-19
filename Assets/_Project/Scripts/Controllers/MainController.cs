@@ -15,7 +15,6 @@ namespace PolSl.UrbanHealthPath.Controllers
 {
     public class MainController : BaseController
     {
-        private readonly PopupManager _popupManager;
         private readonly IPathProgressManager _pathProgressManager;
         private readonly IApplicationData _applicationData;
         private readonly MapHolder _mapHolderPrefab;
@@ -33,9 +32,8 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         public MainController(ViewManager viewManager, PopupManager popupManager,
             IPathProgressManager pathProgressManager, IApplicationData applicationData, MapHolder mapHolderPrefab,
-            CoroutineManager coroutineManager, Settings settings, AudioSource audioSource) : base(viewManager)
+            CoroutineManager coroutineManager, Settings settings, AudioSource audioSource) : base(viewManager, popupManager)
         {
-            _popupManager = popupManager;
             _pathProgressManager = pathProgressManager;
             _applicationData = applicationData;
             _mapHolderPrefab = mapHolderPrefab;
@@ -82,7 +80,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                     _stationController.ShowNextStationConfirmation(nextStation,
                         () =>
                         {
-                            _stationController.ShowStation(nextStation, _exerciseController.ShowPopupForExercise, exercise => _popupManager.CloseCurrentPopup(), (
+                            _stationController.ShowStation(nextStation, _exerciseController.ShowPopupForExercise, exercise => PopupManager.CloseCurrentPopup(), (
                                 () =>
                                 {
                                     _pathProgressManager.AddCheckpoint(
@@ -91,7 +89,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                         });
                 }, () =>
                 {
-                    _popupManager.CloseCurrentPopup();
+                    PopupManager.CloseCurrentPopup();
                 }, _helpController.ShowHelp);
             _pathController.PathCancelled += path => ReturnToMenu();
             _pathController.PathCompleted += path => ReturnToMenu();
@@ -99,14 +97,14 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private void CreateControllers()
         {
-            _loginController = new LoginController(ViewManager);
-            _menuController = new MenuController(ViewManager);
-            _settingsController = new SettingsController(ViewManager, _settings);
-            _helpController = new HelpController(ViewManager);
-            _pathController = new PathController(ViewManager, _pathProgressManager, ReturnToMenu,
+            _loginController = new LoginController(ViewManager, PopupManager);
+            _menuController = new MenuController(ViewManager, PopupManager);
+            _settingsController = new SettingsController(ViewManager, PopupManager, _settings);
+            _helpController = new HelpController(ViewManager, PopupManager);
+            _pathController = new PathController(ViewManager, PopupManager, _pathProgressManager, ReturnToMenu,
                 new LocationProviderFactory(new LocationPermissionRequester()), _mapHolderPrefab);
-            _stationController = new StationController(ViewManager, _popupManager, _coroutineManager, _pathProgressManager, _audioSource);
-            _exerciseController = new ExerciseController(ViewManager, _popupManager, _coroutineManager);
+            _stationController = new StationController(ViewManager, PopupManager, _coroutineManager, _pathProgressManager, _audioSource);
+            _exerciseController = new ExerciseController(ViewManager, PopupManager, _coroutineManager);
         }
 
         private void ReturnToMenu()

@@ -10,6 +10,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
     public class PopupManager : MonoBehaviour
     {
+        public event Action<PopupType> PopupOpened;
+        
         public PopupType CurrentPopupType { get; private set; }
         
         [SerializeField] private Popup[] popupsWithTypes;
@@ -42,7 +44,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
                     IInitializablePopup initializablePopup = _currentPopup.GetComponent<IInitializablePopup>();
                     initializablePopup?.Initialize(initializationParameters);
                 }
-
+                
+                PopupOpened?.Invoke(popupType);
                 return _currentPopup;
             }
 

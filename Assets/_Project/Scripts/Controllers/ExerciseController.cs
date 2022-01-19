@@ -15,14 +15,12 @@ namespace PolSl.UrbanHealthPath.Controllers
     public class ExerciseController : BaseController
     {
         public Action<Exercise> ExerciseFinished;
-
-        private readonly PopupManager _popupManager;
+        
         private readonly CoroutineManager _coroutineManager;
 
         public ExerciseController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager)
-            : base(viewManager)
+            : base(viewManager, popupManager)
         {
-            _popupManager = popupManager;
             _coroutineManager = coroutineManager;
         }
 
@@ -41,14 +39,14 @@ namespace PolSl.UrbanHealthPath.Controllers
             switch (exercise.Levels[0])
             {
                 case VideoExerciseLevel videoExerciseLevel:
-                    _popupManager.OpenPopup(PopupType.WithTextAndVideo,
+                    PopupManager.OpenPopup(PopupType.WithTextAndVideo,
                         new PopupWithTextAndVideoInitializationParameters(exercise.DisplayedName,
                             videoExerciseLevel.Description,
                             new VideoFileAccessor(videoExerciseLevel.VideoFile).GetMedia(),
                             new PopupPayload(popupableView.PopupArea)));
                     break;
                 case ImageExerciseLevel imageExerciseLevel:
-                    _popupManager.OpenPopup(PopupType.WithTextAndImage,
+                    PopupManager.OpenPopup(PopupType.WithTextAndImage,
                         new PopupWithTextAndImageInitializationParameters(exercise.DisplayedName,
                             imageExerciseLevel.Description,
                             new TextureFileAccessor(imageExerciseLevel.ImageFile).GetMedia(),
@@ -78,14 +76,14 @@ namespace PolSl.UrbanHealthPath.Controllers
                             }));
                     }
 
-                    _popupManager.OpenPopup(PopupType.QuizWithImages,
+                    PopupManager.OpenPopup(PopupType.QuizWithImages,
                         new QuizWithImagesPopupInitializationParameters(imageSelectionExerciseLevel.Question,
                             new PopupPayload(popupableView.PopupArea),
                             quizElementOptions.ToArray()
                         ));
                     break;
                 case TextExerciseLevel textExerciseLevel:
-                    _popupManager.OpenPopup(PopupType.WithTextAndImage,
+                    PopupManager.OpenPopup(PopupType.WithTextAndImage,
                         new PopupWithTextAndImageInitializationParameters(exercise.DisplayedName,
                             textExerciseLevel.Description,
                             null,
@@ -103,9 +101,9 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private void ClearPopup()
         {
-            if (_popupManager.CurrentPopupType != PopupType.None)
+            if (PopupManager.CurrentPopupType != PopupType.None)
             {
-                _popupManager.CloseCurrentPopup();
+                PopupManager.CloseCurrentPopup();
             }
         }
     }

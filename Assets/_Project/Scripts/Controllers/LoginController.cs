@@ -1,5 +1,6 @@
 ﻿using System;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
+using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
 using PolSl.UrbanHealthPath.Utils.PersistentValue;
 
@@ -9,7 +10,7 @@ namespace PolSl.UrbanHealthPath.Controllers
     {
         private readonly BoolPrefsValue _isFirstRun;
 
-        public LoginController(ViewManager viewManager) : base(viewManager)
+        public LoginController(ViewManager viewManager, PopupManager popupManager) : base(viewManager, popupManager)
         {
             _isFirstRun = new BoolPrefsValue("is_first_run", true);
         }

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using PolSl.UrbanHealthPath.Tools.TextLogger;
 using PolSl.UrbanHealthPath.UserInterface.Components.List;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
+using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
     public class HelpController : BaseController
     {
-        public HelpController(ViewManager viewManager) : base(viewManager)
+        public HelpController(ViewManager viewManager, PopupManager popupManager) : base(viewManager, popupManager)
         {
         }
 
