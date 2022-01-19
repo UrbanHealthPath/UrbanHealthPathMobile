@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using PolSl.UrbanHealthPath.MediaAccess;
 using PolSl.UrbanHealthPath.PathData;
 using PolSl.UrbanHealthPath.PathData.Progress;
@@ -20,16 +19,18 @@ namespace PolSl.UrbanHealthPath.Controllers
         private readonly PopupManager _popupManager;
         private readonly CoroutineManager _coroutineManager;
         private readonly IPathProgressManager _pathProgressManager;
+        private readonly AudioSource _audioSource;
 
         private Station _currentStation;
         private StationProgress _currentStationProgress;
 
         public StationController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager,
-            IPathProgressManager pathProgressManager) : base(viewManager)
+            IPathProgressManager pathProgressManager, AudioSource audioSource) : base(viewManager)
         {
             _popupManager = popupManager;
             _coroutineManager = coroutineManager;
             _pathProgressManager = pathProgressManager;
+            _audioSource = audioSource;
         }
 
         public void ShowNextStationConfirmation(Station nextStation, Action confirmed)
@@ -67,7 +68,11 @@ namespace PolSl.UrbanHealthPath.Controllers
 
             StationViewInitializationParameters initParams =
                 new StationViewInitializationParameters(sensorialEvent, motoricalEvent,
-                    gameEvent, () => stationFinished.Invoke(), () =>
+                    gameEvent, () =>
+                    {
+                        
+                        stationFinished.Invoke();
+                    }, () =>
                     {
                         if (_popupManager.CurrentPopupType != PopupType.None)
                         {
@@ -79,6 +84,8 @@ namespace PolSl.UrbanHealthPath.Controllers
                     station.DisplayedName, station.Introduction);
 
             ViewManager.InitializeCurrentView(initParams);
+            
+            PlayIntroductionAudio(station.IntroductionAudio);
         }
 
         private void ConfigureExerciseButton(Dictionary<ChangingButton, bool> buttonsStates, ChangingButton btn,
@@ -136,6 +143,18 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             _currentStation = station;
             _currentStationProgress = new StationProgress(station);
+        }
+
+        private void PlayIntroductionAudio(MediaFile introductionAudio)
+        {
+            _audioSource.clip = new AudioFileAccessor(introductionAudio).GetMedia();
+            _audioSource.Play();
+        }
+
+        private void StopIntroductionAudio()
+        {
+            _audioSource.Stop();
+            _audioSource.clip = null;
         }
     }
 }

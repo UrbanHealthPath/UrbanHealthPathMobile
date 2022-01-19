@@ -9,6 +9,7 @@ using PolSl.UrbanHealthPath.UserInterface.Components.List;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Views;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
@@ -26,6 +27,8 @@ namespace PolSl.UrbanHealthPath.Controllers
         private UrbanPath _selectedPath;
         private MapHolder _mapHolder;
 
+        private bool _isNextStationButtonActive;
+
         public PathController(ViewManager viewManager, IPathProgressManager pathProgressManager,
             Action returnToMainMenu, ILocationProviderFactory locationProviderFactory,
             MapHolder mapHolderPrefab) : base(viewManager)
@@ -41,8 +44,10 @@ namespace PolSl.UrbanHealthPath.Controllers
             IViewInitializationParameters initParams =
                 new PathChoiceViewInitializationParameters(
                     areDemoPaths
-                        ? BuildButtonsForAvailablePaths(availablePaths, path => ShowPathPresentationView(path, StartNewDemoPath))
-                        : BuildButtonsForAvailablePaths(availablePaths, path => ShowPathPresentationView(path, StartNewPath)),
+                        ? BuildButtonsForAvailablePaths(availablePaths,
+                            path => ShowPathPresentationView(path, StartNewDemoPath))
+                        : BuildButtonsForAvailablePaths(availablePaths,
+                            path => ShowPathPresentationView(path, StartNewPath)),
                     () => _returnToMainMenu.Invoke());
 
             ViewManager.OpenView(ViewType.PathChoice, initParams);
@@ -54,13 +59,15 @@ namespace PolSl.UrbanHealthPath.Controllers
             Texture mapTexture = new TextureFileAccessor(path.PreviewImage).GetMedia();
 
             IViewInitializationParameters initParams = new PathPresentationViewInitializationParameters(
-                () => _returnToMainMenu.Invoke(), ReturnToPreviousView, () => startPath.Invoke(path), ReturnToPreviousView,
+                () => _returnToMainMenu.Invoke(), ReturnToPreviousView, () => startPath.Invoke(path),
+                ReturnToPreviousView,
                 path.DisplayedName, stationsCount, path.ApproximateDistanceInMeters, mapTexture);
 
             ViewManager.OpenView(ViewType.PathPresentation, initParams);
         }
 
-        public void ShowPathView(Action nextStationButtonPressed, Action helpButtonPressed)
+        public void ShowPathView(Action nextStationButtonPressed, Action nextStationButtonCanceled,
+            Action helpButtonPressed)
         {
             if (_selectedPath is null)
             {
@@ -68,9 +75,27 @@ namespace PolSl.UrbanHealthPath.Controllers
             }
 
             ViewManager.OpenView(ViewType.Path, new PathViewInitializationParameters(
-                CancelPath, () => nextStationButtonPressed.Invoke(), () => helpButtonPressed.Invoke(),
+                CancelPath, BuildNextStationButton(nextStationButtonPressed, nextStationButtonCanceled),
+                () => helpButtonPressed.Invoke(),
                 () => _returnToMainMenu.Invoke(), _selectedPath.DisplayedName
             ));
+        }
+
+        private UnityAction BuildNextStationButton(Action clickedInactive, Action clickedActive)
+        {
+            return () =>
+            {
+                if (_isNextStationButtonActive)
+                {
+                    clickedActive.Invoke();
+                }
+                else
+                {
+                    clickedInactive.Invoke();
+                }
+
+                _isNextStationButtonActive = !_isNextStationButtonActive;
+            };
         }
 
         public void CancelPath()

@@ -1,4 +1,5 @@
 ﻿using System;
+using PolSl.UrbanHealthPath.Systems;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Views;
 
@@ -6,8 +7,11 @@ namespace PolSl.UrbanHealthPath.Controllers
 {
     public class SettingsController : BaseController
     {
-        public SettingsController(ViewManager viewManager) : base(viewManager)
+        private readonly Settings _settings;
+        
+        public SettingsController(ViewManager viewManager, Settings settings) : base(viewManager)
         {
+            _settings = settings;
         }
 
         public void ShowSettings(Action returnButtonPressed, Action revertDefaultsButtonPressed)
@@ -30,7 +34,7 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private void OnToggleAudioButtonPressed()
         {
-            
+            _settings.IsAudioEnabled = !_settings.IsAudioEnabled;
         }
     }
 }

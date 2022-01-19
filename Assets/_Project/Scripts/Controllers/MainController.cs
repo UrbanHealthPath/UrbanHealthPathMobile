@@ -5,9 +5,11 @@ using PolSl.UrbanHealthPath.Map;
 using PolSl.UrbanHealthPath.PathData;
 using PolSl.UrbanHealthPath.PathData.DataLoaders;
 using PolSl.UrbanHealthPath.PathData.Progress;
+using PolSl.UrbanHealthPath.Systems;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
 using PolSl.UrbanHealthPath.Utils.CoroutineManager;
+using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
@@ -18,6 +20,8 @@ namespace PolSl.UrbanHealthPath.Controllers
         private readonly IApplicationData _applicationData;
         private readonly MapHolder _mapHolderPrefab;
         private readonly CoroutineManager _coroutineManager;
+        private readonly Settings _settings;
+        private readonly AudioSource _audioSource;
 
         private LoginController _loginController;
         private MenuController _menuController;
@@ -29,14 +33,21 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         public MainController(ViewManager viewManager, PopupManager popupManager,
             IPathProgressManager pathProgressManager, IApplicationData applicationData, MapHolder mapHolderPrefab,
-            CoroutineManager coroutineManager) : base(viewManager)
+            CoroutineManager coroutineManager, Settings settings, AudioSource audioSource) : base(viewManager)
         {
             _popupManager = popupManager;
             _pathProgressManager = pathProgressManager;
             _applicationData = applicationData;
             _mapHolderPrefab = mapHolderPrefab;
             _coroutineManager = coroutineManager;
+            _settings = settings;
+            _audioSource = audioSource;
+        }
 
+        public void Run()
+        {
+            SubscribeToSettingsEvents();
+            
             CreateControllers();
             SubscribeToMenuEvents();
             SubscribeToPathEvents();
@@ -44,6 +55,11 @@ namespace PolSl.UrbanHealthPath.Controllers
             _loginController.ShowLoginScreenOnFirstRun(ReturnToMenu);
         }
 
+        private void SubscribeToSettingsEvents()
+        {
+            _settings.IsAudioEnabledChanged += ChangeAudioStatus;
+        }
+        
         private void SubscribeToMenuEvents()
         {
             _menuController.SettingsButtonPressed += () => _settingsController.ShowSettings(
@@ -73,6 +89,9 @@ namespace PolSl.UrbanHealthPath.Controllers
                                         new PathProgressCheckpoint(nextStation.WaypointId, DateTime.Now));
                                 } ));
                         });
+                }, () =>
+                {
+                    _popupManager.CloseCurrentPopup();
                 }, _helpController.ShowHelp);
             _pathController.PathCancelled += path => ReturnToMenu();
             _pathController.PathCompleted += path => ReturnToMenu();
@@ -82,11 +101,11 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             _loginController = new LoginController(ViewManager);
             _menuController = new MenuController(ViewManager);
-            _settingsController = new SettingsController(ViewManager);
+            _settingsController = new SettingsController(ViewManager, _settings);
             _helpController = new HelpController(ViewManager);
             _pathController = new PathController(ViewManager, _pathProgressManager, ReturnToMenu,
                 new LocationProviderFactory(new LocationPermissionRequester()), _mapHolderPrefab);
-            _stationController = new StationController(ViewManager, _popupManager, _coroutineManager, _pathProgressManager);
+            _stationController = new StationController(ViewManager, _popupManager, _coroutineManager, _pathProgressManager, _audioSource);
             _exerciseController = new ExerciseController(ViewManager, _popupManager, _coroutineManager);
         }
 
@@ -135,6 +154,11 @@ namespace PolSl.UrbanHealthPath.Controllers
             }
 
             return null;
+        }
+
+        private void ChangeAudioStatus(bool isAudioEnabled)
+        {
+            _audioSource.mute = !isAudioEnabled;
         }
     }
 }

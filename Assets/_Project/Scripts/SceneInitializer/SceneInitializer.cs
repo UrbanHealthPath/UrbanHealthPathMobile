@@ -9,6 +9,7 @@ using PolSl.UrbanHealthPath.MediaAccess;
 using PolSl.UrbanHealthPath.PathData;
 using PolSl.UrbanHealthPath.PathData.DataLoaders;
 using PolSl.UrbanHealthPath.PathData.Progress;
+using PolSl.UrbanHealthPath.Systems;
 using PolSl.UrbanHealthPath.Tools.TextLogger;
 using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Components.List;
@@ -28,11 +29,14 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 {
     public class SceneInitializer : MonoBehaviour
     {
-        [FormerlySerializedAs("_coroutinesManager")] [SerializeField] private CoroutineManager _coroutineManager;
+        [FormerlySerializedAs("_coroutinesManager")] [SerializeField]
+        private CoroutineManager _coroutineManager;
 
         [SerializeField] private MapHolder _mapHolderPrefab;
 
         [SerializeField] private GameObject _uiManager;
+
+        [SerializeField] private AudioSource _audioSource;
 
         private ITextLogger _logger;
         private IApplicationData _applicationData;
@@ -48,7 +52,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         private void Awake()
         {
             _logger = new UnityLogger();
-            
+
             _isFirstRun = new BoolPrefsValue("is_first_run", true);
 
             _applicationData = LoadApplicationData();
@@ -64,8 +68,12 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
             _popupManager = uiManager.GetComponent<PopupManager>();
             _popupManager.Initialize();
 
-            MainController mainController = new MainController(_viewManager, _popupManager, _pathProgressManager, _applicationData, _mapHolderPrefab,  _coroutineManager);
+            Settings settings = new Settings();
 
+            MainController mainController = new MainController(_viewManager, _popupManager, _pathProgressManager,
+                _applicationData, _mapHolderPrefab, _coroutineManager, settings, _audioSource);
+
+            mainController.Run();
             //BuildUI();
         }
 
@@ -90,7 +98,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
             _mapHolder = Instantiate(_mapHolderPrefab);
             _mapHolder.Initialize(locationUpdater, coordinatesList);
-            
+
             locationUpdater.UpdateLocation();
         }
 
@@ -102,8 +110,8 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
                 new LocationProviderFactory(new LocationPermissionRequester()).CreateDeviceProvider();
             ILocationUpdater locationUpdater = new LocationUpdater(locationProvider);
 
-            _currentLocationProvider = locationProvider;            
-            
+            _currentLocationProvider = locationProvider;
+
             _mapHolder = Instantiate(_mapHolderPrefab);
             _mapHolder.Initialize(locationUpdater, coordinatesList);
         }
@@ -114,7 +122,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
             {
                 return;
             }
-            
+
             Destroy(_mapHolder.gameObject);
             _mapHolder = null;
         }
@@ -240,7 +248,8 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         {
             _viewManager.OpenView(ViewType.Help, new HelpViewInitializationParameters(new List<ListElement>()
             {
-                new ListElement("Przykładowy przycisk pomocy", null, "Pomoc", () => { _logger.Log(LogVerbosity.Debug, "Pomoc");})
+                new ListElement("Przykładowy przycisk pomocy", null, "Pomoc",
+                    () => { _logger.Log(LogVerbosity.Debug, "Pomoc"); })
             }, returnAction));
         }
 
@@ -389,10 +398,12 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
                     foreach (LateBoundValue<MediaFile> image in imageSelectionExerciseLevel.Images)
                     {
                         Texture2D texture = new TextureFileAccessor(image).GetMedia();
-                        bool isCorrect = imageSelectionExerciseLevel.CorrectAnswers.Contains(imageSelectionExerciseLevel.Images.IndexOf(image));
+                        bool isCorrect =
+                            imageSelectionExerciseLevel.CorrectAnswers.Contains(
+                                imageSelectionExerciseLevel.Images.IndexOf(image));
 
                         //quizElementOptions.Add(new QuizElementOption(texture,
-                            //() => _logger.Log(LogVerbosity.Debug, isCorrect ? "Correct answer" : "Wrong answer")));
+                        //() => _logger.Log(LogVerbosity.Debug, isCorrect ? "Correct answer" : "Wrong answer")));
                     }
 
                     _popupManager.OpenPopup(PopupType.QuizWithImages,

@@ -17,11 +17,22 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             IViewInitializationParameters initParams = new HelpViewInitializationParameters(new List<ListElement>()
             {
-                new ListElement("Objaśnienia ikon", null, "Pomoc",
-                    () => { })
+                new ListElement("O aplikacji", null, "", ShowAppExplanation),
+                new ListElement("Objaśnienie ikon", null, "", ShowExerciseIconsExplanation)
             }, ReturnToPreviousView);
-            
+
             ViewManager.OpenView(ViewType.Help, initParams);
+        }
+
+        private void ShowAppExplanation()
+        {
+            ViewManager.OpenView(ViewType.AppInfo,
+                new ApplicationInfoViewInitializationParameters(ReturnToPreviousView, null));
+        }
+
+        private void ShowExerciseIconsExplanation()
+        {
+            ViewManager.OpenView(ViewType.IconInfo, new ApplicationInfoViewInitializationParameters(ReturnToPreviousView, null));
         }
     }
 }
