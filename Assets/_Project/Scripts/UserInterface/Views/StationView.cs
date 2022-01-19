@@ -19,26 +19,29 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
 
         [SerializeField] private ChangingButton _rightButton;
         [SerializeField] private ChangingButton _middleButton;
-        [SerializeField] private ChangingButton _leftButton;
-
+        [SerializeField] private ChangingButton _leftButton; 
+        
         [FormerlySerializedAs("mainMenuButton")] [SerializeField]
         private Button _mainMenuButton;
 
         [FormerlySerializedAs("returnButton")] [SerializeField]
         private Button _returnButton;
 
-        [SerializeField] private HeaderPanel _headerPanel;
+        [SerializeField] private ButtonWithAudio _buttonWithAudio;
 
+        [SerializeField] private HeaderPanel _headerPanel;
+        
         [FormerlySerializedAs("informationAboutStation")] [SerializeField]
         private TextMeshProUGUI _informationAboutStation;
 
         [FormerlySerializedAs("popupArea")] [SerializeField]
         private RectTransform _popupArea;
-
+        
         private UnityAction<ChangingButton> _historicButtonAction;
         private UnityAction<ChangingButton> _motorialButtonAction;
         private UnityAction<ChangingButton> _sensoricButtonAction;
-
+        
+        private bool _isPlaying = false;
         public void Initialize(IViewInitializationParameters initializationParameters)
         {
             if (initializationParameters is StationViewInitializationParameters init)
@@ -60,6 +63,15 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
                         init.HistoricInfoEvent?.Invoke(_leftButton));
                 else
                     _leftButton.SetInteractable(false);
+
+                if (init.AudioClip != null)
+                {
+                    _buttonWithAudio.Button.onClick.AddListener(()=>init.PlayAction?.Invoke(_buttonWithAudio));
+                }
+                else
+                {
+                    _buttonWithAudio.Button.interactable = false;
+                }
 
                 _mainMenuButton.onClick.AddListener(() => init.MainMenuEvent?.Invoke());
                 _returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
@@ -94,5 +106,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
             _mainMenuButton.onClick.RemoveAllListeners();
             _returnButton.onClick.RemoveAllListeners();
         }
+        
     }
 }

@@ -30,15 +30,15 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
                 InitSizeAndPosition(init.Payload);
                 
                 _question.text = init.Question;
-                _text1.text = init.Text1;
-                _text2.text = init.Text2;
-                _text3.text = init.Text3;
-                _text4.text = init.Text4;
+                _text1.text = init.Options[0].Text;
+                _text2.text = init.Options[1].Text;
+                _text3.text = init.Options[2].Text;
+                _text4.text = init.Options[3].Text;
 
-                _button1.onClick.AddListener(() => init.ButtonText1Action?.Invoke(_button1.GetComponent<QuizOptionButton>()));
-                _button2.onClick.AddListener(() => init.ButtonText2Action?.Invoke(_button2.GetComponent<QuizOptionButton>()));
-                _button3.onClick.AddListener(() => init.ButtonText3Action?.Invoke(_button3.GetComponent<QuizOptionButton>()));
-                _button4.onClick.AddListener(() => init.ButtonText4Action?.Invoke(_button4.GetComponent<QuizOptionButton>()));
+                _button1.onClick.AddListener(() => init.Options[0].ButtonAction?.Invoke(_button1.GetComponent<QuizOptionButton>()));
+                _button2.onClick.AddListener(() => init.Options[1].ButtonAction?.Invoke(_button2.GetComponent<QuizOptionButton>()));
+                _button3.onClick.AddListener(() => init.Options[2].ButtonAction?.Invoke(_button3.GetComponent<QuizOptionButton>()));
+                _button4.onClick.AddListener(() => init.Options[3].ButtonAction?.Invoke(_button4.GetComponent<QuizOptionButton>()));
             }
         }
         public void InitSizeAndPosition(PopupPayload payload)
