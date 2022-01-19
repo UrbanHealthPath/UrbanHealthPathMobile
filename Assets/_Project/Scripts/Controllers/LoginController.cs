@@ -25,7 +25,7 @@ namespace PolSl.UrbanHealthPath.Controllers
 
             IViewInitializationParameters initParams = new LogInViewInitializationParameters(() => { }, () =>
             {
-                _isFirstRun.Value = true;
+                _isFirstRun.Value = false;
                 loginComplete.Invoke();
             });
 
