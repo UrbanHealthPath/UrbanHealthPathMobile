@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
-    public class IconInfoView : MonoBehaviour, IDisplayable
+    public class IconInfoView : MonoBehaviour, IDisplayable, IInitializableView
     {
         [FormerlySerializedAs("backButton")] [SerializeField] private Button _backButton;
         [FormerlySerializedAs("forwardButton")] [SerializeField] private Button _forwardButton;
