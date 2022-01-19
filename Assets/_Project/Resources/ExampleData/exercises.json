@@ -63,6 +63,62 @@
     ]
   },
   {
+    "exercise_id": "gliwice.neptun.wykonanie",
+    "displayed_name": "Neptun Wykonanie",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Fontanna została wykonana w XVIII wieku z okazji budowy kanału Kłodnickiego, który połączył Gliwice z morzem. Umożliwiło to transport węgla kamiennego drogą wodną z Zabrza i Gliwic do Odry, a następnie dalej do Morza Bałtyckiego."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.neptun.autor",
+    "displayed_name": "Neptun Autor",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Fontanna została wykonana przez rzeźbiarza Johannesa Nitchego, który wyrzeźbił również figurę św. Jana Nepomucena, która znajduje się  przed kościołem ormiańskim przy ulicy Mikołowskiej w Gliwicach."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.neptun.material",
+    "displayed_name": "Neptun Materiał",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Rzeźba jest wykonana z piaskowca."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.neptun.delfin",
+    "displayed_name": "Neptun Deflin",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Neptun został przedstawiony jako siedzący na delfinie. Zyskał przydomek \"Jerzy z widłami\"."
+      }
+    ]
+  },
+  {
     "exercise_id": "gliwice.ratusz.cwiczenie",
     "displayed_name": "2",
     "category": "motorical",
@@ -98,6 +154,62 @@
     ]
   },
   {
+    "exercise_id": "gliwice.ratusz.autor",
+    "displayed_name": "Ratusz Madonna",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Tę barokową rzeźbę wykonał Johanness Nitsche."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.ratusz.rzeba",
+    "displayed_name": "Ratusz rzeźba",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Stoisz przed bardzo ważną osobą dla Gliwiczan. Rzeźba umieszczona na fasadzie ratusza przedstawia Matkę Boską Niepokalanie Poczętą."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.ratusz.wojna",
+    "displayed_name": "Ratusz Wojna",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "W trakcie wojny trzydziestoletniej mieszkańcy złożyli ślubowanie Bogu, że jeżeli Matka Boska uratuje miasto, to po wszystkie czasy gliwiczanie z wdzięcznością będą pielgrzymować na Jasną Górę. Następnego dnia wojska odstąpiły bram miasta. Mieszkańcy powędrowali wówczas do Kaplicy Matki Boskiej Częstochowskiej i tak co roku wędrują po dziś dzień.Na pamiątkę tego wydarzenia wizerunek Matki Boskiej znalazł się na sztandarze i w herbie miejskim."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.ratusz.slubowanie",
+    "displayed_name": "Ratusz Slubowanie",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "W trakcie wojny trzydziestoletniej mieszkańcy złożyli ślubowanie Bogu, że jeżeli Matka Boska uratuje miasto, to po wszystkie czasy gliwiczanie z wdzięcznością będą pielgrzymować na Jasną Górę. Następnego dnia wojska odstąpiły bram miasta. Mieszkańcy powędrowali wówczas do Kaplicy Matki Boskiej Częstochowskiej i tak co roku wędrują po dziś dzień.Na pamiątkę tego wydarzenia wizerunek Matki Boskiej znalazł się na sztandarze i w herbie miejskim."
+      }
+    ]
+  },
+  {
     "exercise_id": "gliwice.arkady.1",
     "displayed_name": "3",
     "category": "motorical",
@@ -123,6 +235,34 @@
         "max_difficulty": 5,
         "type": "text",
         "description": "Stań na wprost wybranej arkady. Podnieś ręce w górę, wykonując głęboki wdech nosem. Następnie wolno opuść dłonie naśladując łuk arkad i wolno wydychając powietrze nosem. Powtórz ćwiczenie trzy razy."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.ratusz.sens",
+    "displayed_name": "3",
+    "category": "sensorial",
+    "subcategory": "lungs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "text",
+        "description": "Stań pod rzeźbą patrząc na kamieniczki naprzeciwko. Możesz nieco szerzej rozstawić stopy, skupiając się na podłożu. Gdy poczujesz równowagę skieruj uwagę na oddech. Weź głęboki wdech nosem i wypuść powietrze przez lekko uchylone usta licząc wolno od pięciu do jeden. Wykonaj trzy głębokie wdechy."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.arkady.ciekawostka",
+    "displayed_name": "Arkady Ciekawostka",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "średniowieczna zabudowa Rynku dziś już nie istnieje. Większość obecnych kamienic pochodzi głównie z XIX i XX wieku. Wyglądem swoim luźno nawiązują do stylu klasycystycznego, a charakterystyczne arkady są wyraźnym nawiązaniem do stylu renesansowego. Jest to efekt powojennej odbudowy części gliwickiej starówki, kierowanej przez architekta Franciszka Maurera."
       }
     ]
   },
@@ -171,8 +311,8 @@
     ]
   },
   {
-    "exercise_id": "gliwice.podcienie.game",
-    "displayed_name": "Podcienie - Gra Miejska",
+    "exercise_id": "gliwice.arkady.game",
+    "displayed_name": "Arkady - Gra Miejska",
     "category": "game",
     "subcategory": "eyes",
     "levels": [
@@ -335,6 +475,160 @@
         ],
         "image": "image.game.gliwice.Gra_miejska_zdjecie_7.Plebanska.jpg",
         "correct_answers": [3]
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.pilastry.kamienica",
+    "displayed_name": "Pilastry Kamienica",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Kamienica z numerem 18 to klasycystyczny budynek z pierwszej połowy 19 wieku."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.pilastry.hotel",
+    "displayed_name": "Pilastry Hotel",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Dawniej znajdował się tam najstarszy i najbardziej prestiżowy gliwicki hotel “Deutsches Haus”."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.pilastry.dyrekcja",
+    "displayed_name": "Pilastry ród Schaffgotschów",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Później w kamienicy mieściła się dyrekcja zarządu dóbr koncernu należącego do rodu Schaffgotschów."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.rog.rzezba",
+    "displayed_name": "Rog Rzeźba",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Rzeźba, którą zobaczysz na narożniku kamienicy, upamiętnia bohaterskie kobiety, które broniły miasta podczas wojny trzydziestoletniej, wylewając na wojska duńskie gorącą kaszę."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.rog.gliwiczanka",
+    "displayed_name": "Rog Gliwiczanka",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Potocznie zwaną “Gliwiczankę” wyrzeźbiła Wanda Demczyn-Wiśniewska. Rzeźba została odsłonięta w 1956 roku."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.plebanska.niemiecka_nazwa",
+    "displayed_name": "Plebanska dawna nazwa",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Obecnie ulica Plebańska w niemieckich Gliwicach nazywała się Pfarrstrasse, czyli w wolnym tłumaczeniu ulica parafialna."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.plebanska.polaczenie",
+    "displayed_name": "Plebanska polaczenie",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Ulica łączy Rynek z Placem Wszystkich Świętych."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.plebanska.plebania",
+    "displayed_name": "Plebanska plebania",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Kiedyś jej najważniejszymi punktami była plebania Kościoła Wszystkich Świętych oraz najstarsza gliwicka szkoła."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.plebanska.piwo",
+    "displayed_name": "Plebanska piekarnia",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Dawniej mieścił się tutaj skład piwa, restauracja i piekarnia."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.plebanska.mieszkancy",
+    "displayed_name": "Plebanska mieszkancy",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Mieszkańcami ulicy Plebańskiej byli Bernhard Bermann - właściciel składu piwa oraz Richard Koban - budowniczy kościołów."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.plebanska.restauracja",
+    "displayed_name": "Plebanska restauracja",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "W 2014 roku budynek pod numerem 3 został odrestaurowany."
       }
     ]
   }

@@ -10,15 +10,13 @@
     "exercises": [
       "gliwice.neptun.1a",
       "gliwice.neptun.2a",
-      "gliwice.neptun.game"
-    ],
-    "displayed_name": "Rynek Fontanna Neptuna",
-    "historical_facts": [
       "gliwice.neptun.wykonanie",
       "gliwice.neptun.autor",
       "gliwice.neptun.material",
-      "gliwice.neptun.delfin"
+      "gliwice.neptun.delfin",
+      "gliwice.neptun.game"
     ],
+    "displayed_name": "Rynek Fontanna Neptuna",
     "navigation_audio": "",
     "image": "image.station.gliwice.neptun.icon",
     "introduction": "Od wody rozpoczyna się życie! Na gliwickim Rynku opiekuje nią bóg morskich głębin. Fontanna jest otoczona niewysokim murkiem z piaskowca, można ją bezpiecznie obejść wokół obserwując Neptuna na tle Ratusza lub kolorowych kamieniczek w Rynku.",
@@ -33,15 +31,15 @@
     "zone_name": "Rynek",
     "type": "station",
     "exercises": [
-      "gliwice.ratusz.cwiczenie"
-    ],
-    "displayed_name": "Rynek Rzezba na Ratuszu",
-    "historical_facts": [
+      "gliwice.ratusz.cwiczenie",
+      "gliwice.ratusz.sens",
       "gliwice.ratusz.autor",
       "gliwice.ratusz.rzeba",
       "gliwice.ratusz.wojna",
-      "gliwice.ratusz.slubowanie"
+      "gliwice.ratusz.slubowanie",
+      "gliwice.ratusz.game"
     ],
+    "displayed_name": "Rynek Rzezba na Ratuszu", 
     "navigation_audio": "",
     "image": "image.station.gliwice.ratusz.icon",
     "introduction": "Na Rynku nie mogło zabraknąć postaci, które pomagały gliwiczanom bronić swojego miasta i życia. Rzeźba Madonny patrzy na południowo-zachodnią część miasta, wznosząc oczy ponad dachy. A Ty? Co zobaczysz, gdy odwrócisz się w kierunku, gdzie patrzy Madonna?", 
@@ -57,12 +55,11 @@
     "type": "station",
     "exercises": [
       "gliwice.arkady.1",
-      "gliwice.arkady.2"
+      "gliwice.arkady.2",
+      "gliwice.arkady.ciekawostka",
+      "gliwice.arkady.game"
     ],
     "displayed_name": "Rynek Arkady",
-    "historical_facts": [
-      "gliwice.arkady.ciekawostka"
-    ],
     "navigation_audio": "",
     "image": "image.station.gliwice.arkady.icon",
     "introduction": "Gliwickie arkady pozwalają mieszkańcom na swobodne przechodzenie wzdłuż Rynku dając cień w upalne letnie dni, a w dni deszczowe dając parasol – utworzony ze sklepień w podcieniach. Harmonijne łuki arkad otwierają szeroko widok z podcieni na przestrzeń Rynku.",
@@ -79,14 +76,12 @@
     "exercises": [
       "gliwice.pilastry.4a",
       "gliwice.pilastry.4b",
+      "gliwice.pilastry.kamienica",
+      "gliwice.pilastry.hotel",
+      "gliwice.pilastry.dyrekcja",
       "gliwice.pilastry.game"
     ],
     "displayed_name": "Rynek Pilastry",
-    "historical_facts": [
-      "gliwice.pilastry.kamienica",
-      "gliwice.pilastry.hotel",
-      "gliwice.pilastry.dyrekcja"
-    ],
     "navigation_audio": "",
     "image": "image.station.gliwice.pilastry.icon",
     "introduction": "Elewacja kamienicy pod 18. to dojrzały styl klasycystyczny, na podobieństwo rzymskich fasad. Mamy tu wyraźny rytm pilastrów – rzędu płaskich kolumn, zakończonych jońskimi głowicami. Czy możesz policzyć, ile ich jest? Neptun na szczęście nie widzi, że to trochę jak kurtyna – z tyłu widoczna jest płaska elewacja współczesnej kamienicy.",
@@ -103,11 +98,9 @@
     "exercises": [
       "gliwice.podcienie.1",
       "gliwice.podcienie.2",
-      "gliwice.podcienie.3",
-      "gliwice.podcienie.game"
+      "gliwice.podcienie.3"
     ],
     "displayed_name": "Rynek Podcienie",
-    "historical_facts": [],
     "navigation_audio": "",
     "image": "image.station.gliwice.podcienie.icon",
     "introduction": "Na jednym z filarów arkad został umieszczony napis: GALERIA SZTUKI. Nasz wzrok musi powędrować w górę po kilku dekoracyjnych rowkach czyli boniowaniach, aby go dojrzeć na szczycie filara. To tak jak przy budowaniu swojej coraz lepszej formy – stopniowo i krok po kroku.",
@@ -123,13 +116,11 @@
     "type": "station",
     "exercises": [
       "gliwice.rog.1",
+      "gliwice.rog.rzezba",
+      "gliwice.rog.gliwiczanka",
       "gliwice.rog.2"
     ],
     "displayed_name": "Rynek Rzezba na Rogu",
-    "historical_facts": [
-      "gliwice.rog.rzezba",
-      "gliwice.rog.gliwiczanka"
-    ],
     "navigation_audio": "",
     "image": "image.station.gliwice.rog.icon",
     "introduction": "W narożu ulic Plebańskiej i Krótkiej znajdujemy rzeźbę Gliwiczanki – to hołd dla odważnych kobiet broniących miasta przed wojskami generała Mansfelda podczas Wojny Trzydziestoletniej na początku XVII wieku. Gliwice zostały ocalone dzięki kobiecemu sprytowi, dzielności i … kaszy jaglanej! Kobiecy spryt oraz kasza jaglana mogą ratować nas również dziś.",
@@ -145,18 +136,16 @@
     "type": "station",
     "exercises": [
       "gliwice.plebanska.1",
-      "gliwice.plebanska.2",
-      "gliwice.plebanska.game"
-    ],
-    "displayed_name": "Portale na Plebanskiej",
-    "historical_facts": [
+      "gliwice.plebanska.2",  
       "gliwice.plebanska.niemiecka_nazwa",
       "gliwice.plebanska.polaczenie",
       "gliwice.plebanska.plebania",
       "gliwice.plebanska.piwo",
       "gliwice.plebanska.mieszkancy",
-      "gliwice.plebanska.restauracja"
+      "gliwice.plebanska.restauracja",
+      "gliwice.plebanska.game"
     ],
+    "displayed_name": "Portale na Plebanskiej",
     "navigation_audio": "",
     "image": "image.station.gliwice.plebanska.icon",
     "introduction": "W narożu ulic Plebańskiej i Krótkiej znajdujemy rzeźbę Gliwiczanki – to hołd dla odważnych kobiet broniących miasta przed wojskami generała Mansfelda podczas Wojny Trzydziestoletniej na początku XVII wieku. Gliwice zostały ocalone dzięki kobiecemu sprytowi, dzielności i … kaszy jaglanej! Kobiecy spryt oraz kasza jaglana mogą ratować nas również dziś.",
