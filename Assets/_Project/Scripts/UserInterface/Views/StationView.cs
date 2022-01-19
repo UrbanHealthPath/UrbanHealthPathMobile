@@ -13,6 +13,10 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
     public class StationView : MonoBehaviour, IInitializableView, IPopupable
     {
         public RectTransform PopupArea => _popupArea;
+        public ChangingButton RightButton => _rightButton;
+        public ChangingButton MiddleButton => _middleButton;
+        public ChangingButton LeftButton => _leftButton;
+
         [SerializeField] private ChangingButton _rightButton;
         [SerializeField] private ChangingButton _middleButton;
         [SerializeField] private ChangingButton _leftButton;
@@ -61,7 +65,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
                 _returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
                 _headerPanel.Initialize(init.HeaderText);
                 _informationAboutStation.text = init.InformationAboutStation;
-
             }
         }
 
