@@ -60,7 +60,6 @@ namespace PolSl.UrbanHealthPath.Controllers
 
             IViewInitializationParameters initParams = new PathPresentationViewInitializationParameters(
                 () => _returnToMainMenu.Invoke(), ReturnToPreviousView, () => startPath.Invoke(path),
-                ReturnToPreviousView,
                 path.DisplayedName, stationsCount, path.ApproximateDistanceInMeters, mapTexture);
 
             ViewManager.OpenView(ViewType.PathPresentation, initParams);
@@ -209,5 +208,16 @@ namespace PolSl.UrbanHealthPath.Controllers
             FinishPath();
             PathCompleted?.Invoke(path);
         }
+
+        protected override void HandleViewChange(ViewType type)
+        {
+            base.HandleViewChange(type);
+
+            if (type == ViewType.Path)
+            {
+                _isNextStationButtonActive = false;
+            }
+        }
+        
     }
 }

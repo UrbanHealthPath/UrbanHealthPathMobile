@@ -13,11 +13,12 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
     public class ViewManager : MonoBehaviour
     {
+        public event Action<ViewType> ViewOpened;
         public ViewType CurrentViewType { get; private set; }
         public GameObject CurrentView { get; private set; }
         public ViewType LastViewType { get; private set; }
         public History History { get; private set; }
-
+        
         [FormerlySerializedAs("viewsWithTypes")] [SerializeField]
         private View[] _viewsWithTypes;
 
@@ -49,6 +50,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
                 CurrentView = Instantiate(_views[viewType]);
                 History.AddToHistory(viewType, initializationParameters);
                 InitializeCurrentView(initializationParameters);
+                ViewOpened?.Invoke(viewType);
             }
 
             return CurrentView;
