@@ -9,20 +9,18 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
         public UnityAction MainMenuEvent { get; }
         public UnityAction ReturnEvent { get; }
         public UnityAction ChooseButtonAction { get; }
-        public UnityAction CancelButtonAction { get; }
         public string HeaderText { get; }
         public int StationCount { get; }
         public double PathLength { get; }
         public Texture MapTexture { get; }
 
         public PathPresentationViewInitializationParameters(UnityAction mainMenuEvent, UnityAction returnEvent,
-            UnityAction chooseButtonAction, UnityAction cancelButtonAction, string headerText, int stationCount, 
+            UnityAction chooseButtonAction, string headerText, int stationCount, 
             int pathLength, Texture mapTexture)
         {
             MainMenuEvent = mainMenuEvent;
             ReturnEvent = returnEvent;
             ChooseButtonAction = chooseButtonAction;
-            CancelButtonAction = cancelButtonAction;
             HeaderText = headerText;
             StationCount = stationCount;
             PathLength = pathLength;

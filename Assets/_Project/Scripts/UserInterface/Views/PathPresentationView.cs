@@ -12,7 +12,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         [SerializeField] private Button _mainMenuButton;
         [SerializeField] private Button _returnButton;
         [SerializeField] private Button _chooseButton;
-        [SerializeField] private Button _cancelButton;
         [SerializeField] private HeaderPanel _headerPanel;
         [SerializeField] private TextMeshProUGUI _stationCount;
         [SerializeField] private TextMeshProUGUI _distance;
@@ -25,7 +24,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
                 _mainMenuButton.onClick.AddListener(() => init.MainMenuEvent?.Invoke());
                 _returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
                 _chooseButton.onClick.AddListener(() => init.ChooseButtonAction?.Invoke());
-                _cancelButton.onClick.AddListener(() => init.CancelButtonAction?.Invoke());
                 _headerPanel.Initialize(init.HeaderText);
                 _stationCount.text = "Liczba punktów do odwiedzenia: " + init.StationCount;
                 _distance.text = "Dystans możliwy do przebycia: " + init.PathLength;
@@ -36,7 +34,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         public void OnDisable()
         {
             _chooseButton.onClick.RemoveAllListeners();
-            _cancelButton.onClick.RemoveAllListeners();
             _mainMenuButton.onClick.RemoveAllListeners();
             _returnButton.onClick.RemoveAllListeners();
         }
