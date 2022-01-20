@@ -66,6 +66,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
 
                 if (init.AudioClip != null)
                 {
+                    _buttonWithAudio.Initialize(init.AudioClip, init.AudioButtonInitialized);
                     _buttonWithAudio.Button.onClick.AddListener(()=>init.PlayAction?.Invoke(_buttonWithAudio));
                 }
                 else
@@ -105,6 +106,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
             _leftButton.Button.onClick.RemoveAllListeners();
             _mainMenuButton.onClick.RemoveAllListeners();
             _returnButton.onClick.RemoveAllListeners();
+            _buttonWithAudio.Button.onClick.RemoveAllListeners();
         }
         
     }

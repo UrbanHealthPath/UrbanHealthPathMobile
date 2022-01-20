@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using PolSl.UrbanHealthPath.MediaAccess;
 using PolSl.UrbanHealthPath.PathData;
 using PolSl.UrbanHealthPath.PathData.Progress;
+using PolSl.UrbanHealthPath.Systems;
 using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
@@ -18,19 +19,23 @@ namespace PolSl.UrbanHealthPath.Controllers
     {
         private readonly CoroutineManager _coroutineManager;
         private readonly IPathProgressManager _pathProgressManager;
-        private readonly AudioSource _audioSource;
+        private readonly Settings _settings;
 
         private Dictionary<ChangingButton, bool> _stationButtonStates;
         private StationProgress _currentStationProgress;
 
+        private ButtonWithAudio _lastAudioButton;
+
         public StationController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager,
-            IPathProgressManager pathProgressManager, AudioSource audioSource) : base(viewManager, popupManager)
+            IPathProgressManager pathProgressManager, Settings settings) : base(viewManager, popupManager)
         {
             _coroutineManager = coroutineManager;
             _pathProgressManager = pathProgressManager;
-            _audioSource = audioSource;
-            
+            _settings = settings;
+
             _stationButtonStates = new Dictionary<ChangingButton, bool>();
+            
+            _settings.IsAudioEnabledChanged += SetLastAudioMute; 
         }
 
         public void ShowNextStationConfirmation(Station nextStation, Action confirmed)
@@ -58,15 +63,19 @@ namespace PolSl.UrbanHealthPath.Controllers
 
             if (_currentStationProgress.GetCurrentExercise(ExerciseCategory.Motorical) != null)
             {
-                motoricalEvent = (btn) => ConfigureExerciseButton(_stationButtonStates, btn, exerciseStarting, exerciseEnding,
+                motoricalEvent = (btn) => ConfigureExerciseButton(_stationButtonStates, btn, exerciseStarting,
+                    exerciseEnding,
                     ExerciseCategory.Motorical);
             }
 
             if (_currentStationProgress.GetCurrentExercise(ExerciseCategory.Sensorial) != null)
             {
-                sensorialEvent = (btn) => ConfigureExerciseButton(_stationButtonStates, btn, exerciseStarting, exerciseEnding,
+                sensorialEvent = (btn) => ConfigureExerciseButton(_stationButtonStates, btn, exerciseStarting,
+                    exerciseEnding,
                     ExerciseCategory.Sensorial);
             }
+
+            AudioClip introductionAudio = new AudioFileAccessor(station.IntroductionAudio).GetMedia();
 
             StationViewInitializationParameters initParams =
                 new StationViewInitializationParameters(sensorialEvent, motoricalEvent,
@@ -77,11 +86,10 @@ namespace PolSl.UrbanHealthPath.Controllers
                         PopupManager.CloseCurrentPopup();
                         ReturnToPreviousView();
                     },
-                    station.DisplayedName, station.Introduction);
+                    station.DisplayedName, station.Introduction, AudioButtonInitializedHandler, AudioButtonHandler,
+                    introductionAudio);
 
             ViewManager.InitializeCurrentView(initParams);
-
-            PlayIntroductionAudio(station.IntroductionAudio);
         }
 
         private void ConfigureExerciseButton(Dictionary<ChangingButton, bool> buttonsStates, ChangingButton btn,
@@ -140,16 +148,17 @@ namespace PolSl.UrbanHealthPath.Controllers
             _currentStationProgress = new StationProgress(station);
         }
 
-        private void PlayIntroductionAudio(MediaFile introductionAudio)
+        private void AudioButtonInitializedHandler(ButtonWithAudio btn)
         {
-            _audioSource.clip = new AudioFileAccessor(introductionAudio).GetMedia();
-            _audioSource.Play();
+            _lastAudioButton = btn;
+            SetLastAudioMute(_settings.IsAudioEnabled);
+            btn.ToggleState();
         }
 
-        private void StopIntroductionAudio()
+        private void AudioButtonHandler(ButtonWithAudio btn)
         {
-            _audioSource.Stop();
-            _audioSource.clip = null;
+            _lastAudioButton = btn;
+            btn.ToggleState();
         }
 
         protected override void ViewOpenedHandler(ViewType type)
@@ -158,8 +167,17 @@ namespace PolSl.UrbanHealthPath.Controllers
 
             if (type == ViewType.Station)
             {
-                _stationButtonStates.Clear(); 
+                _stationButtonStates.Clear();
             }
+
+            StopLastAudioIntroduction();
+        }
+
+        protected override void PopupOpenedHandler(PopupType type)
+        {
+            base.PopupOpenedHandler(type);
+
+            StopLastAudioIntroduction();
         }
 
         protected override void PopupClosedHandler(PopupType type)
@@ -170,6 +188,22 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 _stationButtonStates.Clear();
                 ViewManager.CurrentView.GetComponent<StationView>().ResetActiveButtons();
+            }
+        }
+
+        private void StopLastAudioIntroduction()
+        {
+            if (_lastAudioButton != null)
+            {
+                _lastAudioButton.ForceStop();
+            }
+        }
+
+        private void SetLastAudioMute(bool isEnabled)
+        {
+            if (_lastAudioButton != null)
+            {
+                _lastAudioButton.AudioSource.mute = !isEnabled;
             }
         }
     }

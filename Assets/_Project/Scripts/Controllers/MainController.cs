@@ -6,7 +6,6 @@ using PolSl.UrbanHealthPath.PathData;
 using PolSl.UrbanHealthPath.PathData.DataLoaders;
 using PolSl.UrbanHealthPath.PathData.Progress;
 using PolSl.UrbanHealthPath.Systems;
-using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
 using PolSl.UrbanHealthPath.Utils.CoroutineManager;
@@ -47,18 +46,11 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         public void Run()
         {
-            SubscribeToSettingsEvents();
-
             CreateControllers();
             SubscribeToMenuEvents();
             SubscribeToPathEvents();
 
             _loginController.ShowLoginScreenOnFirstRun(ReturnToMenu);
-        }
-
-        private void SubscribeToSettingsEvents()
-        {
-            _settings.IsAudioEnabledChanged += ChangeAudioStatus;
         }
 
         private void SubscribeToMenuEvents()
@@ -105,7 +97,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             _pathController = new PathController(ViewManager, PopupManager, _pathProgressManager, ReturnToMenu,
                 new LocationProviderFactory(new LocationPermissionRequester()), _mapHolderPrefab);
             _stationController = new StationController(ViewManager, PopupManager, _coroutineManager,
-                _pathProgressManager, _audioSource);
+                _pathProgressManager, _settings);
             _exerciseController = new ExerciseController(ViewManager, PopupManager, _coroutineManager);
             _shareController = new ShareController();
         }
@@ -155,11 +147,6 @@ namespace PolSl.UrbanHealthPath.Controllers
             }
 
             return null;
-        }
-
-        private void ChangeAudioStatus(bool isAudioEnabled)
-        {
-            _audioSource.mute = !isAudioEnabled;
         }
     }
 }

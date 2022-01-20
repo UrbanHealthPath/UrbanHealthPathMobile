@@ -1,54 +1,62 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components
 {
     public class ButtonWithAudio : MonoBehaviour
     {
-        public Button Button {get;}
-        
+        [SerializeField] private Button _button;
         [SerializeField] private AudioSource _audioSource;
-
         [SerializeField] private TextMeshProUGUI _buttonText;
 
+        public AudioClip Clip { get; private set; }
+        public Button Button => _button;
+        public bool IsPlaying { get; private set; }
         public AudioSource AudioSource
         {
             get { return _audioSource; }
         }
-        
-        private bool _isPlaying = false;
-        
-        public void ChangeAudioState(AudioClip clip)
+
+        public void Initialize(AudioClip clip, UnityAction<ButtonWithAudio> initialized = null)
         {
-            if (!_isPlaying)
-            {
-                PlayAudio(clip);
-            }
-            else
+            Clip = clip;
+            initialized?.Invoke(this);
+        }
+
+        public void ToggleState()
+        {
+            if (IsPlaying)
             {
                 StopAudio();
             }
+            else
+            {
+                PlayAudio();
+            }
         }
-        
-        private void PlayAudio(AudioClip clip)
+
+        public void ForceStop()
         {
-            AudioSource.clip = clip;
-                AudioSource.time = 0;
-                AudioSource.Play();
-                AudioSource.loop = false;
-                _buttonText.text = "Wyłącz ciekawostkę";
-                _isPlaying = true;
+            StopAudio();
+        }
+
+        private void PlayAudio()
+        {
+            AudioSource.clip = Clip;
+            AudioSource.time = 0;
+            AudioSource.Play();
+            AudioSource.loop = false;
+            _buttonText.text = "Wyłącz ciekawostkę";
+            IsPlaying = true;
         }
         
         private void StopAudio()
         {
             AudioSource.Stop();
             _buttonText.text = "Włącz ciekawostkę";
-            _isPlaying = false;
+            IsPlaying = false;
         }
     }
 }

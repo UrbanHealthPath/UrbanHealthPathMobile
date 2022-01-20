@@ -5,7 +5,7 @@ namespace PolSl.UrbanHealthPath.Systems
 {
     public class Settings
     {
-        public Action<bool> IsAudioEnabledChanged;
+        public event Action<bool> IsAudioEnabledChanged;
         
         private readonly IPersistentValue<bool> _isAudioEnabled = new BoolPrefsValue("Settings_IsAudioEnabled", true);
 
