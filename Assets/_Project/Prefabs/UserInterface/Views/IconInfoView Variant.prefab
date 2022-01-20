@@ -399,8 +399,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Po klikni\u0119ciu w ten przycisk b\u0119dziesz m\xF3g\u0142 pozna\u0107
-    ciekawostk\u0119 zwi\u0105zan\u0105 z twoim miastem."
+  m_text: "GRA MIEJSKA: w tej cz\u0119\u015Bci za pomoc\u0105 kr\xF3tkich informacji
+    i quiz\xF3w mo\u017Cesz pozna\u0107 architektur\u0119 Gliwic. Obserwuj uwa\u017Cnie,
+    \u0107wicz pami\u0119\u0107 i bystre oko. "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -956,9 +957,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Po klikni\u0119ciu w ten przycisk znajdziesz zestawy \u0107wicze\u0144
-    dopasowane do twoich mo\u017Cliwo\u015Bci ruchowych. Dowiesz si\u0119 jak\u0105
-    cz\u0119\u015B\u0107 cia\u0142a pomo\u017Cemy ci rozrusza\u0107."
+  m_text: "RUCH: w tej cz\u0119\u015Bci odnajdziesz proste \u0107wiczenia. Warto
+    rozpocz\u0105\u0107 od Rynku \u2013 serca miasta, mo\u017Ce tu znajdziesz \u017Ar\xF3d\u0142o
+    swojej si\u0142y i zdrowia?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1159,8 +1160,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Po klikni\u0119ciu w ten przycisk b\u0119dziesz m\xF3g\u0142 odpocz\u0105\u0107
-    przy \u0107wiczeniach oddechowych."
+  m_text: "ODDECH: Dzi\u0119ki \u0107wiczeniom oddechowym mo\u017Cna poprawi\u0107
+    sobie nastr\xF3j i dotleni\u0107 ca\u0142e cia\u0142o. To dobry spos\xF3b na
+    pozbycie si\u0119 stresu. "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

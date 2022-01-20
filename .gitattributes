@@ -32,3 +32,4 @@ Assets/_Project/Resources/videos/exercises/CWICZENIE_5A.mp4 filter=lfs diff=lfs 
 Assets/_Project/Resources/videos/exercises/CWICZENIE_5B.mp4 filter=lfs diff=lfs merge=lfs -text
 Assets/_Project/Resources/videos/exercises/CWICZENIE_7A.mp4 filter=lfs diff=lfs merge=lfs -text
 Assets/_Project/Resources/videos/exercises/CWICZENIE_7B.mp4 filter=lfs diff=lfs merge=lfs -text
+Assets/TextMesh[[:space:]]Pro/Resources/Fonts[[:space:]]&[[:space:]]Materials/LiberationSans[[:space:]]SDF[[:space:]]-[[:space:]]Fallback.asset filter=lfs diff=lfs merge=lfs -text
