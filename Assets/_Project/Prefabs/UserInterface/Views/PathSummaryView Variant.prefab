@@ -512,7 +512,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Uda\u0142o Ci si\u0119 uko\u0144czy\u0107 scie\u017Ck\u0119 zdrowia!"
+  m_text: "Uda\u0142o Ci si\u0119 uko\u0144czy\u0107 \u015Bcie\u017Ck\u0119 zdrowia!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -782,8 +782,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Zach\u0119camy by\u015B podzili\u0142 si\u0119 swoimi osi\u0105gni\u0119ciami
-    z rodzin\u0105 i znajoymi!"
+  m_text: "Zach\u0119camy, by\u015B podzili\u0142 si\u0119 swoimi osi\u0105gni\u0119ciami
+    z rodzin\u0105 i znajomymi!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2346,6 +2346,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 289492582927451193, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
   m_PrefabInstance: {fileID: 6815602090442829444}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1951351147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526166685358058173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdc2a9551bcb7f47921b9311773a4ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _finishButton: {fileID: 3782476818062350678}
+  _shareButton: {fileID: 60130879}
+  _pointsVisitedText: {fileID: 868009110}
+  _distanceText: {fileID: 1055568061}
 --- !u!114 &1951351148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2366,22 +2382,6 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &1951351147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6526166685358058173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fdc2a9551bcb7f47921b9311773a4ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _finishButton: {fileID: 3782476818062350678}
-  _shareButton: {fileID: 60130879}
-  _pointsVisitedText: {fileID: 868009110}
-  _distanceText: {fileID: 1055568061}
 --- !u!1001 &6815602091721177401
 PrefabInstance:
   m_ObjectHideFlags: 0
