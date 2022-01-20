@@ -37,6 +37,8 @@ namespace PolSl.UrbanHealthPath.Controllers
         private bool _isNextStationButtonActive;
         private bool _wasStationFinishedSinceLastLocationUpdate = true;
 
+        public UrbanPath CurrentPath => _selectedPath;
+
         public PathController(ViewManager viewManager, PopupManager popupManager,
             IPathProgressManager pathProgressManager,
             Action returnToMainMenu, ILocationProviderFactory locationProviderFactory,
@@ -150,7 +152,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             
             _mapHolder = UnityEngine.Object.Instantiate(_mapHolderPrefab);
             _mapHolder.Initialize(locationUpdater, coordinatesList);
-            
+
             _coroutineManager.BeginCoroutine(_locationUpdateCoroutine);
         }
 
@@ -164,6 +166,8 @@ namespace PolSl.UrbanHealthPath.Controllers
             if (_locationUpdateCoroutine != null)
             {
                 _coroutineManager.EndCoroutine(_locationUpdateCoroutine);
+                _locationUpdateCoroutine = null;
+                _wasStationFinishedSinceLastLocationUpdate = true;
             }
             
             UnityEngine.Object.Destroy(_mapHolder.gameObject);
@@ -272,6 +276,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             _wasStationFinishedSinceLastLocationUpdate = true;
             
+            _mapHolder.MoveHalo();
             StationCompleted?.Invoke(station);
         }
 

@@ -49,5 +49,11 @@ namespace PolSl.UrbanHealthPath
                 _camera.targetTexture = null;
             }
         }
+
+        public void MoveHalo()
+        {
+            _stationFactory.MoveStationHalo();
+        }
+        
     }
 }

@@ -84,15 +84,15 @@ namespace PolSl.UrbanHealthPath.Map
             _currentStationTransform =
                 Instantiate(_halo, worldPosition + _offset, _halo.rotation);
             _currentStationTransform.SetParent(this.transform);
-            _currentStationIndex++;
         }
 
         //ultimately I think this should just be an event listener of station finished event
-        private void MoveStationHalo()
+        public void MoveStationHalo()
         {
-            if (_currentStationTransform != null && _currentStationIndex == _coordinatesList.Count - 1)
+            _currentStationIndex++;
+            if (_currentStationTransform != null && _currentStationIndex >= _coordinatesList.Count)
             {
-                Destroy(_currentStationTransform);
+                Destroy(_currentStationTransform.gameObject);
                 return;
             }
 

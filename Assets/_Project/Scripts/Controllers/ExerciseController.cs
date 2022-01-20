@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using PolSl.UrbanHealthPath.MediaAccess;
 using PolSl.UrbanHealthPath.PathData;
+using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
@@ -53,7 +54,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                             new PopupPayload(popupableView.PopupArea)));
                     break;
                 case ImageSelectionExerciseLevel imageSelectionExerciseLevel:
-                    List<QuizElementOption> quizElementOptions = new List<QuizElementOption>();
+                    List<QuizElementOption> imageQuizElementOptions = new List<QuizElementOption>();
 
                     foreach (LateBoundValue<MediaFile> image in imageSelectionExerciseLevel.Images)
                     {
@@ -62,7 +63,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                             imageSelectionExerciseLevel.CorrectAnswers.Contains(
                                 imageSelectionExerciseLevel.Images.IndexOf(image));
 
-                        quizElementOptions.Add(new QuizElementOption(texture,
+                        imageQuizElementOptions.Add(new QuizElementOption(texture,
                             (button) =>
                             {
                                 if (isCorrect)
@@ -79,7 +80,36 @@ namespace PolSl.UrbanHealthPath.Controllers
                     PopupManager.OpenPopup(PopupType.QuizWithImages,
                         new QuizWithImagesPopupInitializationParameters(imageSelectionExerciseLevel.Question,
                             new PopupPayload(popupableView.PopupArea),
-                            quizElementOptions.ToArray()
+                            imageQuizElementOptions.ToArray()
+                        ));
+                    break;
+                case AnswerSelectionExerciseLevel answerSelectionExerciseLevel:
+                    List<QuizWithTextElementOption> textQuizElementOptions = new List<QuizWithTextElementOption>();
+
+                    foreach (string answer in answerSelectionExerciseLevel.Answers)
+                    {
+                        bool isCorrect =
+                            answerSelectionExerciseLevel.CorrectAnswers.Contains(
+                                answerSelectionExerciseLevel.Answers.IndexOf(answer));
+
+                        textQuizElementOptions.Add(new QuizWithTextElementOption(answer,
+                            (button) =>
+                            {
+                                if (isCorrect)
+                                {
+                                    button.EnableGreenFrame();
+                                }
+                                else
+                                {
+                                    button.EnableRedFrame();
+                                }
+                            }));
+                    }
+
+                    PopupManager.OpenPopup(PopupType.QuizWithTexts,
+                        new QuizWithTextPopupInitializationParameters(answerSelectionExerciseLevel.Question,
+                            new PopupPayload(popupableView.PopupArea),
+                            textQuizElementOptions.ToArray()
                         ));
                     break;
                 case TextExerciseLevel textExerciseLevel:

@@ -10,14 +10,14 @@
         "max_difficulty": 3,
         "type": "video",
         "description": "Maszeruj dookoła fontanny w prawą stronę trzymając dłoń na murku fontanny. Po jednym okrążeniu, zmień kierunek ruchu. Zwracaj uwagę, aby Twoje plecy były cały czas proste, a kroki stawiane były w równej odległości. Dopilnuj aby marsz odbywał się w jednym tempie w trakcie całego okrążenia",
-        "video_file": "video.exercise.1A_ĆWICZENIE"
+        "video_file": "video.exercise.CWICZENIE_1A"
       },
       {
         "min_difficulty": 2,
         "max_difficulty": 3,
         "type": "video",
         "description": "Zrób ponowne okrążenie wokół fontanny, tym razem idąc tyłem. Możesz przytrzymywać się brzegu murka fontanny. Zwróć uwagę na nawierzchnię pod stopami.",
-        "video_file": "video.exercise.1B_ĆWICZENIE"
+        "video_file": "video.exercise.CWICZENIE_1B"
       },
       {
         "min_difficulty": 3,
@@ -53,10 +53,10 @@
         "type": "image_selection",
         "question": "Jest wiele miast, w których znajdują się rzeźby Neptuna - Gdańsk, Bolonia, Berlin, Poznań, Rzym. Która z poniższych fotografii przedstawia Neptuna z gliwickiego rynku",
         "images": [
-          "image.game.gliwice.Gra_Miejska_Zdjęcie_1_1.Fontanna_Neptuna",
-          "image.game.gliwice.Gra_Miejska_Zdjęcie_2_1.Fontanna_Neptuna",
-          "image.game.gliwice.Gra_Miejska_Zdjęcie_3_1.Fontanna_Neptuna",
-          "image.game.gliwice.Gra_Miejska_Zdjęcie_4_1.Fontanna_Neptuna"
+          "image.game.gliwice.Gra_Miejska_Zdjecie_1_1.Fontanna_Neptuna",
+          "image.game.gliwice.Gra_Miejska_Zdjecie_2_1.Fontanna_Neptuna",
+          "image.game.gliwice.Gra_Miejska_Zdjecie_3_1.Fontanna_Neptuna",
+          "image.game.gliwice.Gra_Miejska_Zdjecie_4_1.Fontanna_Neptuna"
         ],
         "correct_answers": [0]
       }
@@ -129,7 +129,7 @@
         "max_difficulty": 5,
         "type": "video",
         "description": "Stań naprzeciwko rzeźby Matki Boskiej na ratuszu. Staraj się naśladować ruch rąk wskazanej postaci. Prawą rękę zegnij w łokciu i przyłóż prawą dłoń do lewego ramienia. Lewą rękę wyprostuj. Teraz wykonaj półobrót i stań tyłem do rzeźby. Wykonaj ruch odwrotny. Zegnij lewą rękę w łokciu, połóż na ramieniu, natomiast prawą wyprostuj. Powtórz całość 4 razy. ",
-        "video_file": "video.exercise.2_ĆWICZENIE"
+        "video_file": "video.exercise.CWICZENIE_2"
       }
     ]
   },
@@ -145,9 +145,10 @@
         "type": "image_selection",
         "question": "Pomimo tego, że od 1954 roku herb Gliwic nie posiada już wizerunku Matki Boskiej możemy dalej go obserwować na budynkach w mieście. Czy rozpoznajesz na jakim budynku znajduje się wizerunek Matki Boskiej przedstawiony na herbie? Wybierz jedną poprawną odpowiedź.",
         "images": [
-          "image.game.gliwice.Gra_Miejska_Zdjęcie1_Okno_willi_caro_2.Rzeźba madonny",
-          "image.game.gliwice.Gra_Miejska_Zdjęcie2_Wieża_Budynku_Czerwonej_Chemii_2.Rzeźba_Madonny",
-          "image.game.gliwice.Gra_Miejska_Zdjęcie3_Ratusz_2.Rzeźba_Madonny"
+          "image.game.gliwice.Gra_Miejska_Zdjecie1_Okno_willi_caro_2.Rzezba_madonny",
+          "image.game.gliwice.Gra_Miejska_Zdjecie2_Wieza_Budynku_Czerwonej_Chemii_2.Rzezba_Madonny",
+          "image.game.gliwice.Gra_Miejska_Zdjecie3_Ratusz_2.Rzezba_Madonny",
+          "image.game.gliwice.Gra_Miejska_Zdjecie4_Budynek_Szarej_Chemii_2.Rzezba_Madonny"
         ],
         "correct_answers": [2]
       }
@@ -327,7 +328,7 @@
           "plaster opatrunkowy",
           "pasta do zębów w tubce"
         ],
-        "image": "image.game.gliwice.Gra_miejska_zdjęcie1_3.Arkady",
+        "image": "image.game.gliwice.Gra_miejska_zdjecie1_3.Arkady",
         "correct_answers": [0,2,3]
       }
     ]

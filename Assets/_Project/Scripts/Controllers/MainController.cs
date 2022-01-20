@@ -68,24 +68,28 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private void SubscribeToPathEvents()
         {
-            _pathController.PathStarted += path =>
-                _pathController.ShowPathView(() =>
-                {
-                    Station nextStation = GetNextStation(path);
-                    _stationController.ShowNextStationConfirmation(nextStation,
-                        () =>
-                        {
-                            _stationController.ShowStation(nextStation, _exerciseController.ShowPopupForExercise,
-                                exercise => PopupManager.CloseCurrentPopup(), 
-                                station =>
-                                {
-                                    _pathProgressManager.AddCheckpoint(
-                                        new PathProgressCheckpoint(nextStation.WaypointId, DateTime.Now));
-                                });
-                        });
-                }, () => { PopupManager.CloseCurrentPopup(); }, _helpController.ShowHelp);
+            _pathController.PathStarted += BuildPathView;
             _pathController.PathCancelled += path => _pathController.ShowCancelledPathSummary(path, () => _shareController.ShareWhatsapp("Ruch i zwiedzanie w jednym, sprawdź Miejską Ścieżkę Zdrowia!"));
             _pathController.PathCompleted += path => _pathController.ShowCompletedPathSummary(path, () => _shareController.ShareWhatsapp("Ruch i zwiedzanie w jednym, sprawdź Miejską Ścieżkę Zdrowia!"));
+        }
+
+        private void BuildPathView(UrbanPath path)
+        {
+            _pathController.ShowPathView(() =>
+            {
+                Station nextStation = GetNextStation(path);
+                _stationController.ShowNextStationConfirmation(nextStation,
+                    () =>
+                    {
+                        _stationController.ShowStation(nextStation, _exerciseController.ShowPopupForExercise,
+                            exercise => PopupManager.CloseCurrentPopup(), 
+                            station =>
+                            {
+                                _pathProgressManager.AddCheckpoint(
+                                    new PathProgressCheckpoint(nextStation.WaypointId, DateTime.Now));
+                            });
+                    });
+            }, () => { PopupManager.CloseCurrentPopup(); }, _helpController.ShowHelp);
         }
 
         private void CreateControllers()
@@ -121,7 +125,15 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private void HandleBottomButtonClick()
         {
-            _pathController.ShowPathSelectionView(_applicationData.UrbanPaths, true);
+            if (_pathProgressManager.IsPathInProgress)
+            {
+                BuildPathView(_pathController.CurrentPath);
+            }
+            else
+            {
+                _pathController.ShowPathSelectionView(_applicationData.UrbanPaths, true);
+            }
+            
         }
 
         private Station GetNextStation(UrbanPath path)

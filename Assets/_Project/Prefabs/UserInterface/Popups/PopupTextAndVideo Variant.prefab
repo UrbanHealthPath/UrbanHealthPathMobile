@@ -54,10 +54,10 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
   m_RenderMode: 2
-  m_AspectRatio: 2
+  m_AspectRatio: 0
   m_DataSource: 0
   m_PlaybackSpeed: 1
-  m_AudioOutputMode: 2
+  m_AudioOutputMode: 0
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
@@ -340,6 +340,7 @@ MonoBehaviour:
   _imageArea: {fileID: 6780179740721080905}
   _imageRect: {fileID: 6780179740794477357}
   _image: {fileID: 6780179740794477364}
+  _borderSize: 0
 --- !u!1 &6780179741511090855
 GameObject:
   m_ObjectHideFlags: 0

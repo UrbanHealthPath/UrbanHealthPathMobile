@@ -6,28 +6,28 @@
     "path": "images/previews/gliwice_rynek"
   },
   {
-    "media_id": "image.game.gliwice.Gra_Miejska_Zdjęcie_1_1.Fontanna_Neptuna",
+    "media_id": "image.game.gliwice.Gra_Miejska_Zdjecie_1_1.Fontanna_Neptuna",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Gra_Miejska_Zdjęcie_1_1.Fontanna_Neptuna"
+    "path": "images/game_images/Gra_Miejska_Zdjecie_1_1.Fontanna_Neptuna"
   },
   {
-    "media_id": "image.game.gliwice.Gra_Miejska_Zdjęcie_2_1.Fontanna_Neptuna",
+    "media_id": "image.game.gliwice.Gra_Miejska_Zdjecie_2_1.Fontanna_Neptuna",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Gra_Miejska_Zdjęcie_2_1.Fontanna_Neptuna"
+    "path": "images/game_images/Gra_Miejska_Zdjecie_2_1.Fontanna_Neptuna"
   },
   {
-    "media_id": "image.game.gliwice.Gra_Miejska_Zdjęcie_3_1.Fontanna_Neptuna",
+    "media_id": "image.game.gliwice.Gra_Miejska_Zdjecie_3_1.Fontanna_Neptuna",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Gra_Miejska_Zdjęcie_3_1.Fontanna_Neptuna"
+    "path": "images/game_images/Gra_Miejska_Zdjecie_3_1.Fontanna_Neptuna"
   },
   {
-    "media_id": "image.game.gliwice.Gra_Miejska_Zdjęcie_4_1.Fontanna_Neptuna",
+    "media_id": "image.game.gliwice.Gra_Miejska_Zdjecie_4_1.Fontanna_Neptuna",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Gra_Miejska_Zdjęcie_4_1.Fontanna_Neptuna"
+    "path": "images/game_images/Gra_Miejska_Zdjecie_4_1.Fontanna_Neptuna"
   },
   {
     "media_id": "image.station.gliwice.neptun.icon",
@@ -42,19 +42,19 @@
     "path": "audios/introductions/Audio_1"
   },
   {
-    "media_id": "video.exercise.1B_ĆWICZENIE",
+    "media_id": "video.exercise.CWICZENIE_1B",
     "type": "video",
     "storage_type": "local",
     "path": "videos/exercises/CWICZENIE_1B"
   },
   {
-    "media_id": "video.exercise.1A_ĆWICZENIE",
+    "media_id": "video.exercise.CWICZENIE_1A",
     "type": "video",
     "storage_type": "local",
     "path": "videos/exercises/CWICZENIE_1A"
   },
   {
-    "media_id": "video.exercise.2_ĆWICZENIE",
+    "media_id": "video.exercise.CWICZENIE_2",
     "type": "video",
     "storage_type": "local",
     "path": "videos/exercises/CWICZENIE_2"
@@ -66,34 +66,34 @@
     "path": "audios/introductions/Audio_2"
   },
   {
-    "media_id": "image.game.gliwice.Gra_Miejska_Zdjęcie5_Kościół_Wszystkich_Świętych_2.Rzeźba_Madonny",
+    "media_id": "image.game.gliwice.Gra_Miejska_Zdjecie5_Kosciol_Wszystkich_Swietych_2.Rzezba_Madonny",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Gra_Miejska_Zdjęcie5_Kościół_Wszystkich_Świętych_2.Rzeźba_Madonny"
+    "path": "images/game_images/Gra_Miejska_Zdjecie5_Kościol_Wszystkich_Swietych_2.Rzezba_Madonny"
   },
   {
-    "media_id": "image.game.gliwice.Gra_Miejska_Zdjęcie4_Budynek_Szarej_Chemii_2.Rzeźba_Madonny",
+    "media_id": "image.game.gliwice.Gra_Miejska_Zdjecie4_Budynek_Szarej_Chemii_2.Rzezba_Madonny",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Gra_Miejska_Zdjęcie4_Budynek_Szarej_Chemii_2.Rzeźba_Madonny"
+    "path": "images/game_images/Gra_Miejska_Zdjecie4_Budynek_Szarej_Chemii_2.Rzezba_Madonny"
   },
   {
-    "media_id": "image.game.gliwice.Gra_Miejska_Zdjęcie3_Ratusz_2.Rzeźba_Madonny",
+    "media_id": "image.game.gliwice.Gra_Miejska_Zdjecie3_Ratusz_2.Rzezba_Madonny",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Gra_Miejska_Zdjęcie3_Ratusz_2.Rzeźba_Madonny"
+    "path": "images/game_images/Gra_Miejska_Zdjecie3_Ratusz_2.Rzezba_Madonny"
   },
   {
-    "media_id": "image.game.gliwice.Gra_Miejska_Zdjęcie1_Okno_willi_caro_2.Rzeźba madonny",
+    "media_id": "image.game.gliwice.Gra_Miejska_Zdjecie1_Okno_willi_caro_2.Rzezba_madonny",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Gra_Miejska_Zdjęcie1_Okno_willi_caro_2.Rzeźba madonny"
+    "path": "images/game_images/Gra_Miejska_Zdjecie1_Okno_willi_caro_2.Rzezba_madonny"
   },
   {
-    "media_id": "image.game.gliwice.Gra_Miejska_Zdjęcie2_Wieża_Budynku_Czerwonej_Chemii_2.Rzeźba_Madonny",
+    "media_id": "image.game.gliwice.Gra_Miejska_Zdjecie2_Wieza_Budynku_Czerwonej_Chemii_2.Rzezba_Madonny",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Gra_Miejska_Zdjęcie2_Wieża_Budynku_Czerwonej_Chemii_2.Rzeźba madonny"
+    "path": "images/game_images/Gra_Miejska_Zdjecie2_Wieza_Budynku_Czerwonej_Chemii_2.Rzezba_madonny"
   },
   {
     "media_id": "image.station.gliwice.ratusz.icon",
@@ -225,12 +225,12 @@
     "media_id": "image.game.gliwice.Gra_miejska_zdjecie_7.Plebanska",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Gra_miejska_zdjecie_7_Plebanska.jpg"
+    "path": "images/game_images/Gra_miejska_zdjecie_7_Plebanska"
   },
   {
     "media_id": "image.game.gliwice.Gra_miejska_zdjęcie1_3.Arkady",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Gra_miejska_zdjęcie1_3.Arkady.png"
+    "path": "images/game_images/Gra_miejska_zdjecie1_3.Arkady"
   }
 ]
