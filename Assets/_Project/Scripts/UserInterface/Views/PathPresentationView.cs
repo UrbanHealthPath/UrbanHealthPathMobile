@@ -26,7 +26,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
                 _chooseButton.onClick.AddListener(() => init.ChooseButtonAction?.Invoke());
                 _headerPanel.Initialize(init.HeaderText);
                 _stationCount.text = "Liczba punktów do odwiedzenia: " + init.StationCount;
-                _distance.text = "Dystans możliwy do przebycia: " + init.PathLength;
+                _distance.text = $"Dystans możliwy do przebycia: {init.PathLength} m";
                 _mapImage.texture = init.MapTexture;
             }
         }
