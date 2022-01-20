@@ -251,10 +251,10 @@ RectTransform:
   m_Father: {fileID: 6580923888322296622}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 470, y: -565}
+  m_SizeDelta: {x: 880, y: 1070}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2041459617
 CanvasRenderer:
@@ -408,7 +408,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 595, y: 50}
+  m_SizeDelta: {x: 628, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6443568758115721037
 CanvasRenderer:
@@ -993,10 +993,10 @@ RectTransform:
   m_Father: {fileID: 6580923888322296622}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 470, y: -1235}
+  m_SizeDelta: {x: 880, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8198819177628302150
 MonoBehaviour:
@@ -1099,7 +1099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1895439193955714887, guid: abb1e5bcf74c0cf44ab701294d3cd94e, type: 3}
       propertyPath: m_text
-      value: "Zako\u0144cz  stacj\u0119"
+      value: "Zako\u0144cz  punkt"
       objectReference: {fileID: 0}
     - target: {fileID: 2189451410942199423, guid: abb1e5bcf74c0cf44ab701294d3cd94e, type: 3}
       propertyPath: m_AnchoredPosition.x
