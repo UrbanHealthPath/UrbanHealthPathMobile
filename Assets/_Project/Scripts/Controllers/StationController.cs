@@ -44,7 +44,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         }
 
         public void ShowStation(Station station, Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding,
-            Action stationFinished)
+            Action<Station> stationFinished)
         {
             SetCurrentStation(station);
 
@@ -75,13 +75,18 @@ namespace PolSl.UrbanHealthPath.Controllers
                     ExerciseCategory.Sensorial);
             }
 
-            AudioClip introductionAudio = new AudioFileAccessor(station.IntroductionAudio).GetMedia();
+            AudioClip introductionAudio = null;
+
+            if (station.IntroductionAudio.Value != null)
+            {
+                introductionAudio = new AudioFileAccessor(station.IntroductionAudio)?.GetMedia();
+            }
 
             StationViewInitializationParameters initParams =
                 new StationViewInitializationParameters(sensorialEvent, motoricalEvent,
                     gameEvent,
                     () => ShowConfirmation("Czy na pewno chcesz zakończyć ćwiczenia na tym punkcie?",
-                        () => stationFinished.Invoke()), () =>
+                        () => stationFinished.Invoke(station)), () =>
                     {
                         PopupManager.CloseCurrentPopup();
                         ReturnToPreviousView();

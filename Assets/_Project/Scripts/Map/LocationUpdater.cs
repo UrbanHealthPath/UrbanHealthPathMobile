@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using Mapbox.Unity.Location;
+using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.Map
 {
@@ -9,12 +11,25 @@ namespace PolSl.UrbanHealthPath.Map
         
         private readonly ILocationProvider _locationProvider;
 
-        public LocationUpdater(ILocationProvider locationProvider)
+        private readonly float _delayBetweenUpdates;
+        private bool _stopUpdate = false;
+
+        public LocationUpdater(ILocationProvider locationProvider, float delayBetweenUpdates = 0.5f)
         {
             _locationProvider = locationProvider;
+            _delayBetweenUpdates = delayBetweenUpdates;
         }
 
-        public void UpdateLocation()
+        public IEnumerator UpdateLocation()
+        {
+            while (!_stopUpdate)
+            {
+                ProcessUpdate();
+                yield return new WaitForSecondsRealtime(_delayBetweenUpdates);
+            }
+        }
+
+        protected virtual void ProcessUpdate()
         {
             Location location = _locationProvider.GetLocation();
             LocationUpdated?.Invoke(new LocationUpdatedArgs(location));

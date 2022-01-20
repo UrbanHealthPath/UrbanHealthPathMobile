@@ -45,19 +45,19 @@
     "media_id": "video.exercise.1B_ĆWICZENIE",
     "type": "video",
     "storage_type": "local",
-    "path": "videos/exercises/1B_ĆWICZENIE"
+    "path": "videos/exercises/CWICZENIE_1B"
   },
   {
     "media_id": "video.exercise.1A_ĆWICZENIE",
     "type": "video",
     "storage_type": "local",
-    "path": "videos/exercises/1A_ĆWICZENIE"
+    "path": "videos/exercises/CWICZENIE_1A"
   },
   {
     "media_id": "video.exercise.2_ĆWICZENIE",
     "type": "video",
     "storage_type": "local",
-    "path": "videos/exercises/2_ĆWICZENIE"
+    "path": "videos/exercises/CWICZENIE_2"
   },
   {
     "media_id": "audio.introduction.ratusz",
@@ -195,7 +195,7 @@
     "media_id": "video.station.pilastry.exercise.4a",
     "type": "video",
     "storage_type": "local",
-    "path": "videos/exercises/CWICZENIE_4B"
+    "path": "videos/exercises/CWICZENIE_4A"
   },
   {
     "media_id": "video.station.pilastry.exercise.4b",

@@ -76,12 +76,12 @@ namespace PolSl.UrbanHealthPath.Controllers
                         () =>
                         {
                             _stationController.ShowStation(nextStation, _exerciseController.ShowPopupForExercise,
-                                exercise => PopupManager.CloseCurrentPopup(), (
-                                    () =>
-                                    {
-                                        _pathProgressManager.AddCheckpoint(
-                                            new PathProgressCheckpoint(nextStation.WaypointId, DateTime.Now));
-                                    }));
+                                exercise => PopupManager.CloseCurrentPopup(), 
+                                station =>
+                                {
+                                    _pathProgressManager.AddCheckpoint(
+                                        new PathProgressCheckpoint(nextStation.WaypointId, DateTime.Now));
+                                });
                         });
                 }, () => { PopupManager.CloseCurrentPopup(); }, _helpController.ShowHelp);
             _pathController.PathCancelled += path => _pathController.ShowCancelledPathSummary(path, () => _shareController.ShareWhatsapp("Ruch i zwiedzanie w jednym, sprawdź Miejską Ścieżkę Zdrowia!"));
@@ -95,7 +95,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             _settingsController = new SettingsController(ViewManager, PopupManager, _settings);
             _helpController = new HelpController(ViewManager, PopupManager);
             _pathController = new PathController(ViewManager, PopupManager, _pathProgressManager, ReturnToMenu,
-                new LocationProviderFactory(new LocationPermissionRequester()), _mapHolderPrefab);
+                new LocationProviderFactory(new LocationPermissionRequester()), _mapHolderPrefab, _coroutineManager);
             _stationController = new StationController(ViewManager, PopupManager, _coroutineManager,
                 _pathProgressManager, _settings);
             _exerciseController = new ExerciseController(ViewManager, PopupManager, _coroutineManager);
