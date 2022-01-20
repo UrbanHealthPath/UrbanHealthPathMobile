@@ -192,21 +192,7 @@
         "min_difficulty": 1,
         "max_difficulty": 5,
         "type": "historical_fact",
-        "fact": "W trakcie wojny trzydziestoletniej mieszkańcy złożyli ślubowanie Bogu, że jeżeli Matka Boska uratuje miasto, to po wszystkie czasy gliwiczanie z wdzięcznością będą pielgrzymować na Jasną Górę. Następnego dnia wojska odstąpiły bram miasta. Mieszkańcy powędrowali wówczas do Kaplicy Matki Boskiej Częstochowskiej i tak co roku wędrują po dziś dzień.Na pamiątkę tego wydarzenia wizerunek Matki Boskiej znalazł się na sztandarze i w herbie miejskim."
-      }
-    ]
-  },
-  {
-    "exercise_id": "gliwice.ratusz.slubowanie",
-    "displayed_name": "Ratusz - Ślubowanie",
-    "category": "Game",
-    "subcategory": "Eyes",
-    "levels": [
-      {
-        "min_difficulty": 1,
-        "max_difficulty": 5,
-        "type": "historical_fact",
-        "fact": "W trakcie wojny trzydziestoletniej mieszkańcy złożyli ślubowanie Bogu, że jeżeli Matka Boska uratuje miasto, to po wszystkie czasy gliwiczanie z wdzięcznością będą pielgrzymować na Jasną Górę. Następnego dnia wojska odstąpiły bram miasta. Mieszkańcy powędrowali wówczas do Kaplicy Matki Boskiej Częstochowskiej i tak co roku wędrują po dziś dzień.Na pamiątkę tego wydarzenia wizerunek Matki Boskiej znalazł się na sztandarze i w herbie miejskim."
+        "fact": "W trakcie wojny trzydziestoletniej mieszkańcy złożyli ślubowanie Bogu, że jeżeli Matka Boska uratuje miasto, to po wszystkie czasy gliwiczanie z wdzięcznością będą pielgrzymować na Jasną Górę. Następnego dnia wojska odstąpiły bram miasta. Mieszkańcy powędrowali wówczas do Kaplicy Matki Boskiej Częstochowskiej i tak co roku wędrują po dziś dzień. Na pamiątkę tego wydarzenia wizerunek Matki Boskiej znalazł się na sztandarze i w herbie miejskim."
       }
     ]
   },
