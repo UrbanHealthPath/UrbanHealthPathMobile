@@ -21,7 +21,7 @@ namespace PolSl.UrbanHealthPath
                 _finishButton.onClick.AddListener(() => init.FinishButtonEvent?.Invoke());
                 _shareButton.onClick.AddListener(() => init.ShareButtonEvent?.Invoke());
                 _pointsVisitedText.text = Convert.ToString(init.PointsVisited);
-                _distanceText.text = Convert.ToString(init.Distance);
+                _distanceText.text = $"{init.Distance} m";
             }
         }
         
