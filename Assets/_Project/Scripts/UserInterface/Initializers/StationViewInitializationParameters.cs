@@ -7,9 +7,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
     public class StationViewInitializationParameters : IViewInitializationParameters
     {
-        public UnityAction<ChangingButton> SensorialEvent { get; }
-        public UnityAction<ChangingButton> MotorialEvent { get; }
-        public UnityAction<ChangingButton> HistoricInfoEvent { get; }
+        public UnityAction<StationButtonGroup> ButtonGroupInitialized { get; }
         public UnityAction MainMenuEvent { get; }
         public UnityAction ReturnEvent { get; }
         public UnityAction<ButtonWithAudio> AudioButtonInitialized { get; }
@@ -18,13 +16,10 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
         public string HeaderText { get; }
         public string InformationAboutStation { get; }
         
-        public StationViewInitializationParameters(UnityAction<ChangingButton> sensorialEvent, UnityAction<ChangingButton> motorialEvent,
-            UnityAction<ChangingButton> historicInfoEvent, UnityAction mainMenuEvent, UnityAction returnEvent,
+        public StationViewInitializationParameters(UnityAction<StationButtonGroup> buttonGroupInitialized, UnityAction mainMenuEvent, UnityAction returnEvent,
             string headerText, string info, UnityAction<ButtonWithAudio> audioButtonInitialized, UnityAction<ButtonWithAudio> playAction, AudioClip audioClip)
         {
-            SensorialEvent += sensorialEvent;
-            MotorialEvent += motorialEvent;
-            HistoricInfoEvent += historicInfoEvent;
+            ButtonGroupInitialized += buttonGroupInitialized;
             MainMenuEvent += mainMenuEvent;
             ReturnEvent += returnEvent;
             HeaderText = headerText;

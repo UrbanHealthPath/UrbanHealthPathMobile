@@ -13,13 +13,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
     public class StationView : MonoBehaviour, IInitializableView, IPopupable
     {
         public RectTransform PopupArea => _popupArea;
-        public ChangingButton RightButton => _rightButton;
-        public ChangingButton MiddleButton => _middleButton;
-        public ChangingButton LeftButton => _leftButton;
 
-        [SerializeField] private ChangingButton _rightButton;
-        [SerializeField] private ChangingButton _middleButton;
-        [SerializeField] private ChangingButton _leftButton; 
+        [SerializeField] private StationButtonGroup _stationButtonGroup;
         
         [FormerlySerializedAs("mainMenuButton")] [SerializeField]
         private Button _mainMenuButton;
@@ -46,23 +41,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
             if (initializationParameters is StationViewInitializationParameters init)
             {
-                if (init.MotorialEvent != null)
-                    _middleButton.Button.onClick.AddListener(() =>
-                        init.MotorialEvent?.Invoke(_middleButton));
-                else
-                    _middleButton.SetInteractable(false);
-
-                if (init.SensorialEvent != null)
-                    _rightButton.Button.onClick.AddListener(() =>
-                        init.SensorialEvent?.Invoke(_rightButton));
-                else
-                    _rightButton.SetInteractable(false);
-
-                if (init.HistoricInfoEvent != null)
-                    _leftButton.Button.onClick.AddListener(() =>
-                        init.HistoricInfoEvent?.Invoke(_leftButton));
-                else
-                    _leftButton.SetInteractable(false);
+                _stationButtonGroup.Initialize(init.ButtonGroupInitialized);
 
                 if (init.AudioClip != null)
                 {
@@ -81,29 +60,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
             }
         }
 
-        public void ResetActiveButtons()
-        {
-            if (_rightButton.Button.IsInteractable())
-            {
-                _rightButton.SetDefaultAppearance();
-            }
-
-            if (_middleButton.Button.IsInteractable())
-            {
-                _middleButton.SetDefaultAppearance();
-            }
-
-            if (_leftButton.Button.IsInteractable())
-            {
-                _leftButton.SetDefaultAppearance();
-            }
-        }
-
         public void OnDisable()
         {
-            _rightButton.Button.onClick.RemoveAllListeners();
-            _middleButton.Button.onClick.RemoveAllListeners();
-            _leftButton.Button.onClick.RemoveAllListeners();
             _mainMenuButton.onClick.RemoveAllListeners();
             _returnButton.onClick.RemoveAllListeners();
             _buttonWithAudio.Button.onClick.RemoveAllListeners();

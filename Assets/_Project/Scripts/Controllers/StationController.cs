@@ -21,7 +21,6 @@ namespace PolSl.UrbanHealthPath.Controllers
         private readonly IPathProgressManager _pathProgressManager;
         private readonly Settings _settings;
 
-        private Dictionary<ChangingButton, bool> _stationButtonStates;
         private StationProgress _currentStationProgress;
 
         private ButtonWithAudio _lastAudioButton;
@@ -33,9 +32,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             _pathProgressManager = pathProgressManager;
             _settings = settings;
 
-            _stationButtonStates = new Dictionary<ChangingButton, bool>();
-            
-            _settings.IsAudioEnabledChanged += SetLastAudioMute; 
+            _settings.IsAudioEnabledChanged += SetLastAudioMute;
         }
 
         public void ShowNextStationConfirmation(Station nextStation, Action confirmed)
@@ -54,26 +51,11 @@ namespace PolSl.UrbanHealthPath.Controllers
             UnityAction<ChangingButton> motoricalEvent = null;
             UnityAction<ChangingButton> gameEvent = null;
 
-            if (_currentStationProgress.GetCurrentExercise(ExerciseCategory.Game) != null)
-            {
-                gameEvent = (btn) =>
-                    ConfigureExerciseButton(_stationButtonStates, btn, exerciseStarting, exerciseEnding,
-                        ExerciseCategory.Game);
-            }
-
-            if (_currentStationProgress.GetCurrentExercise(ExerciseCategory.Motorical) != null)
-            {
-                motoricalEvent = (btn) => ConfigureExerciseButton(_stationButtonStates, btn, exerciseStarting,
-                    exerciseEnding,
-                    ExerciseCategory.Motorical);
-            }
-
-            if (_currentStationProgress.GetCurrentExercise(ExerciseCategory.Sensorial) != null)
-            {
-                sensorialEvent = (btn) => ConfigureExerciseButton(_stationButtonStates, btn, exerciseStarting,
-                    exerciseEnding,
-                    ExerciseCategory.Sensorial);
-            }
+            bool isAnyGameExercise = _currentStationProgress.GetCurrentExercise(ExerciseCategory.Game) != null;
+            bool isAnyMotoricalExercise =
+                _currentStationProgress.GetCurrentExercise(ExerciseCategory.Motorical) != null;
+            bool isAnySensorialExercise =
+                _currentStationProgress.GetCurrentExercise(ExerciseCategory.Sensorial) != null;
 
             AudioClip introductionAudio = null;
 
@@ -83,8 +65,9 @@ namespace PolSl.UrbanHealthPath.Controllers
             }
 
             StationViewInitializationParameters initParams =
-                new StationViewInitializationParameters(sensorialEvent, motoricalEvent,
-                    gameEvent,
+                new StationViewInitializationParameters(
+                    buttons => ConfigureButtonGroup(isAnyGameExercise, isAnyMotoricalExercise, isAnySensorialExercise,
+                        exerciseStarting, exerciseEnding, buttons),
                     () => ShowConfirmation("Czy na pewno chcesz zakończyć ćwiczenia na tym punkcie?",
                         () => stationFinished.Invoke(station)), () =>
                     {
@@ -97,10 +80,63 @@ namespace PolSl.UrbanHealthPath.Controllers
             ViewManager.InitializeCurrentView(initParams);
         }
 
+        private void ConfigureButtonGroup(bool isAnyGame, bool isAnyMotorical, bool isAnySensorial,
+            Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding, StationButtonGroup buttons)
+        {
+            buttons.RegisterToStationProgressEvents(_currentStationProgress);
+            buttons.RegisterToPopupEvents(PopupManager, ViewManager);
+
+            if (!isAnyGame)
+            {
+                buttons.GameButton.SetInteractable(false);
+            }
+            else
+            {
+                buttons.GameButton.Button.onClick.AddListener(() => ExerciseButtonClicked(ExerciseCategory.Game, buttons, exerciseStarting, exerciseEnding));
+            }
+
+            if (!isAnyMotorical)
+            {
+                buttons.MotoricalButton.SetInteractable(false);
+            }
+            else
+            {
+                buttons.MotoricalButton.Button.onClick.AddListener(() => ExerciseButtonClicked(ExerciseCategory.Motorical, buttons, exerciseStarting, exerciseEnding));
+            }
+
+            if (!isAnySensorial)
+            {
+                buttons.SensorialButton.SetInteractable(false);
+            }
+            else
+            {
+                buttons.SensorialButton.Button.onClick.AddListener(() => ExerciseButtonClicked(ExerciseCategory.Sensorial, buttons, exerciseStarting, exerciseEnding));
+            }
+        }
+
+        private void ExerciseButtonClicked(ExerciseCategory category, StationButtonGroup buttons,
+            Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding)
+        {
+            ChangingButton button = buttons.GetButtonForCategory(category);
+            Exercise currentExercise = _currentStationProgress.GetCurrentExercise(category);
+
+            if (buttons.IsActivated(button))
+            {
+                _currentStationProgress.CompleteCurrentExercise(category);
+                exerciseEnding.Invoke(currentExercise);
+            }
+            else
+            {
+                buttons.ActivateCategoryButton(category);
+                exerciseStarting?.Invoke(currentExercise);
+            }
+        }
+
         private void ConfigureExerciseButton(Dictionary<ChangingButton, bool> buttonsStates, ChangingButton btn,
             Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding, ExerciseCategory category)
         {
-            btn.SetDefaultAppearance();
+            //ViewManager.CurrentView.GetComponent<StationView>().ResetActiveButtons();
+            buttonsStates.Clear();
 
             buttonsStates[btn] = buttonsStates.ContainsKey(btn) ? !buttonsStates[btn] : true;
             Exercise currentExercise = _currentStationProgress.GetCurrentExercise(category);
@@ -170,11 +206,6 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             base.ViewOpenedHandler(type);
 
-            if (type == ViewType.Station)
-            {
-                _stationButtonStates.Clear();
-            }
-
             StopLastAudioIntroduction();
         }
 
@@ -183,17 +214,6 @@ namespace PolSl.UrbanHealthPath.Controllers
             base.PopupOpenedHandler(type);
 
             StopLastAudioIntroduction();
-        }
-
-        protected override void PopupClosedHandler(PopupType type)
-        {
-            base.PopupClosedHandler(type);
-
-            if (ViewManager.CurrentViewType == ViewType.Station && type == PopupType.Confirmation)
-            {
-                _stationButtonStates.Clear();
-                ViewManager.CurrentView.GetComponent<StationView>().ResetActiveButtons();
-            }
         }
 
         private void StopLastAudioIntroduction()

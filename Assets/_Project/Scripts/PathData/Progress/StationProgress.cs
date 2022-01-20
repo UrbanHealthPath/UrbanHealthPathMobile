@@ -6,6 +6,9 @@ namespace PolSl.UrbanHealthPath.PathData.Progress
 {
     public class StationProgress
     {
+        public event Action<Station, Exercise> ExerciseCompleted;
+        public event Action<Station, ExerciseCategory> CategoryCompleted;
+
         private readonly Station _station;
 
         private readonly Dictionary<ExerciseCategory, IReadOnlyList<Exercise>> _categoriesCache;
@@ -27,7 +30,15 @@ namespace PolSl.UrbanHealthPath.PathData.Progress
 
         public void CompleteCurrentExercise(ExerciseCategory category)
         {
+            Exercise completedExercise = GetCurrentExercise(category);
             _categoriesProgress[category]++;
+            
+            ExerciseCompleted?.Invoke(_station, completedExercise);
+
+            if (IsCategoryFinished(category))
+            {
+                CategoryCompleted?.Invoke(_station, category);
+            }
         }
 
         public bool IsFinished()
