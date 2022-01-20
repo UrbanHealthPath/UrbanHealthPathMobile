@@ -1269,7 +1269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Kliknij tutaj, aby dostosowa\u0107 rozmiar czcionki."
+  m_text: "Kliknij tutaj, aby dostosowa\u0107 g\u0142o\u015Bno\u015B\u0107 d\u017Awi\u0119ku."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1523,7 +1523,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 2473928546940702582}
+  m_TargetGraphic: {fileID: 6333028096070310427}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -2075,6 +2075,7 @@ GameObject:
   - component: {fileID: 6473916943642552718}
   - component: {fileID: 4642374375917675688}
   - component: {fileID: 1721533113545602842}
+  - component: {fileID: 5444300845537473578}
   m_Layer: 5
   m_Name: Button1
   m_TagString: Untagged
@@ -2149,7 +2150,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 2025007322094078910}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -2173,6 +2174,36 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &5444300845537473578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4857337833060609749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4881417485645911796
 GameObject:
   m_ObjectHideFlags: 0
@@ -2686,6 +2717,7 @@ GameObject:
   - component: {fileID: 5558265064369272177}
   - component: {fileID: 3773950892129005429}
   - component: {fileID: 8713849842066794333}
+  - component: {fileID: 7786101574453276390}
   m_Layer: 5
   m_Name: Button1
   m_TagString: Untagged
@@ -2760,7 +2792,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 8583548782830004431}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -2784,6 +2816,36 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &7786101574453276390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7122346914252664175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7155198634549264978
 GameObject:
   m_ObjectHideFlags: 0
@@ -3299,6 +3361,7 @@ GameObject:
   - component: {fileID: 5667507095677757418}
   - component: {fileID: 6776998739298781454}
   - component: {fileID: 469422952927743846}
+  - component: {fileID: 3365719113323805128}
   m_Layer: 5
   m_Name: Button1
   m_TagString: Untagged
@@ -3373,7 +3436,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 9066640927497354717}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -3397,6 +3460,36 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &3365719113323805128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9108131429950731145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &9198595623532618787
 GameObject:
   m_ObjectHideFlags: 0
@@ -4132,11 +4225,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
---- !u!1 &5566311073205913222 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1735829372934929494, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
-  m_PrefabInstance: {fileID: 6136548065374026448}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6003699835313291514 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 466132195754457642, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
@@ -4148,14 +4236,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3acd2afee8e284d98efa69d9a28d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &5849364526658158313 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 289492582927451193, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
-  m_PrefabInstance: {fileID: 6136548065374026448}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2722140747339253914 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8137891713143239242, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
+  m_PrefabInstance: {fileID: 6136548065374026448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5566311073205913222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1735829372934929494, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
   m_PrefabInstance: {fileID: 6136548065374026448}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1425914428475871080 stripped
@@ -4166,6 +4254,11 @@ GameObject:
 --- !u!224 &14124185897258463 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6132574673904301839, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
+  m_PrefabInstance: {fileID: 6136548065374026448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5849364526658158313 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 289492582927451193, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
   m_PrefabInstance: {fileID: 6136548065374026448}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &4579423991033274337
@@ -4180,12 +4273,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec4df41a2e43e284baa78ffd0d209049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  revertButton: {fileID: 6936524469305063668}
-  returnButton: {fileID: 2617204544697120525}
-  fontButton: {fileID: 6776998739298781454}
-  themeButton: {fileID: 4642374375917675688}
-  audioButton: {fileID: 3773950892129005429}
-  header: {fileID: 6003699835313291514}
+  _revertButton: {fileID: 6936524469305063668}
+  _returnButton: {fileID: 2617204544697120525}
+  _fontButton: {fileID: 6776998739298781454}
+  _themeButton: {fileID: 4642374375917675688}
+  _audioButton: {fileID: 3773950892129005429}
+  headerPanel: {fileID: 6003699835313291514}
 --- !u!114 &8899030935032246744
 MonoBehaviour:
   m_ObjectHideFlags: 0
