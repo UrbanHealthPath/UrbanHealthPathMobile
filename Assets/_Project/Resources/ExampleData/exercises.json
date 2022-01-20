@@ -43,7 +43,7 @@
   },
   {
     "exercise_id": "gliwice.neptun.game",
-    "displayed_name": "Neptun Gra Miejska",
+    "displayed_name": "Neptun - Gra Miejska",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -64,7 +64,7 @@
   },
   {
     "exercise_id": "gliwice.neptun.wykonanie",
-    "displayed_name": "Neptun Wykonanie",
+    "displayed_name": "Neptun - Wykonanie",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -78,7 +78,7 @@
   },
   {
     "exercise_id": "gliwice.neptun.autor",
-    "displayed_name": "Neptun Autor",
+    "displayed_name": "Neptun - Autor",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -92,7 +92,7 @@
   },
   {
     "exercise_id": "gliwice.neptun.material",
-    "displayed_name": "Neptun Materiał",
+    "displayed_name": "Neptun - Materiał",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -106,7 +106,7 @@
   },
   {
     "exercise_id": "gliwice.neptun.delfin",
-    "displayed_name": "Neptun Deflin",
+    "displayed_name": "Neptun - Deflin",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -135,7 +135,7 @@
   },
   {
     "exercise_id": "gliwice.ratusz.game",
-    "displayed_name": "Ratusz Gra Miejska",
+    "displayed_name": "Ratusz - Gra Miejska",
     "category": "game",
     "subcategory": "Eyes",
     "levels": [
@@ -156,7 +156,7 @@
   },
   {
     "exercise_id": "gliwice.ratusz.autor",
-    "displayed_name": "Ratusz Madonna",
+    "displayed_name": "Ratusz - Madonna",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -170,7 +170,7 @@
   },
   {
     "exercise_id": "gliwice.ratusz.rzeba",
-    "displayed_name": "Ratusz rzeźba",
+    "displayed_name": "Ratusz - Rzeźba",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -184,7 +184,7 @@
   },
   {
     "exercise_id": "gliwice.ratusz.wojna",
-    "displayed_name": "Ratusz Wojna",
+    "displayed_name": "Ratusz - Wojna",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -198,7 +198,7 @@
   },
   {
     "exercise_id": "gliwice.ratusz.slubowanie",
-    "displayed_name": "Ratusz Slubowanie",
+    "displayed_name": "Ratusz - Ślubowanie",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -255,7 +255,7 @@
   },
   {
     "exercise_id": "gliwice.arkady.ciekawostka",
-    "displayed_name": "Arkady Ciekawostka",
+    "displayed_name": "Arkady - Ciekawostka",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -263,7 +263,7 @@
         "min_difficulty": 1,
         "max_difficulty": 5,
         "type": "historical_fact",
-        "fact": "średniowieczna zabudowa Rynku dziś już nie istnieje. Większość obecnych kamienic pochodzi głównie z XIX i XX wieku. Wyglądem swoim luźno nawiązują do stylu klasycystycznego, a charakterystyczne arkady są wyraźnym nawiązaniem do stylu renesansowego. Jest to efekt powojennej odbudowy części gliwickiej starówki, kierowanej przez architekta Franciszka Maurera."
+        "fact": "Średniowieczna zabudowa Rynku dziś już nie istnieje. Większość obecnych kamienic pochodzi głównie z XIX i XX wieku. Wyglądem swoim luźno nawiązują do stylu klasycystycznego, a charakterystyczne arkady są wyraźnym nawiązaniem do stylu renesansowego. Jest to efekt powojennej odbudowy części gliwickiej starówki, kierowanej przez architekta Franciszka Maurera."
       }
     ]
   },
@@ -407,7 +407,7 @@
   },
   {
     "exercise_id": "gliwice.pilastry.game",
-    "displayed_name": "Pilastry Gra Miejska",
+    "displayed_name": "Pilastry - Gra Miejska",
     "category": "game",
     "subcategory": "eyes",
     "levels": [
@@ -459,7 +459,7 @@
   },
   {
     "exercise_id": "gliwice.plebanska.game",
-    "displayed_name": "Plebanska Gra",
+    "displayed_name": "Plebańska - Gra",
     "category": "game",
     "subcategory": "eyes",
     "levels": [
@@ -481,7 +481,7 @@
   },
   {
     "exercise_id": "gliwice.pilastry.kamienica",
-    "displayed_name": "Pilastry Kamienica",
+    "displayed_name": "Pilastry - Kamienica",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -495,7 +495,7 @@
   },
   {
     "exercise_id": "gliwice.pilastry.hotel",
-    "displayed_name": "Pilastry Hotel",
+    "displayed_name": "Pilastry - Hotel",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -509,7 +509,7 @@
   },
   {
     "exercise_id": "gliwice.pilastry.dyrekcja",
-    "displayed_name": "Pilastry ród Schaffgotschów",
+    "displayed_name": "Pilastry - ród Schaffgotschów",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -523,7 +523,7 @@
   },
   {
     "exercise_id": "gliwice.rog.rzezba",
-    "displayed_name": "Rog Rzeźba",
+    "displayed_name": "Róg - Rzeźba",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -537,7 +537,7 @@
   },
   {
     "exercise_id": "gliwice.rog.gliwiczanka",
-    "displayed_name": "Rog Gliwiczanka",
+    "displayed_name": "Róg - Gliwiczanka",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -551,7 +551,7 @@
   },
   {
     "exercise_id": "gliwice.plebanska.niemiecka_nazwa",
-    "displayed_name": "Plebanska dawna nazwa",
+    "displayed_name": "Plebańska - dawna nazwa",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -565,7 +565,7 @@
   },
   {
     "exercise_id": "gliwice.plebanska.polaczenie",
-    "displayed_name": "Plebanska polaczenie",
+    "displayed_name": "Plebańska - połączenie",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -579,7 +579,7 @@
   },
   {
     "exercise_id": "gliwice.plebanska.plebania",
-    "displayed_name": "Plebanska plebania",
+    "displayed_name": "Plebańska - plebania",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -593,7 +593,7 @@
   },
   {
     "exercise_id": "gliwice.plebanska.piwo",
-    "displayed_name": "Plebanska piekarnia",
+    "displayed_name": "Plebańska - piekarnia",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -607,7 +607,7 @@
   },
   {
     "exercise_id": "gliwice.plebanska.mieszkancy",
-    "displayed_name": "Plebanska mieszkancy",
+    "displayed_name": "Plebańska - mieszkańcy",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -621,7 +621,7 @@
   },
   {
     "exercise_id": "gliwice.plebanska.restauracja",
-    "displayed_name": "Plebanska restauracja",
+    "displayed_name": "Plebańska - restauracja",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
