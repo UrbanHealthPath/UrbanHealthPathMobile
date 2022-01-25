@@ -4,6 +4,7 @@
     {
         Arms,
         Legs,
-        Lungs
+        Lungs,
+        Eyes
     }
 }

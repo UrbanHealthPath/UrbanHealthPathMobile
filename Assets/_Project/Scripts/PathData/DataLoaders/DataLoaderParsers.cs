@@ -2,18 +2,16 @@
 
 namespace PolSl.UrbanHealthPath.PathData.DataLoaders
 {
-    public class DataLoaderParsers
+    public class DataLoaderParsers<T>
     {
-        public IParser<JObject, MediaFile> MediaFileParser { get; }
-        public IParser<JObject, HistoricalFact> HistoricalFactParser { get; }
-        public IParser<JObject, Exercise> ExerciseParser { get; }
-        public IParser<JObject, Waypoint> WaypointParser { get; }
-        public IParser<JObject, UrbanPath> UrbanPathParser { get; }
+        public IParser<T, MediaFile> MediaFileParser { get; }
+        public IParser<T, Exercise> ExerciseParser { get; }
+        public IParser<T, Waypoint> WaypointParser { get; }
+        public IParser<T, UrbanPath> UrbanPathParser { get; }
 
-        public DataLoaderParsers(IParser<JObject, MediaFile> mediaFileParser, IParser<JObject, HistoricalFact> historicalFactParser, IParser<JObject, Exercise> exerciseParser, IParser<JObject, Waypoint> waypointParser, IParser<JObject, UrbanPath> urbanPathParser)
+        public DataLoaderParsers(IParser<T, MediaFile> mediaFileParser, IParser<T, Exercise> exerciseParser, IParser<T, Waypoint> waypointParser, IParser<T, UrbanPath> urbanPathParser)
         {
             MediaFileParser = mediaFileParser;
-            HistoricalFactParser = historicalFactParser;
             ExerciseParser = exerciseParser;
             WaypointParser = waypointParser;
             UrbanPathParser = urbanPathParser;

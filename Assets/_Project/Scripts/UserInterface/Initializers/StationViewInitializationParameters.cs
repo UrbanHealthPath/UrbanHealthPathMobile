@@ -1,0 +1,32 @@
+﻿using PolSl.UrbanHealthPath.UserInterface.Components;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
+
+namespace PolSl.UrbanHealthPath.UserInterface.Initializers
+{
+    public class StationViewInitializationParameters : IViewInitializationParameters
+    {
+        public UnityAction<StationButtonGroup> ButtonGroupInitialized { get; }
+        public UnityAction MainMenuEvent { get; }
+        public UnityAction ReturnEvent { get; }
+        public UnityAction<ButtonWithAudio> AudioButtonInitialized { get; }
+        public UnityAction<ButtonWithAudio> PlayAction { get; }
+        public AudioClip AudioClip { get; }
+        public string HeaderText { get; }
+        public string InformationAboutStation { get; }
+        
+        public StationViewInitializationParameters(UnityAction<StationButtonGroup> buttonGroupInitialized, UnityAction mainMenuEvent, UnityAction returnEvent,
+            string headerText, string info, UnityAction<ButtonWithAudio> audioButtonInitialized, UnityAction<ButtonWithAudio> playAction, AudioClip audioClip)
+        {
+            ButtonGroupInitialized += buttonGroupInitialized;
+            MainMenuEvent += mainMenuEvent;
+            ReturnEvent += returnEvent;
+            HeaderText = headerText;
+            InformationAboutStation = info;
+            PlayAction = playAction;
+            AudioClip = audioClip;
+            AudioButtonInitialized = audioButtonInitialized;
+        }
+    }
+}

@@ -7,16 +7,14 @@ namespace PolSl.UrbanHealthPath.PathData
     public class ApplicationData : IApplicationData
     {
         public IList<MediaFile> MediaFiles { get; }
-        public IList<HistoricalFact> HistoricalFacts { get; }
         public IList<Exercise> Exercises { get; }
         public IList<Waypoint> Waypoints { get; }
         public IList<UrbanPath> UrbanPaths { get; }
 
-        public ApplicationData(IList<MediaFile> mediaFiles, IList<HistoricalFact> historicalFacts,
-            IList<Exercise> exercises, IList<Waypoint> waypoints, IList<UrbanPath> urbanPaths)
+        public ApplicationData(IList<MediaFile> mediaFiles, IList<Exercise> exercises, IList<Waypoint> waypoints,
+            IList<UrbanPath> urbanPaths)
         {
             MediaFiles = mediaFiles;
-            HistoricalFacts = historicalFacts;
             Exercises = exercises;
             Waypoints = waypoints;
             UrbanPaths = urbanPaths;
@@ -26,6 +24,7 @@ namespace PolSl.UrbanHealthPath.PathData
         {
             SetStationsLateBindings();
             SetUrbanPathsLateBindings();
+            SetExercisesLateBindings();
         }
 
         private void SetStationsLateBindings()
@@ -39,12 +38,11 @@ namespace PolSl.UrbanHealthPath.PathData
                     exercise.InitializeValue(Exercises.FirstOrDefault(x => x.ExerciseId == exercise.Key));
                 }
 
-                foreach (LateBoundValue<HistoricalFact> historicalFact in station.HistoricalFacts)
-                {
-                    historicalFact.InitializeValue(HistoricalFacts.FirstOrDefault(x => x.HistoricalFactId == historicalFact.Key));
-                }
-                
-                station.NavigationAudio.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == station.NavigationAudio.Key));
+                station.NavigationAudio.InitializeValue(MediaFiles.FirstOrDefault(x =>
+                    x.MediaId == station.NavigationAudio.Key));
+                station.Image.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == station.Image.Key));
+                station.IntroductionAudio.InitializeValue(MediaFiles.FirstOrDefault(x =>
+                    x.MediaId == station.IntroductionAudio.Key));
             }
         }
 
@@ -56,8 +54,42 @@ namespace PolSl.UrbanHealthPath.PathData
                 {
                     waypoint.InitializeValue(Waypoints.FirstOrDefault(x => x.WaypointId == waypoint.Key));
                 }
-                
-                urbanPath.PreviewImage.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == urbanPath.PreviewImage.Key));
+
+                urbanPath.PreviewImage.InitializeValue(MediaFiles.FirstOrDefault(x =>
+                    x.MediaId == urbanPath.PreviewImage.Key));
+            }
+        }
+
+        private void SetExercisesLateBindings()
+        {
+            foreach (Exercise exercise in Exercises)
+            {
+                List<VideoExerciseLevel> videoExerciseLevels = exercise.Levels.OfType<VideoExerciseLevel>().ToList();
+
+                foreach (VideoExerciseLevel videoExerciseLevel in videoExerciseLevels)
+                {
+                    videoExerciseLevel.VideoFile.InitializeValue(
+                        MediaFiles.FirstOrDefault(x => x.MediaId == videoExerciseLevel.VideoFile.Key));
+                }
+
+                List<ImageExerciseLevel> imageExerciseLevels = exercise.Levels.OfType<ImageExerciseLevel>().ToList();
+
+                foreach (ImageExerciseLevel imageExerciseLevel in imageExerciseLevels)
+                {
+                    imageExerciseLevel.ImageFile.InitializeValue(
+                        MediaFiles.FirstOrDefault(x => x.MediaId == imageExerciseLevel.ImageFile.Key));
+                }
+
+                List<ImageSelectionExerciseLevel> imageSelectionExerciseLevels =
+                    exercise.Levels.OfType<ImageSelectionExerciseLevel>().ToList();
+
+                foreach (ImageSelectionExerciseLevel imageSelectionExerciseLevel in imageSelectionExerciseLevels)
+                {
+                    foreach (LateBoundValue<MediaFile> image in imageSelectionExerciseLevel.Images)
+                    {
+                        image.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == image.Key));
+                    }
+                }
             }
         }
     }

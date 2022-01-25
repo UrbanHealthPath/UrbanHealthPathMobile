@@ -1,4 +1,5 @@
-﻿using Mapbox.Utils;
+using Mapbox.Utils;
+
 
 namespace PolSl.UrbanHealthPath.PathData
 {

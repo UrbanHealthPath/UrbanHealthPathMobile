@@ -14,13 +14,15 @@ namespace PolSl.UrbanHealthPath
         private const string ZONE_NAME_KEY = "zone_name";
         private const string EXERCISES_KEY = "exercises";
         private const string DISPLAYED_NAME_KEY = "displayed_name";
-        private const string HISTORICAL_FACTS_KEY = "historical_facts";
         private const string NAVIGATION_AUDIO_KEY = "navigation_audio";
+        private const string IMAGE_KEY = "image";
+        private const string INTRODUCTION_KEY = "introduction";
+        private const string INTRODUCTION_AUDIO_KEY = "introduction_audio";
 
         public StationJsonParser() : base(new[]
         {
-            ID_KEY, COORDINATES_KEY, ZONE_NAME_KEY, EXERCISES_KEY, DISPLAYED_NAME_KEY, HISTORICAL_FACTS_KEY,
-            NAVIGATION_AUDIO_KEY
+            ID_KEY, COORDINATES_KEY, ZONE_NAME_KEY, EXERCISES_KEY, DISPLAYED_NAME_KEY,
+            NAVIGATION_AUDIO_KEY, IMAGE_KEY, INTRODUCTION_KEY, INTRODUCTION_AUDIO_KEY
         })
         {
         }
@@ -39,12 +41,15 @@ namespace PolSl.UrbanHealthPath
         {
             Coordinates coordinates = ParseCoordinates(json);
             List<LateBoundValue<Exercise>> exercises = ParseExercises(json);
-            List<LateBoundValue<HistoricalFact>> historicalFacts = ParseHistoricalFacts(json);
             LateBoundValue<MediaFile> navigationAudio =
                 new LateBoundValue<MediaFile>(json[NAVIGATION_AUDIO_KEY].Value<string>());
+            LateBoundValue<MediaFile> image = new LateBoundValue<MediaFile>(json[IMAGE_KEY].Value<string>());
+            LateBoundValue<MediaFile> introductionAudio =
+                new LateBoundValue<MediaFile>(json[INTRODUCTION_AUDIO_KEY].Value<string>());
 
             return new Station(json[ID_KEY].Value<string>(), coordinates, json[ZONE_NAME_KEY].Value<string>(),
-                json[DISPLAYED_NAME_KEY].Value<string>(), exercises, historicalFacts, navigationAudio);
+                json[DISPLAYED_NAME_KEY].Value<string>(), exercises, navigationAudio, image,
+                introductionAudio, json[INTRODUCTION_KEY].Value<string>());
         }
 
         private Coordinates ParseCoordinates(JObject json)
@@ -77,19 +82,6 @@ namespace PolSl.UrbanHealthPath
             bool hasExerciseGroups = jsonExercises.Any(x => x.Type == JTokenType.Array);
 
             return hasExerciseGroups ? jsonExercises[new Random().Next(0, jsonExercises.Count)] : jsonExercises;
-        }
-
-        private List<LateBoundValue<HistoricalFact>> ParseHistoricalFacts(JObject json)
-        {
-            List<LateBoundValue<HistoricalFact>> historicalFacts = new List<LateBoundValue<HistoricalFact>>();
-            JArray jsonHistoricalFacts = (JArray) json[HISTORICAL_FACTS_KEY];
-
-            foreach (JToken historicalFact in jsonHistoricalFacts)
-            {
-                historicalFacts.Add(new LateBoundValue<HistoricalFact>((string) historicalFact));
-            }
-
-            return historicalFacts;
         }
     }
 }

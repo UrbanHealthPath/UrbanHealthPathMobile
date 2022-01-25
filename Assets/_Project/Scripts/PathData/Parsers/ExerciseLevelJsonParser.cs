@@ -11,19 +11,31 @@ namespace PolSl.UrbanHealthPath
 
         private readonly IDictionary<string, IParser<JObject, ExerciseLevel>> _registeredTypesParsers;
 
-        public ExerciseLevelJsonParser(JsonObjectParser<TextExerciseLevel> textExerciseParser) : base(new []{TYPE_KEY})
+        public ExerciseLevelJsonParser(JsonObjectParser<TextExerciseLevel> textExerciseParser,
+            JsonObjectParser<VideoExerciseLevel> videoExerciseParser,
+            JsonObjectParser<ImageExerciseLevel> imageExerciseParser,
+            JsonObjectParser<ImageSelectionExerciseLevel> imageSelectionExerciseParser,
+            JsonObjectParser<AnswerSelectionExerciseLevel> answerSelectionExerciseParser,
+            JsonObjectParser<HistoricalFactExerciseLevel> historicalFactExerciseParser) : base(new[] {TYPE_KEY})
         {
             _registeredTypesParsers = new Dictionary<string, IParser<JObject, ExerciseLevel>>();
             _registeredTypesParsers.Add("text", textExerciseParser);
+            _registeredTypesParsers.Add("video", videoExerciseParser);
+            _registeredTypesParsers.Add("image", imageExerciseParser);
+            _registeredTypesParsers.Add("answer_selection", answerSelectionExerciseParser);
+            _registeredTypesParsers.Add("image_selection", imageSelectionExerciseParser);
+            _registeredTypesParsers.Add("historical_fact", historicalFactExerciseParser);
         }
 
         protected override void ValidateJson(JObject json)
         {
             base.ValidateJson(json);
 
-            if (!_registeredTypesParsers.ContainsKey(json[TYPE_KEY].Value<string>()))
+            string parserKey = json[TYPE_KEY].Value<string>();
+            
+            if (!_registeredTypesParsers.ContainsKey(parserKey))
             {
-                throw new ParsingException();
+                throw new ParsingException($"Parser with type {parserKey} not found!");
             }
         }
 
@@ -31,6 +43,5 @@ namespace PolSl.UrbanHealthPath
         {
             return _registeredTypesParsers[json[TYPE_KEY].Value<string>()].Parse(json);
         }
-        
     }
 }
