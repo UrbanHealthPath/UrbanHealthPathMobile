@@ -193,7 +193,6 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             _lastAudioButton = btn;
             SetLastAudioMute(_settings.IsAudioEnabled);
-            btn.ToggleState();
         }
 
         private void AudioButtonHandler(ButtonWithAudio btn)
