@@ -53,9 +53,9 @@ namespace PolSl.UrbanHealthPath.PathData.Progress
             return _categoriesProgress[category] >= _categoriesCache[category].Count;
         }
 
-        public int GetNumberOfExercisesLeft(ExerciseCategory category)
+        public bool IsOnLastExerciseForCategory(ExerciseCategory category)
         {
-            return _categoriesCache[category].Count - _categoriesProgress[category];
+            return _categoriesProgress[category] == _categoriesCache[category].Count - 1;
         }
 
         private void InitializeCategories(IEnumerable<ExerciseCategory> categories)

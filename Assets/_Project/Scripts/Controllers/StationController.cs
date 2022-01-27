@@ -127,12 +127,18 @@ namespace PolSl.UrbanHealthPath.Controllers
                 return;
             }
 
-            StationButtonState nextState;
-            bool isAtLeastSecondToLastExercise = _currentStationProgress.GetNumberOfExercisesLeft(category) <= 2;
+            if (state != StationButtonState.Inactive)
+            {
+                Exercise completedExercise = _currentStationProgress.CompleteCurrentExercise(category);
+                exerciseEnding.Invoke(completedExercise);
+            }
 
+            StationButtonState nextState;
+            
             if (state != StationButtonState.ActiveLast)
             {
-                nextState = isAtLeastSecondToLastExercise
+                bool isLastExercise = _currentStationProgress.IsOnLastExerciseForCategory(category);
+                nextState = isLastExercise
                     ? StationButtonState.ActiveLast
                     : StationButtonState.ActiveInProgress;
             }
@@ -140,14 +146,8 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 nextState = StationButtonState.Finished;
             }
-            
-            _currentStationButtons.UpdateCategoryButtonState(category, nextState);
 
-            if (state != StationButtonState.Inactive)
-            {
-                Exercise completedExercise = _currentStationProgress.CompleteCurrentExercise(category);
-                exerciseEnding.Invoke(completedExercise);
-            }
+            _currentStationButtons.UpdateCategoryButtonState(category, nextState);
 
             if (nextState != StationButtonState.Finished)
             {
