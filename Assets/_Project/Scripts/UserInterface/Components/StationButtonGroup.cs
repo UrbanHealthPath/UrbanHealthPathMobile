@@ -12,7 +12,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components
         [SerializeField] private ChangingButton _sensorialButton;
         [SerializeField] private ChangingButton _motoricalButton;
         [SerializeField] private ChangingButton _gameButton;
-        [SerializeField] private Sprite _activeIcon;
+        [SerializeField] private Sprite _completeCategoryIcon;
+        [SerializeField] private Sprite _nextExerciseIcon;
         
         private Dictionary<ChangingButton, StationButtonState> _buttonStates;
 
@@ -116,14 +117,14 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components
         private void MarkAsInProgress(ChangingButton button)
         {
             button.SetButtonText("Dalej", new Vector4(10, 10, 10, 10));
-            button.SetSprite(_activeIcon);
+            button.SetSprite(_nextExerciseIcon);
             button.SetInteractable(true);
         }
 
         private void MarkAsLast(ChangingButton button)
         {
             button.SetButtonText("Zatwierdź", new Vector4(10, 10, 10, 10));
-            button.SetSprite(_activeIcon);
+            button.SetSprite(_completeCategoryIcon);
             button.SetInteractable(true);
         }
 
