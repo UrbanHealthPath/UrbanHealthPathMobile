@@ -1006,6 +1006,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -145
       objectReference: {fileID: 0}
+    - target: {fileID: 1895439193955714887, guid: abb1e5bcf74c0cf44ab701294d3cd94e, type: 3}
+      propertyPath: m_text
+      value: "Ekran\\ng\u0142\xF3wny"
+      objectReference: {fileID: 0}
     - target: {fileID: 3203113938973035452, guid: abb1e5bcf74c0cf44ab701294d3cd94e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1487,7 +1491,6 @@ MonoBehaviour:
   _mainMenuButton: {fileID: 8833698730492797337}
   _returnButton: {fileID: 6879425415802908663}
   _chooseButton: {fileID: 888287799890522492}
-  _cancelButton: {fileID: 0}
   _headerPanel: {fileID: 3741162433421662026}
   _stationCount: {fileID: 888287799581947812}
   _distance: {fileID: 888287801108962807}

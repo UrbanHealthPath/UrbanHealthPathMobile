@@ -14,6 +14,7 @@
         AppInfo,
         PathChoice,
         PathPresentation,
-        PathSummary
+        PathSummary,
+        StatisticsView
     }
 }

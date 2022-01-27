@@ -69,6 +69,8 @@ MonoBehaviour:
     _viewObject: {fileID: 3573382356736878937, guid: 80a6e75becad8ae47aa89a3bac3052a5, type: 3}
   - _type: 12
     _viewObject: {fileID: 6526166685358058173, guid: f73209bedebd0f941b7cabc2683d7748, type: 3}
+  - _type: 13
+    _viewObject: {fileID: 9144280535595931315, guid: 1cd0c461160325a45bfb0be7278aff3e, type: 3}
 --- !u!114 &5765766542769419103
 MonoBehaviour:
   m_ObjectHideFlags: 0
