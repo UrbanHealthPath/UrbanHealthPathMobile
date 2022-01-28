@@ -1699,7 +1699,8 @@ MonoBehaviour:
   _sensorialButton: {fileID: 6749870918080018071}
   _motoricalButton: {fileID: 2856895450379452980}
   _gameButton: {fileID: 385355243079028458}
-  _activeIcon: {fileID: 21300000, guid: d540d55a2d18de840b9ff9b15a30f39a, type: 3}
+  _completeCategoryIcon: {fileID: 21300000, guid: d540d55a2d18de840b9ff9b15a30f39a, type: 3}
+  _nextExerciseIcon: {fileID: 21300000, guid: 18f28ef90b3cb934ab06b6b608735eef, type: 3}
 --- !u!114 &385355243079028458
 MonoBehaviour:
   m_ObjectHideFlags: 0
