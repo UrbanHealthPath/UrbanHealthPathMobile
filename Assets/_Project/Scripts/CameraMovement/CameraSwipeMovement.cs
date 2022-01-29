@@ -7,6 +7,7 @@ namespace PolSl.UrbanHealthPath.CameraMovement
     {
         [SerializeField] private Vector3EventChannelSO _onMapSwiped;
         [SerializeField] private VoidEventChannelSO _onMapCentered;
+        [SerializeField] private MapCameraZoom _cameraZoom;
         [SerializeField] private UnityEngine.Camera _cam;
         [SerializeField] private CameraPlayerFollower _playerFollower;
 
@@ -30,6 +31,7 @@ namespace PolSl.UrbanHealthPath.CameraMovement
         {
             _shouldMove = false;
             _playerFollower.enabled = true;
+            _cameraZoom.SetInitialZoom();
         }
 
         private void MoveCamera(Vector3 pos)
