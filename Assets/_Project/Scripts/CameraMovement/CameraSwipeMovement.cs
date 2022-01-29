@@ -28,7 +28,8 @@ namespace PolSl.UrbanHealthPath.CameraMovement
 
         private void CenterMap()
         {
-            _playerFollower.enabled = false;
+            _shouldMove = false;
+            _playerFollower.enabled = true;
         }
 
         private void MoveCamera(Vector3 pos)
