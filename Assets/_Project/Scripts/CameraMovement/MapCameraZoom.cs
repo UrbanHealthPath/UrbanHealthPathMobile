@@ -15,7 +15,7 @@ namespace PolSl.UrbanHealthPath.CameraMovement
         [SerializeField] private UnityEngine.Camera _cam;
 
         [SerializeField] private int _maxZoomCount = 3;
-        [SerializeField] private float _zoomDelta = 4;
+        [SerializeField] private float _zoomDelta = 5;
 
         private float _initialZoom;
         private int _index;
