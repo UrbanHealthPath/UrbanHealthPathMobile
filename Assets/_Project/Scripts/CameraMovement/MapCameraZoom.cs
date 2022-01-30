@@ -8,22 +8,24 @@ namespace PolSl.UrbanHealthPath.CameraMovement
 {
     public class MapCameraZoom : MonoBehaviour
     {
-        [SerializeField] private VoidEventChannelSO _onMapZoomOut;
+        [Header("Event channels")] [SerializeField]
+        private VoidEventChannelSO _onMapZoomOut;
+
         [SerializeField] private VoidEventChannelSO _onMapZoomIn;
         [SerializeField] private VoidEventChannelSO _onMaxZoomInAchieved;
         [SerializeField] private VoidEventChannelSO _onMaxZoomOutAchieved;
-        [SerializeField] private UnityEngine.Camera _cam;
 
+
+        [Header("Variables")] [SerializeField] private UnityEngine.Camera _cam;
+        [SerializeField] private float _initialZoom = 50;
         [SerializeField] private int _maxZoomCount = 3;
-        [SerializeField] private float _zoomDelta = 5;
+        [SerializeField] private float _zoomDelta = 75;
 
-        private float _initialZoom;
         private int _index;
         private float _currentZoom;
 
         private void OnEnable()
         {
-            _initialZoom = _cam.fieldOfView;
             _currentZoom = _initialZoom;
             _onMapZoomOut.OnEventRaised += ZoomOut;
             _onMapZoomIn.OnEventRaised += ZoomIn;
@@ -83,18 +85,22 @@ namespace PolSl.UrbanHealthPath.CameraMovement
         IEnumerator ZoomLerp(float endValue, float duration)
         {
             float time = 0;
-            float startValue = _cam.fieldOfView;
+            Vector3 startValue = _cam.transform.position;
 
             while (time < duration)
             {
                 float t = time / duration;
                 t = t * t * (3f - 2f * t);
-                _cam.fieldOfView = Mathf.Lerp(startValue, endValue, t);
+
+                _cam.transform.position = Vector3.Lerp(
+                    new Vector3(_cam.transform.position.x, startValue.y, _cam.transform.position.z),
+                    new Vector3(_cam.transform.position.x, endValue, _cam.transform.position.z), t);
+
                 time += Time.deltaTime;
                 yield return null;
             }
 
-            _cam.fieldOfView = endValue;
+            _cam.transform.position = new Vector3(_cam.transform.position.x, endValue, _cam.transform.position.z);
         }
     }
 }

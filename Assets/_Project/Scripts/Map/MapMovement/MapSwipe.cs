@@ -39,6 +39,11 @@ namespace PolSl.UrbanHealthPath.Map.MapMovement
                         _prevPosition = new Vector3(touch.position.x, 0, touch.position.y);
                     }
                 }
+                else
+                {
+                    _startPosition =  new Vector3(touch.position.x, 0, touch.position.y);
+                    _prevPosition = _startPosition;
+                }
             }
         }
     }

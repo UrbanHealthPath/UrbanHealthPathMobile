@@ -1,3 +1,4 @@
+using System.Collections;
 using PolSl.UrbanHealthPath.Events.ScriptableObjects;
 using UnityEngine;
 
@@ -29,9 +30,9 @@ namespace PolSl.UrbanHealthPath.CameraMovement
 
         private void CenterMap()
         {
+            _cameraZoom.SetInitialZoom();
             _shouldMove = false;
             _playerFollower.enabled = true;
-            _cameraZoom.SetInitialZoom();
         }
 
         private void MoveCamera(Vector3 pos)
@@ -49,7 +50,9 @@ namespace PolSl.UrbanHealthPath.CameraMovement
                 _shouldMove = false;
 
             if (_shouldMove)
-                _cam.transform.position = Vector3.Lerp(_startPosition, _desiredPosition, 0.01f);
+                _cam.transform.position = Vector3.Lerp(
+                    new Vector3(_startPosition.x, _cam.transform.position.y, _startPosition.z),
+                    new Vector3(_desiredPosition.x, _cam.transform.position.y, _desiredPosition.z), 0.01f);
         }
     }
 }

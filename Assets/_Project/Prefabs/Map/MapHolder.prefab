@@ -105,7 +105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 5105587868188193800}
-  _offset: {x: 0, y: 50, z: 0}
+  _xOffset: 0
+  _zOffset: 0
 --- !u!114 &7181899316859126355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,8 +141,9 @@ MonoBehaviour:
   _onMaxZoomInAchieved: {fileID: 11400000, guid: 16e9347c3da9ae94f88b1a452cc51a8d, type: 2}
   _onMaxZoomOutAchieved: {fileID: 11400000, guid: 144e026c5bf698140ac031ead5751592, type: 2}
   _cam: {fileID: 5105587868000545831}
+  _initialZoom: 50
   _maxZoomCount: 3
-  _zoomDelta: 5
+  _zoomDelta: 23
 --- !u!1 &5105587868007106893
 GameObject:
   m_ObjectHideFlags: 0
