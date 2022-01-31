@@ -26,7 +26,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
 
         private void Awake()
         {
-            headerPanel.Initialize("Menu");
+            headerPanel.Initialize("Ekran główny");
         }
 
         public void Initialize(IViewInitializationParameters initializationParameters)
