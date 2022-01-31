@@ -618,5 +618,130 @@
         "fact": "W 2014 roku budynek pod numerem 3 został odrestaurowany."
       }
     ]
+  },
+  {
+    "exercise_id": "gliwice.neptun.intro",
+    "displayed_name": "",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Od wody rozpoczyna się życie! Na gliwickim Rynku opiekuje nią bóg morskich głębin. Fontanna jest otoczona niewysokim murkiem z piaskowca, można ją bezpiecznie obejść wokół obserwując Neptuna na tle Ratusza lub kolorowych kamieniczek w Rynku."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.ratusz.intro",
+    "displayed_name": "",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Na Rynku nie mogło zabraknąć postaci, które pomagały gliwiczanom bronić swojego miasta i życia. Rzeźba Madonny patrzy na południowo-zachodnią część miasta, wznosząc oczy ponad dachy. A Ty? Co zobaczysz, gdy odwrócisz się w kierunku, gdzie patrzy Madonna?"
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.pilastry.intro",
+    "displayed_name": "",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Elewacja kamienicy pod 18. to dojrzały styl klasycystyczny, na podobieństwo rzymskich fasad. Mamy tu wyraźny rytm pilastrów – rzędu płaskich kolumn, zakończonych jońskimi głowicami. Czy możesz policzyć, ile ich jest? Neptun na szczęście nie widzi, że to trochę jak kurtyna – z tyłu widoczna jest płaska elewacja współczesnej kamienicy."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.arkady.intro",
+    "displayed_name": "",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Gliwickie arkady pozwalają mieszkańcom na swobodne przechodzenie wzdłuż Rynku dając cień w upalne letnie dni, a w dni deszczowe dając parasol – utworzony ze sklepień w podcieniach. Harmonijne łuki arkad otwierają szeroko widok z podcieni na przestrzeń Rynku."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.podcienie.intro",
+    "displayed_name": "",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Na jednym z filarów arkad został umieszczony napis: GALERIA SZTUKI. Nasz wzrok musi powędrować w górę po kilku dekoracyjnych rowkach czyli boniowaniach, aby go dojrzeć na szczycie filara. To tak jak przy budowaniu swojej coraz lepszej formy – stopniowo i krok po kroku."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.rog.intro",
+    "displayed_name": "",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "W narożu ulic Plebańskiej i Krótkiej znajdujemy rzeźbę Gliwiczanki – to hołd dla odważnych kobiet broniących miasta przed wojskami generała Mansfelda podczas Wojny Trzydziestoletniej na początku XVII wieku. Gliwice zostały ocalone dzięki kobiecemu sprytowi, dzielności i … kaszy jaglanej! Kobiecy spryt oraz kasza jaglana mogą ratować nas również dziś."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.plebanska.intro",
+    "displayed_name": "",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Ulica Plebańska to jedna z najstarszych ulic gliwickiej Starówki. Gliwiczanie podążali tędy do kościoła Wszystkich Świętych, mijając po drodze skład piwa, restaurację i piekarnię. A dziś może warto się tu zatrzymać, aby podziwiać portale przy numerze 4 i 6 oraz poćwiczyć?"     }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.rog.3",
+    "displayed_name": "3",
+    "category": "sensorial",
+    "subcategory": "Lungs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "text",
+        "description": "Stań wygodnie i połóż jedną rękę na brzuchu. Wykonaj wdech nosem i równocześnie postaraj się wypełnić cały brzuch powietrzem jakbyś napełniał/-a dzban wodą. Robiąc długi wydech wciągnij brzuch opróżniając go z powietrza. Powtórz ćwiczenie 5 razy."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.plebanska.3",
+    "displayed_name": "3",
+    "category": "sensorial",
+    "subcategory": "Lungs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "text",
+        "description": "Stań przy chodniku naprzeciwko wejścia do budynku Plebańska 6. Wykonaj głęboki wdech nosem i unieś ręce do góry. Następnie opuszczając ręce bokiem do dołu po linii łuku naśladującej przeciwległy portal wykonaj długi wydech nosem."
+      }
+    ]
   }
 ]
