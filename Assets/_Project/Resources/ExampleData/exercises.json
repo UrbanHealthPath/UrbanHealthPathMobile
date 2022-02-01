@@ -134,27 +134,6 @@
     ]
   },
   {
-    "exercise_id": "gliwice.ratusz.game",
-    "displayed_name": "Ratusz - Gra Miejska",
-    "category": "game",
-    "subcategory": "Eyes",
-    "levels": [
-      {
-        "min_difficulty": 1,
-        "max_difficulty": 5,
-        "type": "image_selection",
-        "question": "Pomimo tego, że od 1954 roku herb Gliwic nie posiada już wizerunku Matki Boskiej możemy dalej go obserwować na budynkach w mieście. Czy rozpoznajesz na jakim budynku znajduje się wizerunek Matki Boskiej przedstawiony na herbie? Wybierz jedną poprawną odpowiedź.",
-        "images": [
-          "image.game.gliwice.Gra_Miejska_Zdjecie1_Okno_willi_caro_2.Rzezba_madonny",
-          "image.game.gliwice.Gra_Miejska_Zdjecie2_Wieza_Budynku_Czerwonej_Chemii_2.Rzezba_Madonny",
-          "image.game.gliwice.Gra_Miejska_Zdjecie3_Ratusz_2.Rzezba_Madonny",
-          "image.game.gliwice.Gra_Miejska_Zdjecie4_Budynek_Szarej_Chemii_2.Rzezba_Madonny"
-        ],
-        "correct_answers": [2]
-      }
-    ]
-  },
-  {
     "exercise_id": "gliwice.ratusz.autor",
     "displayed_name": "Ratusz - Madonna",
     "category": "Game",
@@ -741,6 +720,77 @@
         "max_difficulty": 5,
         "type": "text",
         "description": "Stań przy chodniku naprzeciwko wejścia do budynku Plebańska 6. Wykonaj głęboki wdech nosem i unieś ręce do góry. Następnie opuszczając ręce bokiem do dołu po linii łuku naśladującej przeciwległy portal wykonaj długi wydech nosem."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.ratusz.game",
+    "displayed_name": "Ratusz - Gra Miejska",
+    "category": "game",
+    "subcategory": "eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "answer_selection",
+        "question": "Pomimo tego, że od 1954 roku herb Gliwic nie posiada już wizerunku Matki Boskiej możemy dalej go obserwować na budynkach w mieście. Czy rozpoznajesz na jakim budynku znajduje się wizerunek Matki Boskiej przedstawiony na herbie? Wybierz jedną poprawną odpowiedź.",
+        "answers": [
+          "Okno Willi Caro",
+          "Wieża budynku Czerwonej Chemii",
+          "Ratusz",
+          "Kościół Wszystkich Świętych"
+        ],
+        "image": "image.game.gliwice.Gra_Miejska_Zdjecie3_Ratusz_2.Rzezba_Madonny",
+        "correct_answers": [2]
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.podcienie.boniowanie",
+    "displayed_name": "Podcienie - Boniowanie",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Boniowanie to stara technika dekorowania krawędzi kamienia stosowanego na elewacji budynku. Technika ta stosowana była już w kamiennych budowlach starożytnego Rzymu, natomiast w okresie renesansu spoiny kamieni były zastępowane profilowaniem czyli tzw. boniami - rowkami w tynku naśladującymi spoiny kamieni."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.podcienie.wystepowanie",
+    "displayed_name": "Podcienie - Boniowanie",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Boniowanie spotykamy najczęściej na elewacjach, w cokołach budynków lub w ich narożnikach. Na gliwickim Rynku dostrzec można je przy arkadach prowadzących do Galerii Sztuki."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.podcienie.game",
+    "displayed_name": "Galeria - Gra Miejska",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "image_selection",
+        "question": "Boniowanie można zaobserwować na wielu budynkach gliwickiej Starówki. Które z poniższych zdjęć przedstawia boniowanie?",
+        "images": [
+          "image.game.Gra_miejska_zdjęcieA_5.Galeria_sztuki",
+          "image.game.Gra_miejska_zdjęcieB_5.Galeria_sztuki",
+          "image.game.Gra_miejska_zdjęcieC_5.Galeria_sztuki",
+          "image.game.Gra_miejska_zdjęcieD_5.Galeria_sztuki"
+        ],
+        "correct_answers": [0]
       }
     ]
   }

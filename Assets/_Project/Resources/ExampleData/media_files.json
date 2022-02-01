@@ -51,13 +51,13 @@
     "media_id": "video.exercise.CWICZENIE_1A",
     "type": "video",
     "storage_type": "local",
-    "path": "videos/exercises/CWICZENIE_1A"
+    "path": "videos/exercises/PUNKT_1A"
   },
   {
     "media_id": "video.exercise.CWICZENIE_2",
     "type": "video",
     "storage_type": "local",
-    "path": "videos/exercises/CWICZENIE_2"
+    "path": "videos/exercises/PUNKT_2"
   },
   {
     "media_id": "audio.introduction.ratusz",
@@ -135,7 +135,7 @@
     "media_id": "video.station.arkady.exercise.3a",
     "type": "video",
     "storage_type": "local",
-    "path": "videos/exercises/CWICZENIE_3A"
+    "path": "videos/exercises/PUNKT_3A"
   },
   {
     "media_id": "video.station.arkady.exercise.3b",
@@ -153,13 +153,13 @@
     "media_id": "video.station.podcienie.exercise.5a",
     "type": "video",
     "storage_type": "local",
-    "path": "videos/exercises/CWICZENIE_5A"
+    "path": "videos/exercises/PUNKT_5A"
   },
   {
     "media_id": "video.station.podcienie.exercise.5b",
     "type": "video",
     "storage_type": "local",
-    "path": "videos/exercises/CWICZENIE_5B"
+    "path": "videos/exercises/PUNKT_5B"
   },
   {
     "media_id": "image.game.gliwice.Gra_miejska_Zdjecie_6_Rzezba_kobiety_broniacej_Gliwic",
@@ -195,7 +195,7 @@
     "media_id": "video.station.pilastry.exercise.4a",
     "type": "video",
     "storage_type": "local",
-    "path": "videos/exercises/CWICZENIE_4A"
+    "path": "videos/exercises/PUNKT_4A"
   },
   {
     "media_id": "video.station.pilastry.exercise.4b",
@@ -213,13 +213,13 @@
     "media_id": "video.station.plebaska.exercise.7a",
     "type": "video",
     "storage_type": "local",
-    "path": "videos/exercises/CWICZENIE_7A"
+    "path": "videos/exercises/PUNKT_7A"
   },
   {
     "media_id": "video.station.plebaska.exercise.7b",
     "type": "video",
     "storage_type": "local",
-    "path": "videos/exercises/CWICZENIE_7B"
+    "path": "videos/exercises/PUNKT_7B"
   },
   {
     "media_id": "image.game.gliwice.Gra_miejska_zdjecie_7.Plebanska",
@@ -232,5 +232,29 @@
     "type": "image",
     "storage_type": "local",
     "path": "images/game_images/Gra_miejska_zdjecie1_3.Arkady"
+  },
+  {
+    "media_id": "image.game.Gra_miejska_zdjęcieA_5.Galeria_sztuki",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_zdjęcieA_5.Galeria_sztuki"
+  },
+  {
+    "media_id": "image.game.Gra_miejska_zdjęcieB_5.Galeria_sztuki",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_zdjęcieB_5.Galeria_sztuki"
+  },
+  {
+    "media_id": "image.game.Gra_miejska_zdjęcieC_5.Galeria_sztuki",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_zdjęcieC_5Galeria_sztuki"
+  },
+  {
+    "media_id": "image.game.Gra_miejska_zdjęcieD_5.Galeria_sztuki",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_zdjęcieD_5_Galeria_sztuki"
   }
 ]
