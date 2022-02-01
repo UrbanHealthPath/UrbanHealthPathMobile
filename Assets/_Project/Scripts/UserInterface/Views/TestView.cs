@@ -30,7 +30,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
                 _testButtonGroup.Initialize(init.ButtonGroupInitialized);
                 _mainMenuButton.onClick.AddListener(() => init.MainMenuEvent?.Invoke());
                 _returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
-                _startTestButton.onClick.AddListener(()=>init.StartTestEvent?.Invoke());
                 _headerPanel.Initialize(init.HeaderText);
             }
         }
