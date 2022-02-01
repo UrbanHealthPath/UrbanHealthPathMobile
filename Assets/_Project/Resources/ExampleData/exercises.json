@@ -630,7 +630,7 @@
         "max_difficulty": 5,
         "type": "video",
         "description": "Należy wykonywać przysiady przez 0,5 minuty. Staraj się zejść jak najniżej. Pamiętaj, żeby w trakcie wykonywania ćwiczeń nie wstrzymywać oddechu. Oddech powinien być miarowy i spokojny. W trakcie wykonywania ćwiczenia postaraj się nie garbić. Napnij brzuch, wyprostuj plecy.",
-        "video_file": ""
+        "video_file": "video.test.test_1"
       }
     ]
   },
@@ -645,7 +645,7 @@
         "max_difficulty": 5,
         "type": "video",
         "description": "Wykonuj je przez 0,5 minuty. Ustaw stopy w rozkroku na szerokość bioder. Plecy powinny być wyprostowane, brzuch napięty. Nie wysuwaj głowy do przodu. W trakcie przysiadu uważaj na kolana, żeby nie kierowały się do środka, co jest częstym błędem.",
-        "video_file": ""
+        "video_file": "video.test.test_2"
       }
     ]
   },
@@ -660,7 +660,7 @@
         "max_difficulty": 5,
         "type": "video",
         "description": "Wykonuj ćwiczenie przez 0,5 minuty—góra –dół. Najpierw przyjmij prawidłową pozycję. Stopy w lekkim rozkroku na szerokość bioder, barki opuszczone, łopatki zebrane, brzuch i pośladki napięte. Głowa delikatnie cofnięta do tyłu. Dopiero teraz zacznij unoszenie butelki. Wraz z uniesieniem butelki zrób wydech, z opuszczeniem wdech.",
-        "video_file": ""
+        "video_file": "video.test.test_3"
       }
     ]
   },
@@ -675,7 +675,7 @@
         "max_difficulty": 5,
         "type": "video",
         "description": "Przyjmij prawidłową postawę, jak w poprzednim ćwiczeniu. Najpierw zacznij wykonywać okrążenia prawą ręką do tyłu. Przerwij. Teraz wykonaj kilka okrążeń lewą ręką do przodu. Przerwij. Teraz ponownie zacznij wykonywać wolne okrążenia prawą ręką do tyłu i jednocześnie postaraj się dołączyć okrążenia lewej ręki do przodu. Po kilku okrążeniach zmień stronę. Lewa do tyłu, a prawa do przodu.",
-        "video_file": ""
+        "video_file": "video.test.test_4"
       }
     ]
   },
@@ -690,22 +690,7 @@
         "max_difficulty": 5,
         "type": "video",
         "description": "Przyjmij prawidłową pozycję. Możesz wykorzystać miotłę lub mop. Oddychaj spokojnie i miarowo. Jeśli nie jesteś w stanie przenieść kija całkowicie za siebie, nie przejmuj się. Zrób ćwiczenie do takiego momentu, w którym możesz. Wykonując ćwiczenie regularnie, zobaczysz, jak polepsza się Twoja ruchomość.",
-        "video_file": ""
-      }
-    ]
-  },
-  {
-    "exercise_id": "test.6",
-    "displayed_name": "Przekładanie kija bez zginania ramion w łokciach.",
-    "category": "test",
-    "subcategory": "Arms",
-    "levels": [
-      {
-        "min_difficulty": 1,
-        "max_difficulty": 5,
-        "type": "video",
-        "description": "Przyjmij prawidłową pozycję. Możesz wykorzystać miotłę lub mop. Oddychaj spokojnie i miarowo. Jeśli nie jesteś w stanie przenieść kija całkowicie za siebie, nie przejmuj się. Zrób ćwiczenie do takiego momentu, w którym możesz. Wykonując ćwiczenie regularnie, zobaczysz, jak polepsza się Twoja ruchomość.",
-        "video_file": ""
+        "video_file": "video.test.test_5"
       }
     ]
   }
