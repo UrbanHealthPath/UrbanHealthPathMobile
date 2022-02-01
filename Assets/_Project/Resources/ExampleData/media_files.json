@@ -45,7 +45,7 @@
     "media_id": "video.exercise.CWICZENIE_1B",
     "type": "video",
     "storage_type": "local",
-    "path": "videos/exercises/CWICZENIE_1B"
+    "path": "videos/exercises/PUNKT_1B"
   },
   {
     "media_id": "video.exercise.CWICZENIE_1A",
@@ -141,13 +141,13 @@
     "media_id": "video.station.arkady.exercise.3b",
     "type": "video",
     "storage_type": "local",
-    "path": "videos/exercises/CWICZENIE_3B"
+    "path": "videos/exercises/PUNKT_3B"
   },
   {
     "media_id": "video.station.arkady.exercise.3c",
     "type": "video",
     "storage_type": "local",
-    "path": "videos/exercises/CWICZENIE_3C"
+    "path": "videos/exercises/PUNKT_3C"
   },
   {
     "media_id": "video.station.podcienie.exercise.5a",
@@ -201,7 +201,7 @@
     "media_id": "video.station.pilastry.exercise.4b",
     "type": "video",
     "storage_type": "local",
-    "path": "videos/exercises/CWICZENIE_4B"
+    "path": "videos/exercises/PUNKT_4B"
   },
   {
     "media_id": "image.game.gliwice.pilastry.gra.miejska",
