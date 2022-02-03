@@ -232,5 +232,35 @@
     "type": "image",
     "storage_type": "local",
     "path": "images/game_images/Gra_miejska_zdjecie1_3.Arkady"
+  },
+  {
+    "media_id": "video.test.test_1",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/test/Test_1"
+  },
+  {
+    "media_id": "video.test.test_2",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/test/Test_2"
+  },
+  {
+    "media_id": "video.test.test_3",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/test/Test_3"
+  },
+  {
+    "media_id": "video.test.test_4",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/test/Test_4"
+  },
+  {
+    "media_id": "video.test.test_5",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/test/Test_5"
   }
 ]

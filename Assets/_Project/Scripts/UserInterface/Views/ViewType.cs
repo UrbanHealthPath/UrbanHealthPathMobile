@@ -16,6 +16,8 @@
         PathPresentation,
         PathSummary,
         StatisticsView,
-        TestView
+        TestView,
+        TestIntroduction,
+        TestSummary
     }
 }

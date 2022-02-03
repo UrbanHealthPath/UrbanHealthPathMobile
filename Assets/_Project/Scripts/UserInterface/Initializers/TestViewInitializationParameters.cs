@@ -11,7 +11,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
         public UnityAction<TestButtonGroup> ButtonGroupInitialized { get; }
         public UnityAction MainMenuEvent { get; }
         public UnityAction ReturnEvent { get; }
-        public UnityAction StartTestEvent { get; }
         public string HeaderText { get; }
 
         public TestViewInitializationParameters(UnityAction<TestButtonGroup> buttonGroupInitialized,
@@ -21,7 +20,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
             MainMenuEvent += mainMenuEvent;
             ReturnEvent += returnEvent;
             HeaderText = headerText;
-            StartTestEvent += startTestEvent;
         }
     }
 }
