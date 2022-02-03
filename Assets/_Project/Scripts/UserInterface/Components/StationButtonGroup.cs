@@ -59,7 +59,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components
             _unregisterFromPopupAndViewEvents = () =>
             {
                 popupManager.PopupClosed -= HandlePopupClosed;
-                
+
             };
         }
         

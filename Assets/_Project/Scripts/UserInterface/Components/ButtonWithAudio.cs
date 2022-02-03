@@ -10,6 +10,9 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components
         [SerializeField] private Button _button;
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private TextMeshProUGUI _buttonText;
+        [SerializeField] private Image _buttonImage;
+        [SerializeField] private Sprite _playingSprite;
+        [SerializeField] private Sprite _stopSprite;
 
         public AudioClip Clip { get; private set; }
         public Button Button => _button;
@@ -49,6 +52,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components
             AudioSource.Play();
             AudioSource.loop = false;
             _buttonText.text = "Wyłącz ciekawostkę";
+            _buttonImage.sprite = _stopSprite;
             IsPlaying = true;
         }
         
@@ -56,6 +60,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components
         {
             AudioSource.Stop();
             _buttonText.text = "Włącz ciekawostkę";
+            _buttonImage.sprite = _playingSprite;
             IsPlaying = false;
         }
     }
