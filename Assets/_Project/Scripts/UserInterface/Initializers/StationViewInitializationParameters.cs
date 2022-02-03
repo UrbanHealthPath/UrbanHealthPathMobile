@@ -14,16 +14,16 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
         public UnityAction<ButtonWithAudio> PlayAction { get; }
         public AudioClip AudioClip { get; }
         public string HeaderText { get; }
-        public string InformationAboutStation { get; }
+        public Texture2D StationImage { get; }
         
         public StationViewInitializationParameters(UnityAction<StationButtonGroup> buttonGroupInitialized, UnityAction mainMenuEvent, UnityAction returnEvent,
-            string headerText, string info, UnityAction<ButtonWithAudio> audioButtonInitialized, UnityAction<ButtonWithAudio> playAction, AudioClip audioClip)
+            string headerText, Texture2D stationImage, UnityAction<ButtonWithAudio> audioButtonInitialized, UnityAction<ButtonWithAudio> playAction, AudioClip audioClip)
         {
             ButtonGroupInitialized += buttonGroupInitialized;
             MainMenuEvent += mainMenuEvent;
             ReturnEvent += returnEvent;
             HeaderText = headerText;
-            InformationAboutStation = info;
+            StationImage = stationImage;
             PlayAction = playAction;
             AudioClip = audioClip;
             AudioButtonInitialized = audioButtonInitialized;

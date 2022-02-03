@@ -18,7 +18,6 @@ namespace PolSl.UrbanHealthPath.Controllers
     public class StationController : BaseController
     {
         private readonly CoroutineManager _coroutineManager;
-        private readonly IPathProgressManager _pathProgressManager;
         private readonly Settings _settings;
 
         private StationProgress _currentStationProgress;
@@ -27,10 +26,9 @@ namespace PolSl.UrbanHealthPath.Controllers
         private ButtonWithAudio _lastAudioButton;
 
         public StationController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager,
-            IPathProgressManager pathProgressManager, Settings settings) : base(viewManager, popupManager)
+            Settings settings) : base(viewManager, popupManager)
         {
             _coroutineManager = coroutineManager;
-            _pathProgressManager = pathProgressManager;
             _settings = settings;
 
             _settings.IsAudioEnabledChanged += SetLastAudioMute;
@@ -61,6 +59,8 @@ namespace PolSl.UrbanHealthPath.Controllers
                 introductionAudio = new AudioFileAccessor(station.IntroductionAudio)?.GetMedia();
             }
 
+            Texture2D stationImage = new TextureFileAccessor(station.Image).GetMedia();
+
             StationViewInitializationParameters initParams =
                 new StationViewInitializationParameters(
                     buttons => ConfigureButtonGroup(isAnyGameExercise, isAnyMotoricalExercise, isAnySensorialExercise,
@@ -71,7 +71,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                         PopupManager.CloseCurrentPopup();
                         ReturnToPreviousView();
                     },
-                    station.DisplayedName, "", AudioButtonInitializedHandler, AudioButtonHandler,
+                    station.DisplayedName, stationImage, AudioButtonInitializedHandler, AudioButtonHandler,
                     introductionAudio);
 
             ViewManager.InitializeCurrentView(initParams);

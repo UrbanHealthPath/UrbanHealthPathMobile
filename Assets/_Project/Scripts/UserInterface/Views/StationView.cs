@@ -26,8 +26,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
 
         [SerializeField] private HeaderPanel _headerPanel;
         
-        [FormerlySerializedAs("informationAboutStation")] [SerializeField]
-        private TextMeshProUGUI _informationAboutStation;
+        [SerializeField] private RawImage _stationImage;
 
         [FormerlySerializedAs("popupArea")] [SerializeField]
         private RectTransform _popupArea;
@@ -56,7 +55,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
                 _mainMenuButton.onClick.AddListener(() => init.MainMenuEvent?.Invoke());
                 _returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
                 _headerPanel.Initialize(init.HeaderText);
-                _informationAboutStation.text = init.InformationAboutStation;
+                _stationImage.texture = init.StationImage;
             }
         }
 
