@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.Android;
+﻿using UnityEngine.Android;
 
 namespace PolSl.UrbanHealthPath.Utils.PermissionManagement
 {
