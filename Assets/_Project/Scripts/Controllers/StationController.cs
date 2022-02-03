@@ -9,7 +9,7 @@ using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
-using PolSl.UrbanHealthPath.Utils.CoroutineManager;
+using PolSl.UrbanHealthPath.Utils.CoroutineManagement;
 using UnityEngine;
 using UnityEngine.Events;
 

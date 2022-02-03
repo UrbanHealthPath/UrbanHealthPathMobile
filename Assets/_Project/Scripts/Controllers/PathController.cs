@@ -10,7 +10,8 @@ using PolSl.UrbanHealthPath.UserInterface.Components.List;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
-using PolSl.UrbanHealthPath.Utils.CoroutineManager;
+using PolSl.UrbanHealthPath.Utils.CoroutineManagement;
+using PolSl.UrbanHealthPath.Utils.PermissionManagement;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -28,6 +29,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         private readonly ILocationProviderFactory _locationProviderFactory;
         private readonly MapHolder _mapHolderPrefab;
         private readonly CoroutineManager _coroutineManager;
+        private readonly IPermissionManager _permissionManager;
 
         private UrbanPath _selectedPath;
         private MapHolder _mapHolder;
@@ -42,13 +44,14 @@ namespace PolSl.UrbanHealthPath.Controllers
         public PathController(ViewManager viewManager, PopupManager popupManager,
             IPathProgressManager pathProgressManager,
             Action returnToMainMenu, ILocationProviderFactory locationProviderFactory,
-            MapHolder mapHolderPrefab, CoroutineManager coroutineManager) : base(viewManager, popupManager)
+            MapHolder mapHolderPrefab, CoroutineManager coroutineManager, IPermissionManager permissionManager) : base(viewManager, popupManager)
         {
             _pathProgressManager = pathProgressManager;
             _returnToMainMenu = returnToMainMenu;
             _locationProviderFactory = locationProviderFactory;
             _mapHolderPrefab = mapHolderPrefab;
             _coroutineManager = coroutineManager;
+            _permissionManager = permissionManager;
         }
 
         public void ShowPathSelectionView(IList<UrbanPath> availablePaths, bool areDemoPaths)
@@ -132,7 +135,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             DestroyMap();
 
-            ILocationProvider locationProvider = _locationProviderFactory.CreateFakeProvider(coordinatesList);
+            ILocationProvider locationProvider = _locationProviderFactory.CreateProvider(coordinatesList);
             ILocationUpdater locationUpdater = new LimitedLocationUpdaterDecorator(locationProvider, CheckIfStationFinishedSinceLastLocationUpdate);
             _locationUpdateCoroutine = locationUpdater.UpdateLocation();
 
@@ -145,8 +148,8 @@ namespace PolSl.UrbanHealthPath.Controllers
         private void InitializeMapHolder(List<Coordinates> coordinatesList)
         {
             DestroyMap();
-
-            ILocationProvider locationProvider = _locationProviderFactory.CreateDeviceProvider();
+            
+            ILocationProvider locationProvider = _locationProviderFactory.CreateProvider();
             ILocationUpdater locationUpdater = new LocationUpdater(locationProvider);
             _locationUpdateCoroutine = locationUpdater.UpdateLocation();
             
@@ -176,11 +179,17 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private void StartNewPath(UrbanPath urbanPath)
         {
-            SelectPath(urbanPath);
-            _pathProgressManager.CheckpointReached += CheckpointReachedHandler;
-            _pathProgressManager.StartNewPath();
-            InitializeMapHolder(urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
-            OnPathStarted(urbanPath);
+            _permissionManager.RequirePermission(Permission.Location, result =>
+            {
+                if (result == RequestResult.Granted)
+                {
+                    SelectPath(urbanPath);
+                    _pathProgressManager.CheckpointReached += CheckpointReachedHandler;
+                    _pathProgressManager.StartNewPath();
+                    InitializeMapHolder(urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
+                    OnPathStarted(urbanPath);
+                }
+            });
         }
 
         private void StartNewDemoPath(UrbanPath urbanPath)

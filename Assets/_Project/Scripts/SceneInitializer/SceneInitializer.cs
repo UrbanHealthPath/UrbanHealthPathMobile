@@ -7,7 +7,8 @@ using PolSl.UrbanHealthPath.Systems;
 using PolSl.UrbanHealthPath.Tools.TextLogger;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
-using PolSl.UrbanHealthPath.Utils.CoroutineManager;
+using PolSl.UrbanHealthPath.Utils.CoroutineManagement;
+using PolSl.UrbanHealthPath.Utils.PermissionManagement;
 using PolSl.UrbanHealthPath.Utils.PersistentValue;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -32,14 +33,12 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         private IPersistentValue<bool> _isFirstRun;
         private ViewManager _viewManager;
         private PopupManager _popupManager;
-        private MapHolder _mapHolder;
-        private UrbanPath _currentPath;
-        private Exercise _currentExercise;
-        private ILocationProvider _currentLocationProvider;
+        private IPermissionManager _permissionManager;
 
         private void Awake()
         {
             _logger = new UnityLogger();
+            _permissionManager = new PermissionManager(new AndroidPermissionAdapter(), _coroutineManager);            
 
             _isFirstRun = new BoolPrefsValue("is_first_run", true);
 
@@ -59,10 +58,9 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
             Settings settings = new Settings();
 
             MainController mainController = new MainController(_viewManager, _popupManager, _pathProgressManager,
-                _applicationData, _mapHolderPrefab, _coroutineManager, settings, _audioSource);
+                _applicationData, _mapHolderPrefab, _coroutineManager, settings, _permissionManager);
 
             mainController.Run();
-            //BuildUI();
         }
 
         private IApplicationData LoadApplicationData()

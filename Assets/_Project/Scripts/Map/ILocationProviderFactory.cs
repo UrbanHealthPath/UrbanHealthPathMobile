@@ -5,7 +5,7 @@ namespace PolSl.UrbanHealthPath.Map
 {
     public interface ILocationProviderFactory
     {
-        ILocationProvider CreateDeviceProvider();
-        ILocationProvider CreateFakeProvider(List<Coordinates> coordinatesList);
+        ILocationProvider CreateProvider();
+        ILocationProvider CreateProvider(List<Coordinates> coordinatesList);
     }
 }
