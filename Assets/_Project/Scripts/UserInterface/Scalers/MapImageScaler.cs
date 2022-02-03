@@ -10,6 +10,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Scalers
     public class MapImageScaler : MonoBehaviour
     {
         private RectTransform _rectTransform;
+        private RectTransform _parentRectTransform;
         private RawImage _image;
         private float _width = 1;
         private float _height = 1;
@@ -21,17 +22,25 @@ namespace PolSl.UrbanHealthPath.UserInterface.Scalers
         private void Awake()
         {
             _rectTransform = GetComponent<RectTransform>();
+            _parentRectTransform = _rectTransform.parent.GetComponent<RectTransform>();
             _image = GetComponent<RawImage>();
-            _rectHeight = _rectTransform.rect.height;
-            _rectWidth = _rectTransform.rect.width;
         }
 
         private void Start()
         {
+            StartCoroutine(SetRect());
+        }
+
+        IEnumerator SetRect()
+        {
+            yield return new WaitForEndOfFrame();
+            _rectTransform.sizeDelta = _parentRectTransform.sizeDelta;
+            _rectHeight = _rectTransform.rect.height;
+            _rectWidth = _rectTransform.rect.width;
+            
             CalculateImageRect();
             _image.uvRect = new Rect(new Vector2(_x, _y), new Vector2(_width, _height));
         }
-
         private void CalculateImageOffset(float ratio, float paramFirst, float paramSecond)
         {
             float diff = paramFirst - paramSecond;
