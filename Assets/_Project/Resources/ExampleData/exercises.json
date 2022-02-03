@@ -797,7 +797,7 @@
   {
     "exercise_id": "test.1",
     "displayed_name": "Przysiady przy oparciu krzesła/stołu itp.",
-    "category": "test",
+    "category": "Test",
     "subcategory": "Legs",
     "levels": [
       {
@@ -812,7 +812,7 @@
   {
     "exercise_id": "test.2",
     "displayed_name": "Półprzysiady z wyprostowanymi rękami.",
-    "category": "test",
+    "category": "Test",
     "subcategory": "Legs",
     "levels": [
       {
@@ -827,7 +827,7 @@
   {
     "exercise_id": "test.3",
     "displayed_name": "Unoszenie butelki ponad głowę.",
-    "category": "test",
+    "category": "Test",
     "subcategory": "Arms",
     "levels": [
       {
@@ -842,7 +842,7 @@
   {
     "exercise_id": "test.4",
     "displayed_name": "Naprzemienne krążenia ramion.",
-    "category": "test",
+    "category": "Test",
     "subcategory": "Arms",
     "levels": [
       {
@@ -857,7 +857,7 @@
   {
     "exercise_id": "test.5",
     "displayed_name": "Przekładanie kija bez zginania ramion w łokciach.",
-    "category": "test",
+    "category": "Test",
     "subcategory": "Arms",
     "levels": [
       {

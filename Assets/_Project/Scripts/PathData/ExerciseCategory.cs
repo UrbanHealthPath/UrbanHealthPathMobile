@@ -4,6 +4,7 @@
     {
         Sensorial,
         Motorical,
-        Game
+        Game,
+        Test
     }
 }

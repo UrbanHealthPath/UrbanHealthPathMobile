@@ -74,7 +74,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                         PopupManager.CloseCurrentPopup();
                         ReturnToPreviousView();
                     },
-                    station.DisplayedName, station.Introduction, AudioButtonInitializedHandler, AudioButtonHandler,
+                    station.DisplayedName, "", AudioButtonInitializedHandler, AudioButtonHandler,
                     introductionAudio);
 
             ViewManager.InitializeCurrentView(initParams);
