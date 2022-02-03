@@ -28,7 +28,7 @@ namespace PolSl.UrbanHealthPath.PathData.Progress
             return IsCategoryFinished(category) ? null : _categoriesCache[category][_categoriesProgress[category]];
         }
 
-        public void CompleteCurrentExercise(ExerciseCategory category)
+        public Exercise CompleteCurrentExercise(ExerciseCategory category)
         {
             Exercise completedExercise = GetCurrentExercise(category);
             _categoriesProgress[category]++;
@@ -39,6 +39,8 @@ namespace PolSl.UrbanHealthPath.PathData.Progress
             {
                 CategoryCompleted?.Invoke(_station, category);
             }
+
+            return completedExercise;
         }
 
         public bool IsFinished()
@@ -49,6 +51,11 @@ namespace PolSl.UrbanHealthPath.PathData.Progress
         public bool IsCategoryFinished(ExerciseCategory category)
         {
             return _categoriesProgress[category] >= _categoriesCache[category].Count;
+        }
+
+        public bool IsOnLastExerciseForCategory(ExerciseCategory category)
+        {
+            return _categoriesProgress[category] == _categoriesCache[category].Count - 1;
         }
 
         private void InitializeCategories(IEnumerable<ExerciseCategory> categories)
