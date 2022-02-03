@@ -80,9 +80,6 @@ namespace PolSl.UrbanHealthPath.Controllers
         private void ConfigureButtonGroup(bool isAnyGame, bool isAnyMotorical, bool isAnySensorial,
             Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding, StationButtonGroup buttons)
         {
-            //buttons.RegisterToStationProgressEvents(_currentStationProgress);
-            //buttons.RegisterToPopupEvents(PopupManager, ViewManager);
-
             if (!isAnyGame)
             {
                 buttons.UpdateCategoryButtonState(ExerciseCategory.Game, StationButtonState.Finished);
