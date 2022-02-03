@@ -29,6 +29,8 @@ namespace PolSl.UrbanHealthPath.Navigation
         private AbstractMap _map;
         
         private Directions _directions;
+
+        private GameObject _navigationLine;
         
         public void Initialize(AbstractMap map)
         {
@@ -37,8 +39,10 @@ namespace PolSl.UrbanHealthPath.Navigation
                 _map = map;
                 map.OnInitialized+=() => _mapInitialized = true;
             }
-            
+
             _directions = MapboxAccess.Instance.Directions;
+            // TODO: Investigate why the line below is required.
+            _lineMeshModifier.SetProperties(new LineGeometryOptions());
             _lineMeshModifier.Initialize();
             _initialized = true;
         }
@@ -75,7 +79,7 @@ namespace PolSl.UrbanHealthPath.Navigation
             
             _lineMeshModifier.Run(feat, meshData, _map.WorldRelativeScale);
 
-            CreateGameObject(meshData);
+            _navigationLine = CreateGameObject(meshData);
         }
 
         private GameObject CreateGameObject(MeshData data)
@@ -105,6 +109,17 @@ namespace PolSl.UrbanHealthPath.Navigation
             {
                 Query();
             }
+        }
+
+        public void DestroyNavigationLine()
+        {
+            if (_navigationLine == null)
+            {
+                return;
+            }
+            
+            _navigationLine.Destroy();
+            _navigationLine = null;
         }
     }
 }

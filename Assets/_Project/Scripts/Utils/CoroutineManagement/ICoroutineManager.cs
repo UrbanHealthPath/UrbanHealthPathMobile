@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace PolSl.UrbanHealthPath.Utils.CoroutineManager
+namespace PolSl.UrbanHealthPath.Utils.CoroutineManagement
 {
     public interface ICoroutineManager
     {

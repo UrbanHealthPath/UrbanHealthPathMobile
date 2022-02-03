@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace PolSl.UrbanHealthPath.Utils.CoroutineManager
+namespace PolSl.UrbanHealthPath.Utils.CoroutineManagement
 {
     public class CoroutineManager : MonoBehaviour, ICoroutineManager
     {

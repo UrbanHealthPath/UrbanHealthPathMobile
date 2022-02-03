@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Mapbox.Unity.Map;
-using PolSl.UrbanHealthPath.Camera;
 using PolSl.UrbanHealthPath.Map;
 using PolSl.UrbanHealthPath.Navigation;
 using PolSl.UrbanHealthPath.PathData;
@@ -17,6 +14,7 @@ namespace PolSl.UrbanHealthPath
         [SerializeField] private NavigationPointProvider _navigationPointProvider;
         [SerializeField] private PlayerLocationTransformer _playerLocationTransformer;
         [SerializeField] private TransformHeadingRotator _transformHeadingRotator;
+        [SerializeField] private DirectionsFactory _directionsFactory;
         [SerializeField] private AbstractMap _map;
         [SerializeField] private UnityEngine.Camera _camera;
         [SerializeField] private RenderTexture _renderTexture;
@@ -35,10 +33,22 @@ namespace PolSl.UrbanHealthPath
             new DelayedMapInitializer(_map, locationUpdater);
             _playerLocationTransformer.Initialize(_map, locationUpdater);
             _navigationPointProvider.Initialize(_map, stationsCoordinates[0]);
+            _directionsFactory.Initialize(_map);
             _stationFactory.Initialize(_map, locationUpdater, stationsCoordinates);
             _camera.targetTexture = _renderTexture;
             _camera.enabled = true;
             _isInitialized = true;
+        }
+
+        public void EnableNavigation()
+        {
+            _navigationPointProvider.PutOnMap();
+            _directionsFactory.CallQuery();
+        }
+
+        public void DisableNavigation()
+        {
+            _directionsFactory.DestroyNavigationLine();
         }
 
         public void OnDestroy()
