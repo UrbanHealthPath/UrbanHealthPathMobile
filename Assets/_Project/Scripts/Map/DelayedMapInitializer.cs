@@ -1,4 +1,3 @@
-using Mapbox.Unity.Location;
 using Mapbox.Unity.Map;
 
 namespace PolSl.UrbanHealthPath.Map

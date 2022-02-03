@@ -157,6 +157,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             _mapHolder.Initialize(locationUpdater, coordinatesList);
 
             _coroutineManager.BeginCoroutine(_locationUpdateCoroutine);
+            _mapHolder.EnableNavigation();
         }
 
         private void DestroyMap()
@@ -286,6 +287,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             _wasStationFinishedSinceLastLocationUpdate = true;
             
             _mapHolder.MoveHalo();
+            _mapHolder.DisableNavigation();
             StationCompleted?.Invoke(station);
         }
 
