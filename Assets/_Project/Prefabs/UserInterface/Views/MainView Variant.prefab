@@ -1818,7 +1818,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Wyjd\u017A na \u015Bcie\u017Ck\u0119"
+  m_text: "Wejd\u017A na \u015Bcie\u017Ck\u0119"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3357,14 +3357,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 289492582927451193, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
   m_PrefabInstance: {fileID: 8746768830331920257}
   m_PrefabAsset: {fileID: 0}
---- !u!222 &6174124394723556785
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4576355984044632633}
-  m_CullTransparentMesh: 1
 --- !u!114 &8765697648450290279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3387,3 +3379,11 @@ MonoBehaviour:
   _popupArea: {fileID: 8970071458410528902}
   _lowerButtonText: {fileID: 4630741099537113183}
   _upperButtonText: {fileID: 7589152569718845124}
+--- !u!222 &6174124394723556785
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4576355984044632633}
+  m_CullTransparentMesh: 1
