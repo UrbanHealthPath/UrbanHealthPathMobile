@@ -2032,7 +2032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1895439193955714887, guid: abb1e5bcf74c0cf44ab701294d3cd94e, type: 3}
       propertyPath: m_text
-      value: Menu
+      value: "Ekran\\ng\u0142\xF3wny"
       objectReference: {fileID: 0}
     - target: {fileID: 2644299053656229197, guid: abb1e5bcf74c0cf44ab701294d3cd94e, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2511,7 +2511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 289492582927451193, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_Name
-      value: ExerciseIconInfoView
+      value: ExerciseIconInfoView Variant
       objectReference: {fileID: 0}
     - target: {fileID: 289492582927451193, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_IsActive
@@ -2637,21 +2637,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6132574673904301839, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
   m_PrefabInstance: {fileID: 8819176334340814727}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4177045694948676695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9106412440956580798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 935082f1a0534bd999ff9b26c2d4481f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _menuButton: {fileID: 1595234273248333451}
-  _resturnButton: {fileID: 3732450379872370917}
-  _headerPanel: {fileID: 8943034939817545133}
 --- !u!114 &5071428178941408354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2672,3 +2657,18 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &4177045694948676695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9106412440956580798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 935082f1a0534bd999ff9b26c2d4481f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _menuButton: {fileID: 1595234273248333451}
+  _resturnButton: {fileID: 3732450379872370917}
+  _headerPanel: {fileID: 8943034939817545133}

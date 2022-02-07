@@ -69,6 +69,14 @@ MonoBehaviour:
     _viewObject: {fileID: 3573382356736878937, guid: 80a6e75becad8ae47aa89a3bac3052a5, type: 3}
   - _type: 12
     _viewObject: {fileID: 6526166685358058173, guid: f73209bedebd0f941b7cabc2683d7748, type: 3}
+  - _type: 13
+    _viewObject: {fileID: 9144280535595931315, guid: 1cd0c461160325a45bfb0be7278aff3e, type: 3}
+  - _type: 14
+    _viewObject: {fileID: 8253613951774066612, guid: 9de382fba4e0a6c4580ac7db16c60ba6, type: 3}
+  - _type: 15
+    _viewObject: {fileID: 8506574226005045650, guid: f8bd7c548ec2b5a408917406bc70a578, type: 3}
+  - _type: 16
+    _viewObject: {fileID: 1475025764727148750, guid: 0fbf3a608a5ed09449e937124827e0bf, type: 3}
 --- !u!114 &5765766542769419103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,3 +102,5 @@ MonoBehaviour:
     popupObject: {fileID: 2819297846121355827, guid: 039a9413420f18c489949ef9f8a46c5e, type: 3}
   - type: 5
     popupObject: {fileID: 4755531572049870577, guid: 89c9e8e5b56d27d45954a86498964410, type: 3}
+  - type: 8
+    popupObject: {fileID: 8786352375839362815, guid: 02a1be6520eb69d47ae91f246b952005, type: 3}

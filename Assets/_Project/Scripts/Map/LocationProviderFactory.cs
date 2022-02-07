@@ -1,27 +1,23 @@
 using System.Collections.Generic;
 using PolSl.UrbanHealthPath.PathData;
+using PolSl.UrbanHealthPath.Utils.PermissionManagement;
 
 namespace PolSl.UrbanHealthPath.Map
 {
     public class LocationProviderFactory : ILocationProviderFactory
     {
-        private LocationPermissionRequester _permissionRequester;
+        private readonly IPermissionManager _permissionManager;
 
-        public LocationProviderFactory(LocationPermissionRequester permissionRequester)
+        public LocationProviderFactory(IPermissionManager permissionManager)
         {
-            _permissionRequester = permissionRequester;
+            _permissionManager = permissionManager;
         }
-        public ILocationProvider CreateDeviceProvider()
+        public ILocationProvider CreateProvider()
         {
-            if (_permissionRequester.RequestPermission())
-            {
-                return new DeviceLocationProvider();
-            }
-
-            return new FakeLocationProvider(new List<Coordinates>());
+            return new DeviceLocationProvider();
         }
 
-        public ILocationProvider CreateFakeProvider(List<Coordinates> coordinates)
+        public ILocationProvider CreateProvider(List<Coordinates> coordinates)
         {
             return new FakeLocationProvider(coordinates);
         }

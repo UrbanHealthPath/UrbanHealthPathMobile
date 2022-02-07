@@ -8,8 +8,8 @@ using PolSl.UrbanHealthPath.PathData.Progress;
 using PolSl.UrbanHealthPath.Systems;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
-using PolSl.UrbanHealthPath.Utils.CoroutineManager;
-using UnityEngine;
+using PolSl.UrbanHealthPath.Utils.CoroutineManagement;
+using PolSl.UrbanHealthPath.Utils.PermissionManagement;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
@@ -20,7 +20,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         private readonly MapHolder _mapHolderPrefab;
         private readonly CoroutineManager _coroutineManager;
         private readonly Settings _settings;
-        private readonly AudioSource _audioSource;
+        private readonly IPermissionManager _permissionManager;
 
         private LoginController _loginController;
         private MenuController _menuController;
@@ -33,7 +33,7 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         public MainController(ViewManager viewManager, PopupManager popupManager,
             IPathProgressManager pathProgressManager, IApplicationData applicationData, MapHolder mapHolderPrefab,
-            CoroutineManager coroutineManager, Settings settings, AudioSource audioSource) : base(viewManager,
+            CoroutineManager coroutineManager, Settings settings, IPermissionManager permissionManager) : base(viewManager,
             popupManager)
         {
             _pathProgressManager = pathProgressManager;
@@ -41,7 +41,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             _mapHolderPrefab = mapHolderPrefab;
             _coroutineManager = coroutineManager;
             _settings = settings;
-            _audioSource = audioSource;
+            _permissionManager = permissionManager;
         }
 
         public void Run()
@@ -99,9 +99,8 @@ namespace PolSl.UrbanHealthPath.Controllers
             _settingsController = new SettingsController(ViewManager, PopupManager, _settings);
             _helpController = new HelpController(ViewManager, PopupManager);
             _pathController = new PathController(ViewManager, PopupManager, _pathProgressManager, ReturnToMenu,
-                new LocationProviderFactory(new LocationPermissionRequester()), _mapHolderPrefab, _coroutineManager);
-            _stationController = new StationController(ViewManager, PopupManager, _coroutineManager,
-                _pathProgressManager, _settings);
+                new LocationProviderFactory(_permissionManager), _mapHolderPrefab, _coroutineManager, _permissionManager);
+            _stationController = new StationController(ViewManager, PopupManager, _coroutineManager, _settings);
             _exerciseController = new ExerciseController(ViewManager, PopupManager, _coroutineManager);
             _shareController = new ShareController();
         }

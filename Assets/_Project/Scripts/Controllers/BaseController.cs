@@ -51,8 +51,8 @@ namespace PolSl.UrbanHealthPath.Controllers
         private void ShowConfirmationPopup(string message, UnityAction confirm)
         {
             PopupManager.OpenPopup(PopupType.Confirmation,
-                new ConfirmationPopupInitializationParameters(message, 2, new[] {"Potwierdź", "Anuluj"},
-                    new[] {confirm, PopupManager.CloseCurrentPopup}));
+                new ConfirmationPopupInitializationParameters(message, 2, new[] { "Anuluj", "Potwierdź" },
+                    new[] { PopupManager.CloseCurrentPopup, confirm }));
         }
     }
 }

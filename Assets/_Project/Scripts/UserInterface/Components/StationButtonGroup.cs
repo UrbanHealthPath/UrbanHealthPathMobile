@@ -1,11 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using PolSl.UrbanHealthPath.PathData;
-using PolSl.UrbanHealthPath.PathData.Progress;
-using PolSl.UrbanHealthPath.UserInterface.Popups;
-using PolSl.UrbanHealthPath.UserInterface.Views;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components
 {
@@ -14,117 +12,92 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components
         [SerializeField] private ChangingButton _sensorialButton;
         [SerializeField] private ChangingButton _motoricalButton;
         [SerializeField] private ChangingButton _gameButton;
-        [SerializeField] private Sprite _activeIcon;
+        [SerializeField] private Sprite _completeCategoryIcon;
+        [SerializeField] private Sprite _nextExerciseIcon;
         
-        private Action _unregisterFromStationEvents;
-        private Action _unregisterFromPopupAndViewEvents;
-        private ChangingButton _lastActivatedButton;
-        
-        public ChangingButton SensorialButton => _sensorialButton;
-        public ChangingButton MotoricalButton => _motoricalButton;
-        public ChangingButton GameButton => _gameButton;
-    
+        private Dictionary<ChangingButton, StationButtonState> _buttonStates;
 
         public void Initialize(UnityAction<StationButtonGroup> initialized)
         {
+            _buttonStates = new Dictionary<ChangingButton, StationButtonState>();
+            _buttonStates[_sensorialButton] = StationButtonState.Inactive;
+            _buttonStates[_motoricalButton] = StationButtonState.Inactive;
+            _buttonStates[_gameButton] = StationButtonState.Inactive;
+            
             initialized?.Invoke(this);
         }
 
         private void OnDisable()
         {
             RemoveAllListeners();
-            _unregisterFromStationEvents?.Invoke();
         }
 
-        public void RegisterToStationProgressEvents(StationProgress progress)
-        {
-            _unregisterFromStationEvents?.Invoke();
-
-            progress.CategoryCompleted += DisableButtonBasedOnCategory;
-            progress.ExerciseCompleted += HandleExerciseCompleted;
-
-            _unregisterFromStationEvents = () =>
-            {
-                progress.CategoryCompleted -= DisableButtonBasedOnCategory;
-                progress.ExerciseCompleted -= HandleExerciseCompleted;
-            };
-        }
-
-        public void RegisterToPopupEvents(PopupManager popupManager, ViewManager viewManager)
-        {
-            _unregisterFromPopupAndViewEvents?.Invoke();
-
-            popupManager.PopupClosed += HandlePopupClosed;
-
-            _unregisterFromPopupAndViewEvents = () =>
-            {
-                popupManager.PopupClosed -= HandlePopupClosed;
-                
-            };
-        }
-        
-        public bool IsActivated(ChangingButton button)
-        {
-            return _lastActivatedButton == button;
-        }
-
-        public void ActivateCategoryButton(ExerciseCategory category)
-        {
-            DeactivateButton(_lastActivatedButton);
-            
-            ChangingButton button = GetButtonForCategory(category);
-
-            button.SetButtonText("Zatwierdź", new Vector4(10, 10, 10, 10));
-            button.SetSprite(_activeIcon);
-            _lastActivatedButton = button;
-        }
-
-        public void DeactivateCategoryButton(ExerciseCategory category)
-        {
-            ChangingButton button = GetButtonForCategory(category);
-
-            if (IsActivated(button))
-            {
-                DeactivateButton(button);
-            }
-        }
-
-        private void DisableButtonBasedOnCategory(Station station, ExerciseCategory category)
+        public void AddListenerToCategoryButton(ExerciseCategory category, UnityAction action)
         {
             ChangingButton button = GetButtonForCategory(category);
             
-            button.SetDefaultAppearance();
-            button.SetInteractable(false);
+            button.Button.onClick.AddListener(action);
         }
 
-        private void DeactivateButton(ChangingButton button)
+        public StationButtonState GetCategoryButtonState(ExerciseCategory category)
         {
-            if (button is null)
-            {
-                return;
-            }
+            return _buttonStates[GetButtonForCategory(category)];
+        }
+
+        public void SetAllOtherNotFinishedCategoriesToInactive(ExerciseCategory category)
+        {
+            ChangingButton categoryButton = GetButtonForCategory(category);
             
-            button.SetDefaultAppearance();
-            _lastActivatedButton = null;
-        }
-
-        private void HandleExerciseCompleted(Station station, Exercise exercise)
-        {
-            DeactivateCategoryButton(exercise.Category);
-        }
-
-        private void HandlePopupClosed(PopupType type)
-        {
-            if (type == PopupType.Confirmation)
+            foreach (ChangingButton stationButton in _buttonStates.Keys.ToList())
             {
-                _gameButton.SetDefaultAppearance();
-                _motoricalButton.SetDefaultAppearance();
-                _sensorialButton.SetDefaultAppearance();
-                _lastActivatedButton = null;
+                if (stationButton != categoryButton && _buttonStates[stationButton] != StationButtonState.Finished)
+                {
+                    UpdateButtonState(stationButton, StationButtonState.Inactive);
+                }
             }
         }
 
-        public ChangingButton GetButtonForCategory(ExerciseCategory category)
+        public void SetAllNotFinishedCategoriesToInactive()
+        {
+            foreach (ChangingButton stationButton in _buttonStates.Keys.ToList())
+            {
+                if (_buttonStates[stationButton] != StationButtonState.Finished)
+                {
+                    UpdateButtonState(stationButton, StationButtonState.Inactive);
+                }
+            }
+        }
+
+        public void UpdateCategoryButtonState(ExerciseCategory category, StationButtonState newState)
+        {
+            ChangingButton button = GetButtonForCategory(category);
+            UpdateButtonState(button, newState);
+        }
+
+        private void UpdateButtonState(ChangingButton button, StationButtonState newState)
+        {
+            _buttonStates[button] = newState;
+
+            switch (newState)
+            {
+                case StationButtonState.Inactive:
+                    MarkAsInactive(button);
+                    break;
+                case StationButtonState.ActiveInProgress:
+                    MarkAsInProgress(button);
+                    break;
+                case StationButtonState.ActiveLast:
+                    MarkAsLast(button);
+                    break;
+                case StationButtonState.Finished:
+                    MarkAsFinished(button);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
+            }
+        }
+
+        private ChangingButton GetButtonForCategory(ExerciseCategory category)
         {
             return category switch
             {
@@ -133,6 +106,32 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components
                 ExerciseCategory.Sensorial => _sensorialButton,
                 _ => throw new ArgumentException("Invalid exercise category!", nameof(category))
             };
+        }
+
+        private void MarkAsInactive(ChangingButton button)
+        {
+            button.SetDefaultAppearance();
+            button.SetInteractable(true);
+        }
+
+        private void MarkAsInProgress(ChangingButton button)
+        {
+            button.SetButtonText("Dalej", new Vector4(10, 10, 10, 10));
+            button.SetSprite(_nextExerciseIcon);
+            button.SetInteractable(true);
+        }
+
+        private void MarkAsLast(ChangingButton button)
+        {
+            button.SetButtonText("Zatwierdź", new Vector4(10, 10, 10, 10));
+            button.SetSprite(_completeCategoryIcon);
+            button.SetInteractable(true);
+        }
+
+        private void MarkAsFinished(ChangingButton button)
+        {
+            button.SetDefaultAppearance();
+            button.SetInteractable(false);
         }
 
         private void RemoveAllListeners()

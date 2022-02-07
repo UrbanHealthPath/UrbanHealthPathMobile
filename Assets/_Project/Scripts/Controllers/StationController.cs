@@ -9,7 +9,7 @@ using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
-using PolSl.UrbanHealthPath.Utils.CoroutineManager;
+using PolSl.UrbanHealthPath.Utils.CoroutineManagement;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,18 +18,17 @@ namespace PolSl.UrbanHealthPath.Controllers
     public class StationController : BaseController
     {
         private readonly CoroutineManager _coroutineManager;
-        private readonly IPathProgressManager _pathProgressManager;
         private readonly Settings _settings;
 
         private StationProgress _currentStationProgress;
+        private StationButtonGroup _currentStationButtons;
 
         private ButtonWithAudio _lastAudioButton;
 
         public StationController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager,
-            IPathProgressManager pathProgressManager, Settings settings) : base(viewManager, popupManager)
+            Settings settings) : base(viewManager, popupManager)
         {
             _coroutineManager = coroutineManager;
-            _pathProgressManager = pathProgressManager;
             _settings = settings;
 
             _settings.IsAudioEnabledChanged += SetLastAudioMute;
@@ -47,10 +46,6 @@ namespace PolSl.UrbanHealthPath.Controllers
 
             ViewManager.OpenView(ViewType.Station);
 
-            UnityAction<ChangingButton> sensorialEvent = null;
-            UnityAction<ChangingButton> motoricalEvent = null;
-            UnityAction<ChangingButton> gameEvent = null;
-
             bool isAnyGameExercise = _currentStationProgress.GetCurrentExercise(ExerciseCategory.Game) != null;
             bool isAnyMotoricalExercise =
                 _currentStationProgress.GetCurrentExercise(ExerciseCategory.Motorical) != null;
@@ -64,6 +59,8 @@ namespace PolSl.UrbanHealthPath.Controllers
                 introductionAudio = new AudioFileAccessor(station.IntroductionAudio)?.GetMedia();
             }
 
+            Texture2D stationImage = new TextureFileAccessor(station.Image).GetMedia();
+
             StationViewInitializationParameters initParams =
                 new StationViewInitializationParameters(
                     buttons => ConfigureButtonGroup(isAnyGameExercise, isAnyMotoricalExercise, isAnySensorialExercise,
@@ -74,7 +71,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                         PopupManager.CloseCurrentPopup();
                         ReturnToPreviousView();
                     },
-                    station.DisplayedName, station.Introduction, AudioButtonInitializedHandler, AudioButtonHandler,
+                    station.DisplayedName, stationImage, AudioButtonInitializedHandler, AudioButtonHandler,
                     introductionAudio);
 
             ViewManager.InitializeCurrentView(initParams);
@@ -83,89 +80,77 @@ namespace PolSl.UrbanHealthPath.Controllers
         private void ConfigureButtonGroup(bool isAnyGame, bool isAnyMotorical, bool isAnySensorial,
             Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding, StationButtonGroup buttons)
         {
-            buttons.RegisterToStationProgressEvents(_currentStationProgress);
-            buttons.RegisterToPopupEvents(PopupManager, ViewManager);
-
             if (!isAnyGame)
             {
-                buttons.GameButton.SetInteractable(false);
+                buttons.UpdateCategoryButtonState(ExerciseCategory.Game, StationButtonState.Finished);
             }
             else
             {
-                buttons.GameButton.Button.onClick.AddListener(() => ExerciseButtonClicked(ExerciseCategory.Game, buttons, exerciseStarting, exerciseEnding));
+                buttons.AddListenerToCategoryButton(ExerciseCategory.Game,
+                    () => ExerciseButtonClicked(ExerciseCategory.Game, exerciseStarting, exerciseEnding));
             }
 
             if (!isAnyMotorical)
             {
-                buttons.MotoricalButton.SetInteractable(false);
+                buttons.UpdateCategoryButtonState(ExerciseCategory.Motorical, StationButtonState.Finished);
             }
             else
             {
-                buttons.MotoricalButton.Button.onClick.AddListener(() => ExerciseButtonClicked(ExerciseCategory.Motorical, buttons, exerciseStarting, exerciseEnding));
+                buttons.AddListenerToCategoryButton(ExerciseCategory.Motorical,
+                    () => ExerciseButtonClicked(ExerciseCategory.Motorical, exerciseStarting, exerciseEnding));
             }
 
             if (!isAnySensorial)
             {
-                buttons.SensorialButton.SetInteractable(false);
+                buttons.UpdateCategoryButtonState(ExerciseCategory.Sensorial, StationButtonState.Finished);
             }
             else
             {
-                buttons.SensorialButton.Button.onClick.AddListener(() => ExerciseButtonClicked(ExerciseCategory.Sensorial, buttons, exerciseStarting, exerciseEnding));
+                buttons.AddListenerToCategoryButton(ExerciseCategory.Sensorial,
+                    () => ExerciseButtonClicked(ExerciseCategory.Sensorial, exerciseStarting, exerciseEnding));
             }
+            
+            _currentStationButtons = buttons;
         }
 
-        private void ExerciseButtonClicked(ExerciseCategory category, StationButtonGroup buttons,
+        private void ExerciseButtonClicked(ExerciseCategory category,
             Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding)
         {
-            ChangingButton button = buttons.GetButtonForCategory(category);
-            Exercise currentExercise = _currentStationProgress.GetCurrentExercise(category);
-
-            if (buttons.IsActivated(button))
+            StationButtonState state = _currentStationButtons.GetCategoryButtonState(category);
+            _currentStationButtons.SetAllOtherNotFinishedCategoriesToInactive(category);
+            
+            if (state == StationButtonState.Finished)
             {
-                _currentStationProgress.CompleteCurrentExercise(category);
-                exerciseEnding.Invoke(currentExercise);
-            }
-            else
-            {
-                buttons.ActivateCategoryButton(category);
-                exerciseStarting?.Invoke(currentExercise);
-            }
-        }
-
-        private void ConfigureExerciseButton(Dictionary<ChangingButton, bool> buttonsStates, ChangingButton btn,
-            Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding, ExerciseCategory category)
-        {
-            //ViewManager.CurrentView.GetComponent<StationView>().ResetActiveButtons();
-            buttonsStates.Clear();
-
-            buttonsStates[btn] = buttonsStates.ContainsKey(btn) ? !buttonsStates[btn] : true;
-            Exercise currentExercise = _currentStationProgress.GetCurrentExercise(category);
-
-            if (buttonsStates[btn])
-            {
-                SetConfirmExerciseButton(btn);
-                exerciseStarting.Invoke(currentExercise);
                 return;
             }
 
-            _currentStationProgress.CompleteCurrentExercise(category);
-
-            if (_currentStationProgress.IsCategoryFinished(category))
+            if (state != StationButtonState.Inactive)
             {
-                SetCategoryFinishedButton(btn);
+                Exercise completedExercise = _currentStationProgress.CompleteCurrentExercise(category);
+                exerciseEnding.Invoke(completedExercise);
             }
 
-            exerciseEnding.Invoke(currentExercise);
-        }
+            StationButtonState nextState;
+            
+            if (state != StationButtonState.ActiveLast)
+            {
+                bool isLastExercise = _currentStationProgress.IsOnLastExerciseForCategory(category);
+                nextState = isLastExercise
+                    ? StationButtonState.ActiveLast
+                    : StationButtonState.ActiveInProgress;
+            }
+            else
+            {
+                nextState = StationButtonState.Finished;
+            }
 
-        private void SetCategoryFinishedButton(ChangingButton btn)
-        {
-            btn.SetInteractable(false);
-        }
+            _currentStationButtons.UpdateCategoryButtonState(category, nextState);
 
-        private void SetConfirmExerciseButton(ChangingButton btn)
-        {
-            btn.SetButtonText("Zatwierdź", new Vector4(10, 10, 10, 10));
+            if (nextState != StationButtonState.Finished)
+            {
+                Exercise nextExercise = _currentStationProgress.GetCurrentExercise(category);
+                exerciseStarting?.Invoke(nextExercise);
+            }
         }
 
         private IEnumerator ShowNextStationConfirmationPopup(Station nextStation, Action confirmed)
@@ -193,7 +178,6 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             _lastAudioButton = btn;
             SetLastAudioMute(_settings.IsAudioEnabled);
-            btn.ToggleState();
         }
 
         private void AudioButtonHandler(ButtonWithAudio btn)
@@ -207,6 +191,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             base.ViewOpenedHandler(type);
 
             StopLastAudioIntroduction();
+            ResetStationButtons();
         }
 
         protected override void PopupOpenedHandler(PopupType type)
@@ -214,6 +199,11 @@ namespace PolSl.UrbanHealthPath.Controllers
             base.PopupOpenedHandler(type);
 
             StopLastAudioIntroduction();
+
+            if (type == PopupType.Confirmation)
+            {
+                ResetStationButtons();
+            }
         }
 
         private void StopLastAudioIntroduction()
@@ -222,6 +212,16 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 _lastAudioButton.ForceStop();
             }
+        }
+
+        private void ResetStationButtons()
+        {
+            if (_currentStationButtons is null)
+            {
+                return;
+            }
+            
+            _currentStationButtons.SetAllNotFinishedCategoriesToInactive();
         }
 
         private void SetLastAudioMute(bool isEnabled)

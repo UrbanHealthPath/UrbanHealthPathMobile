@@ -14,6 +14,10 @@
         AppInfo,
         PathChoice,
         PathPresentation,
-        PathSummary
+        PathSummary,
+        StatisticsView,
+        TestView,
+        TestIntroduction,
+        TestSummary
     }
 }

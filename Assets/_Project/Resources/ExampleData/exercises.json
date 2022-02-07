@@ -134,27 +134,6 @@
     ]
   },
   {
-    "exercise_id": "gliwice.ratusz.game",
-    "displayed_name": "Ratusz - Gra Miejska",
-    "category": "game",
-    "subcategory": "Eyes",
-    "levels": [
-      {
-        "min_difficulty": 1,
-        "max_difficulty": 5,
-        "type": "image_selection",
-        "question": "Pomimo tego, że od 1954 roku herb Gliwic nie posiada już wizerunku Matki Boskiej możemy dalej go obserwować na budynkach w mieście. Czy rozpoznajesz na jakim budynku znajduje się wizerunek Matki Boskiej przedstawiony na herbie? Wybierz jedną poprawną odpowiedź.",
-        "images": [
-          "image.game.gliwice.Gra_Miejska_Zdjecie1_Okno_willi_caro_2.Rzezba_madonny",
-          "image.game.gliwice.Gra_Miejska_Zdjecie2_Wieza_Budynku_Czerwonej_Chemii_2.Rzezba_Madonny",
-          "image.game.gliwice.Gra_Miejska_Zdjecie3_Ratusz_2.Rzezba_Madonny",
-          "image.game.gliwice.Gra_Miejska_Zdjecie4_Budynek_Szarej_Chemii_2.Rzezba_Madonny"
-        ],
-        "correct_answers": [2]
-      }
-    ]
-  },
-  {
     "exercise_id": "gliwice.ratusz.autor",
     "displayed_name": "Ratusz - Madonna",
     "category": "Game",
@@ -616,6 +595,277 @@
         "max_difficulty": 5,
         "type": "historical_fact",
         "fact": "W 2014 roku budynek pod numerem 3 został odrestaurowany."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.neptun.intro",
+    "displayed_name": "",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Od wody rozpoczyna się życie! Na gliwickim Rynku opiekuje nią bóg morskich głębin. Fontanna jest otoczona niewysokim murkiem z piaskowca, można ją bezpiecznie obejść wokół obserwując Neptuna na tle Ratusza lub kolorowych kamieniczek w Rynku."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.ratusz.intro",
+    "displayed_name": "",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Na Rynku nie mogło zabraknąć postaci, które pomagały gliwiczanom bronić swojego miasta i życia. Rzeźba Madonny patrzy na południowo-zachodnią część miasta, wznosząc oczy ponad dachy. A Ty? Co zobaczysz, gdy odwrócisz się w kierunku, gdzie patrzy Madonna?"
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.pilastry.intro",
+    "displayed_name": "",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Elewacja kamienicy pod 18. to dojrzały styl klasycystyczny, na podobieństwo rzymskich fasad. Mamy tu wyraźny rytm pilastrów – rzędu płaskich kolumn, zakończonych jońskimi głowicami. Czy możesz policzyć, ile ich jest? Neptun na szczęście nie widzi, że to trochę jak kurtyna – z tyłu widoczna jest płaska elewacja współczesnej kamienicy."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.arkady.intro",
+    "displayed_name": "",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Gliwickie arkady pozwalają mieszkańcom na swobodne przechodzenie wzdłuż Rynku dając cień w upalne letnie dni, a w dni deszczowe dając parasol – utworzony ze sklepień w podcieniach. Harmonijne łuki arkad otwierają szeroko widok z podcieni na przestrzeń Rynku."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.podcienie.intro",
+    "displayed_name": "",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Na jednym z filarów arkad został umieszczony napis: GALERIA SZTUKI. Nasz wzrok musi powędrować w górę po kilku dekoracyjnych rowkach czyli boniowaniach, aby go dojrzeć na szczycie filara. To tak jak przy budowaniu swojej coraz lepszej formy – stopniowo i krok po kroku."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.rog.intro",
+    "displayed_name": "",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "W narożu ulic Plebańskiej i Krótkiej znajdujemy rzeźbę Gliwiczanki – to hołd dla odważnych kobiet broniących miasta przed wojskami generała Mansfelda podczas Wojny Trzydziestoletniej na początku XVII wieku. Gliwice zostały ocalone dzięki kobiecemu sprytowi, dzielności i … kaszy jaglanej! Kobiecy spryt oraz kasza jaglana mogą ratować nas również dziś."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.plebanska.intro",
+    "displayed_name": "",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Ulica Plebańska to jedna z najstarszych ulic gliwickiej Starówki. Gliwiczanie podążali tędy do kościoła Wszystkich Świętych, mijając po drodze skład piwa, restaurację i piekarnię. A dziś może warto się tu zatrzymać, aby podziwiać portale przy numerze 4 i 6 oraz poćwiczyć?"     }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.rog.3",
+    "displayed_name": "3",
+    "category": "sensorial",
+    "subcategory": "Lungs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "text",
+        "description": "Stań wygodnie i połóż jedną rękę na brzuchu. Wykonaj wdech nosem i równocześnie postaraj się wypełnić cały brzuch powietrzem jakbyś napełniał/-a dzban wodą. Robiąc długi wydech wciągnij brzuch opróżniając go z powietrza. Powtórz ćwiczenie 5 razy."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.plebanska.3",
+    "displayed_name": "3",
+    "category": "sensorial",
+    "subcategory": "Lungs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "text",
+        "description": "Stań przy chodniku naprzeciwko wejścia do budynku Plebańska 6. Wykonaj głęboki wdech nosem i unieś ręce do góry. Następnie opuszczając ręce bokiem do dołu po linii łuku naśladującej przeciwległy portal wykonaj długi wydech nosem."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.ratusz.game",
+    "displayed_name": "Ratusz - Gra Miejska",
+    "category": "game",
+    "subcategory": "eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "answer_selection",
+        "question": "Pomimo tego, że od 1954 roku herb Gliwic nie posiada już wizerunku Matki Boskiej możemy dalej go obserwować na budynkach w mieście. Czy rozpoznajesz na jakim budynku znajduje się wizerunek Matki Boskiej przedstawiony na herbie? Wybierz jedną poprawną odpowiedź.",
+        "answers": [
+          "Okno Willi Caro",
+          "Wieża budynku Czerwonej Chemii",
+          "Ratusz",
+          "Kościół Wszystkich Świętych"
+        ],
+        "image": "image.game.gliwice.Gra_Miejska_Zdjecie3_Ratusz_2.Rzezba_Madonny",
+        "correct_answers": [2]
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.podcienie.boniowanie",
+    "displayed_name": "Podcienie - Boniowanie",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Boniowanie to stara technika dekorowania krawędzi kamienia stosowanego na elewacji budynku. Technika ta stosowana była już w kamiennych budowlach starożytnego Rzymu, natomiast w okresie renesansu spoiny kamieni były zastępowane profilowaniem czyli tzw. boniami - rowkami w tynku naśladującymi spoiny kamieni."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.podcienie.wystepowanie",
+    "displayed_name": "Podcienie - Boniowanie",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Boniowanie spotykamy najczęściej na elewacjach, w cokołach budynków lub w ich narożnikach. Na gliwickim Rynku dostrzec można je przy arkadach prowadzących do Galerii Sztuki."
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.podcienie.game",
+    "displayed_name": "Galeria - Gra Miejska",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "image_selection",
+        "question": "Boniowanie można zaobserwować na wielu budynkach gliwickiej Starówki. Które z poniższych zdjęć przedstawia boniowanie?",
+        "images": [
+          "image.game.Gra_miejska_zdjęcieA_5.Galeria_sztuki",
+          "image.game.Gra_miejska_zdjęcieB_5.Galeria_sztuki",
+          "image.game.Gra_miejska_zdjęcieC_5.Galeria_sztuki",
+          "image.game.Gra_miejska_zdjęcieD_5.Galeria_sztuki"
+        ],
+        "correct_answers": [0]
+      }
+    ]
+  },
+  {
+    "exercise_id": "test.1",
+    "displayed_name": "Przysiady przy oparciu krzesła/stołu itp.",
+    "category": "Test",
+    "subcategory": "Legs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "video",
+        "description": "Należy wykonywać przysiady przez 0,5 minuty. Staraj się zejść jak najniżej. Pamiętaj, żeby w trakcie wykonywania ćwiczeń nie wstrzymywać oddechu. Oddech powinien być miarowy i spokojny. W trakcie wykonywania ćwiczenia postaraj się nie garbić. Napnij brzuch, wyprostuj plecy.",
+        "video_file": "video.test.test_1"
+      }
+    ]
+  },
+  {
+    "exercise_id": "test.2",
+    "displayed_name": "Półprzysiady z wyprostowanymi rękami.",
+    "category": "Test",
+    "subcategory": "Legs",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "video",
+        "description": "Wykonuj je przez 0,5 minuty. Ustaw stopy w rozkroku na szerokość bioder. Plecy powinny być wyprostowane, brzuch napięty. Nie wysuwaj głowy do przodu. W trakcie przysiadu uważaj na kolana, żeby nie kierowały się do środka, co jest częstym błędem.",
+        "video_file": "video.test.test_2"
+      }
+    ]
+  },
+  {
+    "exercise_id": "test.3",
+    "displayed_name": "Unoszenie butelki ponad głowę.",
+    "category": "Test",
+    "subcategory": "Arms",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "video",
+        "description": "Wykonuj ćwiczenie przez 0,5 minuty—góra –dół. Najpierw przyjmij prawidłową pozycję. Stopy w lekkim rozkroku na szerokość bioder, barki opuszczone, łopatki zebrane, brzuch i pośladki napięte. Głowa delikatnie cofnięta do tyłu. Dopiero teraz zacznij unoszenie butelki. Wraz z uniesieniem butelki zrób wydech, z opuszczeniem wdech.",
+        "video_file": "video.test.test_3"
+      }
+    ]
+  },
+  {
+    "exercise_id": "test.4",
+    "displayed_name": "Naprzemienne krążenia ramion.",
+    "category": "Test",
+    "subcategory": "Arms",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "video",
+        "description": "Przyjmij prawidłową postawę, jak w poprzednim ćwiczeniu. Najpierw zacznij wykonywać okrążenia prawą ręką do tyłu. Przerwij. Teraz wykonaj kilka okrążeń lewą ręką do przodu. Przerwij. Teraz ponownie zacznij wykonywać wolne okrążenia prawą ręką do tyłu i jednocześnie postaraj się dołączyć okrążenia lewej ręki do przodu. Po kilku okrążeniach zmień stronę. Lewa do tyłu, a prawa do przodu.",
+        "video_file": "video.test.test_4"
+      }
+    ]
+  },
+  {
+    "exercise_id": "test.5",
+    "displayed_name": "Przekładanie kija bez zginania ramion w łokciach.",
+    "category": "Test",
+    "subcategory": "Arms",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "video",
+        "description": "Przyjmij prawidłową pozycję. Możesz wykorzystać miotłę lub mop. Oddychaj spokojnie i miarowo. Jeśli nie jesteś w stanie przenieść kija całkowicie za siebie, nie przejmuj się. Zrób ćwiczenie do takiego momentu, w którym możesz. Wykonując ćwiczenie regularnie, zobaczysz, jak polepsza się Twoja ruchomość.",
+        "video_file": "video.test.test_5"
       }
     ]
   }
