@@ -256,5 +256,211 @@
     "type": "image",
     "storage_type": "local",
     "path": "images/game_images/Gra_miejska_zdjęcieD_5_Galeria_sztuki"
+  },
+  {
+    "media_id": "image.station.gliwice.synagoga.icon",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Ikona_punktu_8.Synagoga"
+  },
+  {
+    "media_id": "audio.introduction.synagoga",
+    "type": "audio",
+    "storage_type": "local",
+    "path": "audios/introductions/Audio_8"
+  },
+  {
+    "media_id": "image.game.gliwice.Gra_miejska_zdjęcie1_8.Synagoga",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_zdjęcie1_8.Synagoga"
+  },
+  {
+    "media_id": "image.game.gliwice.Gra_miejska_zdjęcie3_8.Synagoga",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_zdjęcie3_8.Synagoga"
+  },
+  {
+    "media_id": "image.station.gliwice.boniowanie.icon",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Ikona_punktu_9.Boniowanie"
+  },
+  {
+    "media_id": "image.game.gliwice.willa.Gra_miejska_zdjęcie4_10.11.WILLA_Caro",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_zdjęcie4_10.11.WILLA_Caro"
+  },
+  {
+    "media_id": "image.game.gliwice.willa.Gra_miejska_zdjęcie3_10.11.WILLA_Caro",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_zdjęcie3_10.11.WILLA_Caro"
+  },
+  {
+    "media_id": "image.game.gliwice.willa.Gra_miejska_zdjęcie2_10.11.WILLA_Caro",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_zdjęcie2_10.11.WILLA_Caro"
+  },
+  {
+    "media_id": "image.game.gliwice.willa.Gra_miejska_zdjęcie1_10.11.WILLA_Caro",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_zdjęcie1_10.11.WILLA_Caro"
+  },
+  {
+    "media_id": "image.station.gliwice.willa.icon",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Ikona_punkt_10_11_Willa_Caro"
+  },
+  {
+    "media_id": "audio.introduction.willa",
+    "type": "audio",
+    "storage_type": "local",
+    "path": "audios/introductions/Audio_10+11"
+  },
+  {
+    "media_id": "audio.introduction.lew",
+    "type": "audio",
+    "storage_type": "local",
+    "path": "audios/introductions/Audio_12"
+  },
+  {
+    "media_id": "image.game.gliwice.lew.Gra_miejska_zdjęcie4_12.Lew_czuwający",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_zdjęcie4_12.Lew_czuwający"
+  },
+  {
+    "media_id": "image.game.gliwice.lew.Gra_miejska_zdjęcie3_12.Lew_czuwający",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_zdjęcie3_12.Lew_czuwający"
+  },
+  {
+    "media_id": "image.game.gliwice.lew.Gra_miejska_zdjęcie2_12.Lew_czuwający",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_zdjęcie2_12.Lew_czuwający"
+  },
+  {
+    "media_id": "image.game.gliwice.lew.Gra_miejska_zdjęcie1_12.Lew_czuwający",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_zdjęcie1_12.Lew_czuwający"
+  },
+  {
+    "media_id": "image.station.gliwice.lew.icon",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Ikona_punktu_12.Lew_czuwający"
+  },
+  {
+    "media_id": "audio.introduction.poczta",
+    "type": "audio",
+    "storage_type": "local",
+    "path": "audios/introductions/Audio_13"
+  },
+  {
+    "media_id": "image.station.gliwice.poczta.icon",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Ikona_punktu_13.Poczta"
+  },
+  {
+    "media_id": "image.game.gliwice.poczta.Gra_miejska_Zdjęcie2.Poczta",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_Zdjęcie2.Poczta"
+  },
+  {
+    "media_id": "image.game.gliwice.poczta.Gra_miejska_Zdjęcie1.Poczta",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_Zdjęcie1.Poczta"
+  },
+  {
+    "media_id": "image.game.gliwice.poczta.Gra_miejska_Zdjęcie3.Poczta",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_Zdjęcie3.Poczta"
+  },
+  {
+    "media_id": "image.game.gliwice.poczta.Gra_miejska_Zdjęcie4.Poczta",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_Zdjęcie4.Poczta"
+  },
+  {
+    "media_id": "audio.introduction.herby",
+    "type": "audio",
+    "storage_type": "local",
+    "path": "audios/introductions/Audio_14"
+  },
+  {
+    "media_id": "image.station.gliwice.herby.icon",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Ikona_punktu_14.Kamienica_z_herbami"
+  },
+  {
+    "media_id": "image.game.gliwice.herby.Gra_miejska_Zdjęcie1.Kamienica",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_Zdjęcie1.Kamienica"
+  },
+  {
+    "media_id": "image.game.gliwice.herby.Gra_miejska_Zdjęcie2.Kamienica",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_Zdjęcie2.Kamienica"
+  },
+  {
+    "media_id": "image.game.gliwice.herby.Gra_miejska_Zdjęcie3.Kamienica",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_Zdjęcie3.Kamienica"
+  },
+  {
+    "media_id": "image.game.gliwice.herby.Gra_miejska_Zdjęcie4.Kamienica",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_Zdjęcie4.Kamienica"
+  },
+  {
+    "media_id": "image.station.gliwice.brama.icon",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_Zdjęcie_Biała_Brama.jpg"
+  },
+  {
+    "media_id": "audio.introduction.brama",
+    "type": "audio",
+    "storage_type": "local",
+    "path": "audios/introductions/Audio_15"
+  },
+  {
+    "media_id": "audio.introduction.zamek",
+    "type": "audio",
+    "storage_type": "local",
+    "path": "audios/introductions/Audio_16+17"
+  },
+  {
+    "media_id": "image.station.gliwice.zamek.icon",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Ikona_punktu_16_17Zamek_piastowski"
+  },
+  {
+    "media_id": "image.game.gliwice.zamek.Gra_miejska_Zdjęcie.Zamek_Piastowski",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/Gra_miejska_Zdjęcie.Zamek_Piastowski"
   }
 ]
+
+
