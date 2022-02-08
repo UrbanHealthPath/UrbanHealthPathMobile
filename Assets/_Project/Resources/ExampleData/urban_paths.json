@@ -3,8 +3,25 @@
     "path_id": "gliwice.rynek",
     "displayed_name": "Gliwice - Rynek",
     "approximate_distance_in_meters": 180,
-    "is_cyclic": true,
+    "is_cyclic": false,
     "map_url": "mapbox://styles/matadam667/ckxn3iyihbqu214pbijxv32f1",
+    "waypoints": [
+      "gliwice.rynek.neptun",
+      "gliwice.rynek.ratusz",
+      "gliwice.rynek.arkady",
+      "gliwice.rynek.pilastry",
+      "gliwice.rynek.podcienie",
+      "gliwice.rynek.rog",
+      "gliwice.rynek.plebanska"
+    ],
+    "preview_image": "image.preview.gliwice.rynek"
+  },
+  {
+    "path_id": "gliwice.centrum",
+    "displayed_name": "Gliwice - Centrum",
+    "approximate_distance_in_meters": 1100,
+    "is_cyclic": false,
+    "map_url": "mapbox://styles/matadam667/ckz0dj5b6004v15l8uqa7az1a",
     "waypoints": [
       "gliwice.rynek.neptun",
       "gliwice.rynek.ratusz",
