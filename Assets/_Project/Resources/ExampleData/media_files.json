@@ -490,6 +490,12 @@
     "type": "video",
     "storage_type": "local",
     "path": "videos/test/Test_5"
+  },
+  {
+    "media_id": "image.path.gliwice.centrum.icon",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/game_images/ratusz_ikona_rynek"
   }
 ]
 

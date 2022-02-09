@@ -1,6 +1,7 @@
 ﻿[
   {
     "path_id": "gliwice.rynek",
+    "path_icon": "image.path.gliwice.centrum.icon",
     "displayed_name": "Gliwice - Rynek",
     "approximate_distance_in_meters": 180,
     "is_cyclic": false,
@@ -18,6 +19,7 @@
   },
   {
     "path_id": "gliwice.centrum",
+    "path_icon": "image.station.gliwice.poczta.icon",
     "displayed_name": "Gliwice - Centrum",
     "approximate_distance_in_meters": 1100,
     "is_cyclic": false,
@@ -29,7 +31,15 @@
       "gliwice.rynek.pilastry",
       "gliwice.rynek.podcienie",
       "gliwice.rynek.rog",
-      "gliwice.rynek.plebanska"
+      "gliwice.rynek.plebanska",
+      "gliwice.synagoga.synagoga",
+      "gliwice.synagoga.boniowanie",
+      "gliwice.caro.willa",
+      "gliwice.caro.lew",
+      "gliwice.poczta.poczta",
+      "gliwice.biala.herby",
+      "gliwice.biala.brama",
+      "gliwice.zamek.zamek"
     ],
     "preview_image": "image.preview.gliwice.rynek"
   }
