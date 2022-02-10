@@ -496,6 +496,42 @@
     "type": "image",
     "storage_type": "local",
     "path": "images/game_images/ratusz_ikona_rynek"
+  },
+  {
+    "media_id": "video.exercise.CWICZENIE_13A",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/exercises/PUNKT_13A"
+  },
+  {
+    "media_id": "video.exercise.CWICZENIE_13B",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/exercises/PUNKT_13B"
+  },
+  {
+    "media_id": "video.exercise.CWICZENIE_13C",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/exercises/PUNKT_13C"
+  },
+  {
+    "media_id": "video.exercise.CWICZENIE_13D",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/exercises/PUNKT_13D"
+  },
+  {
+    "media_id": "video.exercise.CWICZENIE_13E",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/exercises/PUNKT_13E"
+  },
+  {
+    "media_id": "video.exercise.CWICZENIE_13F",
+    "type": "video",
+    "storage_type": "local",
+    "path": "videos/exercises/PUNKT_13F"
   }
 ]
 

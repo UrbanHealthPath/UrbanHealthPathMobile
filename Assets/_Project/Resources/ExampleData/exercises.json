@@ -1106,42 +1106,42 @@
         "max_difficulty": 6,
         "type": "video",
         "description": "Stań prosto, zbierz łopatki, barki opuść w dół, wciągnij brzuch, weź głęboki wdech, jednocześnie poprowadź ramiona bokiem do góry naśladując linię trójkątnego zwieńczenia portalu. Z wydechem opuść ramiona w dół.",
-        "video_file": ""
+        "video_file": "video.exercise.CWICZENIE_13A"
       },
       {
         "min_difficulty": 2,
         "max_difficulty": 6,
         "type": "video",
         "description": "Następnie zrób półprzysiad wykonując wydech, a z wdechem wróć do pozycji wyjściowej jednocześnie prowadząc ramiona bokiem aż do góry, jak najwyżej. Opuść ramiona robiąc długi wydech.",
-        "video_file": ""
+        "video_file": "video.exercise.CWICZENIE_13B"
       },
       {
         "min_difficulty": 3,
         "max_difficulty": 6,
         "type": "video",
         "description": "Zwróć uwagę na rozetę umieszczoną nad drzwiami. Zrób krążenie głową w prawą i lewą stroną wyobrażając sobie, że trzymasz w ustach ołówek, którym rysujesz kształt rozety. Oddychaj spokojnie i miarowo. Ruch wykonuj powoli po jak największym okręgu.",
-        "video_file": ""
+        "video_file": "video.exercise.CWICZENIE_13C"
       },
       {
         "min_difficulty": 4,
         "max_difficulty": 6,
         "type": "video",
         "description": "Po dwóch strona rozety znajdują się dwa niewielkie otwory okienne. Niech będą one inspiracją do ćwiczenia nóg. Patrząc się na prawe okno unieś do boku delikatnie zgiętą prawą nogę. Utrzymaj równowagę z uniesioną nogą około 3 sekundy, a następnie patrząc na lewe okno, unieś analogicznie lewą nogę. Powtórz 3 razy.",
-        "video_file": ""
+        "video_file": "video.exercise.CWICZENIE_13D"
       },
       {
         "min_difficulty": 5,
         "max_difficulty": 6,
         "type": "video",
         "description": "W pozycji stojącej unieś bokiem kolano lewe do góry jak najwyżej potrafisz. Wykonuj ruch powoli starając się nie tracić równowagi. Oddychaj równo i swobodnie. Pamiętaj o prostych plecach i ściągniętych łopatkach. Utrzymaj uniesione kolano w górze kilka sekund i wróć do pozycji wyjściowej. Następnie unieś ponownie lewe kolano, ale tym razem do przodu. Utrzymaj tą pozycję również kilka sekund i wróć do pozycji wyjściowej. Odpocznij chwile i powtórz to samo ćwiczenie na kolano prawe.",
-        "video_file": ""
+        "video_file": "video.exercise.CWICZENIE_13E"
       },
       {
         "min_difficulty": 6,
         "max_difficulty": 6,
         "type": "video",
         "description": "Jeszcze wyżej zobaczysz dwa ustawione blisko siebie prostokątne okna. Z wdechem wzbij się na palce unosząc prawe ramię odpowiadające P oknu. Z wydechem wróć do pozycji wyjściowej. Z kolejnym wdechem unieś L ramię odpowiadające L oknu. Popatrz jeszcze wyżej, zobaczysz dwie, małe rozetki. Wykonaj dwa okrążenia do tyłu barkami. Ruch wykonuj symetrycznie po jak największych okręgach.",
-        "video_file": ""
+        "video_file": "video.exercise.CWICZENIE_13F"
       }
     ]
   },
