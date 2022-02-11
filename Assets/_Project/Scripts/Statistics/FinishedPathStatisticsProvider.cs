@@ -26,7 +26,7 @@ namespace PolSl.UrbanHealthPath.Statistics
 
         private DateTime GetFinishedAt(IPathProgressManager progressManager)
         {
-            return progressManager.LastCheckpoint.ReachedAt;
+            return progressManager.LastCheckpoint?.ReachedAt ?? DateTime.Now;
         }
 
         private int GetEstimatedDistance(int fullPathApproximateDistanceInMeters, int visitedPointCount, int stationCount)
