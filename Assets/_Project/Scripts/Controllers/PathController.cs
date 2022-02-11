@@ -139,7 +139,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                 () => presentPath.Invoke(path))).ToList();
         }
 
-        private void InitializeMapHolderForDemoPath(List<Coordinates> coordinatesList)
+        private void InitializeMapHolderForDemoPath(string mapUrl, List<Coordinates> coordinatesList)
         {
             DestroyMap();
 
@@ -149,12 +149,12 @@ namespace PolSl.UrbanHealthPath.Controllers
             _locationUpdateCoroutine = locationUpdater.UpdateLocation();
 
             _mapHolder = UnityEngine.Object.Instantiate(_mapHolderPrefab);
-            _mapHolder.Initialize(locationUpdater, coordinatesList);
-
+            _mapHolder.Initialize(mapUrl, locationUpdater, coordinatesList);
+            
             _coroutineManager.BeginCoroutine(_locationUpdateCoroutine);
         }
 
-        private void InitializeMapHolder(List<Coordinates> coordinatesList)
+        private void InitializeMapHolder(string mapUrl, List<Coordinates> coordinatesList)
         {
             DestroyMap();
 
@@ -163,7 +163,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             _locationUpdateCoroutine = locationUpdater.UpdateLocation();
 
             _mapHolder = UnityEngine.Object.Instantiate(_mapHolderPrefab);
-            _mapHolder.Initialize(locationUpdater, coordinatesList);
+            _mapHolder.Initialize(mapUrl, locationUpdater, coordinatesList);
 
             _coroutineManager.BeginCoroutine(_locationUpdateCoroutine);
             _mapHolder.EnableNavigation();
@@ -197,7 +197,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                     _pathStatisticsLogger = _pathStatisticsLoggerFactory.GetLogger();
                     _pathProgressManager.CheckpointReached += CheckpointReachedHandler;
                     _pathProgressManager.StartNewPath();
-                    InitializeMapHolder(urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
+                    InitializeMapHolder(urbanPath.MapUrl, urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
                     OnPathStarted(urbanPath);
                 }
             });
@@ -209,7 +209,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             _pathStatisticsLogger = _pathStatisticsLoggerFactory.GetLogger(true);
             _pathProgressManager.CheckpointReached += CheckpointReachedHandler;
             _pathProgressManager.StartNewPath();
-            InitializeMapHolderForDemoPath(urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
+            InitializeMapHolderForDemoPath(urbanPath.MapUrl, urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
             OnPathStarted(urbanPath);
         }
 
