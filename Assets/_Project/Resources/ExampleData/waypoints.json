@@ -273,7 +273,7 @@
     ],
     "displayed_name": "Kamienica z Herbami",
     "navigation_audio": "",
-    "image": "image.station.gliwice.poczta.icon",
+    "image": "image.station.gliwice.herby.icon",
     "introduction_audio": "audio.introduction.herby"
   },
   {
@@ -291,7 +291,7 @@
       "gliwice.brama.czterokondygnacyjna",
       "gliwice.brama.game"
     ],
-    "displayed_name": "Kamienica z Herbami",
+    "displayed_name": "Biała Brama",
     "navigation_audio": "",
     "image": "image.station.gliwice.brama.icon",
     "introduction_audio": "audio.introduction.brama"

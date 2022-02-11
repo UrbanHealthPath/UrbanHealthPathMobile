@@ -15,7 +15,8 @@
       "gliwice.rynek.rog",
       "gliwice.rynek.plebanska"
     ],
-    "preview_image": "image.preview.gliwice.rynek"
+    "preview_image": "image.preview.gliwice.rynek",
+    "icon": "image.icon.rynek"
   },
   {
     "path_id": "gliwice.centrum",
@@ -41,6 +42,7 @@
       "gliwice.biala.brama",
       "gliwice.zamek.zamek"
     ],
-    "preview_image": "image.preview.gliwice.rynek"
+    "preview_image": "image.preview.gliwice.rynek",
+    "icon": "image.station.gliwice.poczta.icon"
   }
 ]

@@ -435,7 +435,7 @@
     "media_id": "image.station.gliwice.brama.icon",
     "type": "image",
     "storage_type": "local",
-    "path": "images/game_images/Gra_miejska_Zdjęcie_Biała_Brama.jpg"
+    "path": "images/game_images/Ikona_punktu_15.Biala_Brama"
   },
   {
     "media_id": "audio.introduction.brama",
@@ -532,6 +532,12 @@
     "type": "video",
     "storage_type": "local",
     "path": "videos/exercises/PUNKT_13F"
+  },
+  {
+    "media_id": "image.icon.rynek",
+    "type": "image",
+    "storage_type": "local",
+    "path": "images/icons/gliwice-rynek-ikona"
   }
 ]
 

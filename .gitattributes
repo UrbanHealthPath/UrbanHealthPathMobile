@@ -51,3 +51,5 @@ Assets/_Project/Resources/videos/exercises/PUNKT_5B.mp4 filter=lfs diff=lfs merg
 Assets/_Project/Resources/videos/exercises/PUNKT_7A.mp4 filter=lfs diff=lfs merge=lfs -text
 Assets/_Project/Resources/videos/exercises/PUNKT_7B.mp4 filter=lfs diff=lfs merge=lfs -text
 Assets/_Project/Prefabs/UserInterface/Panels/ListWithContents.prefab filter=lfs diff=lfs merge=lfs -text
+Assets/_Project/Resources/images/game_images/Ikona_punktu_15.Biala_Brama.jpg filter=lfs diff=lfs merge=lfs -text
+Assets/_Project/Resources/images/icons/gliwice-rynek-ikona.jpg filter=lfs diff=lfs merge=lfs -text
