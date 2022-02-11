@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lineMeshModifier: {fileID: 11400000, guid: 0d056ee00b2ae534dba51434c3a5382a, type: 2}
-  _material: {fileID: 2100000, guid: ef6c956ca085647fba4624a08c344419, type: 2}
+  _material: {fileID: 2100000, guid: 86444f1616e6e6e4995fb4eef48154f5, type: 2}
   _navigatedObject: {fileID: 5105587868188193800}
   _destination: {fileID: 5105587869033439991}
 --- !u!1001 &5105587868787087791
