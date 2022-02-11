@@ -50,3 +50,4 @@ Assets/_Project/Resources/videos/exercises/PUNKT_5A.mp4 filter=lfs diff=lfs merg
 Assets/_Project/Resources/videos/exercises/PUNKT_5B.mp4 filter=lfs diff=lfs merge=lfs -text
 Assets/_Project/Resources/videos/exercises/PUNKT_7A.mp4 filter=lfs diff=lfs merge=lfs -text
 Assets/_Project/Resources/videos/exercises/PUNKT_7B.mp4 filter=lfs diff=lfs merge=lfs -text
+Assets/_Project/Prefabs/UserInterface/Panels/ListWithContents.prefab filter=lfs diff=lfs merge=lfs -text

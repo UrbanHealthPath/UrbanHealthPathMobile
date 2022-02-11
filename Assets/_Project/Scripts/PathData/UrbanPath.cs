@@ -12,8 +12,11 @@ namespace PolSl.UrbanHealthPath.PathData
         public IList<LateBoundValue<Waypoint>> Waypoints { get; }
         public string MapUrl { get; }
         public LateBoundValue<MediaFile> PreviewImage { get; }
+        public LateBoundValue<MediaFile> Icon { get; }
 
-        public UrbanPath(string pathId, string displayedName, int approximateDistanceInMeters, bool isCyclic, string mapUrl, IList<LateBoundValue<Waypoint>> waypoints, LateBoundValue<MediaFile> previewImage)
+        public UrbanPath(string pathId, string displayedName, int approximateDistanceInMeters, bool isCyclic,
+            string mapUrl, IList<LateBoundValue<Waypoint>> waypoints, LateBoundValue<MediaFile> previewImage,
+            LateBoundValue<MediaFile> icon)
         {
             PathId = pathId;
             DisplayedName = displayedName;
@@ -22,6 +25,7 @@ namespace PolSl.UrbanHealthPath.PathData
             MapUrl = mapUrl;
             Waypoints = waypoints;
             PreviewImage = previewImage;
+            Icon = icon;
         }
 
         public IList<T> GetWaypointsOfType<T>() where T : Waypoint

@@ -57,6 +57,8 @@ namespace PolSl.UrbanHealthPath.PathData
 
                 urbanPath.PreviewImage.InitializeValue(MediaFiles.FirstOrDefault(x =>
                     x.MediaId == urbanPath.PreviewImage.Key));
+                
+                urbanPath.Icon.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == urbanPath.Icon.Key));
             }
         }
 
