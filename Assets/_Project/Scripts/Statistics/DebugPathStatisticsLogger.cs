@@ -24,7 +24,7 @@ namespace PolSl.UrbanHealthPath.Statistics
         private void LogMessage(PathStatistics pathStatistics, bool wasPathCompleted)
         {
             _logger.Log(LogVerbosity.Debug,
-                $"Path statistics - Completed: true, PathId: {pathStatistics.PathId}, FinishedAt: {pathStatistics.FinishedAt}, " +
+                $"Path statistics - Completed: {wasPathCompleted.ToString()}, PathId: {pathStatistics.PathId}, FinishedAt: {pathStatistics.FinishedAt}, " +
                 $"Visited points: {pathStatistics.VisitedPointsCount}, Estimated distance: {pathStatistics.EstimatedDistance}");
         }
     }
