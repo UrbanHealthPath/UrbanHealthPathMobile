@@ -1,8 +1,10 @@
+using System.IO;
 using Newtonsoft.Json;
 using PolSl.UrbanHealthPath.Controllers;
 using PolSl.UrbanHealthPath.PathData;
 using PolSl.UrbanHealthPath.PathData.DataLoaders;
 using PolSl.UrbanHealthPath.PathData.Progress;
+using PolSl.UrbanHealthPath.Statistics;
 using PolSl.UrbanHealthPath.Systems;
 using PolSl.UrbanHealthPath.Tools.TextLogger;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
@@ -12,7 +14,6 @@ using PolSl.UrbanHealthPath.Utils.PermissionManagement;
 using PolSl.UrbanHealthPath.Utils.PersistentValue;
 using UnityEngine;
 using UnityEngine.Serialization;
-using ILocationProvider = PolSl.UrbanHealthPath.Map.ILocationProvider;
 
 namespace PolSl.UrbanHealthPath.SceneInitializer
 {
@@ -38,7 +39,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
         private void Awake()
         {
             _logger = new UnityLogger();
-            _permissionManager = new PermissionManager(new AndroidPermissionAdapter(), _coroutineManager);            
+            _permissionManager = new PermissionManager(new AndroidPermissionAdapter(), _coroutineManager);
 
             _isFirstRun = new BoolPrefsValue("is_first_run", true);
 
@@ -58,7 +59,10 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
             Settings settings = new Settings();
 
             MainController mainController = new MainController(_viewManager, _popupManager, _pathProgressManager,
-                _applicationData, _mapHolderPrefab, _coroutineManager, settings, _permissionManager);
+                _applicationData, _mapHolderPrefab, _coroutineManager, settings, _permissionManager,
+                new PathStatisticsLoggerFactory(_logger,
+                    Path.Combine(Application.persistentDataPath, "statistics.csv")),
+                new FinishedPathStatisticsProvider());
 
             mainController.Run();
         }

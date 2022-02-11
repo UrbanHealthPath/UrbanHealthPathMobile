@@ -7,6 +7,11 @@ namespace PolSl.UrbanHealthPath.Controllers
     public class ShareController
     {
         public event Action<string, SocialShareComposerResultCode> WhatsappShared;
+
+        public void ShareDefaultWhatsappMessage()
+        {
+            ShareWhatsapp("Ruch i zwiedzanie w jednym, sprawdź Miejską Ścieżkę Zdrowia!");
+        }
         
         public void ShareWhatsapp(string message)
         {

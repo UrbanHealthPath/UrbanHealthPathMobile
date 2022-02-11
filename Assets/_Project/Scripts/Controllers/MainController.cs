@@ -5,6 +5,7 @@ using PolSl.UrbanHealthPath.Map;
 using PolSl.UrbanHealthPath.PathData;
 using PolSl.UrbanHealthPath.PathData.DataLoaders;
 using PolSl.UrbanHealthPath.PathData.Progress;
+using PolSl.UrbanHealthPath.Statistics;
 using PolSl.UrbanHealthPath.Systems;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
@@ -21,6 +22,8 @@ namespace PolSl.UrbanHealthPath.Controllers
         private readonly CoroutineManager _coroutineManager;
         private readonly Settings _settings;
         private readonly IPermissionManager _permissionManager;
+        private readonly IPathStatisticsLoggerFactory _pathStatisticsLoggerFactory;
+        private readonly IFinishedPathStatisticsProvider _finishedPathStatisticsProvider;
 
         private LoginController _loginController;
         private MenuController _menuController;
@@ -33,7 +36,8 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         public MainController(ViewManager viewManager, PopupManager popupManager,
             IPathProgressManager pathProgressManager, IApplicationData applicationData, MapHolder mapHolderPrefab,
-            CoroutineManager coroutineManager, Settings settings, IPermissionManager permissionManager) : base(viewManager,
+            CoroutineManager coroutineManager, Settings settings, IPermissionManager permissionManager,
+            IPathStatisticsLoggerFactory pathStatisticsLoggerFactory, IFinishedPathStatisticsProvider finishedPathStatisticsProvider) : base(viewManager,
             popupManager)
         {
             _pathProgressManager = pathProgressManager;
@@ -42,6 +46,8 @@ namespace PolSl.UrbanHealthPath.Controllers
             _coroutineManager = coroutineManager;
             _settings = settings;
             _permissionManager = permissionManager;
+            _pathStatisticsLoggerFactory = pathStatisticsLoggerFactory;
+            _finishedPathStatisticsProvider = finishedPathStatisticsProvider;
         }
 
         public void Run()
@@ -69,8 +75,8 @@ namespace PolSl.UrbanHealthPath.Controllers
         private void SubscribeToPathEvents()
         {
             _pathController.PathStarted += BuildPathView;
-            _pathController.PathCancelled += path => _pathController.ShowCancelledPathSummary(path, () => _shareController.ShareWhatsapp("Ruch i zwiedzanie w jednym, sprawdź Miejską Ścieżkę Zdrowia!"));
-            _pathController.PathCompleted += path => _pathController.ShowCompletedPathSummary(path, () => _shareController.ShareWhatsapp("Ruch i zwiedzanie w jednym, sprawdź Miejską Ścieżkę Zdrowia!"));
+            _pathController.PathCancelled += path => _pathController.ShowCancelledPathSummary(path, _shareController.ShareDefaultWhatsappMessage);
+            _pathController.PathCompleted += path => _pathController.ShowCompletedPathSummary(path, _shareController.ShareDefaultWhatsappMessage);
         }
 
         private void BuildPathView(UrbanPath path)
@@ -82,7 +88,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                     () =>
                     {
                         _stationController.ShowStation(nextStation, _exerciseController.ShowPopupForExercise,
-                            exercise => PopupManager.CloseCurrentPopup(), 
+                            exercise => PopupManager.CloseCurrentPopup(),
                             station =>
                             {
                                 _pathProgressManager.AddCheckpoint(
@@ -99,7 +105,8 @@ namespace PolSl.UrbanHealthPath.Controllers
             _settingsController = new SettingsController(ViewManager, PopupManager, _settings);
             _helpController = new HelpController(ViewManager, PopupManager);
             _pathController = new PathController(ViewManager, PopupManager, _pathProgressManager, ReturnToMenu,
-                new LocationProviderFactory(_permissionManager), _mapHolderPrefab, _coroutineManager, _permissionManager);
+                new LocationProviderFactory(_permissionManager), _mapHolderPrefab, _coroutineManager,
+                _permissionManager, _finishedPathStatisticsProvider, _pathStatisticsLoggerFactory);
             _stationController = new StationController(ViewManager, PopupManager, _coroutineManager, _settings);
             _exerciseController = new ExerciseController(ViewManager, PopupManager, _coroutineManager);
             _shareController = new ShareController();
@@ -132,7 +139,6 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 _pathController.ShowPathSelectionView(_applicationData.UrbanPaths, true);
             }
-            
         }
 
         private Station GetNextStation(UrbanPath path)
