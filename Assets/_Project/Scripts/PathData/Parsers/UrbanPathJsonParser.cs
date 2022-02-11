@@ -14,6 +14,7 @@ namespace PolSl.UrbanHealthPath
         private const string MAP_URL_KEY = "map_url";
         private const string WAYPOINTS_KEY = "waypoints";
         private const string PREVIEW_IMAGE_KEY = "preview_image";
+        private const string ICON_KEY = "icon";
 
         public UrbanPathJsonParser() : base(new []{ID_KEY, DISPLAYED_NAME_KEY, APPROXIMATE_DISTANCE_KEY,
             IS_CYCLIC_KEY, MAP_URL_KEY, WAYPOINTS_KEY, PREVIEW_IMAGE_KEY})
@@ -32,9 +33,11 @@ namespace PolSl.UrbanHealthPath
             LateBoundValue<MediaFile> previewImage =
                 new LateBoundValue<MediaFile>(json[PREVIEW_IMAGE_KEY].Value<string>());
 
+            LateBoundValue<MediaFile> icon = new LateBoundValue<MediaFile>(json[ICON_KEY].Value<string>());
+
             return new UrbanPath(json[ID_KEY].Value<string>(), json[DISPLAYED_NAME_KEY].Value<string>(),
                 json[APPROXIMATE_DISTANCE_KEY].Value<int>(), json[IS_CYCLIC_KEY].Value<bool>(),
-                json[MAP_URL_KEY].Value<string>(), waypoints, previewImage);
+                json[MAP_URL_KEY].Value<string>(), waypoints, previewImage, icon);
         }
     }
 }

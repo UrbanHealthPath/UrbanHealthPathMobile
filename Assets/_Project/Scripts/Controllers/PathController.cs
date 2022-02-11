@@ -127,7 +127,8 @@ namespace PolSl.UrbanHealthPath.Controllers
         private List<ListElement> BuildButtonsForAvailablePaths(IList<UrbanPath> availablePaths,
             Action<UrbanPath> presentPath)
         {
-            return availablePaths.Select(path => new ListElement(path.DisplayedName, null, "",
+            return availablePaths.Select(path => new ListElement(path.DisplayedName, 
+                new TextureFileAccessor(path.Icon).GetMedia(), Color.white, "",
                 () => presentPath.Invoke(path))).ToList();
         }
 

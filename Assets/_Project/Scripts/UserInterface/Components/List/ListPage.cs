@@ -30,7 +30,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components.List
                     ListPanelElement panelElem = _panelElements[i];
 
                     panelElem.gameObject.SetActive(true);
-                    panelElem.SetValues(element.ButtonText, element.IconText, element.Action, element.Icon);
+                    panelElem.SetValues(element.ButtonText, element.IconText, element.Action, element.Icon, element.IconColor);
                 }
             }
         }
