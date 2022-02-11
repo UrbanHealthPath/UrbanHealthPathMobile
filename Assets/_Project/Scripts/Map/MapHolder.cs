@@ -27,8 +27,9 @@ namespace PolSl.UrbanHealthPath
         public TransformHeadingRotator LocationProviderRotator => _transformHeadingRotator;
         public AbstractMap Map => _map;
 
-        public void Initialize(ILocationUpdater locationUpdater, List<Coordinates> stationsCoordinates)
+        public void Initialize(string mapUrl, ILocationUpdater locationUpdater, List<Coordinates> stationsCoordinates)
         {
+            SetMapSource(mapUrl);
             _transformHeadingRotator.Initialize(locationUpdater);
             new DelayedMapInitializer(_map, locationUpdater);
             _playerLocationTransformer.Initialize(_map, locationUpdater);
@@ -64,6 +65,11 @@ namespace PolSl.UrbanHealthPath
         {
             _stationFactory.MoveStationHalo();
         }
-        
+
+        private void SetMapSource(string mapUrl)
+        {
+            _map.ImageLayer.SetProperties(ImagerySourceType.Custom, true, false, false);
+            _map.ImageLayer.SetLayerSource(mapUrl);
+        }
     }
 }
