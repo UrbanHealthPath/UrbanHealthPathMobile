@@ -124,6 +124,7 @@ MonoBehaviour:
   _cameraZoom: {fileID: 645488603209076501}
   _cam: {fileID: 5105587868000545831}
   _playerFollower: {fileID: 5105587868000545828}
+  _cameraRotation: {fileID: 5105587868000545832}
 --- !u!114 &645488603209076501
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using PolSl.UrbanHealthPath.Events.ScriptableObjects;
+using PolSl.UrbanHealthPath.Utils;
 using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.CameraMovement
@@ -11,9 +13,16 @@ namespace PolSl.UrbanHealthPath.CameraMovement
         [SerializeField] private MapCameraZoom _cameraZoom;
         [SerializeField] private UnityEngine.Camera _cam;
         [SerializeField] private CameraPlayerFollower _playerFollower;
+        [SerializeField] private CameraRotation _cameraRotation;
 
         private Vector3 _desiredPosition, _startPosition;
         private bool _shouldMove;
+        private CameraRotation _rotation;
+
+        private void Awake()
+        {
+            _rotation = GetComponent<CameraRotation>();
+        }
 
         private void OnEnable()
         {
@@ -33,12 +42,26 @@ namespace PolSl.UrbanHealthPath.CameraMovement
             _cameraZoom.SetInitialZoom();
             _shouldMove = false;
             _playerFollower.enabled = true;
+            _cameraRotation.enabled = true;
         }
 
         private void MoveCamera(Vector3 pos)
         {
             _playerFollower.enabled = false;
+            _cameraRotation.enabled = false;
             _startPosition = _cam.transform.position;
+
+            if (_rotation.CurrentRotation.eulerAngles == new Vector3(0,180,0))
+            {
+                pos = pos * -1;
+            } else if (_rotation.CurrentRotation.eulerAngles == new Vector3(0,90,0))
+            {
+                pos = new Vector3( pos.z, pos.y, pos.x * -1);
+                
+            }else if (_rotation.CurrentRotation.eulerAngles == new Vector3(0,270,0))
+            {
+                pos = new Vector3(-1 * pos.z, pos.y, pos.x);
+            }
             _desiredPosition = new Vector3(_startPosition.x + pos.x, _cam.transform.position.y,
                 _startPosition.z + pos.z);
             _shouldMove = true;
