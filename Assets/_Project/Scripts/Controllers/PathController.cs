@@ -6,6 +6,7 @@ using PolSl.UrbanHealthPath.Map;
 using PolSl.UrbanHealthPath.MediaAccess;
 using PolSl.UrbanHealthPath.PathData;
 using PolSl.UrbanHealthPath.PathData.Progress;
+using PolSl.UrbanHealthPath.Statistics;
 using PolSl.UrbanHealthPath.UserInterface.Components.List;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
@@ -22,7 +23,6 @@ namespace PolSl.UrbanHealthPath.Controllers
         public event Action<UrbanPath> PathStarted;
         public event Action<UrbanPath> PathCancelled;
         public event Action<UrbanPath> PathCompleted;
-        public event Action<Station> StationCompleted;
 
         private readonly IPathProgressManager _pathProgressManager;
         private readonly Action _returnToMainMenu;
@@ -30,7 +30,10 @@ namespace PolSl.UrbanHealthPath.Controllers
         private readonly MapHolder _mapHolderPrefab;
         private readonly CoroutineManager _coroutineManager;
         private readonly IPermissionManager _permissionManager;
+        private readonly IFinishedPathStatisticsProvider _finishedPathStatisticsProvider;
+        private readonly IPathStatisticsLoggerFactory _pathStatisticsLoggerFactory;
 
+        private IPathStatisticsLogger _pathStatisticsLogger;
         private UrbanPath _selectedPath;
         private MapHolder _mapHolder;
 
@@ -44,7 +47,9 @@ namespace PolSl.UrbanHealthPath.Controllers
         public PathController(ViewManager viewManager, PopupManager popupManager,
             IPathProgressManager pathProgressManager,
             Action returnToMainMenu, ILocationProviderFactory locationProviderFactory,
-            MapHolder mapHolderPrefab, CoroutineManager coroutineManager, IPermissionManager permissionManager) : base(viewManager, popupManager)
+            MapHolder mapHolderPrefab, CoroutineManager coroutineManager, IPermissionManager permissionManager,
+            IFinishedPathStatisticsProvider finishedPathStatisticsProvider,
+            IPathStatisticsLoggerFactory pathStatisticsLoggerFactory) : base(viewManager, popupManager)
         {
             _pathProgressManager = pathProgressManager;
             _returnToMainMenu = returnToMainMenu;
@@ -52,6 +57,8 @@ namespace PolSl.UrbanHealthPath.Controllers
             _mapHolderPrefab = mapHolderPrefab;
             _coroutineManager = coroutineManager;
             _permissionManager = permissionManager;
+            _finishedPathStatisticsProvider = finishedPathStatisticsProvider;
+            _pathStatisticsLoggerFactory = pathStatisticsLoggerFactory;
         }
 
         public void ShowPathSelectionView(IList<UrbanPath> availablePaths, bool areDemoPaths)
@@ -127,34 +134,36 @@ namespace PolSl.UrbanHealthPath.Controllers
         private List<ListElement> BuildButtonsForAvailablePaths(IList<UrbanPath> availablePaths,
             Action<UrbanPath> presentPath)
         {
-            return availablePaths.Select(path => new ListElement(path.DisplayedName, null, "",
+            return availablePaths.Select(path => new ListElement(path.DisplayedName, 
+                new TextureFileAccessor(path.Icon).GetMedia(), Color.white, "",
                 () => presentPath.Invoke(path))).ToList();
         }
 
-        private void InitializeMapHolderForDemoPath(List<Coordinates> coordinatesList)
+        private void InitializeMapHolderForDemoPath(string mapUrl, List<Coordinates> coordinatesList)
         {
             DestroyMap();
 
             ILocationProvider locationProvider = _locationProviderFactory.CreateProvider(coordinatesList);
-            ILocationUpdater locationUpdater = new LimitedLocationUpdaterDecorator(locationProvider, CheckIfStationFinishedSinceLastLocationUpdate);
+            ILocationUpdater locationUpdater =
+                new LimitedLocationUpdaterDecorator(locationProvider, CheckIfStationFinishedSinceLastLocationUpdate);
             _locationUpdateCoroutine = locationUpdater.UpdateLocation();
 
             _mapHolder = UnityEngine.Object.Instantiate(_mapHolderPrefab);
-            _mapHolder.Initialize(locationUpdater, coordinatesList);
+            _mapHolder.Initialize(mapUrl, locationUpdater, coordinatesList);
             
             _coroutineManager.BeginCoroutine(_locationUpdateCoroutine);
         }
 
-        private void InitializeMapHolder(List<Coordinates> coordinatesList)
+        private void InitializeMapHolder(string mapUrl, List<Coordinates> coordinatesList)
         {
             DestroyMap();
-            
+
             ILocationProvider locationProvider = _locationProviderFactory.CreateProvider();
             ILocationUpdater locationUpdater = new LocationUpdater(locationProvider);
             _locationUpdateCoroutine = locationUpdater.UpdateLocation();
-            
+
             _mapHolder = UnityEngine.Object.Instantiate(_mapHolderPrefab);
-            _mapHolder.Initialize(locationUpdater, coordinatesList);
+            _mapHolder.Initialize(mapUrl, locationUpdater, coordinatesList);
 
             _coroutineManager.BeginCoroutine(_locationUpdateCoroutine);
             _mapHolder.EnableNavigation();
@@ -173,7 +182,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                 _locationUpdateCoroutine = null;
                 _wasStationFinishedSinceLastLocationUpdate = true;
             }
-            
+
             UnityEngine.Object.Destroy(_mapHolder.gameObject);
             _mapHolder = null;
         }
@@ -185,9 +194,10 @@ namespace PolSl.UrbanHealthPath.Controllers
                 if (result == RequestResult.Granted)
                 {
                     SelectPath(urbanPath);
+                    _pathStatisticsLogger = _pathStatisticsLoggerFactory.GetLogger();
                     _pathProgressManager.CheckpointReached += CheckpointReachedHandler;
                     _pathProgressManager.StartNewPath();
-                    InitializeMapHolder(urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
+                    InitializeMapHolder(urbanPath.MapUrl, urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
                     OnPathStarted(urbanPath);
                 }
             });
@@ -196,9 +206,10 @@ namespace PolSl.UrbanHealthPath.Controllers
         private void StartNewDemoPath(UrbanPath urbanPath)
         {
             SelectPath(urbanPath);
+            _pathStatisticsLogger = _pathStatisticsLoggerFactory.GetLogger(true);
             _pathProgressManager.CheckpointReached += CheckpointReachedHandler;
             _pathProgressManager.StartNewPath();
-            InitializeMapHolderForDemoPath(urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
+            InitializeMapHolderForDemoPath(urbanPath.MapUrl, urbanPath.Waypoints.Select(x => x.Value.Coordinates).ToList());
             OnPathStarted(urbanPath);
         }
 
@@ -215,7 +226,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 OnStationComplete(station);
             }
-            
+
             ReturnToPreviousView();
         }
 
@@ -249,7 +260,8 @@ namespace PolSl.UrbanHealthPath.Controllers
             }
             else
             {
-                Station lastStation = stations.First(x => x.WaypointId == _pathProgressManager.LastCheckpoint.WaypointId);
+                Station lastStation =
+                    stations.First(x => x.WaypointId == _pathProgressManager.LastCheckpoint.WaypointId);
                 visitedPointsCount = stations.IndexOf(lastStation) + 1;
             }
 
@@ -272,12 +284,16 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private void OnPathCancelled(UrbanPath path)
         {
+            _pathStatisticsLogger.LogCancelledPathStatistics(
+                _finishedPathStatisticsProvider.GetFinishedPathStatistics(_pathProgressManager, _selectedPath));
             FinishPath();
             PathCancelled?.Invoke(path);
         }
 
         private void OnPathComplete(UrbanPath path)
         {
+            _pathStatisticsLogger.LogCompletedPathStatistics(
+                _finishedPathStatisticsProvider.GetFinishedPathStatistics(_pathProgressManager, _selectedPath));
             FinishPath();
             PathCompleted?.Invoke(path);
         }
@@ -285,10 +301,9 @@ namespace PolSl.UrbanHealthPath.Controllers
         private void OnStationComplete(Station station)
         {
             _wasStationFinishedSinceLastLocationUpdate = true;
-            
+
             _mapHolder.MoveHalo();
             _mapHolder.DisableNavigation();
-            StationCompleted?.Invoke(station);
         }
 
         protected override void ViewOpenedHandler(ViewType type)

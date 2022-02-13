@@ -18,7 +18,7 @@ namespace PolSl.UrbanHealthPath.Map.MapMovement
             {
                 Touch touch = Input.touches[0];
                 if (RectTransformUtility.RectangleContainsScreenPoint(
-                    _mapArea, touch.position, UnityEngine.Camera.current
+                    _mapArea, touch.position, null
                 ))
                 {
                     if (touch.phase == TouchPhase.Began)
@@ -26,7 +26,7 @@ namespace PolSl.UrbanHealthPath.Map.MapMovement
                         _startPosition = new Vector3(touch.position.x, 0, touch.position.y);
                         _prevPosition = _startPosition;
                     }
-                    else if (touch.phase == TouchPhase.Moved && Vector2.Distance(_startPosition, touch.position) >= 1000)
+                    else if (touch.phase == TouchPhase.Moved && Vector2.Distance(_startPosition, touch.position) >= 10)
                     {
                         Vector3 move = new Vector3(_prevPosition.x - touch.position.x,
                             0, _prevPosition.z - touch.position.y);
