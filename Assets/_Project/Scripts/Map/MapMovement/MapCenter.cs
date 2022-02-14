@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.Map.MapMovement
 {
+    /// <summary>
+    /// A class that represents map center feature.
+    /// </summary>
     public class MapCenter : MonoBehaviour
     {
         [SerializeField] private VoidEventChannelSO _onMapCentered;

@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.CameraMovement
 {
+    /// <summary>
+    /// A class that is responsible for camera zoom, that depends on player's input.
+    /// </summary>
     public class MapCameraZoom : MonoBehaviour
     {
         [Header("Event channels")] [SerializeField]

@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.Map.MapMovement
 {
+    /// <summary>
+    /// A class that receives inputs and invokes zoom in/ zoom out events.
+    /// </summary>
     public class MapZoom : MonoBehaviour
     {
         [SerializeField] private Button _zoomIn;

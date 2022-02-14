@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.CameraMovement
 {
+    /// <summary>
+    /// A class that is responsible for camera movement, that depends on map swipe.
+    /// </summary>
     public class CameraSwipeMovement : MonoBehaviour
     {
         [SerializeField] private Vector3EventChannelSO _onMapSwiped;
@@ -35,6 +38,9 @@ namespace PolSl.UrbanHealthPath.CameraMovement
             _playerFollower.enabled = true;
         }
 
+        /// <summary>
+        /// Calculates desired position of the camera.
+        /// </summary>
         private void MoveCamera(Vector3 pos)
         {
             _playerFollower.enabled = false;
