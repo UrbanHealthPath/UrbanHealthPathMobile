@@ -4,6 +4,9 @@ using Mapbox.Utils;
 
 namespace PolSl.UrbanHealthPath.Map
 {
+    /// <summary>
+    /// Calculates the given angle to a smoother value.
+    /// </summary>
     public class AngleSmootherLowPas
     {
         private int _measurments = 5;

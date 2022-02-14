@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath
 {
+    /// <summary>
+    /// Holder of the Map prefab which is used to generate map in the game.
+    /// </summary>
     public class MapHolder : MonoBehaviour
     {
         [SerializeField] private StationFactory _stationFactory;

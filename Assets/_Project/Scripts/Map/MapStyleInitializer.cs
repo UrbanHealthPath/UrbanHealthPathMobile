@@ -5,6 +5,9 @@ using PolSl.UrbanHealthPath.PathData;
 
 namespace PolSl.UrbanHealthPath.Map
 {
+    /// <summary>
+    /// Initializes the map with given style, coordinates and zoom. 
+    /// </summary>
     public class MapStyleInitializer 
     {
         public void SetMapImageLayer(AbstractMap map, string styleURL, Coordinates coordinates, int zoom)

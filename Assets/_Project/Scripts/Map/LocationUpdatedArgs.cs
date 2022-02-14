@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.Map
 {
+    /// <summary>
+    /// Arguments of Location Update
+    /// </summary>
     public class LocationUpdatedArgs
     {
         public Location Location { get; }

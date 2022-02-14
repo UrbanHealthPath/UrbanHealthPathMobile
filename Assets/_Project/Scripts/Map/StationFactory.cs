@@ -7,6 +7,9 @@ using PolSl.UrbanHealthPath.PathData;
 
 namespace PolSl.UrbanHealthPath.Map
 {
+    /// <summary>
+    /// Creates stations (waypoints) what apear on the map. 
+    /// </summary>
     public class StationFactory : MonoBehaviour
     {
         [SerializeField] private Transform _statation;
