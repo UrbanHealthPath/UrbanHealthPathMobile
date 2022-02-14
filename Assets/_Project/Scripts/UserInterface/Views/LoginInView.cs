@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
+    /// <summary>
+    /// A class that represents a log in view. This object can be initialized with LogInViewInitializationParameters.
+    /// </summary>
     [RequireComponent(typeof(RectTransform))]
     public class LoginInView : MonoBehaviour, IDisplayable, IInitializableView
     {

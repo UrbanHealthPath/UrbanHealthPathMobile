@@ -9,6 +9,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
+    /// <summary>
+    /// A class that represents a statistics view. This object can be initialized with StatisticsViewInitializationParameters.
+    /// </summary>
     public class StatisticsView : MonoBehaviour, IInitializableView
     {
         [SerializeField] private Button _mainViewButton;

@@ -10,6 +10,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
+    /// <summary>
+    /// A class that represents an icon info view. This object can be initialized with ApplicationInfoViewInitializationParameters.
+    /// </summary>
     public class IconInfoView : MonoBehaviour, IDisplayable, IInitializableView
     {
         [FormerlySerializedAs("backButton")] [SerializeField] private Button _backButton;

@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
+    /// <summary>
+    /// A class that represents an application info view. This object can be initialized with ApplicationInfoViewInitializationParameters.
+    /// </summary>
     public class ApplicationInfoView : MonoBehaviour, IDisplayable, IInitializableView
     {
         [FormerlySerializedAs("backButton")] [SerializeField] private Button _backButton;

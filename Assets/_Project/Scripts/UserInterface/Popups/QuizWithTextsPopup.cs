@@ -8,6 +8,10 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
+    /// <summary>
+    /// A class that represents a quiz with images texts. This object can be initialized with QuizWithTextPopupInitializationParameters.
+    /// It is extended by IPopup interface, so it's size and position should be initialized with PopupPayload.
+    /// </summary>
     public class QuizWithTextsPopup : MonoBehaviour, IPopup, IInitializablePopup
     {
         public RectTransform PopupArea => _popupArea;

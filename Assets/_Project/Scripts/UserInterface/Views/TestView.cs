@@ -8,6 +8,10 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
+    /// <summary>
+    /// A class that represents a test view. This object can be initialized with TestViewInitializationParameters.
+    /// It's extended by IPopupable interface, so it determines the size and position of a popup.
+    /// </summary>
     public class TestView : MonoBehaviour, IInitializableView, IPopupable
     {
         public RectTransform PopupArea => _popupArea;

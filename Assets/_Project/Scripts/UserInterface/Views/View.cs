@@ -6,6 +6,9 @@ using UnityEngine.Serialization;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
+    /// <summary>
+    /// A struct that represents view. It contains ViewType and view GameObject.
+    /// </summary>
     [Serializable] public struct View
     {
         [FormerlySerializedAs("type")] [SerializeField] private ViewType _type;

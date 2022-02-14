@@ -4,6 +4,9 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A class that contains initialization parameters for ProfileView.
+    /// </summary>
     public class ProfileViewInitializationParameters : IViewInitializationParameters
     {
         public List<ListElement> Elements { get; }

@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
+    /// <summary>
+    /// A class that represents a path presentation view. This object can be initialized with PathPresentationViewInitializationParameter.
+    /// </summary>
     public class PathPresentationView : MonoBehaviour, IInitializableView
     {
         [SerializeField] private Button _mainMenuButton;

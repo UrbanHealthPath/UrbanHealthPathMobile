@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Scalers
 {
+    /// <summary>
+    /// It scales a given texture keeping the aspect ratio of the image. 
+    /// </summary>
     public class TextureScaler
     {
         public static Vector2 GetScaledTexture(RectTransform maxSize, Texture texture, float borderSize)

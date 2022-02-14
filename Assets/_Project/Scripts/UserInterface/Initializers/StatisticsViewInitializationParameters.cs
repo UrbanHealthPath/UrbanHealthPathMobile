@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A class that contains initialization parameters for StatisticsView.
+    /// </summary>
     public class StatisticsViewInitializationParameters
     {
         public UnityAction MainViewButtonEvent { get; }

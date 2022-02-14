@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
+    /// <summary>
+    /// A class that determines popup's size and position.
+    /// </summary>
     public class PopupPayload
     {
         public Vector2 Position { get; }

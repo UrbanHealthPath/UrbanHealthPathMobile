@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
+    /// <summary>
+    /// A struct that represents History element. It contains ViewType and initializer.
+    /// </summary>
     public struct HistoryElement
     {
         public ViewType Type { get; }

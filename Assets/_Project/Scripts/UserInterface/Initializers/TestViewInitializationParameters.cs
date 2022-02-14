@@ -6,6 +6,9 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A class that contains initialization parameters for TestView.
+    /// </summary>
     public class TestViewInitializationParameters : IViewInitializationParameters
     {
         public UnityAction<TestButtonGroup> ButtonGroupInitialized { get; }

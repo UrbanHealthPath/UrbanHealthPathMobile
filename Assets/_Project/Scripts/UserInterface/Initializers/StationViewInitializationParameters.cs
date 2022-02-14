@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A class that contains initialization parameters for StationView.
+    /// </summary>
     public class StationViewInitializationParameters : IViewInitializationParameters
     {
         public UnityAction<StationButtonGroup> ButtonGroupInitialized { get; }

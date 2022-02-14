@@ -3,6 +3,9 @@ using PolSl.UrbanHealthPath.UserInterface.Initializers;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
+    /// <summary>
+    /// A class that represents the opened views history. 
+    /// </summary>
     public class History
     {
         private Stack<HistoryElement> history = new Stack<HistoryElement>();

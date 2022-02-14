@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A class that contains initialization parameters for PathPresentationView.
+    /// </summary>
     public class PathPresentationViewInitializationParameters : IViewInitializationParameters
     {
         public UnityAction MainMenuEvent { get; }

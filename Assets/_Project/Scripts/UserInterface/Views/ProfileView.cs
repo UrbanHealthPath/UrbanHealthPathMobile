@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
+    /// <summary>
+    /// A class that represents a profile view. This object can be initialized with ProfileViewInitializationParameters.
+    /// </summary>
     public class ProfileView : MonoBehaviour, IInitializableView, IDisplayable
     {
         [FormerlySerializedAs("returnButton")] [SerializeField] private Button _returnButton;

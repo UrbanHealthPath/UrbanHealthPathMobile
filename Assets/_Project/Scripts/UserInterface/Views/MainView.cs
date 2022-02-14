@@ -8,6 +8,10 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
+    /// <summary>
+    /// A class that represents a main view. This object can be initialized with MainViewInitializationParameters.
+    /// It's extended by IPopupable interface, so it determines the size and position of a popup.
+    /// </summary>
     [RequireComponent(typeof(RectTransform))]
     public class MainView : MonoBehaviour, IInitializableView, IPopupable
     {

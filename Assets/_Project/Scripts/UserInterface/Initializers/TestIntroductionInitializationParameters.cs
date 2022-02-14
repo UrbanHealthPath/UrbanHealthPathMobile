@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A class that contains initialization parameters for TestIntroduction.
+    /// </summary>
     public class TestIntroductionInitializationParameters : IViewInitializationParameters
     {
         public UnityAction StartTestAction { get; }

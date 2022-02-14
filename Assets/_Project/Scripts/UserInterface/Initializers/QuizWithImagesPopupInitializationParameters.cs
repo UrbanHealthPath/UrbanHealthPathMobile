@@ -4,6 +4,9 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A class that contains initialization parameters for QuizWithImagesPopup.
+    /// </summary>
     public class QuizWithImagesPopupInitializationParameters : IPopupInitializationParameters
     {
         public string Question { get;  }
