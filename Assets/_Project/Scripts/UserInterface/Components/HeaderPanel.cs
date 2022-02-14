@@ -8,6 +8,9 @@ using UnityEngine.Serialization;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components
 {
+    /// <summary>
+    /// Represents a UI header.
+    /// </summary>
     public class HeaderPanel : MonoBehaviour
     {
         [FormerlySerializedAs("text")] [SerializeField] private TextMeshProUGUI _text;

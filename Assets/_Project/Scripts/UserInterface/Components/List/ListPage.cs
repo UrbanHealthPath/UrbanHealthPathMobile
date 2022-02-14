@@ -5,6 +5,9 @@ using UnityEngine.Serialization;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components.List
 {
+    /// <summary>
+    /// Represents a UI list page. Contains list elements.
+    /// </summary>
     public class ListPage : MonoBehaviour
     {
         [FormerlySerializedAs("panelElements")] [SerializeField] private List<ListPanelElement> _panelElements = new List<ListPanelElement>();

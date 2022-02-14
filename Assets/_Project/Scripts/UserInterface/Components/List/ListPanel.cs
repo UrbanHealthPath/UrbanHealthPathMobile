@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components.List
 {
+    /// <summary>
+    /// Represents a UI list. It consists of pages with list elements. 
+    /// </summary>
     public class ListPanel : MonoBehaviour
     {
         [FormerlySerializedAs("page")] [SerializeField]

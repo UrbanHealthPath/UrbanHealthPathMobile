@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components
 {
+    /// <summary>
+    /// A button that can change it's appearance.  
+    /// </summary>
+    /// 
     [RequireComponent(typeof(Button))]
     public class ChangingButton : MonoBehaviour
     {

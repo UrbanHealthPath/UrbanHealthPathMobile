@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components
 {
+    /// <summary>
+    /// Represents a button, that is a quiz with images option. It can display given textual information.
+    /// </summary>
     public class QuizWithImageOptionButton:QuizOptionButton
     {
         [SerializeField] private TextMeshProUGUI _text;
