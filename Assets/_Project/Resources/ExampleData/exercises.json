@@ -1466,7 +1466,7 @@
   {
     "exercise_id": "gliwice.test.1",
     "displayed_name" : "Przysiady przy oparciu krzesła/stołu itp.",
-    "category": "Test",
+    "category": "motorical",
     "subcategory": "legs",
     "levels": [
       {
@@ -1481,7 +1481,7 @@
   {
     "exercise_id": "gliwice.test.2",
     "displayed_name" : "Półprzysiady z wyprostowanymi rękami.",
-    "category": "Test",
+    "category": "motorical",
     "subcategory": "legs",
     "levels": [
       {
@@ -1496,7 +1496,7 @@
   {
     "exercise_id": "gliwice.test.3",
     "displayed_name" : "Unoszenie butelki ponad głowę.",
-    "category": "Test",
+    "category": "motorical",
     "subcategory": "legs",
     "levels": [
       {
@@ -1511,7 +1511,7 @@
   {
     "exercise_id": "gliwice.test.4",
     "displayed_name" : "Naprzemienne krążenia ramion.",
-    "category": "Test",
+    "category": "motorical",
     "subcategory": "legs",
     "levels": [
       {
@@ -1526,7 +1526,7 @@
   {
     "exercise_id": "gliwice.test.5",
     "displayed_name" : "Przekładanie kija bez zginania ramion w łokciach.",
-    "category": "Test",
+    "category": "motorical",
     "subcategory": "legs",
     "levels": [
       {

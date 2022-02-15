@@ -22,7 +22,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components
         public ChangingButton RepeatButton => _repeatButton;
         public ChangingButton TimerButton => _timerButton;
         public ChangingButton NextButton => _nextButton;
-
+        
         public void Initialize(UnityAction<TestButtonGroup> initialized)
         {
             initialized?.Invoke(this);
@@ -67,6 +67,21 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components
             _nextButton.Button.onClick.RemoveAllListeners();
             _timerButton.Button.onClick.RemoveAllListeners();
             _repeatButton.Button.onClick.RemoveAllListeners();
+        }
+
+        public void AddListenerToRepeatButton(UnityAction action)
+        {
+            _repeatButton.Button.onClick.AddListener(action);
+        }
+
+        public void AddListenerToTimerButton(UnityAction action)
+        {
+            _timerButton.Button.onClick.AddListener(action);
+        }
+
+        public void AddListenerToNextButton(UnityAction action)
+        {
+            _timerButton.Button.onClick.AddListener(action);
         }
     }
 }

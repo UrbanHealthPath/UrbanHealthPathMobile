@@ -14,7 +14,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
         public string HeaderText { get; }
 
         public TestViewInitializationParameters(UnityAction<TestButtonGroup> buttonGroupInitialized,
-            UnityAction mainMenuEvent, UnityAction returnEvent, UnityAction startTestEvent, string headerText)
+            UnityAction mainMenuEvent, UnityAction returnEvent, string headerText)
         {
             ButtonGroupInitialized += buttonGroupInitialized;
             MainMenuEvent += mainMenuEvent;
