@@ -8,6 +8,7 @@ namespace PolSl.UrbanHealthPath
     {
         public string TestId { get; }
         public IList<LateBoundValue<Exercise>> Exercises { get; }
+        
         public Test(string testId, IList<LateBoundValue<Exercise>> exercises)
         {
             TestId = testId;

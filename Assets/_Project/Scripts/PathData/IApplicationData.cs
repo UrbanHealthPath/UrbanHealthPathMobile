@@ -8,5 +8,6 @@ namespace PolSl.UrbanHealthPath.PathData.DataLoaders
         IList<Exercise> Exercises { get; }
         IList<Waypoint> Waypoints { get; }
         IList<UrbanPath> UrbanPaths { get; }
+        IList<Test> Tests { get; }
     }
 }

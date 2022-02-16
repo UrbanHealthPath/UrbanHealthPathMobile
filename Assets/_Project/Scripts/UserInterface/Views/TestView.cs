@@ -15,7 +15,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         [SerializeField] private TestButtonGroup _testButtonGroup;
         [SerializeField] private Button _mainMenuButton;
         [SerializeField] private Button _returnButton;
-        [SerializeField] private Button _startTestButton;
         [SerializeField] private HeaderPanel _headerPanel;
         [SerializeField] private RectTransform _popupArea;
         [SerializeField] private TextMeshProUGUI _timerText;
@@ -38,7 +37,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
             _mainMenuButton.onClick.RemoveAllListeners();
             _returnButton.onClick.RemoveAllListeners();
-            _startTestButton.onClick.RemoveAllListeners();
         }
     }
 }

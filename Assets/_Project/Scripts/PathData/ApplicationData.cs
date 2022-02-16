@@ -10,14 +10,16 @@ namespace PolSl.UrbanHealthPath.PathData
         public IList<Exercise> Exercises { get; }
         public IList<Waypoint> Waypoints { get; }
         public IList<UrbanPath> UrbanPaths { get; }
+        public IList<Test> Tests { get; }
 
         public ApplicationData(IList<MediaFile> mediaFiles, IList<Exercise> exercises, IList<Waypoint> waypoints,
-            IList<UrbanPath> urbanPaths)
+            IList<UrbanPath> urbanPaths, IList<Test> tests)
         {
             MediaFiles = mediaFiles;
             Exercises = exercises;
             Waypoints = waypoints;
             UrbanPaths = urbanPaths;
+            Tests = tests;
         }
 
         public void SetLateBindings()

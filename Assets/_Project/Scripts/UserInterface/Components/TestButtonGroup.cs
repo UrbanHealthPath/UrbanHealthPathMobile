@@ -81,7 +81,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components
 
         public void AddListenerToNextButton(UnityAction action)
         {
-            _timerButton.Button.onClick.AddListener(action);
+            _nextButton.Button.onClick.AddListener(action);
         }
     }
 }

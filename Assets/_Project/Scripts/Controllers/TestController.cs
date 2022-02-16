@@ -1,12 +1,14 @@
 using System;
-using PolSl.UrbanHealthPath.PathData;
+using System.Collections.Generic;
 using PolSl.UrbanHealthPath.PathData.Progress;
 using PolSl.UrbanHealthPath.Systems;
+using PolSl.UrbanHealthPath.TestData;
 using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
 using PolSl.UrbanHealthPath.Utils.CoroutineManagement;
+using UnityEngine;
 using UnityEngine.Events;
 
 
@@ -18,24 +20,46 @@ namespace PolSl.UrbanHealthPath.Controllers
         private readonly Settings _settings;
 
         private UnityAction _backToMainMenu;
-        private UnityAction<Exercise> _exerciseStartStop;
-    
+
         private TestProgress _currentTestProgress;
+        private Test _test;
         private TestButtonGroup _currentTestButtonGroup;
 
+        private TestExerciseSummary _currentSummary;
+
         private bool _startStopState = false;
+
+        private bool _nextButtonState = false;
         
         public TestController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager,
-            Settings settings, UnityAction backToMainMenu) : base(viewManager, popupManager)
+            Settings settings, UnityAction backToMainMenu, IList<Test> tests) : base(viewManager, popupManager)
         {
             _backToMainMenu = backToMainMenu;
             _coroutineManager = coroutineManager;
             _settings = settings;
+            if (tests != null && tests.Count != 0)
+            {
+                _test = tests[0];//there is only one test in the file and it is the one that we want.
+                                 //dont want to write a new data reader just for that one thingy
+            }
+            else
+            {
+                _test = null;
+            }
         }
 
         private void ShowMainTest()
         {
-            ViewManager.OpenView(ViewType.TestView);
+            TestViewInitializationParameters initParams = new TestViewInitializationParameters(buttons =>
+                ConfigureButtonGroup(
+                    buttons), () => ShowConfirmation("Czy na pewno chcesz zakończyć Test?",
+                () => _backToMainMenu.Invoke()), () =>
+            {
+                PopupManager.CloseCurrentPopup();
+                ReturnToPreviousView();
+            }, "Test Sprawnościowy");
+            _currentTestProgress = new TestProgress();
+            ViewManager.OpenView(ViewType.TestView, initParams);
         }
 
         public void ShowTestIntroduction()
@@ -52,47 +76,99 @@ namespace PolSl.UrbanHealthPath.Controllers
             ViewManager.OpenView(ViewType.TestSummary, initParams);
         }
 
-        public void ConfigureButtonGroup(bool enableStartStop,
-            Action<Exercise> exerciseStartStop, Action<Exercise> repeatingExercise,
-            Action testFinished, TestButtonGroup buttons)
+        private void ConfigureButtonGroup(TestButtonGroup buttons)
         {
-            buttons.AddListenerToRepeatButton(() => RepeatButtonClicked(repeatingExercise));
+            buttons.AddListenerToRepeatButton(() => RepeatButtonClicked());
             buttons.RepeatButton.SetInteractable(false);
             buttons.AddListenerToNextButton(()=>NextButtonClicked());
             buttons.NextButton.SetInteractable(false);
-            buttons.AddListenerToTimerButton(()=>StartStopButtonClicked(exerciseStartStop));
-            buttons.TimerButton.SetInteractable(true);
-            _currentTestButtonGroup = buttons;
-        }
-
-        private void RepeatButtonClicked(Action<Exercise> repeatingExercise)
-        {
-            
-        }
-
-        private void StartStopButtonClicked(Action<Exercise> exerciseStarting)
-        {
-            
-            if (!_startStopState)
+            buttons.AddListenerToTimerButton(()=>StartStopButtonClicked());
+            if (_test != null)
             {
-                //@todo start timer and update the text on the Test View every second
-                
+                buttons.TimerButton.SetInteractable(true);
             }
             else
             {
-                //@todo stop timer 
+                buttons.TimerButton.SetInteractable(false);
+            }
+            buttons.NextButton.SetButtonText("Podsumuj ćwiczenie", Vector4.zero);//quick fix because i have no idea why
+                                                                                 //the text is different
+            _currentTestButtonGroup = buttons;
+        }
+
+        private void RepeatButtonClicked()
+        {
+            SetTimerButtonStartText();
+            _currentTestButtonGroup.NextButton.SetInteractable(false);
+            _nextButtonState = false;
+        }
+
+        private void StartStopButtonClicked()
+        {
+            if (!_startStopState)
+            {
+                _currentTestButtonGroup.NextButton.SetInteractable(true);
+                _currentTestButtonGroup.RepeatButton.SetInteractable(true);
+                SetTimerButtonStopText();
+                //@todo reset and start timer and update the text on the Test View every second
+            }
+            else
+            {
+                SetTimerButtonStartText();
+                //@todo stop timer
             }
         }
 
         private void NextButtonClicked()
         {
-            //@todo add test summary to _currentTestProgress or show summary popup
+            if (!_nextButtonState)
+            {
+                _currentTestButtonGroup.NextButton.SetButtonText("Następne ćwiczenie", Vector4.zero);
+                _currentTestButtonGroup.TimerButton.SetInteractable(false);
+                _currentTestButtonGroup.RepeatButton.SetInteractable(false);
+                //@todo stop timer
+                //@todo close exercise popup
+                //@todo open TestPartialSummaryPopup
+            }
+            else
+            {
+                _currentTestButtonGroup.NextButton.SetButtonText("Podsumuj ćwiczenie", Vector4.zero);
+                _currentTestButtonGroup.TimerButton.SetInteractable(true);
+                SetTimerButtonStartText();
+                //@todo reset timer
+                //@todo add new summary to testProgress
+                //@todo open next exercise popup
+            }
+
+            _nextButtonState = !_nextButtonState;
         }
 
         private void FinishTestAction()
         {
             //@todo save test progress into a file
             _backToMainMenu.Invoke();
+        }
+
+        private void OpenExercisePopup()
+        {
+            PopupManager.OpenPopup(PopupType.WithTextAndAudio);
+        }
+
+        private void OpenSummaryPopup()
+        {
+            PopupManager.OpenPopup(PopupType.TestPartialSummary);
+        }
+
+        private void SetTimerButtonStopText()
+        {
+            _currentTestButtonGroup.TimerButton.SetButtonText("Zatrzymaj licznik", Vector4.zero);
+            _startStopState = true;
+        }
+
+        private void SetTimerButtonStartText()
+        {
+            _currentTestButtonGroup.TimerButton.SetButtonText("Rozpocznij ćwiczenie", Vector4.zero);
+            _startStopState = false;
         }
     }
 }
