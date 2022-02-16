@@ -7,6 +7,7 @@ using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
 using PolSl.UrbanHealthPath.Utils.CoroutineManagement;
+using UnityEngine.Events;
 
 
 namespace PolSl.UrbanHealthPath.Controllers
@@ -15,6 +16,9 @@ namespace PolSl.UrbanHealthPath.Controllers
     {
         private readonly CoroutineManager _coroutineManager;
         private readonly Settings _settings;
+
+        private UnityAction _backToMainMenu;
+        private UnityAction<Exercise> _exerciseStartStop;
     
         private TestProgress _currentTestProgress;
         private TestButtonGroup _currentTestButtonGroup;
@@ -22,41 +26,41 @@ namespace PolSl.UrbanHealthPath.Controllers
         private bool _startStopState = false;
         
         public TestController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager,
-            Settings settings) : base(viewManager, popupManager)
+            Settings settings, UnityAction backToMainMenu) : base(viewManager, popupManager)
         {
+            _backToMainMenu = backToMainMenu;
             _coroutineManager = coroutineManager;
             _settings = settings;
         }
 
-        public void ShowTest(Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding,
-            Action<Exercise> repeatingExercise,
-            Action testFinished)
+        private void ShowMainTest()
         {
-            _currentTestProgress = new TestProgress();
-
             ViewManager.OpenView(ViewType.TestView);
+        }
 
-            TestViewInitializationParameters initParams = new TestViewInitializationParameters(buttons =>
-                    ConfigureButtonGroup(true,
-                        exerciseStarting, exerciseEnding, repeatingExercise, testFinished, buttons),
-                () => ShowConfirmation("Czy na pewno chcesz zakończyć test?",
-                    () => ReturnToPreviousView()), () =>
-                {
-                    PopupManager.CloseCurrentPopup();
-                    ReturnToPreviousView();
-                },
-                "Test Sprawnościowy");
+        public void ShowTestIntroduction()
+        {
+            TestIntroductionInitializationParameters initParams =
+                new TestIntroductionInitializationParameters(()=>ShowMainTest(), _backToMainMenu, ReturnToPreviousView);
+            ViewManager.OpenView(ViewType.TestIntroduction, initParams);
+        }
+
+        private void ShowTestSummary()
+        {
+            TestSummaryInitializationParameters initParams =
+                new TestSummaryInitializationParameters(() => FinishTestAction());
+            ViewManager.OpenView(ViewType.TestSummary, initParams);
         }
 
         public void ConfigureButtonGroup(bool enableStartStop,
-            Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding, Action<Exercise> repeatingExercise,
+            Action<Exercise> exerciseStartStop, Action<Exercise> repeatingExercise,
             Action testFinished, TestButtonGroup buttons)
         {
             buttons.AddListenerToRepeatButton(() => RepeatButtonClicked(repeatingExercise));
             buttons.RepeatButton.SetInteractable(false);
             buttons.AddListenerToNextButton(()=>NextButtonClicked());
             buttons.NextButton.SetInteractable(false);
-            buttons.AddListenerToTimerButton(()=>StartStopButtonClicked(exerciseStarting, exerciseEnding));
+            buttons.AddListenerToTimerButton(()=>StartStopButtonClicked(exerciseStartStop));
             buttons.TimerButton.SetInteractable(true);
             _currentTestButtonGroup = buttons;
         }
@@ -66,7 +70,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             
         }
 
-        private void StartStopButtonClicked(Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding)
+        private void StartStopButtonClicked(Action<Exercise> exerciseStarting)
         {
             
             if (!_startStopState)
@@ -74,11 +78,21 @@ namespace PolSl.UrbanHealthPath.Controllers
                 //@todo start timer and update the text on the Test View every second
                 
             }
+            else
+            {
+                //@todo stop timer 
+            }
         }
 
         private void NextButtonClicked()
         {
-            
+            //@todo add test summary to _currentTestProgress or show summary popup
+        }
+
+        private void FinishTestAction()
+        {
+            //@todo save test progress into a file
+            _backToMainMenu.Invoke();
         }
     }
 }

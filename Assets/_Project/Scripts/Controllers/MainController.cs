@@ -34,6 +34,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         private ExerciseController _exerciseController;
         private ShareController _shareController;
         private ProfileController _profileController;
+        private TestController _testController;
 
         public MainController(ViewManager viewManager, PopupManager popupManager,
             IPathProgressManager pathProgressManager, IApplicationData applicationData, MapHolder mapHolderPrefab,
@@ -112,7 +113,8 @@ namespace PolSl.UrbanHealthPath.Controllers
                 _permissionManager, _finishedPathStatisticsProvider, _pathStatisticsLoggerFactory);
             _stationController = new StationController(ViewManager, PopupManager, _coroutineManager, _settings);
             _exerciseController = new ExerciseController(ViewManager, PopupManager, _coroutineManager);
-            _profileController = new ProfileController(ViewManager, PopupManager);
+            _testController = new TestController(ViewManager, PopupManager, _coroutineManager, _settings, ReturnToMenu);
+            _profileController = new ProfileController(ViewManager, PopupManager, _testController.ShowTestIntroduction);
             _shareController = new ShareController();
         }
 
