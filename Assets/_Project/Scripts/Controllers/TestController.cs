@@ -135,7 +135,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                 SetTimerButtonStopState();
                 _coroutineManager.StopCoroutine(CountTime());
                 //@todo close exercise popup
-                //@todo open TestPartialSummaryPopup
+                //@todo open TestPartialSummaryPopup if current exercise is motorical else open historical_fact exercise
             }
             else
             {
@@ -144,7 +144,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                 ResetTimer();
                 SetTimerButtonStartState();
                 _coroutineManager.BeginCoroutine(CountTime());
-                //@todo add new summary to testProgress
+                //@todo add new summary to testProgress if the prev exercise wasn't a historical_fact
                 //@todo open next exercise popup
             }
 
