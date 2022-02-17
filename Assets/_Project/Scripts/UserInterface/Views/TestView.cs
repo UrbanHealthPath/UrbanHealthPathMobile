@@ -1,3 +1,4 @@
+using System;
 using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
@@ -30,6 +31,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
                 _mainMenuButton.onClick.AddListener(() => init.MainMenuEvent?.Invoke());
                 _returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
                 _headerPanel.Initialize(init.HeaderText);
+                init.TimeUpdatedEvent += UpdateTimerText;
             }
         }
         
@@ -37,6 +39,12 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
             _mainMenuButton.onClick.RemoveAllListeners();
             _returnButton.onClick.RemoveAllListeners();
+        }
+
+        private void UpdateTimerText(float time)
+        {
+            TimeSpan duration = TimeSpan.FromSeconds(time);
+            _timerText.text = duration.TotalMinutes + ":" + duration.Seconds;
         }
     }
 }

@@ -11,14 +11,16 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
         public UnityAction<TestButtonGroup> ButtonGroupInitialized { get; }
         public UnityAction MainMenuEvent { get; }
         public UnityAction ReturnEvent { get; }
+        public event UnityAction<float> TimeUpdatedEvent;
         public string HeaderText { get; }
 
         public TestViewInitializationParameters(UnityAction<TestButtonGroup> buttonGroupInitialized,
-            UnityAction mainMenuEvent, UnityAction returnEvent, string headerText)
+            UnityAction mainMenuEvent, UnityAction returnEvent, UnityAction<float> timeUpdatedEvent, string headerText)
         {
             ButtonGroupInitialized += buttonGroupInitialized;
             MainMenuEvent += mainMenuEvent;
             ReturnEvent += returnEvent;
+            TimeUpdatedEvent += timeUpdatedEvent;
             HeaderText = headerText;
         }
     }

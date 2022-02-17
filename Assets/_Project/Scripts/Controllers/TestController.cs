@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using PolSl.UrbanHealthPath.PathData.Progress;
 using PolSl.UrbanHealthPath.Systems;
@@ -28,8 +29,11 @@ namespace PolSl.UrbanHealthPath.Controllers
         private TestExerciseSummary _currentSummary;
 
         private bool _startStopState = false;
-
         private bool _nextButtonState = false;
+
+        private float _timer = 0f;
+        private bool _runTimer = false;
+        private event UnityAction<float> TimeUpdated = delegate{};
         
         public TestController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager,
             Settings settings, UnityAction backToMainMenu, IList<Test> tests) : base(viewManager, popupManager)
@@ -57,7 +61,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 PopupManager.CloseCurrentPopup();
                 ReturnToPreviousView();
-            }, "Test Sprawnościowy");
+            },TimeUpdated, "Test Sprawnościowy");
             _currentTestProgress = new TestProgress();
             ViewManager.OpenView(ViewType.TestView, initParams);
         }
@@ -98,7 +102,7 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private void RepeatButtonClicked()
         {
-            SetTimerButtonStartText();
+            SetTimerButtonStartState();
             _currentTestButtonGroup.NextButton.SetInteractable(false);
             _nextButtonState = false;
         }
@@ -109,13 +113,15 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 _currentTestButtonGroup.NextButton.SetInteractable(true);
                 _currentTestButtonGroup.RepeatButton.SetInteractable(true);
-                SetTimerButtonStopText();
+                SetTimerButtonStopState();
+                _coroutineManager.StartCoroutine(CountTime());
                 //@todo reset and start timer and update the text on the Test View every second
             }
             else
             {
-                SetTimerButtonStartText();
-                //@todo stop timer
+                SetTimerButtonStartState();
+                _coroutineManager.StopCoroutine(CountTime());
+                ResetTimer();
             }
         }
 
@@ -126,7 +132,8 @@ namespace PolSl.UrbanHealthPath.Controllers
                 _currentTestButtonGroup.NextButton.SetButtonText("Następne ćwiczenie", Vector4.zero);
                 _currentTestButtonGroup.TimerButton.SetInteractable(false);
                 _currentTestButtonGroup.RepeatButton.SetInteractable(false);
-                //@todo stop timer
+                SetTimerButtonStopState();
+                _coroutineManager.StopCoroutine(CountTime());
                 //@todo close exercise popup
                 //@todo open TestPartialSummaryPopup
             }
@@ -134,8 +141,9 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 _currentTestButtonGroup.NextButton.SetButtonText("Podsumuj ćwiczenie", Vector4.zero);
                 _currentTestButtonGroup.TimerButton.SetInteractable(true);
-                SetTimerButtonStartText();
-                //@todo reset timer
+                ResetTimer();
+                SetTimerButtonStartState();
+                _coroutineManager.BeginCoroutine(CountTime());
                 //@todo add new summary to testProgress
                 //@todo open next exercise popup
             }
@@ -159,16 +167,34 @@ namespace PolSl.UrbanHealthPath.Controllers
             PopupManager.OpenPopup(PopupType.TestPartialSummary);
         }
 
-        private void SetTimerButtonStopText()
+        private void SetTimerButtonStopState()
         {
             _currentTestButtonGroup.TimerButton.SetButtonText("Zatrzymaj licznik", Vector4.zero);
             _startStopState = true;
+            _runTimer = true;
         }
 
-        private void SetTimerButtonStartText()
+        private void SetTimerButtonStartState()
         {
             _currentTestButtonGroup.TimerButton.SetButtonText("Rozpocznij ćwiczenie", Vector4.zero);
             _startStopState = false;
+            _runTimer = false;
+        }
+
+        private IEnumerator CountTime()
+        {
+            while (_runTimer)
+            {
+                _timer += Time.deltaTime;
+                TimeUpdated.Invoke(_timer);
+                yield return new WaitForSeconds(1);
+            }
+        }
+
+        private void ResetTimer()
+        {
+            _timer = 0f;
+            TimeUpdated.Invoke(_timer);
         }
     }
 }
