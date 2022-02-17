@@ -3,6 +3,9 @@ using PolSl.UrbanHealthPath.PathData;
 
 namespace PolSl.UrbanHealthPath
 {
+    /// <summary>
+    /// Class that is able to parse JObject into VideoExercise.
+    /// </summary>
     public class VideoExerciseLevelJsonParser : ValidatedJsonObjectParser<VideoExerciseLevel>
     {
         private const string DESCRIPTION_KEY = "description";

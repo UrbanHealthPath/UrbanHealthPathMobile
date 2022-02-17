@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.PathData
 {
+    /// <summary>
+    /// Class that holds data for an exercise.
+    /// </summary>
     public class Exercise
     {
         public string DisplayedName { get; }

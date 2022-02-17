@@ -8,6 +8,9 @@ using PolSl.UrbanHealthPath.UserInterface.Views;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
+    /// <summary>
+    /// Controller responsible for displaying help.
+    /// </summary>
     public class HelpController : BaseController
     {
         public HelpController(ViewManager viewManager, PopupManager popupManager) : base(viewManager, popupManager)

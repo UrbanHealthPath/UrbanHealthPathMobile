@@ -1,5 +1,8 @@
 ﻿namespace PolSl.UrbanHealthPath.Tools.TextLogger
 {
+    /// <summary>
+    /// Interface defining methods for logging a text message.
+    /// </summary>
     public interface ITextLogger
     {
         void Log(LogVerbosity verbosity, string message);

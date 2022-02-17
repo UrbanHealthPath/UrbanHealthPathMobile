@@ -2,6 +2,10 @@
 
 namespace PolSl.UrbanHealthPath.PathData.DataLoaders
 {
+    /// <summary>
+    /// Wrapper class for all parsers used for loading application data.
+    /// </summary>
+    /// <typeparam name="T">Parsers' output type.</typeparam>
     public class DataLoaderParsers<T>
     {
         public IParser<T, MediaFile> MediaFileParser { get; }

@@ -3,6 +3,9 @@ using Newtonsoft.Json.Linq;
 
 namespace PolSl.UrbanHealthPath.PathData.DataLoaders
 {
+    /// <summary>
+    /// Factory of JSON loaders that gets the data to be loaded from .json files.
+    /// </summary>
     public class JsonFilesLoadersFactory : ILoadersFactory
     {
         private readonly string _filesDirectoryPath;

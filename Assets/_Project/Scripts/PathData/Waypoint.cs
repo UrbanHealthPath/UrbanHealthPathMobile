@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.PathData
 {
+    /// <summary>
+    /// Class that holds data for a waypoint - any point on path represented by coordinates.
+    /// </summary>
     public abstract class Waypoint
     {
         public event EventHandler Triggering;

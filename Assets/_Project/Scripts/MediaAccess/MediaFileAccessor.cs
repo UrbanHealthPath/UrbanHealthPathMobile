@@ -4,6 +4,10 @@ using PolSl.UrbanHealthPath.PathData;
 
 namespace PolSl.UrbanHealthPath.MediaAccess
 {
+    /// <summary>
+    /// Base class for all media file accessors that also checks whether the media file is of given accepted type.
+    /// </summary>
+    /// <typeparam name="T">Type of accessed media file.</typeparam>
     public abstract class MediaFileAccessor<T> : IMediaFileAccessor<T>
     {
         protected readonly MediaFile _mediaFile;

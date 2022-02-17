@@ -4,6 +4,9 @@ using PolSl.UrbanHealthPath.PathData;
 
 namespace PolSl.UrbanHealthPath
 {
+    /// <summary>
+    /// Class that is able to parse JObject into MediaFile.
+    /// </summary>
     public class MediaFileJsonParser : ValidatedJsonObjectParser<MediaFile>
     {
         private const string ID_KEY = "media_id";

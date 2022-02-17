@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
+    /// <summary>
+    /// Controller responsible for displaying showing appropriate main menu view.
+    /// </summary>
     public class MenuController : BaseController
     {
         public event Action ProfileButtonPressed;

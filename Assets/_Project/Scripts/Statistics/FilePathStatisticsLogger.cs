@@ -5,6 +5,9 @@ using PolSl.UrbanHealthPath.Tools.TextLogger;
 
 namespace PolSl.UrbanHealthPath.Statistics
 {
+    /// <summary>
+    /// Base class for all path statistics loggers that log to files.
+    /// </summary>
     public abstract class FilePathStatisticsLogger : IPathStatisticsLogger
     {
         private readonly ITextLogger _textLogger;

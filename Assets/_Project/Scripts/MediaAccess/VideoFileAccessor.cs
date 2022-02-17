@@ -5,6 +5,9 @@ using UnityEngine.Video;
 
 namespace PolSl.UrbanHealthPath.MediaAccess
 {
+    /// <summary>
+    /// Class responsible for accessing video files as Unity's VideoClips.
+    /// </summary>
     public class VideoFileAccessor : MediaFileAccessor<VideoClip>
     {
         public VideoFileAccessor(MediaFile mediaFile) : base(mediaFile, new [] {MediaFileType.Video})

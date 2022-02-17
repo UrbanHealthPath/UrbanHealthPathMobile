@@ -1,5 +1,8 @@
 ﻿namespace PolSl.UrbanHealthPath.PathData
 {
+    /// <summary>
+    /// Class that holds information about media file.
+    /// </summary>
     public class MediaFile
     {
         public MediaFileType Type { get; }

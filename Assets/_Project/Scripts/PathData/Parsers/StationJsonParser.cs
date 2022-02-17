@@ -7,6 +7,9 @@ using Random = System.Random;
 
 namespace PolSl.UrbanHealthPath
 {
+    /// <summary>
+    /// Class that is able to parse JObject into Station.
+    /// </summary>
     public class StationJsonParser : ValidatedJsonObjectParser<Station>
     {
         private const string ID_KEY = "waypoint_id";

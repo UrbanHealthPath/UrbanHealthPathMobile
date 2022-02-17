@@ -5,6 +5,9 @@ using PolSl.UrbanHealthPath.PathData;
 
 namespace PolSl.UrbanHealthPath
 {
+    /// <summary>
+    /// Class that is able to parse JObject into Exercise.
+    /// </summary>
     public class ExerciseJsonParser : ValidatedJsonObjectParser<Exercise>
     {
         private const string ID_KEY = "exercise_id";

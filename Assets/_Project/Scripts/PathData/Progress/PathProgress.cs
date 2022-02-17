@@ -5,6 +5,9 @@ using Newtonsoft.Json;
 
 namespace PolSl.UrbanHealthPath.PathData.Progress
 {
+    /// <summary>
+    /// Class representing path progress.
+    /// </summary>
     public class PathProgress
     {
         [JsonProperty] private IList<PathProgressCheckpoint> _progressCheckpoints;
