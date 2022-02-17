@@ -33,7 +33,9 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private float _timer = 0f;
         private bool _runTimer = false;
-        private event UnityAction<float> TimeUpdated = delegate{};
+        private UnityAction<float> TimeUpdatedEvent;
+        
+        private float _startingTime;
         
         public TestController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager,
             Settings settings, UnityAction backToMainMenu, IList<Test> tests) : base(viewManager, popupManager)
@@ -61,9 +63,16 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 PopupManager.CloseCurrentPopup();
                 ReturnToPreviousView();
-            },TimeUpdated, "Test Sprawnościowy");
+            },TimeUpdatedEvent, "Test Sprawnościowy");
             _currentTestProgress = new TestProgress();
-            ViewManager.OpenView(ViewType.TestView, initParams);
+            var testObj = ViewManager.OpenView(ViewType.TestView, initParams);
+            
+             TestView test = testObj.GetComponent<TestView>();
+
+             if (test)
+             {
+                TimeUpdatedEvent = test.TimeUpdated;
+             }
         }
 
         public void ShowTestIntroduction()
@@ -113,7 +122,8 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 _currentTestButtonGroup.NextButton.SetInteractable(true);
                 _currentTestButtonGroup.RepeatButton.SetInteractable(true);
-                SetTimerButtonStopState();
+                SetTimerButtonStopState(); 
+                _startingTime = Time.time;
                 _coroutineManager.StartCoroutine(CountTime());
                 //@todo reset and start timer and update the text on the Test View every second
             }
@@ -169,6 +179,7 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private void SetTimerButtonStopState()
         {
+            _startingTime = Time.time;
             _currentTestButtonGroup.TimerButton.SetButtonText("Zatrzymaj licznik", Vector4.zero);
             _startStopState = true;
             _runTimer = true;
@@ -176,6 +187,7 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private void SetTimerButtonStartState()
         {
+            
             _currentTestButtonGroup.TimerButton.SetButtonText("Rozpocznij ćwiczenie", Vector4.zero);
             _startStopState = false;
             _runTimer = false;
@@ -185,8 +197,9 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             while (_runTimer)
             {
-                _timer += Time.deltaTime;
-                TimeUpdated.Invoke(_timer);
+                _timer += Time.time - _startingTime;
+                _startingTime = Time.time;
+                TimeUpdatedEvent.Invoke(_timer);
                 yield return new WaitForSeconds(1);
             }
         }
@@ -194,7 +207,8 @@ namespace PolSl.UrbanHealthPath.Controllers
         private void ResetTimer()
         {
             _timer = 0f;
-            TimeUpdated.Invoke(_timer);
+            _startingTime = Time.time;
+            TimeUpdatedEvent.Invoke(_timer);
         }
     }
 }
