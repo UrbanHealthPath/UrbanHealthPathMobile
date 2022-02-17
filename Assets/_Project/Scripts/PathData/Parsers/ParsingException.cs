@@ -4,7 +4,7 @@ namespace PolSl.UrbanHealthPath
 {
     public class ParsingException : Exception
     {
-        public ParsingException() : base()
+        public ParsingException() : base("Parsing exception!")
         {
         }
 

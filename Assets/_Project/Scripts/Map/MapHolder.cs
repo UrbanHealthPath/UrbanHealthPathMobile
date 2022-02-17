@@ -21,12 +21,6 @@ namespace PolSl.UrbanHealthPath
 
         private bool _isInitialized;
 
-        public StationFactory StationFactory => _stationFactory;
-        public NavigationPointProvider NavigationPointProvider => _navigationPointProvider;
-        public PlayerLocationTransformer PlayerLocationTransformer => _playerLocationTransformer;
-        public TransformHeadingRotator LocationProviderRotator => _transformHeadingRotator;
-        public AbstractMap Map => _map;
-
         public void Initialize(string mapUrl, ILocationUpdater locationUpdater, List<Coordinates> stationsCoordinates)
         {
             SetMapSource(mapUrl);

@@ -4,7 +4,7 @@ using PolSl.UrbanHealthPath.PathData;
 
 namespace PolSl.UrbanHealthPath.MediaAccess
 {
-    public abstract class MediaFileAccessor<T> : IMediaFileAccessor<T>
+    public abstract class MediaFileAccessor<T>
     {
         protected readonly MediaFile _mediaFile;
         private MediaFileType[] _acceptedMediaFileTypes;
@@ -20,7 +20,7 @@ namespace PolSl.UrbanHealthPath.MediaAccess
             }
         }
 
-        public virtual T GetMedia()
+        public T GetMedia()
         {
             if (_mediaFile.StorageType == MediaFileStorageType.Local)
             {

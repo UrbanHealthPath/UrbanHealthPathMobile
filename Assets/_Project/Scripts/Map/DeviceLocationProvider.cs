@@ -9,9 +9,7 @@ using UnityEngine;
 namespace PolSl.UrbanHealthPath.Map
 {
     public class DeviceLocationProvider : ILocationProvider
-    { 
-        public event Action<Location> LocationUpdated = delegate {};
-        
+    {
         private float _desiredAccuracyInMeters = 1.0f;
 
         private float _updateDistanceInMeters = 0.0f;
@@ -61,12 +59,6 @@ namespace PolSl.UrbanHealthPath.Map
             _currentLocation.IsLocationUpdated = _currentLocation.Timestamp > _lastLocationTimeStamp ||
                                                  !_currentLocation.LatitudeLongitude.Equals(_lastPosition);
             _lastLocationTimeStamp = _currentLocation.Timestamp;
-            SendLocation(_currentLocation);
-        }
-
-        private void SendLocation(Location location)
-        {
-            LocationUpdated(location);
         }
     }
 }
