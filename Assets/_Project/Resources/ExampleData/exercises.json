@@ -1537,5 +1537,33 @@
         "video_file": "video.test.test_5"
       }
     ]
+  },
+  {
+    "exercise_id": "test.trudnosc",
+    "displayed_name": "Informacja",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Jeśli jakieś ćwiczenie sprawia Ci trudność, jest to informacja, że należy wzmocnić mięśnie i popracować nad ruchomością lub/i koordynacją. Możesz to zrobić korzystając z miejskiej ścieżki zdrowia. Regularna aktywność fizyczna przynosi najlepsze efekty."
+      }
+    ]
+  },
+  {
+    "exercise_id": "test.bol",
+    "displayed_name": "Informacja",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Jeśli w trakcie wykonywania ćwiczeń odczuwasz dolegliwości bólowe skonsultuj się z fizjoterapeutą, który wykona szczegółowe testy diagnostyczne i wskaże możliwości wyeliminowania bólu, jak również poprawy samopoczucia."
+      }
+    ]
   }
 ]
