@@ -25,6 +25,7 @@ namespace PolSl.UrbanHealthPath.PathData
         public void SetLateBindings()
         {
             SetStationsLateBindings();
+            SetTestsLateBindings();
             SetUrbanPathsLateBindings();
             SetExercisesLateBindings();
         }
@@ -45,6 +46,17 @@ namespace PolSl.UrbanHealthPath.PathData
                 station.Image.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == station.Image.Key));
                 station.IntroductionAudio.InitializeValue(MediaFiles.FirstOrDefault(x =>
                     x.MediaId == station.IntroductionAudio.Key));
+            }
+        }
+
+        private void SetTestsLateBindings()
+        {
+            foreach (Test test in Tests)
+            {
+                foreach (LateBoundValue<Exercise> exercise in test.Exercises)
+                {
+                    exercise.InitializeValue(Exercises.FirstOrDefault(x => x.ExerciseId == exercise.Key));
+                }
             }
         }
 

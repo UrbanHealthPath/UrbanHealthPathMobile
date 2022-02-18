@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using PolSl.UrbanHealthPath.PathData;
 using PolSl.UrbanHealthPath.PathData.Progress;
 using PolSl.UrbanHealthPath.Systems;
 using PolSl.UrbanHealthPath.TestData;
@@ -12,18 +14,16 @@ using PolSl.UrbanHealthPath.Utils.CoroutineManagement;
 using UnityEngine;
 using UnityEngine.Events;
 
-
 namespace PolSl.UrbanHealthPath.Controllers
 {
     public class TestController : BaseController
     {
         private readonly CoroutineManager _coroutineManager;
-        private readonly Settings _settings;
 
         private UnityAction _backToMainMenu;
 
         private TestProgress _currentTestProgress;
-        private Test _test;
+        private Test _currentTest;
         private TestButtonGroup _currentTestButtonGroup;
 
         private TestExerciseSummary _currentSummary;
@@ -34,28 +34,28 @@ namespace PolSl.UrbanHealthPath.Controllers
         private float _timer = 0f;
         private bool _runTimer = false;
         private UnityAction<float> TimeUpdatedEvent;
-        
+
         private float _startingTime;
-        
+
         public TestController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager,
-            Settings settings, UnityAction backToMainMenu, IList<Test> tests) : base(viewManager, popupManager)
+            UnityAction backToMainMenu) : base(viewManager, popupManager)
         {
             _backToMainMenu = backToMainMenu;
             _coroutineManager = coroutineManager;
-            _settings = settings;
-            if (tests != null && tests.Count != 0)
-            {
-                _test = tests[0];//there is only one test in the file and it is the one that we want.
-                                 //dont want to write a new data reader just for that one thingy
-            }
-            else
-            {
-                _test = null;
-            }
         }
 
-        private void ShowMainTest()
+        public void ShowTestIntroduction(Test test, Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding)
         {
+            TestIntroductionInitializationParameters initParams =
+                new TestIntroductionInitializationParameters(() => ShowTest(test, exerciseStarting, exerciseEnding), _backToMainMenu, ReturnToPreviousView);
+            ViewManager.OpenView(ViewType.TestIntroduction, initParams);
+        }
+
+        private void ShowTest(Test test, Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding)
+        {
+            CleanTestData();
+            _currentTest = test;
+
             TestViewInitializationParameters initParams = new TestViewInitializationParameters(buttons =>
                 ConfigureButtonGroup(
                     buttons), () => ShowConfirmation("Czy na pewno chcesz zakończyć Test?",
@@ -63,23 +63,21 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 PopupManager.CloseCurrentPopup();
                 ReturnToPreviousView();
-            },TimeUpdatedEvent, "Test Sprawnościowy");
+            }, TimeUpdatedEvent, "Test Sprawnościowy");
             _currentTestProgress = new TestProgress();
             var testObj = ViewManager.OpenView(ViewType.TestView, initParams);
-            
-             TestView test = testObj.GetComponent<TestView>();
 
-             if (test)
-             {
-                TimeUpdatedEvent = test.TimeUpdated;
-             }
+            TestView testView = testObj.GetComponent<TestView>();
+
+            if (testView)
+            {
+                TimeUpdatedEvent = testView.TimeUpdated;
+            }
         }
 
-        public void ShowTestIntroduction()
+        private void CleanTestData()
         {
-            TestIntroductionInitializationParameters initParams =
-                new TestIntroductionInitializationParameters(()=>ShowMainTest(), _backToMainMenu, ReturnToPreviousView);
-            ViewManager.OpenView(ViewType.TestIntroduction, initParams);
+            _currentTest = null;
         }
 
         private void ShowTestSummary()
@@ -91,12 +89,13 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private void ConfigureButtonGroup(TestButtonGroup buttons)
         {
-            buttons.AddListenerToRepeatButton(() => RepeatButtonClicked());
+            buttons.AddListenerToRepeatButton(RepeatButtonClicked);
             buttons.RepeatButton.SetInteractable(false);
-            buttons.AddListenerToNextButton(()=>NextButtonClicked());
+            buttons.AddListenerToNextButton(NextButtonClicked);
             buttons.NextButton.SetInteractable(false);
-            buttons.AddListenerToTimerButton(()=>StartStopButtonClicked());
-            if (_test != null)
+            buttons.AddListenerToTimerButton(StartStopButtonClicked);
+
+            if (_currentTest != null)
             {
                 buttons.TimerButton.SetInteractable(true);
             }
@@ -104,8 +103,9 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 buttons.TimerButton.SetInteractable(false);
             }
-            buttons.NextButton.SetButtonText("Podsumuj ćwiczenie", Vector4.zero);//quick fix because i have no idea why
-                                                                                 //the text is different
+
+            buttons.NextButton.SetButtonText("Podsumuj ćwiczenie", Vector4.zero); //quick fix because i have no idea why
+            //the text is different
             _currentTestButtonGroup = buttons;
         }
 
@@ -122,7 +122,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 _currentTestButtonGroup.NextButton.SetInteractable(true);
                 _currentTestButtonGroup.RepeatButton.SetInteractable(true);
-                SetTimerButtonStopState(); 
+                SetTimerButtonStopState();
                 _startingTime = Time.time;
                 _coroutineManager.StartCoroutine(CountTime());
                 //@todo reset and start timer and update the text on the Test View every second
@@ -144,6 +144,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                 _currentTestButtonGroup.RepeatButton.SetInteractable(false);
                 SetTimerButtonStopState();
                 _coroutineManager.StopCoroutine(CountTime());
+                
                 //@todo close exercise popup
                 //@todo open TestPartialSummaryPopup if current exercise is motorical else open historical_fact exercise
             }
@@ -161,9 +162,28 @@ namespace PolSl.UrbanHealthPath.Controllers
             _nextButtonState = !_nextButtonState;
         }
 
+        private Exercise GetNextExercise()
+        {
+            if (_currentTestProgress is null)
+            {
+                return null;
+            }
+
+            IList<Exercise> exercises = _currentTest.Exercises.Select(x => x.Value).ToList();
+            
+            string lastExerciseId =
+                _currentTestProgress.ExerciseSummaries[_currentTestProgress.ExerciseSummaries.Count - 1].ExerciseId;
+
+            Exercise lastExercise = exercises.FirstOrDefault(x => x.ExerciseId == lastExerciseId);
+            int lastExerciseIndex = exercises.IndexOf(lastExercise);
+
+            int nextExerciseIndex = lastExerciseIndex + 1;
+            
+            return nextExerciseIndex < exercises.Count ? exercises[nextExerciseIndex] : null;
+        }
+
         private void FinishTestAction()
         {
-            //@todo save test progress into a file
             _backToMainMenu.Invoke();
         }
 
@@ -180,14 +200,13 @@ namespace PolSl.UrbanHealthPath.Controllers
         private void SetTimerButtonStopState()
         {
             _startingTime = Time.time;
-            _currentTestButtonGroup.TimerButton.SetButtonText("Zatrzymaj licznik", Vector4.zero);
+            _currentTestButtonGroup.TimerButton.SetButtonText("Zatrzymaj stoper", Vector4.zero);
             _startStopState = true;
             _runTimer = true;
         }
 
         private void SetTimerButtonStartState()
         {
-            
             _currentTestButtonGroup.TimerButton.SetButtonText("Rozpocznij ćwiczenie", Vector4.zero);
             _startStopState = false;
             _runTimer = false;
