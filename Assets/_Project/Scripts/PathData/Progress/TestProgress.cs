@@ -27,5 +27,10 @@ namespace PolSl.UrbanHealthPath.PathData.Progress
         {
             ExerciseSummaries.Add(summary);
         }
+
+        public int GetFinishedExercisesCount()
+        {
+            return ExerciseSummaries.Count;
+        }
     }
 }

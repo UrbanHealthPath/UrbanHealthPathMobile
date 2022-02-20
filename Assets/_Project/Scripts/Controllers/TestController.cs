@@ -37,21 +37,28 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private float _startingTime;
 
+        private Action<Exercise> _exerciseStarting;
+        private Action<Exercise> _exerciseEnding;
+
         public TestController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager,
-            UnityAction backToMainMenu) : base(viewManager, popupManager)
+            UnityAction backToMainMenu, Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding) : base(
+            viewManager, popupManager)
         {
             _backToMainMenu = backToMainMenu;
             _coroutineManager = coroutineManager;
+            _exerciseStarting = exerciseStarting;
+            _exerciseEnding = exerciseEnding;
         }
 
-        public void ShowTestIntroduction(Test test, Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding)
+        public void ShowTestIntroduction(Test test)
         {
             TestIntroductionInitializationParameters initParams =
-                new TestIntroductionInitializationParameters(() => ShowTest(test, exerciseStarting, exerciseEnding), _backToMainMenu, ReturnToPreviousView);
+                new TestIntroductionInitializationParameters(() => ShowTest(test), _backToMainMenu,
+                    ReturnToPreviousView);
             ViewManager.OpenView(ViewType.TestIntroduction, initParams);
         }
 
-        private void ShowTest(Test test, Action<Exercise> exerciseStarting, Action<Exercise> exerciseEnding)
+        private void ShowTest(Test test)
         {
             CleanTestData();
             _currentTest = test;
@@ -144,7 +151,10 @@ namespace PolSl.UrbanHealthPath.Controllers
                 _currentTestButtonGroup.RepeatButton.SetInteractable(false);
                 SetTimerButtonStopState();
                 _coroutineManager.StopCoroutine(CountTime());
-                
+
+                Exercise currentExercise = GetCurrentExercise();
+                _exerciseEnding.Invoke(currentExercise);
+
                 //@todo close exercise popup
                 //@todo open TestPartialSummaryPopup if current exercise is motorical else open historical_fact exercise
             }
@@ -152,17 +162,41 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 _currentTestButtonGroup.NextButton.SetButtonText("Podsumuj ćwiczenie", Vector4.zero);
                 _currentTestButtonGroup.TimerButton.SetInteractable(true);
+
+                Exercise currentExercise = GetCurrentExercise();
+                _currentTestProgress.AddNewSummary(new TestExerciseSummary(currentExercise.ExerciseId, (int) _timer, 0,
+                    0, 0));
+
                 ResetTimer();
                 SetTimerButtonStartState();
                 _coroutineManager.BeginCoroutine(CountTime());
+
                 //@todo add new summary to testProgress if the prev exercise wasn't a historical_fact
                 //@todo open next exercise popup
+
+                if (!StartExercise())
+                {
+                    ShowTestSummary();
+                }
             }
 
             _nextButtonState = !_nextButtonState;
         }
 
-        private Exercise GetNextExercise()
+        private bool StartExercise()
+        {
+            Exercise exercise = GetCurrentExercise();
+
+            if (exercise is null)
+            {
+                return false;
+            }
+            
+            _exerciseStarting.Invoke(exercise);
+            return true;
+        }
+
+        private Exercise GetCurrentExercise()
         {
             if (_currentTestProgress is null)
             {
@@ -170,31 +204,24 @@ namespace PolSl.UrbanHealthPath.Controllers
             }
 
             IList<Exercise> exercises = _currentTest.Exercises.Select(x => x.Value).ToList();
-            
-            string lastExerciseId =
-                _currentTestProgress.ExerciseSummaries[_currentTestProgress.ExerciseSummaries.Count - 1].ExerciseId;
 
-            Exercise lastExercise = exercises.FirstOrDefault(x => x.ExerciseId == lastExerciseId);
-            int lastExerciseIndex = exercises.IndexOf(lastExercise);
+            int finishedExercisesCount = _currentTestProgress.GetFinishedExercisesCount();
+            int currentExerciseIndex = 0;
 
-            int nextExerciseIndex = lastExerciseIndex + 1;
-            
-            return nextExerciseIndex < exercises.Count ? exercises[nextExerciseIndex] : null;
+            if (finishedExercisesCount > 0)
+            {
+                string lastExerciseId = _currentTestProgress
+                    .ExerciseSummaries[_currentTestProgress.ExerciseSummaries.Count - 1].ExerciseId;
+                Exercise lastFinishedExercise = exercises.FirstOrDefault(x => x.ExerciseId == lastExerciseId);
+                currentExerciseIndex = exercises.IndexOf(lastFinishedExercise) + 1;
+            }
+
+            return currentExerciseIndex < exercises.Count ? exercises[currentExerciseIndex] : null;
         }
 
         private void FinishTestAction()
         {
             _backToMainMenu.Invoke();
-        }
-
-        private void OpenExercisePopup()
-        {
-            PopupManager.OpenPopup(PopupType.WithTextAndAudio);
-        }
-
-        private void OpenSummaryPopup()
-        {
-            PopupManager.OpenPopup(PopupType.TestPartialSummary);
         }
 
         private void SetTimerButtonStopState()

@@ -11,12 +11,12 @@ namespace PolSl.UrbanHealthPath.Controllers
 {
     public class ProfileController : BaseController
     {
-        private UnityAction _openTestView;
+        private readonly UnityAction _testButtonClicked;
 
-        public ProfileController(ViewManager viewManager, PopupManager popupManager, UnityAction OpenTestView) : base(
+        public ProfileController(ViewManager viewManager, PopupManager popupManager, UnityAction testButtonClicked) : base(
             viewManager, popupManager)
         {
-            _openTestView = OpenTestView;
+            _testButtonClicked = testButtonClicked;
         }
 
         public void ShowProfile()
@@ -24,7 +24,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             IViewInitializationParameters initParams =
                 new ProfileViewInitializationParameters(new List<ListElement>()
                 {
-                    new ListElement("Kliknij tutaj, aby rozwiązać test sprawnościowy.", null, "Test", _openTestView),
+                    new ListElement("Kliknij tutaj, aby rozwiązać test sprawnościowy.", null, "Test", _testButtonClicked),
                 },ReturnToPreviousView);
             ViewManager.OpenView(ViewType.Profile, initParams);
         }

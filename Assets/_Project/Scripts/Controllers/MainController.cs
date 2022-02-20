@@ -39,7 +39,8 @@ namespace PolSl.UrbanHealthPath.Controllers
         public MainController(ViewManager viewManager, PopupManager popupManager,
             IPathProgressManager pathProgressManager, IApplicationData applicationData, MapHolder mapHolderPrefab,
             CoroutineManager coroutineManager, Settings settings, IPermissionManager permissionManager,
-            IPathStatisticsLoggerFactory pathStatisticsLoggerFactory, IFinishedPathStatisticsProvider finishedPathStatisticsProvider) : base(viewManager,
+            IPathStatisticsLoggerFactory pathStatisticsLoggerFactory,
+            IFinishedPathStatisticsProvider finishedPathStatisticsProvider) : base(viewManager,
             popupManager)
         {
             _pathProgressManager = pathProgressManager;
@@ -79,8 +80,10 @@ namespace PolSl.UrbanHealthPath.Controllers
         private void SubscribeToPathEvents()
         {
             _pathController.PathStarted += BuildPathView;
-            _pathController.PathCancelled += path => _pathController.ShowCancelledPathSummary(path, _shareController.ShareDefaultWhatsappMessage);
-            _pathController.PathCompleted += path => _pathController.ShowCompletedPathSummary(path, _shareController.ShareDefaultWhatsappMessage);
+            _pathController.PathCancelled += path =>
+                _pathController.ShowCancelledPathSummary(path, _shareController.ShareDefaultWhatsappMessage);
+            _pathController.PathCompleted += path =>
+                _pathController.ShowCompletedPathSummary(path, _shareController.ShareDefaultWhatsappMessage);
         }
 
         private void BuildPathView(UrbanPath path)
@@ -113,8 +116,10 @@ namespace PolSl.UrbanHealthPath.Controllers
                 _permissionManager, _finishedPathStatisticsProvider, _pathStatisticsLoggerFactory);
             _stationController = new StationController(ViewManager, PopupManager, _coroutineManager, _settings);
             _exerciseController = new ExerciseController(ViewManager, PopupManager, _coroutineManager);
-            _testController = new TestController(ViewManager, PopupManager, _coroutineManager, _settings, ReturnToMenu, _applicationData.Tests);
-            _profileController = new ProfileController(ViewManager, PopupManager, _testController.ShowTestIntroduction);
+            _testController = new TestController(ViewManager, PopupManager, _coroutineManager, ReturnToMenu,
+                _exerciseController.ShowPopupForExercise, exercise => PopupManager.CloseCurrentPopup());
+            _profileController = new ProfileController(ViewManager, PopupManager,
+                () => _testController.ShowTestIntroduction(_applicationData.Tests[0]));
             _shareController = new ShareController();
         }
 
