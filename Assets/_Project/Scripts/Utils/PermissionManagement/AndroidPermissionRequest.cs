@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.Utils.PermissionManagement
 {
+    /// <summary>
+    /// Permission request for Android device.
+    /// </summary>
     public class AndroidPermissionRequest : IPermissionRequest
     {
         private readonly string _permissionName;

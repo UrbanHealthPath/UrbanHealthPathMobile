@@ -15,6 +15,9 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
+    /// <summary>
+    /// Controller responsible for path's stations.
+    /// </summary>
     public class StationController : BaseController
     {
         private readonly CoroutineManager _coroutineManager;

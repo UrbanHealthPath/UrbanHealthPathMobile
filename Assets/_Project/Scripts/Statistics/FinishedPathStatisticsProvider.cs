@@ -6,6 +6,9 @@ using PolSl.UrbanHealthPath.PathData.Progress;
 
 namespace PolSl.UrbanHealthPath.Statistics
 {
+    /// <summary>
+    /// Implementation of path statistics provider that uses path progress manager.
+    /// </summary>
     public class FinishedPathStatisticsProvider : IFinishedPathStatisticsProvider
     {
         public PathStatistics GetFinishedPathStatistics(IPathProgressManager progressManager, UrbanPath path)

@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.PathData.DataLoaders
 {
+    /// <summary>
+    /// Factory that returns DataLoaderParsers for JSON data.
+    /// </summary>
     public class JsonDataLoaderParsersFactory
     {
         public DataLoaderParsers<JObject> Create()

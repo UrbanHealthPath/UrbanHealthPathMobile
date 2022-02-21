@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
+    /// <summary>
+    /// Controller responsible for managing settings.
+    /// </summary>
     public class SettingsController : BaseController
     {
         private readonly Settings _settings;

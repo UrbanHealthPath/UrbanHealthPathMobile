@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.Statistics
 {
+    /// <summary>
+    /// Path statistics logger that prints the data using text logger.
+    /// </summary>
     public class DebugPathStatisticsLogger : IPathStatisticsLogger
     {
         private readonly ITextLogger _logger;

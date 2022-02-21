@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.PathData.DataLoaders
 {
+    /// <summary>
+    /// Class responsible for loading configurable data regarding paths.
+    /// </summary>
     public class ApplicationDataLoader : IApplicationDataLoader
     {
         private IMediaFilesLoader _mediaFilesLoader;

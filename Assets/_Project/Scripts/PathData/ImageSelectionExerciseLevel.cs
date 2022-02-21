@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.PathData
 {
+    /// <summary>
+    /// Quiz that has a text question and multiple image answers.
+    /// </summary>
     public class ImageSelectionExerciseLevel : ExerciseLevel
     {
         public string Question { get; }

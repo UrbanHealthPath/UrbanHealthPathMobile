@@ -1,5 +1,9 @@
 ﻿namespace PolSl.UrbanHealthPath.PathData
 {
+    /// <summary>
+    /// Class representing late-bound value - data that is loaded later based on key from another data source.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class LateBoundValue<T>
     {
         private bool _isInitialized;

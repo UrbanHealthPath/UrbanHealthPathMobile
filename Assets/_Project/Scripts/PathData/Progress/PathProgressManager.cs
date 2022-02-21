@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace PolSl.UrbanHealthPath.PathData.Progress
 {
+    /// <summary>
+    /// Basic implementation of path progress manager.
+    /// </summary>
     public class PathProgressManager : IPathProgressManager
     {
         public event EventHandler<CheckpointReachedEventArgs> CheckpointReached;

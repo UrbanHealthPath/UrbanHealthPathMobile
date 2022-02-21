@@ -14,6 +14,9 @@ using PolSl.UrbanHealthPath.Utils.PermissionManagement;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
+    /// <summary>
+    /// Main application controller that creates and sets up the rest of them.
+    /// </summary>
     public class MainController : BaseController
     {
         private readonly IPathProgressManager _pathProgressManager;

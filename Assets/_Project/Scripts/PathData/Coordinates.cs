@@ -3,6 +3,9 @@ using Mapbox.Utils;
 
 namespace PolSl.UrbanHealthPath.PathData
 {
+    /// <summary>
+    /// Struct for coordinates represented by X and Y.
+    /// </summary>
     public readonly struct Coordinates
     {
         public double X { get; }

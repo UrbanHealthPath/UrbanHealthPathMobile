@@ -1,5 +1,8 @@
 ﻿namespace PolSl.UrbanHealthPath.PathData
 {
+    /// <summary>
+    /// Exercise level that displays a historical fact.
+    /// </summary>
     public class HistoricalFactExerciseLevel : TextExerciseLevel
     {
         public string Fact => Description;

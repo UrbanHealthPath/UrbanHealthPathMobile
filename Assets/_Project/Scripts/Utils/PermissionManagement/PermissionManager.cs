@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.Utils.PermissionManagement
 {
+    /// <summary>
+    /// Implementation of permission manager that uses coroutines for checking requests results.
+    /// </summary>
     public class PermissionManager : IPermissionManager
     {
         private readonly IPermissionAdapter _permissionAdapter;

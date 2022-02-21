@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace PolSl.UrbanHealthPath.PathData.Progress
 {
+    /// <summary>
+    /// Class representing progress of exercises of a station.
+    /// </summary>
     public class StationProgress
     {
         public event Action<Station, Exercise> ExerciseCompleted;

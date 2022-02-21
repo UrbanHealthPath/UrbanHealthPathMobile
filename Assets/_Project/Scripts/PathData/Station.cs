@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace PolSl.UrbanHealthPath.PathData
 {
+    /// <summary>
+    /// Class that holds information about a station - waypoint that user can interact with.
+    /// </summary>
     public class Station : Waypoint
     {
         public string DisplayedName { get; }

@@ -4,6 +4,9 @@ using PolSl.UrbanHealthPath.PathData.DataLoaders;
 
 namespace PolSl.UrbanHealthPath.PathData
 {
+    /// <summary>
+    /// Class that sets up bindings and contains all path-related data.
+    /// </summary>
     public class ApplicationData : IApplicationData
     {
         public IList<MediaFile> MediaFiles { get; }

@@ -1,5 +1,8 @@
 ﻿namespace PolSl.UrbanHealthPath.PathData.DataLoaders
 {
+    /// <summary>
+    /// Interface containing methods for creating all loaders.
+    /// </summary>
     public interface ILoadersFactory
     {
         IMediaFilesLoader CreateMediaFilesLoader();

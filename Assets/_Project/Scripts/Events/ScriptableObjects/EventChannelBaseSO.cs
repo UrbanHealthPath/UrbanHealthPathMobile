@@ -2,7 +2,7 @@
 namespace PolSl.UrbanHealthPath.Events.ScriptableObjects
 {
     /// <summary>
-    /// A class that represents a base EventChannel scriptable object.
+    /// Base class of event channels implemented as ScriptableObjects.
     /// </summary>
     public class EventChannelBaseSO: ScriptableObject
     {

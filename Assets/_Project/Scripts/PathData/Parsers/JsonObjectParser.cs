@@ -6,6 +6,10 @@ using Newtonsoft.Json.Linq;
 
 namespace PolSl.UrbanHealthPath
 {
+    /// <summary>
+    /// Base class of parsers of JObjects.
+    /// </summary>
+    /// <typeparam name="T">Output type.</typeparam>
     public abstract class JsonObjectParser<T> : IParser<JObject, T>
     {
         public virtual T Parse(JObject parsedValue)

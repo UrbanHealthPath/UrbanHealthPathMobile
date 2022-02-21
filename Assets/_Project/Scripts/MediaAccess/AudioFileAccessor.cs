@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.MediaAccess
 {
+    /// <summary>
+    /// Class responsible for accessing audio file as Unity's AudioClip.
+    /// </summary>
     public class AudioFileAccessor : MediaFileAccessor<AudioClip>
     {
         public AudioFileAccessor(MediaFile mediaFile) : base(mediaFile, new []{MediaFileType.Audio})

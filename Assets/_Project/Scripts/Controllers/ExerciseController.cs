@@ -13,6 +13,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
+    /// <summary>
+    /// Controller responsible for showing appropriate popup for given exercise.
+    /// </summary>
     public class ExerciseController : BaseController
     {
         private readonly CoroutineManager _coroutineManager;

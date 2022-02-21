@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.Utils.PermissionManagement
 {
+    /// <summary>
+    /// Permission adapter for Android device.
+    /// </summary>
     public class AndroidPermissionAdapter : IPermissionAdapter
     {
         private readonly Dictionary<Permission, string> _permissionNames;

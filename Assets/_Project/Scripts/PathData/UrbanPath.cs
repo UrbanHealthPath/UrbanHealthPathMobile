@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace PolSl.UrbanHealthPath.PathData
 {
+    /// <summary>
+    /// Class that holds details of an urban path.
+    /// </summary>
     public class UrbanPath
     {
         public string PathId { get; }

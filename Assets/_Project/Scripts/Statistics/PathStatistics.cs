@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.Statistics
 {
+    /// <summary>
+    /// Class that holds statistics for a finished path.
+    /// </summary>
     public class PathStatistics
     {
         public string PathId { get; }

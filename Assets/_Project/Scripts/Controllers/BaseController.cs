@@ -9,6 +9,9 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
+    /// <summary>
+    /// Base class for all controllers that make use of View and Popup Managers.
+    /// </summary>
     public abstract class BaseController
     {
         protected ViewManager ViewManager { get; }

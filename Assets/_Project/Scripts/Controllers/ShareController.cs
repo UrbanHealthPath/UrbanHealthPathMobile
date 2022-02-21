@@ -4,6 +4,9 @@ using VoxelBusters.EssentialKit;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
+    /// <summary>
+    /// Controller responsible for sharing messages via 3rd party apps.
+    /// </summary>
     public class ShareController
     {
         public event Action<string, SocialShareComposerResultCode> WhatsappShared;

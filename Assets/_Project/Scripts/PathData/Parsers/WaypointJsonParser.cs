@@ -6,6 +6,9 @@ using PolSl.UrbanHealthPath.PathData;
 
 namespace PolSl.UrbanHealthPath
 {
+    /// <summary>
+    /// Class that is able to parse JObject into Waypoint.
+    /// </summary>
     public class WaypointJsonParser : ValidatedJsonObjectParser<Waypoint>
     {
         private const string TYPE_KEY = "type";

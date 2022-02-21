@@ -17,6 +17,9 @@ using UnityEngine.Serialization;
 
 namespace PolSl.UrbanHealthPath.SceneInitializer
 {
+    /// <summary>
+    /// Main scene's entry point that creates all required objects and injects them.
+    /// </summary>
     public class SceneInitializer : MonoBehaviour
     {
         [SerializeField] private string _pathDataDirectory;

@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.Utils.PersistentValue
 {
+    /// <summary>
+    /// Implementation of IPersistentValue that uses Unity's PlayerPrefs system.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class PrefsValue<T> : IPersistentValue<T>
     {
         private readonly string _prefsKey;

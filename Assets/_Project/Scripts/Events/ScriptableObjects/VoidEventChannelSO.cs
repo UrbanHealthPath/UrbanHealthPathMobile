@@ -4,7 +4,7 @@ using UnityEngine.Events;
 namespace PolSl.UrbanHealthPath.Events.ScriptableObjects
 {
     /// <summary>
-    /// A class that represents a Vector3EventChannelSO scriptable object. It invokes an event without params.
+    /// Channel for events with no arguments.
     /// </summary>
     [CreateAssetMenu(menuName = "UrbanHealthPath/Events/Void Event Channel")]
     public class VoidEventChannelSO : EventChannelBaseSO
