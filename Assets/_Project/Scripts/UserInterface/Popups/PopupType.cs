@@ -14,7 +14,7 @@
         QuizWithImages,
         WithTextAndAudio,
         WithTextAndVerticalVideo,
-        QuizExplanationPopup
+        QuizExplanationPopup,
         TestPartialSummary
     }
 }
