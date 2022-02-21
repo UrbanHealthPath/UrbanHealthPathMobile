@@ -118,6 +118,7 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private void RepeatButtonClicked()
         {
+            ResetTimer();
             SetTimerButtonStartState();
             _currentTestButtonGroup.NextButton.SetInteractable(false);
             _nextButtonState = false;
@@ -160,10 +161,9 @@ namespace PolSl.UrbanHealthPath.Controllers
                 
                 Exercise currentExercise = GetCurrentExercise();
                 _exerciseEnding.Invoke(currentExercise);
-                
-                SetTimerButtonStartState();
-                _coroutineManager.BeginCoroutine(CountTime());
-                
+                ResetTimer();
+                SetTimerButtonStopState();
+
                 //@todo close exercise popup
                 //@todo open TestPartialSummaryPopup if current exercise is motorical else open historical_fact exercise
             }
@@ -173,11 +173,8 @@ namespace PolSl.UrbanHealthPath.Controllers
                 _currentTestButtonGroup.TimerButton.SetInteractable(true);
 
                 Exercise currentExercise = GetCurrentExercise();
-                _currentTestProgress.AddNewSummary(new TestExerciseSummary(currentExercise.ExerciseId, (int) _timer, 0,
-                    0, 0));
-
-                ResetTimer();
-                SetTimerButtonStopState();
+                _currentTestProgress.AddNewSummary(new TestExerciseSummary(currentExercise.ExerciseId, (int) _timer));
+                SetTimerButtonStartState();
                 _coroutineManager.StopCoroutine(CountTime());
 
                 //@todo add new summary to testProgress if the prev exercise wasn't a historical_fact
@@ -243,7 +240,7 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private void SetTimerButtonStartState()
         {
-            _currentTestButtonGroup.TimerButton.SetButtonText("Rozpocznij ćwiczenie", Vector4.zero);
+            _currentTestButtonGroup.TimerButton.SetButtonText("Włącz\nstoper", Vector4.zero);
             _startStopState = false;
             _runTimer = false;
         }
@@ -262,6 +259,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         private void ResetTimer()
         {
             _timer = 0f;
+            TimeUpdatedEvent.Invoke(_timer);
             _startingTime = Time.time;
             TimeUpdatedEvent.Invoke(_timer);
         }

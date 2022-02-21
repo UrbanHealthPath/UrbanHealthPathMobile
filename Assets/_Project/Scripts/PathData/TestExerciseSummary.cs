@@ -9,18 +9,11 @@ namespace PolSl.UrbanHealthPath.TestData
     {
         public string ExerciseId { get; }
         public int ExerciseTimeInSeconds { get; }
-        public int Reps { get; }
-        public BottleVolume BottleUsed { get; }
-        public MovementCapacity MovementCapacity { get; }
 
-        public TestExerciseSummary(string exerciseId, int exerciseTimeInSeconds, int reps, BottleVolume bottleUsed,
-            MovementCapacity movementCapacity)
+        public TestExerciseSummary(string exerciseId, int exerciseTimeInSeconds)
         {
             ExerciseId = exerciseId;
             ExerciseTimeInSeconds = exerciseTimeInSeconds;
-            Reps = reps;
-            BottleUsed = bottleUsed;
-            MovementCapacity = movementCapacity;
         }
     }
 }
