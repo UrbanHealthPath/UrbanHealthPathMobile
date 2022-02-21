@@ -129,6 +129,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 _currentTestButtonGroup.NextButton.SetInteractable(true);
                 _currentTestButtonGroup.RepeatButton.SetInteractable(true);
+                _exerciseStarting.Invoke(GetCurrentExercise());
                 SetTimerButtonStopState();
                 _startingTime = Time.time;
                 _coroutineManager.StartCoroutine(CountTime());
@@ -138,7 +139,6 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 SetTimerButtonStartState();
                 _coroutineManager.StopCoroutine(CountTime());
-                ResetTimer();
             }
         }
 
@@ -146,15 +146,24 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             if (!_nextButtonState)
             {
-                _currentTestButtonGroup.NextButton.SetButtonText("Następne ćwiczenie", Vector4.zero);
+                if (_currentTestProgress.GetFinishedExercisesCount() != _currentTest.Exercises.Count-1)
+                {
+                    _currentTestButtonGroup.NextButton.SetButtonText("Następne ćwiczenie", Vector4.zero);
+                }
+                else
+                {
+                    _currentTestButtonGroup.NextButton.SetButtonText("Zakończ\ntest", Vector4.zero);
+                }
+
                 _currentTestButtonGroup.TimerButton.SetInteractable(false);
                 _currentTestButtonGroup.RepeatButton.SetInteractable(false);
-                SetTimerButtonStopState();
-                _coroutineManager.StopCoroutine(CountTime());
-
+                
                 Exercise currentExercise = GetCurrentExercise();
                 _exerciseEnding.Invoke(currentExercise);
-
+                
+                SetTimerButtonStartState();
+                _coroutineManager.BeginCoroutine(CountTime());
+                
                 //@todo close exercise popup
                 //@todo open TestPartialSummaryPopup if current exercise is motorical else open historical_fact exercise
             }
@@ -168,8 +177,8 @@ namespace PolSl.UrbanHealthPath.Controllers
                     0, 0));
 
                 ResetTimer();
-                SetTimerButtonStartState();
-                _coroutineManager.BeginCoroutine(CountTime());
+                SetTimerButtonStopState();
+                _coroutineManager.StopCoroutine(CountTime());
 
                 //@todo add new summary to testProgress if the prev exercise wasn't a historical_fact
                 //@todo open next exercise popup
