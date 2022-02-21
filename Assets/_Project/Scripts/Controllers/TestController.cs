@@ -17,6 +17,9 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
+    /// <summary>
+    /// Controller responsible for test exercises and their popups.
+    /// </summary>
     public class TestController : BaseController
     {
         private readonly CoroutineManager _coroutineManager;

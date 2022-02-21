@@ -9,6 +9,9 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
+    /// <summary>
+    /// Controller responsible for the Profile View actions.
+    /// </summary>
     public class ProfileController : BaseController
     {
         private readonly UnityAction _testButtonClicked;
