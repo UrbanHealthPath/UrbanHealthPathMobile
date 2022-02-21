@@ -181,8 +181,8 @@ namespace PolSl.UrbanHealthPath.Controllers
                     IPopupable popupableView = ViewManager.CurrentView.GetComponent<IPopupable>();
                     PopupManager.OpenPopup(PopupType.WithTextAndImage, new PopupWithTextAndImageInitializationParameters(
                         "",
-                        "Gratulacje! To ćwiczenie zajęło ci " + TimeSpan.FromSeconds(_timer).ToString(@"hh\:mm\:ss") + 
-                        ". Następnym razem postaraj się jeszcze bardziej!",
+                        "Gratulacje! To ćwiczenie zajęło Ci " + TimeSpan.FromSeconds(_timer).ToString(@"hh\:mm\:ss") + 
+                        ". Świetna robota!",
                         null,
                         new PopupPayload(popupableView.PopupArea)));
                     _nextButtonState = !_nextButtonState;
