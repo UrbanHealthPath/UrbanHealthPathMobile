@@ -13,6 +13,7 @@
         QuizWithTexts,
         QuizWithImages,
         WithTextAndAudio,
-        WithTextAndVerticalVideo
+        WithTextAndVerticalVideo,
+        QuizExplanationPopup
     }
 }

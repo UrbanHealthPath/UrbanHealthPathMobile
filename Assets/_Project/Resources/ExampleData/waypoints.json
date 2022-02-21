@@ -15,7 +15,8 @@
       "gliwice.neptun.autor",
       "gliwice.neptun.material",
       "gliwice.neptun.delfin",
-      "gliwice.neptun.game"
+      "gliwice.neptun.game",
+      "gliwice.neptun.game_explain"
     ],
     "displayed_name": "Rynek Fontanna Neptuna",
     "navigation_audio": "",
@@ -100,7 +101,8 @@
       "gliwice.podcienie.3",
       "gliwice.podcienie.intro",
       "gliwice.podcienie.boniowanie",
-      "gliwice.podcienie.game"
+      "gliwice.podcienie.game",
+      "gliwice.podcienie.game_explain"
     ],
     "displayed_name": "Rynek Galeria sztuki",
     "navigation_audio": "",

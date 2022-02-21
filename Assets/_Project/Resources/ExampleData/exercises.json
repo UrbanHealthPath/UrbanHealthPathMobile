@@ -63,6 +63,31 @@
     ]
   },
   {
+    "exercise_id": "gliwice.neptun.game_explain",
+    "displayed_name": "Neptun - Gra Miejska",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "image_selection_explanation",
+        "images": [
+          "image.game.gliwice.Gra_Miejska_Zdjecie_1_1.Fontanna_Neptuna",
+          "image.game.gliwice.Gra_Miejska_Zdjecie_2_1.Fontanna_Neptuna",
+          "image.game.gliwice.Gra_Miejska_Zdjecie_3_1.Fontanna_Neptuna",
+          "image.game.gliwice.Gra_Miejska_Zdjecie_4_1.Fontanna_Neptuna"
+        ],
+        "explanations": [
+          "Pomnik w Gliwicach.",
+          "Pomnik w Gdańsku.",
+          "Pomnik w Poznaniu.",
+          "Pomnik w Bolonii."
+        ]
+      }
+    ]
+  },
+  {
     "exercise_id": "gliwice.neptun.wykonanie",
     "displayed_name": "Neptun - Wykonanie",
     "category": "Game",
@@ -791,6 +816,31 @@
           "image.game.Gra_miejska_zdjęcieD_5.Galeria_sztuki"
         ],
         "correct_answers": [0]
+      }
+    ]
+  },
+  {
+    "exercise_id": "gliwice.podcienie.game_explain",
+    "displayed_name": "Galeria - Gra Miejska",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "image_selection_explanation",
+        "images": [
+          "image.game.Gra_miejska_zdjęcieA_5.Galeria_sztuki",
+          "image.game.Gra_miejska_zdjęcieB_5.Galeria_sztuki",
+          "image.game.Gra_miejska_zdjęcieC_5.Galeria_sztuki",
+          "image.game.Gra_miejska_zdjęcieD_5.Galeria_sztuki"
+        ],
+        "explanations": [
+          "Zdjęcie boniowania.",
+          "Zdjęcie cegły licowej.",
+          "Zdjęcie mozaiki.",
+          "Zdjęcie kruszonego szkła."
+        ]
       }
     ]
   },
