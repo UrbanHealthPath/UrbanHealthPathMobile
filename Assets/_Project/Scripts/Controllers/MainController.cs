@@ -116,10 +116,11 @@ namespace PolSl.UrbanHealthPath.Controllers
                 _permissionManager, _finishedPathStatisticsProvider, _pathStatisticsLoggerFactory);
             _stationController = new StationController(ViewManager, PopupManager, _coroutineManager, _settings);
             _exerciseController = new ExerciseController(ViewManager, PopupManager, _coroutineManager);
-            _testController = new TestController(ViewManager, PopupManager, _coroutineManager, ReturnToMenu,
-                _exerciseController.ShowPopupForExercise, exercise => PopupManager.CloseCurrentPopup());
             _profileController = new ProfileController(ViewManager, PopupManager,
                 () => _testController.ShowTestIntroduction(_applicationData.Tests[0]));
+            _testController = new TestController(ViewManager, PopupManager, _coroutineManager, ReturnToMenu,
+                _profileController.ShowProfile, _exerciseController.ShowPopupForExercise,
+                exercise => PopupManager.CloseCurrentPopup());
             _shareController = new ShareController();
         }
 
