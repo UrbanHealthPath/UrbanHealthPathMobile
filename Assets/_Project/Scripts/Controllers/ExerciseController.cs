@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using PolSl.UrbanHealthPath.MediaAccess;
 using PolSl.UrbanHealthPath.PathData;
 using PolSl.UrbanHealthPath.UserInterface.Components;
@@ -29,24 +27,24 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         public void ShowPopupForExercise(Exercise exercise)
         {
-            _coroutineManager.StartCoroutine(CreatePopupForExercise(exercise));
+            _coroutineManager.StartCoroutine(CreatePopupForExerciseLevel(exercise.DisplayedName, exercise.Levels[0]));
         }
 
-        private IEnumerator CreatePopupForExercise(Exercise exercise)
+        private IEnumerator CreatePopupForExerciseLevel(string exerciseName, ExerciseLevel exerciseLevel)
         {
             yield return new WaitForEndOfFrame();
             IPopupable popupableView = ViewManager.CurrentView.GetComponent<IPopupable>();
 
             ClearPopup();
 
-            switch (exercise.Levels[0])
+            switch (exerciseLevel)
             {
                 case VideoExerciseLevel videoExerciseLevel:
-                    OpenVideoExercisePopup(exercise.DisplayedName, new PopupPayload(popupableView.PopupArea),
+                    OpenVideoExercisePopup(exerciseName, new PopupPayload(popupableView.PopupArea),
                         videoExerciseLevel);
                     break;
                 case ImageExerciseLevel imageExerciseLevel:
-                    OpenImageExerciseLevelPopup(exercise.DisplayedName, new PopupPayload(popupableView.PopupArea),
+                    OpenImageExerciseLevelPopup(exerciseName, new PopupPayload(popupableView.PopupArea),
                         imageExerciseLevel);
                     break;
                 case ImageSelectionExerciseLevel imageSelectionExerciseLevel:
@@ -62,7 +60,7 @@ namespace PolSl.UrbanHealthPath.Controllers
                         answerSelectionExerciseLevel);
                     break;
                 case TextExerciseLevel textExerciseLevel:
-                    OpenTextExerciseLevelPopup(exercise.DisplayedName, new PopupPayload(popupableView.PopupArea), textExerciseLevel);
+                    OpenTextExerciseLevelPopup(exerciseName, new PopupPayload(popupableView.PopupArea), textExerciseLevel);
                     break;
                 default:
                     break;
