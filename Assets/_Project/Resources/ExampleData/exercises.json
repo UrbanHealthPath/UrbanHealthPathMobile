@@ -1516,7 +1516,7 @@
   {
     "exercise_id": "gliwice.test.1",
     "displayed_name" : "Przysiady przy oparciu krzesła/stołu itp.",
-    "category": "Test",
+    "category": "motorical",
     "subcategory": "legs",
     "levels": [
       {
@@ -1531,7 +1531,7 @@
   {
     "exercise_id": "gliwice.test.2",
     "displayed_name" : "Półprzysiady z wyprostowanymi rękami.",
-    "category": "Test",
+    "category": "motorical",
     "subcategory": "legs",
     "levels": [
       {
@@ -1546,7 +1546,7 @@
   {
     "exercise_id": "gliwice.test.3",
     "displayed_name" : "Unoszenie butelki ponad głowę.",
-    "category": "Test",
+    "category": "motorical",
     "subcategory": "legs",
     "levels": [
       {
@@ -1561,7 +1561,7 @@
   {
     "exercise_id": "gliwice.test.4",
     "displayed_name" : "Naprzemienne krążenia ramion.",
-    "category": "Test",
+    "category": "motorical",
     "subcategory": "legs",
     "levels": [
       {
@@ -1576,7 +1576,7 @@
   {
     "exercise_id": "gliwice.test.5",
     "displayed_name" : "Przekładanie kija bez zginania ramion w łokciach.",
-    "category": "Test",
+    "category": "motorical",
     "subcategory": "legs",
     "levels": [
       {
@@ -1585,6 +1585,34 @@
         "type": "video",
         "description": "Przyjmij prawidłową pozycję. Możesz wykorzystać miotłę lub mop. Oddychaj spokojnie i miarowo. Jeśli nie jesteś w stanie przenieść kija całkowicie za siebie, nie przejmuj się. Zrób ćwiczenie do takiego momentu, w którym możesz. Wykonując ćwiczenie regularnie, zobaczysz, jak polepsza się Twoja ruchomość.",
         "video_file": "video.test.test_5"
+      }
+    ]
+  },
+  {
+    "exercise_id": "test.trudnosc",
+    "displayed_name": "Informacja",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Jeśli jakieś ćwiczenie sprawia Ci trudność, jest to informacja, że należy wzmocnić mięśnie i popracować nad ruchomością lub/i koordynacją. Możesz to zrobić korzystając z miejskiej ścieżki zdrowia. Regularna aktywność fizyczna przynosi najlepsze efekty."
+      }
+    ]
+  },
+  {
+    "exercise_id": "test.bol",
+    "displayed_name": "Informacja",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Jeśli w trakcie wykonywania ćwiczeń odczuwasz dolegliwości bólowe skonsultuj się z fizjoterapeutą, który wykona szczegółowe testy diagnostyczne i wskaże możliwości wyeliminowania bólu, jak również poprawy samopoczucia."
       }
     ]
   }

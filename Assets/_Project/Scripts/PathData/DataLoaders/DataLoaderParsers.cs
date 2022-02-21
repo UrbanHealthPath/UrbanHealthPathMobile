@@ -10,13 +10,15 @@
         public IParser<T, Exercise> ExerciseParser { get; }
         public IParser<T, Waypoint> WaypointParser { get; }
         public IParser<T, UrbanPath> UrbanPathParser { get; }
+        public IParser<T, Test> TestParser { get; }
 
-        public DataLoaderParsers(IParser<T, MediaFile> mediaFileParser, IParser<T, Exercise> exerciseParser, IParser<T, Waypoint> waypointParser, IParser<T, UrbanPath> urbanPathParser)
+        public DataLoaderParsers(IParser<T, MediaFile> mediaFileParser, IParser<T, Exercise> exerciseParser, IParser<T, Waypoint> waypointParser, IParser<T, UrbanPath> urbanPathParser, IParser<T, Test> testParser)
         {
             MediaFileParser = mediaFileParser;
             ExerciseParser = exerciseParser;
             WaypointParser = waypointParser;
             UrbanPathParser = urbanPathParser;
+            TestParser = testParser;
         }
     }
 }

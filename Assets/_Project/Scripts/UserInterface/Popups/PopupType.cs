@@ -15,5 +15,6 @@
         WithTextAndAudio,
         WithTextAndVerticalVideo,
         QuizExplanationPopup
+        TestPartialSummary
     }
 }

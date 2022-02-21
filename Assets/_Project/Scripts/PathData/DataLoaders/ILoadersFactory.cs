@@ -9,5 +9,6 @@
         IExercisesLoader CreateExercisesLoader();
         IWaypointsLoader CreateWaypointsLoader();
         IUrbanPathsLoader CreateUrbanPathsLoader();
+        ITestLoader CreateTestLoader();
     }
 }

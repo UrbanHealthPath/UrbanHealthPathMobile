@@ -13,9 +13,10 @@ namespace PolSl.UrbanHealthPath.PathData.DataLoaders
             JsonObjectParser<Exercise> exercisesParser = CreateExercisesParser();
             JsonObjectParser<Waypoint> waypointsParser = CreateWaypointsParser();
             JsonObjectParser<UrbanPath> urbanPathsParser = new UrbanPathJsonParser();
+            JsonObjectParser<Test> testParser = new TestJsonParser();
 
             return new DataLoaderParsers<JObject>(mediaFilesParser, exercisesParser,
-                waypointsParser, urbanPathsParser);
+                waypointsParser, urbanPathsParser, testParser);
         }
 
         private JsonObjectParser<Exercise> CreateExercisesParser()

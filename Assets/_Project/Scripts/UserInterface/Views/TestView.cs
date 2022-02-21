@@ -1,3 +1,4 @@
+using System;
 using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
 using PolSl.UrbanHealthPath.UserInterface.Interfaces;
@@ -16,10 +17,11 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
     {
         public RectTransform PopupArea => _popupArea;
         
+        public UnityAction<float> TimeUpdated { get; set; }
+
         [SerializeField] private TestButtonGroup _testButtonGroup;
         [SerializeField] private Button _mainMenuButton;
         [SerializeField] private Button _returnButton;
-        [SerializeField] private Button _startTestButton;
         [SerializeField] private HeaderPanel _headerPanel;
         [SerializeField] private RectTransform _popupArea;
         [SerializeField] private TextMeshProUGUI _timerText;
@@ -35,6 +37,8 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
                 _mainMenuButton.onClick.AddListener(() => init.MainMenuEvent?.Invoke());
                 _returnButton.onClick.AddListener(() => init.ReturnEvent?.Invoke());
                 _headerPanel.Initialize(init.HeaderText);
+                //init.TimeUpdatedEvent += UpdateTimerText;
+                TimeUpdated += UpdateTimerText;
             }
         }
         
@@ -42,7 +46,12 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
         {
             _mainMenuButton.onClick.RemoveAllListeners();
             _returnButton.onClick.RemoveAllListeners();
-            _startTestButton.onClick.RemoveAllListeners();
+        }
+
+        private void UpdateTimerText(float time)
+        {
+            TimeSpan duration = TimeSpan.FromSeconds(time);
+            _timerText.text = duration.ToString(@"hh\:mm\:ss");
         }
     }
 }

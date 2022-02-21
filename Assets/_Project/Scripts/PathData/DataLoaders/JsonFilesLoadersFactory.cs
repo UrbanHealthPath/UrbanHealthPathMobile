@@ -41,6 +41,12 @@ namespace PolSl.UrbanHealthPath.PathData.DataLoaders
             return new JsonUrbanPathsLoader(_fileReader.ReadJsonFromFile(GetFullFilePath("urban_paths")),
                 _parsers.UrbanPathParser);
         }
+
+        public ITestLoader CreateTestLoader()
+        {
+            return new JsonTestLoader(_fileReader.ReadJsonFromFile(GetFullFilePath("tests")),
+                _parsers.TestParser);
+        }
         
         private string GetFullFilePath(string fileName)
         {

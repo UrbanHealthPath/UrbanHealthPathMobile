@@ -13,19 +13,22 @@ namespace PolSl.UrbanHealthPath.PathData
         public IList<Exercise> Exercises { get; }
         public IList<Waypoint> Waypoints { get; }
         public IList<UrbanPath> UrbanPaths { get; }
+        public IList<Test> Tests { get; }
 
         public ApplicationData(IList<MediaFile> mediaFiles, IList<Exercise> exercises, IList<Waypoint> waypoints,
-            IList<UrbanPath> urbanPaths)
+            IList<UrbanPath> urbanPaths, IList<Test> tests)
         {
             MediaFiles = mediaFiles;
             Exercises = exercises;
             Waypoints = waypoints;
             UrbanPaths = urbanPaths;
+            Tests = tests;
         }
 
         public void SetLateBindings()
         {
             SetStationsLateBindings();
+            SetTestsLateBindings();
             SetUrbanPathsLateBindings();
             SetExercisesLateBindings();
         }
@@ -46,6 +49,17 @@ namespace PolSl.UrbanHealthPath.PathData
                 station.Image.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == station.Image.Key));
                 station.IntroductionAudio.InitializeValue(MediaFiles.FirstOrDefault(x =>
                     x.MediaId == station.IntroductionAudio.Key));
+            }
+        }
+
+        private void SetTestsLateBindings()
+        {
+            foreach (Test test in Tests)
+            {
+                foreach (LateBoundValue<Exercise> exercise in test.Exercises)
+                {
+                    exercise.InitializeValue(Exercises.FirstOrDefault(x => x.ExerciseId == exercise.Key));
+                }
             }
         }
 
