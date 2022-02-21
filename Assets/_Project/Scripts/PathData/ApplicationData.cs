@@ -95,6 +95,17 @@ namespace PolSl.UrbanHealthPath.PathData
                         image.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == image.Key));
                     }
                 }
+                
+                List<ImageSelectionExplanationExerciseLevel> imageSelectionExplanationExerciseLevels =
+                    exercise.Levels.OfType<ImageSelectionExplanationExerciseLevel>().ToList();
+
+                foreach (ImageSelectionExplanationExerciseLevel imageSelectionExplanationExerciseLevel in imageSelectionExplanationExerciseLevels)
+                {
+                    foreach (LateBoundValue<MediaFile> image in imageSelectionExplanationExerciseLevel.Images)
+                    {
+                        image.InitializeValue(MediaFiles.FirstOrDefault(x => x.MediaId == image.Key));
+                    }
+                }
             }
         }
     }

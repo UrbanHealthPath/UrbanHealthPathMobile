@@ -8,28 +8,14 @@ namespace PolSl.UrbanHealthPath.UserInterface.Initializers
     public class QuizExplanationPopupInitializationParameters : IPopupInitializationParameters
     {
         public PopupPayload Payload { get;  }
-        public string FirstExplanation { get; }
-        public string SecondExplanation { get; }
-        public string ThirdExplanation { get; }
-        public string FourthExplanation { get; }
-        public Texture FirstTexture { get; }
-        public Texture SecondTexture { get; }
-        public Texture ThirdTexture { get; }
-        public Texture FourthTexture { get; }
+        public string[] Explanations { get; }
+        public Texture[] Images { get; }
 
-        public QuizExplanationPopupInitializationParameters(PopupPayload payload, string firstExplanation,
-            string secondExplanation, string thirdExplanation, string fourthExplanation, Texture firstTexture,
-            Texture secondTexture, Texture thirdTexture, Texture fourthTexture)
+        public QuizExplanationPopupInitializationParameters(PopupPayload payload, string[] explanations, Texture[] images)
         {
             Payload = payload;
-            FirstExplanation = firstExplanation;
-            SecondExplanation = secondExplanation;
-            ThirdExplanation = thirdExplanation;
-            FourthExplanation = fourthExplanation;
-            FirstTexture = firstTexture;
-            SecondTexture = secondTexture;
-            ThirdTexture = thirdTexture;
-            FourthTexture = fourthTexture;
+            Explanations = explanations;
+            Images = images;
         }
     }
 }

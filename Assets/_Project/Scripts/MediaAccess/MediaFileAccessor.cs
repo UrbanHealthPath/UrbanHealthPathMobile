@@ -14,7 +14,7 @@ namespace PolSl.UrbanHealthPath.MediaAccess
 
         protected MediaFileAccessor(MediaFile mediaFile, MediaFileType[] acceptedMediaFileTypes)
         {
-            _mediaFile = mediaFile;
+            _mediaFile = mediaFile ?? throw new ArgumentException("Attempt to access null media file!", nameof(mediaFile));
             _acceptedMediaFileTypes = acceptedMediaFileTypes;
 
             if (!_acceptedMediaFileTypes.Contains(mediaFile.Type))

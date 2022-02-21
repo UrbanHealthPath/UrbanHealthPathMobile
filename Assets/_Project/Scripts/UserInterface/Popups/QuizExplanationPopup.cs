@@ -25,14 +25,15 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
             if (initializationParameters is QuizExplanationPopupInitializationParameters init)
             {
                 InitSizeAndPosition(init.Payload);
-                _textOne.text = init.FirstExplanation;
-                _textTwo.text = init.SecondExplanation;
-                _textThree.text = init.ThirdExplanation;
-                _textFour.text = init.FourthExplanation;
-                _imageOne.InitializeImage(init.FirstTexture);
-                _imageTwo.InitializeImage(init.SecondTexture);
-                _imageThree.InitializeImage(init.ThirdTexture);
-                _imageFour.InitializeImage(init.FourthTexture);
+                _textOne.text = init.Explanations[0];
+                _textTwo.text = init.Explanations[1];
+                _textThree.text = init.Explanations[2];
+                _textFour.text = init.Explanations[3];
+                
+                _imageOne.InitializeImage(init.Images[0]);
+                _imageTwo.InitializeImage(init.Images[1]);
+                _imageThree.InitializeImage(init.Images[2]);
+                _imageFour.InitializeImage(init.Images[3]);
             }
         }
 

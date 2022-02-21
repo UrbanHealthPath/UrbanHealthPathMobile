@@ -20,20 +20,8 @@ namespace PolSl.UrbanHealthPath.PathData.DataLoaders
 
         private JsonObjectParser<Exercise> CreateExercisesParser()
         {
-            JsonObjectParser<TextExerciseLevel> textExerciseLevelsParser = new TextExerciseLevelJsonParser();
-            JsonObjectParser<VideoExerciseLevel> videoExerciseLevelParser = new VideoExerciseLevelJsonParser();
-            JsonObjectParser<ImageExerciseLevel> imageExerciseLevelParser = new ImageExerciseLevelJsonParser();
-            JsonObjectParser<ImageSelectionExerciseLevel> imageSelectionExerciseLevelParser =
-                new ImageSelectionExerciseLevelJsonParser();
-            JsonObjectParser<AnswerSelectionExerciseLevel> answerSelectionExerciseLevelParser =
-                new AnswerSelectionExerciseLevelJsonParser();
-            JsonObjectParser<HistoricalFactExerciseLevel> historicalFactExerciseLevelParser =
-                new HistoricalFactExerciseLevelJsonParser();
-
             JsonObjectParser<ExerciseLevel>
-                exerciseLevelsParser = new ExerciseLevelJsonParser(textExerciseLevelsParser, videoExerciseLevelParser,
-                    imageExerciseLevelParser, imageSelectionExerciseLevelParser, answerSelectionExerciseLevelParser,
-                    historicalFactExerciseLevelParser);
+                exerciseLevelsParser = new ExerciseLevelJsonParser(new ExerciseLevelTypesJsonParsersFactory());
 
             return new ExerciseJsonParser(exerciseLevelsParser);
         }
