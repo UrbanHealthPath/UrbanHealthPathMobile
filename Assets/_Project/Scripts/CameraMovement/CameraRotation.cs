@@ -9,6 +9,8 @@ namespace PolSl.UrbanHealthPath.CameraMovement
     [RequireComponent(typeof(UnityEngine.Camera))]
     public class CameraRotation : MonoBehaviour
     {
+        public Quaternion CurrentRotation => _targetRotation;
+        
         [Tooltip("An object that determines camera rotation.")]
         public Transform trackedObject;
 
@@ -40,7 +42,6 @@ namespace PolSl.UrbanHealthPath.CameraMovement
         /// </summary>
         private void RotateCamera()
         {
-            Quaternion zeroAngle = Quaternion.Euler(0f, 180f, 0f);
             float trackedObjectRotation = trackedObject.localRotation.eulerAngles.y;
             float angle = Mathf.DeltaAngle(0.0f, trackedObjectRotation);
 
