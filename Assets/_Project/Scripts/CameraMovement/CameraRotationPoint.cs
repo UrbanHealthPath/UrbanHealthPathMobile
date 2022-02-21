@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.CameraMovement
 {
+    /// <summary>
+    /// Point of rotation for the camera in the Map View.
+    /// </summary>
     public class CameraRotationPoint : MonoBehaviour
     {
         [SerializeField] private Transform _player;

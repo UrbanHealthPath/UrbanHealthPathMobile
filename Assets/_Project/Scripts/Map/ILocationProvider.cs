@@ -4,7 +4,9 @@ using Mapbox.Unity.Location;
 
 namespace PolSl.UrbanHealthPath.Map
 {
-    //Interface which implementations provide location of the player.
+    /// <summary>
+    /// Interface which implementations provide location of the player.
+    /// </summary>
     public interface ILocationProvider
     {
         public Location GetLocation();

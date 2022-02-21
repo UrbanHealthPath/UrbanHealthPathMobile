@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A class that contains initialization parameters for QuizExplanationPopup.
+    /// </summary>
     public class QuizExplanationPopupInitializationParameters : IPopupInitializationParameters
     {
         public PopupPayload Payload { get;  }

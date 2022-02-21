@@ -8,6 +8,11 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
     public class QuizExplanationPopup : MonoBehaviour, IPopup, IInitializablePopup
     {
+        /// <summary>
+        /// A class that represents an explanation to a quiz with images.
+        /// This object can be initialized with QuizExplanationPopupInitializationParameters.
+        /// It is extended by IPopup interface, so it's size and position should be initialized with PopupPayload.
+        /// </summary>
         public RectTransform PopupArea => _popupArea;
 
         [SerializeField] private RectTransform _popupArea;

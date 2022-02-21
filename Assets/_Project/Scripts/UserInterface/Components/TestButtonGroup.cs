@@ -10,6 +10,9 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components
 {
+    /// <summary>
+    /// Group of buttons used in the Test View.
+    /// </summary>
     public class TestButtonGroup : MonoBehaviour
     {
         [SerializeField] private ChangingButton _repeatButton;

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath
 {
+    /// <summary>
+    /// LOG LOG LOG
+    /// </summary>
     public class TestingPrefab : MonoBehaviour
     {
         public void Log()
