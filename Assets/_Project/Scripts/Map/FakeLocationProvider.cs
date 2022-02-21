@@ -7,6 +7,10 @@ using PolSl.UrbanHealthPath.PathData;
 
 namespace PolSl.UrbanHealthPath.Map
 {
+    /// <summary>
+    /// Location Provider which updates the location of the user to one of the Locations stored in the
+    /// _latitudeLongitud list
+    /// </summary>
     public class FakeLocationProvider : ILocationProvider
     {
         private float _userHeading = 0;

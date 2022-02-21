@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.Map
 {
+    /// <summary>
+    /// Updates the location of user.
+    /// </summary>
     public class LocationUpdater : ILocationUpdater
     {
         public event Action<LocationUpdatedArgs> LocationUpdated;

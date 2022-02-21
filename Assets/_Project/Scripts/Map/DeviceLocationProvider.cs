@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.Map
 {
+    /// <summary>
+    /// Location Provider which updates the location pulled from the device's GPS
+    /// </summary>
     public class DeviceLocationProvider : ILocationProvider
     {
         private float _desiredAccuracyInMeters = 1.0f;

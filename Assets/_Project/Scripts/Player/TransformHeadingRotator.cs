@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.Player
 {
+    /// <summary>
+    /// Changes the heading of the player to the one polled from the updated location. 
+    /// </summary>
     public class TransformHeadingRotator : MonoBehaviour
     {
         private ILocationUpdater _locationUpdater;
