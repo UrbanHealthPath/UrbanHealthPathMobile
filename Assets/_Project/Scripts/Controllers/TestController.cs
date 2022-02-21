@@ -8,6 +8,7 @@ using PolSl.UrbanHealthPath.Systems;
 using PolSl.UrbanHealthPath.TestData;
 using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
+using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using PolSl.UrbanHealthPath.UserInterface.Popups;
 using PolSl.UrbanHealthPath.UserInterface.Views;
 using PolSl.UrbanHealthPath.Utils.CoroutineManagement;
@@ -80,6 +81,8 @@ namespace PolSl.UrbanHealthPath.Controllers
             {
                 TimeUpdatedEvent = testView.TimeUpdated;
             }
+            ResetTimer();
+            StartExercise();
         }
 
         private void CleanTestData()
@@ -155,17 +158,28 @@ namespace PolSl.UrbanHealthPath.Controllers
                 {
                     _currentTestButtonGroup.NextButton.SetButtonText("Zakończ\ntest", Vector4.zero);
                 }
-
+                
                 _currentTestButtonGroup.TimerButton.SetInteractable(false);
                 _currentTestButtonGroup.RepeatButton.SetInteractable(false);
                 
                 Exercise currentExercise = GetCurrentExercise();
                 _exerciseEnding.Invoke(currentExercise);
                 SetTimerButtonStopState();
+                _runTimer = false;
+                _coroutineManager.StopCoroutine(CountTime());
+                
+                IPopupable popupableView = ViewManager.CurrentView.GetComponent<IPopupable>();
+                PopupManager.OpenPopup(PopupType.WithTextAndImage, new PopupWithTextAndImageInitializationParameters(
+                    "",
+                    "Gratulacje! To ćwiczenie zajęło ci " + TimeSpan.FromSeconds(_timer).ToString(@"hh\:mm\:ss") + 
+                    ". Następnym razem postaraj się jeszcze bardziej!",
+                    null,
+                    new PopupPayload(popupableView.PopupArea)));
             }
             else
             {
                 _currentTestButtonGroup.NextButton.SetButtonText("Podsumuj ćwiczenie", Vector4.zero);
+                _currentTestButtonGroup.NextButton.SetInteractable(false);
                 _currentTestButtonGroup.TimerButton.SetInteractable(true);
 
                 Exercise currentExercise = GetCurrentExercise();
@@ -221,6 +235,7 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         private void FinishTestAction()
         {
+            _coroutineManager.StopCoroutine(CountTime());
             _backToMainMenu.Invoke();
         }
 
