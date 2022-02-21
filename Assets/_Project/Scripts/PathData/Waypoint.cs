@@ -4,9 +4,6 @@ namespace PolSl.UrbanHealthPath.PathData
 {
     public abstract class Waypoint
     {
-        public event EventHandler Triggering;
-        public event EventHandler Triggered;
-        
         public string WaypointId { get; }
         public Coordinates Coordinates { get; }
         public string ZoneName { get; }
@@ -16,18 +13,6 @@ namespace PolSl.UrbanHealthPath.PathData
             WaypointId = waypointId;
             Coordinates = coordinates;
             ZoneName = zoneName;
-        }
-        
-        public abstract void Trigger();
-
-        protected virtual void OnTriggered()
-        {
-            Triggered?.Invoke(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnTriggering()
-        {
-            Triggering?.Invoke(this, EventArgs.Empty);
         }
     }
 }

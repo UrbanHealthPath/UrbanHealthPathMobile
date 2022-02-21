@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-
-namespace PolSl.UrbanHealthPath.PathData.DataLoaders
+﻿namespace PolSl.UrbanHealthPath.PathData.DataLoaders
 {
     public class DataLoaderParsers<T>
     {

@@ -41,7 +41,7 @@ namespace PolSl.UrbanHealthPath.Navigation
             }
 
             _directions = MapboxAccess.Instance.Directions;
-            // TODO: Investigate why the line below is required.
+            
             _lineMeshModifier.SetProperties(new LineGeometryOptions());
             _lineMeshModifier.Initialize();
             _initialized = true;

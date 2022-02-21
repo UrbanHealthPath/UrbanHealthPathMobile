@@ -6,25 +6,22 @@ namespace PolSl.UrbanHealthPath.Map
 {
     public class AngleSmootherLowPas
     {
-        private int _measurments = 5;
-
-        private CircularBuffer<double> _angles;
-
-        private double _smoothingFactor = 0.5;
-
+        private const double SMOOTHING_FACTOR = 0.5;
         private const double DEG_TO_RAD = Math.PI / 180.0d;
-
         private const double RAD_TO_DEG = 180.0d / Math.PI;
         
+        private readonly int _measurements = 5;
+        private readonly CircularBuffer<double> _angles;
+
         public AngleSmootherLowPas()
         {
-            _angles = new CircularBuffer<double>(_measurments);
+            _angles = new CircularBuffer<double>(_measurements);
         }
 
-        public AngleSmootherLowPas(int measurments)
+        public AngleSmootherLowPas(int measurements)
         {
-            _measurments = measurments;
-            _angles = new CircularBuffer<double>(_measurments);
+            _measurements = measurements;
+            _angles = new CircularBuffer<double>(_measurements);
 
         }
         
@@ -43,8 +40,8 @@ namespace PolSl.UrbanHealthPath.Map
             for (int i = 1; i < angles.Length; i++)
             {
                 double angle = angles[i];
-                lastSin = _smoothingFactor * Math.Sin(angle * DEG_TO_RAD) + (1 - _smoothingFactor) * lastSin;
-                lastCos = _smoothingFactor * Math.Cos(angle * DEG_TO_RAD) + (1 - _smoothingFactor) * lastCos;
+                lastSin = SMOOTHING_FACTOR * Math.Sin(angle * DEG_TO_RAD) + (1 - SMOOTHING_FACTOR) * lastSin;
+                lastCos = SMOOTHING_FACTOR * Math.Cos(angle * DEG_TO_RAD) + (1 - SMOOTHING_FACTOR) * lastCos;
             }
             
             double finalAngle = Math.Round(Math.Atan2(lastSin, lastCos) * RAD_TO_DEG, 2);

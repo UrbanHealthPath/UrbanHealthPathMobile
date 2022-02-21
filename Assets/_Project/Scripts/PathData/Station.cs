@@ -12,11 +12,6 @@ namespace PolSl.UrbanHealthPath.PathData
         public LateBoundValue<MediaFile> Image { get; }
         public LateBoundValue<MediaFile> IntroductionAudio { get; }
 
-        public override void Trigger()
-        {
-            throw new NotImplementedException();
-        }
-
         public Station(string waypointId, Coordinates coordinates, string zoneName, string displayedName,
             IList<LateBoundValue<Exercise>> exercises,
             LateBoundValue<MediaFile> navigationAudio, LateBoundValue<MediaFile> image, LateBoundValue<MediaFile> introductionAudio) : base(waypointId, coordinates, zoneName)

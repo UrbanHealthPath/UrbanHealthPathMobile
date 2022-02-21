@@ -85,8 +85,7 @@ namespace PolSl.UrbanHealthPath.Map
                 Instantiate(_halo, worldPosition + _offset, _halo.rotation);
             _currentStationTransform.SetParent(this.transform);
         }
-
-        //ultimately I think this should just be an event listener of station finished event
+        
         public void MoveStationHalo()
         {
             _currentStationIndex++;

@@ -6,12 +6,6 @@ namespace PolSl.UrbanHealthPath.Map
 {
     public class LocationProviderFactory : ILocationProviderFactory
     {
-        private readonly IPermissionManager _permissionManager;
-
-        public LocationProviderFactory(IPermissionManager permissionManager)
-        {
-            _permissionManager = permissionManager;
-        }
         public ILocationProvider CreateProvider()
         {
             return new DeviceLocationProvider();

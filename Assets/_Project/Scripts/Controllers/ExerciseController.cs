@@ -15,8 +15,6 @@ namespace PolSl.UrbanHealthPath.Controllers
 {
     public class ExerciseController : BaseController
     {
-        public Action<Exercise> ExerciseFinished;
-        
         private readonly CoroutineManager _coroutineManager;
 
         public ExerciseController(ViewManager viewManager, PopupManager popupManager, CoroutineManager coroutineManager)
@@ -122,11 +120,6 @@ namespace PolSl.UrbanHealthPath.Controllers
                 default:
                     break;
             }
-        }
-
-        private void OnExerciseFinished(Exercise exercise)
-        {
-            ExerciseFinished?.Invoke(exercise);
         }
 
         private void ClearPopup()

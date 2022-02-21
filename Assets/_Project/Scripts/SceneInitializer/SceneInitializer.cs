@@ -19,6 +19,8 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 {
     public class SceneInitializer : MonoBehaviour
     {
+        [SerializeField] private string _pathDataDirectory;
+        
         [FormerlySerializedAs("_coroutinesManager")] [SerializeField]
         private CoroutineManager _coroutineManager;
 
@@ -69,9 +71,7 @@ namespace PolSl.UrbanHealthPath.SceneInitializer
 
         private IApplicationData LoadApplicationData()
         {
-            string path = "ExampleData";
-
-            ILoadersFactory loadersFactory = new JsonFilesLoadersFactory(path, new JsonAssetFileReader(),
+            ILoadersFactory loadersFactory = new JsonFilesLoadersFactory(_pathDataDirectory, new JsonAssetFileReader(),
                 new JsonDataLoaderParsersFactory().Create());
             IApplicationDataLoader applicationDataLoader = new ApplicationDataLoader(loadersFactory);
 

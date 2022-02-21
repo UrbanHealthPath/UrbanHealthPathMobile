@@ -105,7 +105,7 @@ namespace PolSl.UrbanHealthPath.Controllers
             _settingsController = new SettingsController(ViewManager, PopupManager, _settings);
             _helpController = new HelpController(ViewManager, PopupManager);
             _pathController = new PathController(ViewManager, PopupManager, _pathProgressManager, ReturnToMenu,
-                new LocationProviderFactory(_permissionManager), _mapHolderPrefab, _coroutineManager,
+                new LocationProviderFactory(), _mapHolderPrefab, _coroutineManager,
                 _permissionManager, _finishedPathStatisticsProvider, _pathStatisticsLoggerFactory);
             _stationController = new StationController(ViewManager, PopupManager, _coroutineManager, _settings);
             _exerciseController = new ExerciseController(ViewManager, PopupManager, _coroutineManager);
