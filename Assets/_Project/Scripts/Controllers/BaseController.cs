@@ -21,8 +21,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             ViewManager = viewManager;
             PopupManager = popupManager;
-
-            //TODO: We should find a place to unsubscribe
+            
             ViewManager.ViewOpened += ViewOpenedHandler;
             PopupManager.PopupOpened += PopupOpenedHandler;
             PopupManager.PopupClosed += PopupClosedHandler;

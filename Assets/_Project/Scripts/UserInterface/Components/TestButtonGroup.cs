@@ -37,34 +37,6 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components
             _unregisterFromTestEvents?.Invoke();
         }
 
-        public void RegisterToTestProgressEvents()
-        {
-            //@todo implement TestProgress
-        }
-
-        public void RegisterToPopupEvents(PopupManager popupManager, ViewManager viewManager)
-        {
-            _unregisterFromPopupAndViewEvents?.Invoke();
-
-            popupManager.PopupClosed += HandlePopupClosed;
-
-            _unregisterFromPopupAndViewEvents = () =>
-            {
-                popupManager.PopupClosed -= HandlePopupClosed;
-                
-            };
-        }
-        
-        private void HandlePopupClosed(PopupType type)
-        {
-            if (type == PopupType.Confirmation)
-            {
-                _nextButton.SetDefaultAppearance();
-                _repeatButton.SetDefaultAppearance();
-                _timerButton.SetDefaultAppearance();
-            }
-        }
-        
         private void RemoveAllListeners()
         {
             _nextButton.Button.onClick.RemoveAllListeners();
