@@ -2,6 +2,10 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath
 {
+    /// <summary>
+    /// Updates the location of camera to the location of the player. It keeps the camera over the player
+    /// by the given offset.
+    /// </summary>
     public class CameraPlayerFollower : MonoBehaviour
     {
         [SerializeField] private Transform _target;

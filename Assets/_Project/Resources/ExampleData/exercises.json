@@ -63,6 +63,31 @@
     ]
   },
   {
+    "exercise_id": "gliwice.neptun.game_explain",
+    "displayed_name": "Neptun - Gra Miejska",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "image_selection_explanation",
+        "images": [
+          "image.game.gliwice.Gra_Miejska_Zdjecie_1_1.Fontanna_Neptuna",
+          "image.game.gliwice.Gra_Miejska_Zdjecie_2_1.Fontanna_Neptuna",
+          "image.game.gliwice.Gra_Miejska_Zdjecie_3_1.Fontanna_Neptuna",
+          "image.game.gliwice.Gra_Miejska_Zdjecie_4_1.Fontanna_Neptuna"
+        ],
+        "explanations": [
+          "Pomnik w Gliwicach.",
+          "Pomnik w Gdańsku.",
+          "Pomnik w Poznaniu.",
+          "Pomnik w Bolonii."
+        ]
+      }
+    ]
+  },
+  {
     "exercise_id": "gliwice.neptun.wykonanie",
     "displayed_name": "Neptun - Wykonanie",
     "category": "Game",
@@ -795,6 +820,31 @@
     ]
   },
   {
+    "exercise_id": "gliwice.podcienie.game_explain",
+    "displayed_name": "Galeria - Gra Miejska",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "image_selection_explanation",
+        "images": [
+          "image.game.Gra_miejska_zdjęcieA_5.Galeria_sztuki",
+          "image.game.Gra_miejska_zdjęcieB_5.Galeria_sztuki",
+          "image.game.Gra_miejska_zdjęcieC_5.Galeria_sztuki",
+          "image.game.Gra_miejska_zdjęcieD_5.Galeria_sztuki"
+        ],
+        "explanations": [
+          "Zdjęcie boniowania.",
+          "Zdjęcie cegły licowej.",
+          "Zdjęcie mozaiki.",
+          "Zdjęcie kruszonego szkła."
+        ]
+      }
+    ]
+  },
+  {
     "exercise_id": "gliwice.synagoga.1",
     "displayed_name": "1",
     "category": "sensorial",
@@ -867,7 +917,7 @@
           "image.game.gliwice.Gra_miejska_zdjęcie3_8.Synagoga",
           "image.game.Gra_miejska_zdjęcieD_5.Galeria_sztuki"
         ],
-        "correct_answers": [0]
+        "correct_answers": [1]
       }
     ]
   },
@@ -1266,7 +1316,7 @@
   },
   {
     "exercise_id": "gliwice.herby.game",
-    "displayed_name": "Neptun - Gra Miejska",
+    "displayed_name": "Herby - Gra Miejska",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -1274,7 +1324,7 @@
         "min_difficulty": 1,
         "max_difficulty": 5,
         "type": "image_selection",
-        "question": "Kamienica nr 8 na rogu ulicy Jana Matejki przykuwa uwagę swoimi dekoracjami. Pomiędzy oknami, w wydzielonych pasach umieszczono płaskorzeźby, które przedstawiają herby. Spośród poniższych fotografii wybierz tę, na której sfotografowano herb znajdujący się na kamienicy.",
+        "question": "Kamienica nr 8 na rogu ulicy Jana Matejki przykuwa uwagę swoimi dekoracjami. Spośród poniższych fotografii wybierz tę, na której sfotografowano herb znajdujący się na kamienicy.",
         "images": [
           "image.game.gliwice.herby.Gra_miejska_Zdjęcie1.Kamienica",
           "image.game.gliwice.herby.Gra_miejska_Zdjęcie2.Kamienica",
@@ -1466,7 +1516,7 @@
   {
     "exercise_id": "gliwice.test.1",
     "displayed_name" : "Przysiady przy oparciu krzesła/stołu itp.",
-    "category": "Test",
+    "category": "motorical",
     "subcategory": "legs",
     "levels": [
       {
@@ -1481,7 +1531,7 @@
   {
     "exercise_id": "gliwice.test.2",
     "displayed_name" : "Półprzysiady z wyprostowanymi rękami.",
-    "category": "Test",
+    "category": "motorical",
     "subcategory": "legs",
     "levels": [
       {
@@ -1496,14 +1546,14 @@
   {
     "exercise_id": "gliwice.test.3",
     "displayed_name" : "Unoszenie butelki ponad głowę.",
-    "category": "Test",
+    "category": "motorical",
     "subcategory": "legs",
     "levels": [
       {
         "min_difficulty": 1,
         "max_difficulty": 5,
         "type": "video",
-        "description": "Wykonuj ćwiczenie przez 0,5 minuty—góra –dół. Najpierw przyjmij prawidłową pozycję. Stopy w lekkim rozkroku na szerokość bioder, barki opuszczone, łopatki zebrane, brzuch i pośladki napięte. Głowa delikatnie cofnięta do tyłu. Dopiero teraz zacznij unoszenie butelki. Wraz z uniesieniem butelki zrób wydech, z opuszczeniem wdech.",
+        "description": "Wykonuj ćwiczenie przez 0,5 minuty-góra-dół. Najpierw przyjmij prawidłową pozycję. Stopy w lekkim rozkroku na szerokość bioder, barki opuszczone, łopatki zebrane, brzuch i pośladki napięte. Głowa delikatnie cofnięta do tyłu. Dopiero teraz zacznij unoszenie butelki. Wraz z uniesieniem butelki zrób wydech, z opuszczeniem wdech.",
         "video_file": "video.test.test_3"
       }
     ]
@@ -1511,7 +1561,7 @@
   {
     "exercise_id": "gliwice.test.4",
     "displayed_name" : "Naprzemienne krążenia ramion.",
-    "category": "Test",
+    "category": "motorical",
     "subcategory": "legs",
     "levels": [
       {
@@ -1526,7 +1576,7 @@
   {
     "exercise_id": "gliwice.test.5",
     "displayed_name" : "Przekładanie kija bez zginania ramion w łokciach.",
-    "category": "Test",
+    "category": "motorical",
     "subcategory": "legs",
     "levels": [
       {
@@ -1535,6 +1585,34 @@
         "type": "video",
         "description": "Przyjmij prawidłową pozycję. Możesz wykorzystać miotłę lub mop. Oddychaj spokojnie i miarowo. Jeśli nie jesteś w stanie przenieść kija całkowicie za siebie, nie przejmuj się. Zrób ćwiczenie do takiego momentu, w którym możesz. Wykonując ćwiczenie regularnie, zobaczysz, jak polepsza się Twoja ruchomość.",
         "video_file": "video.test.test_5"
+      }
+    ]
+  },
+  {
+    "exercise_id": "test.trudnosc",
+    "displayed_name": "Informacja",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Jeśli jakieś ćwiczenie sprawia Ci trudność, jest to informacja, że należy wzmocnić mięśnie i popracować nad ruchomością lub/i koordynacją. Możesz to zrobić korzystając z miejskiej ścieżki zdrowia. Regularna aktywność fizyczna przynosi najlepsze efekty."
+      }
+    ]
+  },
+  {
+    "exercise_id": "test.bol",
+    "displayed_name": "Informacja",
+    "category": "Game",
+    "subcategory": "Eyes",
+    "levels": [
+      {
+        "min_difficulty": 1,
+        "max_difficulty": 5,
+        "type": "historical_fact",
+        "fact": "Jeśli w trakcie wykonywania ćwiczeń odczuwasz dolegliwości bólowe skonsultuj się z fizjoterapeutą, który wykona szczegółowe testy diagnostyczne i wskaże możliwości wyeliminowania bólu, jak również poprawy samopoczucia."
       }
     ]
   }

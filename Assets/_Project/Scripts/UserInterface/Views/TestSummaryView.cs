@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
+    /// <summary>
+    /// A class that represents a test summary view. This object can be initialized with TestSummaryInitializationParameters.
+    /// </summary>
     public class TestSummaryView : MonoBehaviour, IInitializableView
     {
         [SerializeField] private Button _finishTestButton;

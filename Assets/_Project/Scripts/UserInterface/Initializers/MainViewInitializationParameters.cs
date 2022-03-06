@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A class that contains initialization parameters for MainView.
+    /// </summary>
     public class MainViewInitializationParameters : IViewInitializationParameters
     {
         public UnityAction ProfileEvent { get; }

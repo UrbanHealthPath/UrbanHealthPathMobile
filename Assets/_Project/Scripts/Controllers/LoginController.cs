@@ -6,6 +6,9 @@ using PolSl.UrbanHealthPath.Utils.PersistentValue;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
+    /// <summary>
+    /// Controller responsible for handling user login.
+    /// </summary>
     public class LoginController : BaseController
     {
         private readonly BoolPrefsValue _isFirstRun;

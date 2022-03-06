@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components
 {
+    /// <summary>
+    /// Changes the appearance of the button (image and text) when clicked.
+    /// </summary>
     [RequireComponent(typeof(Button))]
     public partial class AppearanceChangingButton : MonoBehaviour
     {

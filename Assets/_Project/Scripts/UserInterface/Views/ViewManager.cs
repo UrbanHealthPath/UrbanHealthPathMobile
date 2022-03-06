@@ -11,6 +11,10 @@ using UnityEngine.Serialization;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
+    /// <summary>
+    /// A class that manages views. It contains a table with all available views and stores information
+    /// about currently opened view. It can open and close views.
+    /// </summary>
     public class ViewManager : MonoBehaviour
     {
         public event Action<ViewType> ViewOpened;
@@ -38,6 +42,11 @@ namespace PolSl.UrbanHealthPath.UserInterface.Views
             History = new History();
         }
 
+        /// <summary>
+        /// A method that instantiates and initializes given view. 
+        /// </summary>
+        /// <param name="viewType"> A type of view that should be opened. </param>
+        /// <param name="initializationParameters"> Optional parameter with view's initialization params. </param>
         public GameObject OpenView(ViewType viewType, IViewInitializationParameters initializationParameters = null)
         {
             LastViewType = CurrentViewType;

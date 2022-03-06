@@ -10,6 +10,10 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
+    /// <summary>
+    /// A class that represents a path view. This object can be initialized with PathViewInitializationParameters.
+    /// It's extended by IPopupable interface, so it determines the size and position of a popup.
+    /// </summary>
     [RequireComponent(typeof(RectTransform))]
     public class PathView : MonoBehaviour, IInitializableView, IPopupable
     {

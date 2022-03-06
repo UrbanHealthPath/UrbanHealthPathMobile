@@ -296,11 +296,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Je\u015Bli jakie\u015B \u0107wiczenie sprawia Ci trudno\u015B\u0107, jest
-    to informacja, \u017Ce nale\u017Cy wzmocni\u0107 mi\u0119\u015Bnie i popracowa\u0107
-    nad ruchomo\u015Bci\u0105 lub/i koordynacj\u0105. Mo\u017Cesz to zrobi\u0107
-    korzystaj\u0105c z miejskiej \u015Bcie\u017Cki zdrowia. Regularna aktywno\u015B\u0107
-    fizyczna przynosi najlepsze efekty."
+  m_text: "Gratulujemy uko\u0144czenia testu sprawno\u015Bciowego!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -327,15 +323,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55
-  m_fontSizeBase: 55
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 8
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -435,10 +431,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Je\u015Bli w trakcie wykonywania \u0107wicze\u0144 odczuwasz dolegliwo\u015Bci
-    b\xF3lowe skonsultuj si\u0119 z fizjoterapeut\u0105, kt\xF3ry wykona szczeg\xF3\u0142owe
-    testy diagnostyczne i wska\u017Ce mo\u017Cliwo\u015Bci wyeliminowania b\xF3lu,
-    jak r\xF3wnie\u017C poprawy samopoczucia."
+  m_text: "\rPami\u0119taj, by regularnie testowa\u0107 swoj\u0105 sprawno\u015B\u0107
+    oraz \u017Ce mo\u017Cesz poprawi\u0107 swoje wyniki wykonuj\u0105c \u0107wiczenia
+    na \u015Bcie\u017Cce zdrowia."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -465,15 +460,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55
-  m_fontSizeBase: 55
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 8
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -620,7 +615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 289492582927451193, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_Name
-      value: TestSummary View
+      value: TestSummary View Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6132574673904301839, guid: 83798eeb56e8dde4db0e0fbcb6946092, type: 3}
       propertyPath: m_AnchorMax.y

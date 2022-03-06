@@ -9,6 +9,9 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
+    /// <summary>
+    /// Base class for all controllers that make use of View and Popup Managers.
+    /// </summary>
     public abstract class BaseController
     {
         protected ViewManager ViewManager { get; }
@@ -18,8 +21,7 @@ namespace PolSl.UrbanHealthPath.Controllers
         {
             ViewManager = viewManager;
             PopupManager = popupManager;
-
-            //TODO: We should find a place to unsubscribe
+            
             ViewManager.ViewOpened += ViewOpenedHandler;
             PopupManager.PopupOpened += PopupOpenedHandler;
             PopupManager.PopupClosed += PopupClosedHandler;

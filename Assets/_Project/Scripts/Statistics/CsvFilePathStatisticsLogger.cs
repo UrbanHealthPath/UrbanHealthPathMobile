@@ -5,6 +5,9 @@ using PolSl.UrbanHealthPath.Tools.TextLogger;
 
 namespace PolSl.UrbanHealthPath.Statistics
 {
+    /// <summary>
+    /// Path statistics logger that log to CSV-formatted file.
+    /// </summary>
     public class CsvFilePathStatisticsLogger : FilePathStatisticsLogger
     {
         private const string FIELD_SEPARATOR = ","; 

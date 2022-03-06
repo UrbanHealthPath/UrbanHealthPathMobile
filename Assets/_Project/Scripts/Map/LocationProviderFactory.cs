@@ -4,14 +4,11 @@ using PolSl.UrbanHealthPath.Utils.PermissionManagement;
 
 namespace PolSl.UrbanHealthPath.Map
 {
+    /// <summary>
+    /// Creates an instance of location provider.
+    /// </summary>
     public class LocationProviderFactory : ILocationProviderFactory
     {
-        private readonly IPermissionManager _permissionManager;
-
-        public LocationProviderFactory(IPermissionManager permissionManager)
-        {
-            _permissionManager = permissionManager;
-        }
         public ILocationProvider CreateProvider()
         {
             return new DeviceLocationProvider();

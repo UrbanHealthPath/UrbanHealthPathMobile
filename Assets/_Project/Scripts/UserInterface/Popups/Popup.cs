@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
+    /// <summary>
+    /// A struct that represents popup. It contains PopupType and popup GameObject.
+    /// </summary>
     [Serializable] public struct Popup
     {
         [SerializeField] private PopupType type;

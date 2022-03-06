@@ -10,6 +10,9 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components
 {
+    /// <summary>
+    /// Group of buttons used in the Test View.
+    /// </summary>
     public class TestButtonGroup : MonoBehaviour
     {
         [SerializeField] private ChangingButton _repeatButton;
@@ -22,7 +25,7 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components
         public ChangingButton RepeatButton => _repeatButton;
         public ChangingButton TimerButton => _timerButton;
         public ChangingButton NextButton => _nextButton;
-
+        
         public void Initialize(UnityAction<TestButtonGroup> initialized)
         {
             initialized?.Invoke(this);
@@ -34,39 +37,26 @@ namespace PolSl.UrbanHealthPath.UserInterface.Components
             _unregisterFromTestEvents?.Invoke();
         }
 
-        public void RegisterToTestProgressEvents()
-        {
-            //@todo implement TestProgress
-        }
-
-        public void RegisterToPopupEvents(PopupManager popupManager, ViewManager viewManager)
-        {
-            _unregisterFromPopupAndViewEvents?.Invoke();
-
-            popupManager.PopupClosed += HandlePopupClosed;
-
-            _unregisterFromPopupAndViewEvents = () =>
-            {
-                popupManager.PopupClosed -= HandlePopupClosed;
-                
-            };
-        }
-        
-        private void HandlePopupClosed(PopupType type)
-        {
-            if (type == PopupType.Confirmation)
-            {
-                _nextButton.SetDefaultAppearance();
-                _repeatButton.SetDefaultAppearance();
-                _timerButton.SetDefaultAppearance();
-            }
-        }
-        
         private void RemoveAllListeners()
         {
             _nextButton.Button.onClick.RemoveAllListeners();
             _timerButton.Button.onClick.RemoveAllListeners();
             _repeatButton.Button.onClick.RemoveAllListeners();
+        }
+
+        public void AddListenerToRepeatButton(UnityAction action)
+        {
+            _repeatButton.Button.onClick.AddListener(action);
+        }
+
+        public void AddListenerToTimerButton(UnityAction action)
+        {
+            _timerButton.Button.onClick.AddListener(action);
+        }
+
+        public void AddListenerToNextButton(UnityAction action)
+        {
+            _nextButton.Button.onClick.AddListener(action);
         }
     }
 }

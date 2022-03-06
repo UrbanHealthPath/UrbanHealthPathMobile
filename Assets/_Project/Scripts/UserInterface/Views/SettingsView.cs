@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
+    /// <summary>
+    /// A class that represents a settings view. This object can be initialized with SettingsInitializationParameters.
+    /// </summary>
     public class SettingsView : MonoBehaviour, IDisplayable, IInitializableView
     {
         [FormerlySerializedAs("revertButton")] [SerializeField] private Button _revertButton;

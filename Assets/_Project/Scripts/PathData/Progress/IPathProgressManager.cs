@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.PathData.Progress
 {
+    /// <summary>
+    /// Interface defining functionality of managing path progress.
+    /// </summary>
     public interface IPathProgressManager
     {
         event EventHandler<CheckpointReachedEventArgs> CheckpointReached;

@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A class that contains initialization parameters for LogInView.
+    /// </summary>
     public class LogInViewInitializationParameters : IViewInitializationParameters
     {
         public UnityAction LogInEvent { get; }

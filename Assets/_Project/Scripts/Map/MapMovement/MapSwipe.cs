@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.Map.MapMovement
 {
+    /// <summary>
+    /// A class that receives touch (swipe) input and invokes map swipe event.
+    /// </summary>
     public class MapSwipe : MonoBehaviour
     {
         [SerializeField] private Vector3EventChannelSO _onMapSwiped;

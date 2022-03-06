@@ -3,6 +3,9 @@ using PolSl.UrbanHealthPath.PathData;
 
 namespace PolSl.UrbanHealthPath
 {
+    /// <summary>
+    /// Class that is able to parse JObject into HistoricalFactExerciseLevel.
+    /// </summary>
     public class HistoricalFactExerciseLevelJsonParser : ValidatedJsonObjectParser<HistoricalFactExerciseLevel>
     {
         private const string FACT_KEY = "fact";

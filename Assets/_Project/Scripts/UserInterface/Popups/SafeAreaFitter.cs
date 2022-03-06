@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
+    /// <summary>
+    /// It adjusts a size of RectTransform, so it fits various kinds of displays, including those with notches.
+    /// </summary>
     public class SafeAreaFitter : MonoBehaviour
     {
         private RectTransform _panel;

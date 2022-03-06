@@ -6,6 +6,10 @@ using PolSl.UrbanHealthPath.Map;
 
 namespace PolSl.UrbanHealthPath.Player
 {
+    /// <summary>
+    /// Updates the location of the player to the position which gets converted from the Updated Location latitute and
+    /// longitude.
+    /// </summary>
     public class PlayerLocationTransformer : MonoBehaviour
     {
         private AbstractMap _map;

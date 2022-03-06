@@ -6,6 +6,9 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A struct that represents a quiz option. 
+    /// </summary>
     public struct QuizElementOption 
     {
         public Texture2D Texture { get; }

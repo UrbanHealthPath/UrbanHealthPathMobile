@@ -4,6 +4,9 @@ using PolSl.UrbanHealthPath.Utils.DistanceCalculator;
 
 namespace PolSl.UrbanHealthPath.Map
 {
+    /// <summary>
+    /// Checks whether the user is in the vicinity of the waypoint
+    /// </summary>
     public class WaypointVicinityChecker : IWaypointVicinityChecker
     {
         public event Action EnteringVicinity;

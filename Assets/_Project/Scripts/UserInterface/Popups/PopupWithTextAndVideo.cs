@@ -9,6 +9,10 @@ using UnityEngine.Video;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
+    /// <summary>
+    /// A class that represents a popup with text and video. This object can be initialized with PopupWithTextAndVideoInitializationParameters.
+    /// It is extended by IPopup interface, so it's size and position should be initialized with PopupPayload.
+    /// </summary>
     public class PopupWithTextAndVideo : MonoBehaviour, IPopup, IInitializablePopup
     {
         public RectTransform PopupArea => _popupArea;

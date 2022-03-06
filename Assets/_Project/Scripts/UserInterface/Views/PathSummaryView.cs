@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath
 {
+    /// <summary>
+    /// A class that represents a path summary view. This object can be initialized with PathSummaryViewInitializationParameters.
+    /// </summary>
     public class PathSummaryView : MonoBehaviour, IInitializableView
     {
         [SerializeField] private Button _finishButton;

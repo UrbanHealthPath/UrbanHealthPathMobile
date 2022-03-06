@@ -1,5 +1,8 @@
 ﻿namespace PolSl.UrbanHealthPath.Tools.TextLogger
 {
+    /// <summary>
+    /// Enum representing verbosity of a log message.
+    /// </summary>
     public enum LogVerbosity
     {
         Debug = 0,

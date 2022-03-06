@@ -1,8 +1,10 @@
 ﻿using System;
-using System.Collections;
 
 namespace PolSl.UrbanHealthPath.Map
 {
+    /// <summary>
+    /// Modifies ILocationUpdater behaviour to update location only when given predicate evaluates to true.
+    /// </summary>
     public class LimitedLocationUpdaterDecorator : LocationUpdater
     {
         private readonly Func<bool> _canUpdate;

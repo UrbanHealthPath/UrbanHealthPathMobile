@@ -4,6 +4,9 @@ using Newtonsoft.Json;
 
 namespace PolSl.UrbanHealthPath.PathData.Progress
 {
+    /// <summary>
+    /// Class responsible for storing and loading path progress in/from JSON files.
+    /// </summary>
     public class JsonFilePathProgressPersistor : IPathProgressPersistor
     {
         private readonly string _filePath;

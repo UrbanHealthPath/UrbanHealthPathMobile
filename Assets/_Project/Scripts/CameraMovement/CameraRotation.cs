@@ -1,11 +1,16 @@
 using UnityEngine;
 
 
-namespace PolSl.UrbanHealthPath.Camera
+namespace PolSl.UrbanHealthPath.CameraMovement
 {
+    /// <summary>
+    /// A class that is responsible for the camera rotation. Rotation depends on the player's heading direction.
+    /// </summary>
     [RequireComponent(typeof(UnityEngine.Camera))]
     public class CameraRotation : MonoBehaviour
     {
+        public Quaternion CurrentRotation => _targetRotation;
+        
         [Tooltip("An object that determines camera rotation.")]
         public Transform trackedObject;
 
@@ -32,9 +37,11 @@ namespace PolSl.UrbanHealthPath.Camera
                 Quaternion.Slerp(_rotationPoint.localRotation, _targetRotation , Time.deltaTime * _rotationSpeed);
         }
 
+        /// <summary>
+        /// Rotates the camera depending on the degree of deflection of the player's direction.
+        /// </summary>
         private void RotateCamera()
         {
-            Quaternion zeroAngle = Quaternion.Euler(0f, 180f, 0f);
             float trackedObjectRotation = trackedObject.localRotation.eulerAngles.y;
             float angle = Mathf.DeltaAngle(0.0f, trackedObjectRotation);
 
@@ -60,6 +67,9 @@ namespace PolSl.UrbanHealthPath.Camera
             }
         }
         
+        /// <summary>
+        /// Calculates euler angles.
+        /// </summary>
         private Vector3 GetNewEulerAngles(float newAngle)
         {
             Vector3 currentEuler = _rotationPoint.localRotation.eulerAngles;

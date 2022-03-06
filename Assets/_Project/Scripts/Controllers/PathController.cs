@@ -18,6 +18,9 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
+    /// <summary>
+    /// Controller responsible for managing current path state.
+    /// </summary>
     public class PathController : BaseController
     {
         public event Action<UrbanPath> PathStarted;

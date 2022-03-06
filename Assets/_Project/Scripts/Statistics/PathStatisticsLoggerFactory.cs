@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.Statistics
 {
+    /// <summary>
+    /// Default implementation of path statistics logger factory.
+    /// </summary>
     public class PathStatisticsLoggerFactory : IPathStatisticsLoggerFactory
     {
         private readonly ITextLogger _logger;

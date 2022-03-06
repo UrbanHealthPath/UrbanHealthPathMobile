@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A class that contains initialization parameters for ApplicationInfoView.
+    /// </summary>
     public class ApplicationInfoViewInitializationParameters : IViewInitializationParameters
     {
         public UnityAction LeftButton { get; }

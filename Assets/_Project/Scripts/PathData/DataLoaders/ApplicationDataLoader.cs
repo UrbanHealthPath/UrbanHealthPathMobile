@@ -2,12 +2,16 @@
 
 namespace PolSl.UrbanHealthPath.PathData.DataLoaders
 {
+    /// <summary>
+    /// Class responsible for loading configurable data regarding paths.
+    /// </summary>
     public class ApplicationDataLoader : IApplicationDataLoader
     {
         private IMediaFilesLoader _mediaFilesLoader;
         private IExercisesLoader _exercisesLoader;
         private IWaypointsLoader _waypointsLoader;
         private IUrbanPathsLoader _urbanPathsLoader;
+        private ITestLoader _testLoader;
 
         public  ApplicationDataLoader(ILoadersFactory loadersFactory)
         {
@@ -20,9 +24,10 @@ namespace PolSl.UrbanHealthPath.PathData.DataLoaders
             IList<Exercise> exercises = _exercisesLoader.LoadExercises();
             IList<Waypoint> waypoints = _waypointsLoader.LoadWaypoints();
             IList<UrbanPath> urbanPaths = _urbanPathsLoader.LoadUrbanPaths();
+            IList<Test> tests = _testLoader.LoadTests();
 
             ApplicationData applicationData =
-                new ApplicationData(mediaFiles, exercises, waypoints, urbanPaths);
+                new ApplicationData(mediaFiles, exercises, waypoints, urbanPaths, tests);
             applicationData.SetLateBindings();
             
             return applicationData;
@@ -34,6 +39,7 @@ namespace PolSl.UrbanHealthPath.PathData.DataLoaders
             _exercisesLoader = loadersFactory.CreateExercisesLoader();
             _waypointsLoader = loadersFactory.CreateWaypointsLoader();
             _urbanPathsLoader = loadersFactory.CreateUrbanPathsLoader();
+            _testLoader = loadersFactory.CreateTestLoader();
         }
     }
 }

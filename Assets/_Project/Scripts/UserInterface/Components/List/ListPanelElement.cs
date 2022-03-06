@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components.List
 {
+    /// <summary>
+    /// Represents a UI list element.  
+    /// </summary>
     public class ListPanelElement : MonoBehaviour
     {
         [FormerlySerializedAs("buttonText")] [SerializeField] private TextMeshProUGUI _buttonText;

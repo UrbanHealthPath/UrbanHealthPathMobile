@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Scalers
 {
+    /// <summary>
+    /// It adjusts the size of the RawImage with map. 
+    /// </summary>
     [RequireComponent(typeof(RectTransform), typeof(RawImage))]
     public class MapImageScaler : MonoBehaviour
     {

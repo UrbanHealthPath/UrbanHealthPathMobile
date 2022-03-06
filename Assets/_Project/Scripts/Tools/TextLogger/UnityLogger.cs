@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.Tools.TextLogger
 {
+    /// <summary>
+    /// Implementation of ITextLogger that logs the message using Unity's Debug.Log methods.
+    /// </summary>
     public class UnityLogger : ITextLogger
     {
         private const string DEFAULT_CATEGORY = "default";

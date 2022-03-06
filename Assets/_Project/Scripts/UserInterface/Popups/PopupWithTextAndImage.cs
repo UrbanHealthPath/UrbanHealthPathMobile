@@ -9,6 +9,10 @@ using UnityEngine.Serialization;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
+    /// <summary>
+    /// A class that represents a popup with text and image. This object can be initialized with PopupWithTextAndImageInitializationParameters.
+    /// It is extended by IPopup interface, so it's size and position should be initialized with PopupPayload.
+    /// </summary>
     public class PopupWithTextAndImage : MonoBehaviour, IPopup, IInitializablePopup
     {
         public RectTransform PopupArea => _popupArea;

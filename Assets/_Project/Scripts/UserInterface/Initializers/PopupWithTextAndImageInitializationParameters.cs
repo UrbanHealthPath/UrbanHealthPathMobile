@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A class that contains initialization parameters for PopupWithTextAndImage.
+    /// </summary>
     public class PopupWithTextAndImageInitializationParameters : IPopupInitializationParameters
     {
         public string Text { get; }

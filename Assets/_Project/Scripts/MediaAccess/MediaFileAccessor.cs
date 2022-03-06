@@ -4,14 +4,17 @@ using PolSl.UrbanHealthPath.PathData;
 
 namespace PolSl.UrbanHealthPath.MediaAccess
 {
-    public abstract class MediaFileAccessor<T> : IMediaFileAccessor<T>
+    /// <summary>
+    /// Base class for all media file accessors that also checks whether the media file is of given accepted type.
+    /// </summary>
+    public abstract class MediaFileAccessor<T>
     {
         protected readonly MediaFile _mediaFile;
         private MediaFileType[] _acceptedMediaFileTypes;
 
         protected MediaFileAccessor(MediaFile mediaFile, MediaFileType[] acceptedMediaFileTypes)
         {
-            _mediaFile = mediaFile;
+            _mediaFile = mediaFile ?? throw new ArgumentException("Attempt to access null media file!", nameof(mediaFile));
             _acceptedMediaFileTypes = acceptedMediaFileTypes;
 
             if (!_acceptedMediaFileTypes.Contains(mediaFile.Type))
@@ -20,7 +23,7 @@ namespace PolSl.UrbanHealthPath.MediaAccess
             }
         }
 
-        public virtual T GetMedia()
+        public T GetMedia()
         {
             if (_mediaFile.StorageType == MediaFileStorageType.Local)
             {

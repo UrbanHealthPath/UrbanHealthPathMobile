@@ -4,6 +4,9 @@ using PolSl.UrbanHealthPath.PathData;
 
 namespace PolSl.UrbanHealthPath
 {
+    /// <summary>
+    /// Class that is able to parse JObject into AnswerSelectionExerciseLevel.
+    /// </summary>
     public class AnswerSelectionExerciseLevelJsonParser : ValidatedJsonObjectParser<AnswerSelectionExerciseLevel>
     {
         private const string QUESTION_KEY = "question";

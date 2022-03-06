@@ -2,6 +2,9 @@ using Mapbox.Unity.Map;
 
 namespace PolSl.UrbanHealthPath.Map
 {
+    /// <summary>
+    /// Initializes the map when the location is updated for the first time.
+    /// </summary>
     public class DelayedMapInitializer
     {
         private readonly AbstractMap _map;

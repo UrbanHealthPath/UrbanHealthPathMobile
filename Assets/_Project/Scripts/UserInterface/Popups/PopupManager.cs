@@ -8,6 +8,10 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
+    /// <summary>
+    /// A class that manages popups. It contains a table with all available popups and stores information
+    /// about currently opened popup. It can open and close popups.
+    /// </summary>
     public class PopupManager : MonoBehaviour
     {
         public event Action<PopupType> PopupOpened;
@@ -32,6 +36,11 @@ namespace PolSl.UrbanHealthPath.UserInterface.Popups
             }
         }
 
+        /// <summary>
+        /// A method that instantiates and initializes given popup. 
+        /// </summary>
+        /// <param name="popupType"> A type of popup that should be opened. </param>
+        /// <param name="initializationParameters"> Optional parameter with popup's initialization params. </param>
         public GameObject OpenPopup(PopupType popupType, IPopupInitializationParameters initializationParameters = null)
         {
             CurrentPopupType = popupType;

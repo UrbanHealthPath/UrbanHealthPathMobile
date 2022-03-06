@@ -1,11 +1,15 @@
 ﻿using PolSl.UrbanHealthPath.UserInterface.Components;
 using PolSl.UrbanHealthPath.UserInterface.Initializers;
+using PolSl.UrbanHealthPath.UserInterface.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
-    public class ExerciseIconInfoView : MonoBehaviour
+    /// <summary>
+    /// A class that represents an exercise icon info view. This object can be initialized with ApplicationInfoViewInitializationParameters.
+    /// </summary>
+    public class ExerciseIconInfoView : MonoBehaviour, IInitializableView
     {
         [SerializeField] private Button _menuButton;
         [SerializeField] private Button _resturnButton;

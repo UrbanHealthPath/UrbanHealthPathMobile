@@ -7,6 +7,9 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components
 {
+    /// <summary>
+    /// Group of Buttons used in the Station View.
+    /// </summary>
     public class StationButtonGroup : MonoBehaviour
     {
         [SerializeField] private ChangingButton _sensorialButton;

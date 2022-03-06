@@ -12,6 +12,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.Navigation
 {
+    /// <summary>
+    /// Class that created a navigation line which navigates the user to the asked destination.
+    /// </summary>
     public class DirectionsFactory : MonoBehaviour
     {
         [SerializeField] private LineMeshModifier _lineMeshModifier;
@@ -41,7 +44,7 @@ namespace PolSl.UrbanHealthPath.Navigation
             }
 
             _directions = MapboxAccess.Instance.Directions;
-            // TODO: Investigate why the line below is required.
+            
             _lineMeshModifier.SetProperties(new LineGeometryOptions());
             _lineMeshModifier.Initialize();
             _initialized = true;

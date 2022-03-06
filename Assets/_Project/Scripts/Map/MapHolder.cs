@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath
 {
+    /// <summary>
+    /// Holder of the Map prefab which is used to generate map in the game.
+    /// </summary>
     public class MapHolder : MonoBehaviour
     {
         [SerializeField] private StationFactory _stationFactory;
@@ -20,12 +23,6 @@ namespace PolSl.UrbanHealthPath
         [SerializeField] private RenderTexture _renderTexture;
 
         private bool _isInitialized;
-
-        public StationFactory StationFactory => _stationFactory;
-        public NavigationPointProvider NavigationPointProvider => _navigationPointProvider;
-        public PlayerLocationTransformer PlayerLocationTransformer => _playerLocationTransformer;
-        public TransformHeadingRotator LocationProviderRotator => _transformHeadingRotator;
-        public AbstractMap Map => _map;
 
         public void Initialize(string mapUrl, ILocationUpdater locationUpdater, List<Coordinates> stationsCoordinates)
         {

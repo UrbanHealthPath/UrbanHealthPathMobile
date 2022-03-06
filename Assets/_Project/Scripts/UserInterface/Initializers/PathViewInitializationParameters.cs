@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A class that contains initialization parameters for PathView.
+    /// </summary>
     public class PathViewInitializationParameters : IViewInitializationParameters
     {
         public UnityAction EndPathEvent { get; }

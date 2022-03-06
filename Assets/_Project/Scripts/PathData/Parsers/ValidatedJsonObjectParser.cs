@@ -3,6 +3,10 @@ using Newtonsoft.Json.Linq;
 
 namespace PolSl.UrbanHealthPath
 {
+    /// <summary>
+    /// Base class of parsers of JObjects that validate the given object before parsing.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class ValidatedJsonObjectParser<T> : JsonObjectParser<T>
     {
         private readonly string[] _requiredKeys;

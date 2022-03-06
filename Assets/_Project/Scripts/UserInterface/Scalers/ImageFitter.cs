@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Scalers
 {
+    /// <summary>
+    /// It adjusts a size of the image to fit given imageArea. It keeps the aspect ratio of the image.
+    /// </summary>
     public class ImageFitter : MonoBehaviour
     {
         [FormerlySerializedAs("imageArea")] [SerializeField] private RectTransform _imageArea;
@@ -28,12 +31,10 @@ namespace PolSl.UrbanHealthPath.UserInterface.Scalers
         private IEnumerator SetTextureSize(Texture texture)
         {
             yield return new WaitForEndOfFrame();
-
-            Debug.Log(_imageArea.sizeDelta);
+            
             Vector2 size = TextureScaler.GetScaledTexture(_imageArea, texture, _borderSize);
             _image.texture = texture;
             _imageRect.sizeDelta = new Vector2(size.x, size.y);
-            Debug.Log(_imageRect.sizeDelta);
         }
     }
 }

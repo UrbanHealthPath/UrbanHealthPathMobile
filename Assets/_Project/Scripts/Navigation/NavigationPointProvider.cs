@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.Navigation
 {
+    /// <summary>
+    /// Class that provides a point to which the user is navigated to.
+    /// </summary>
     public class NavigationPointProvider : MonoBehaviour
     {
         [SerializeField] private Transform _point;

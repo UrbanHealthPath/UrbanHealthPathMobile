@@ -4,22 +4,19 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A class that contains initialization parameters for ProfileView.
+    /// </summary>
     public class ProfileViewInitializationParameters : IViewInitializationParameters
     {
-        public List<ListElement> Elements { get; }
-        public UnityAction StatisticsEvent { get; }
-        public UnityAction AchievementsEvent { get; }
-        public UnityAction ShareEvent { get; }
         public UnityAction ReturnEvent { get; }
         public string Header { get; }
+        public List<ListElement> ListElements { get; }
 
-        public ProfileViewInitializationParameters(List<ListElement> elements, UnityAction statisticsEvent, UnityAction achievementsEvent,
-            UnityAction shareEvent, UnityAction returnEvent, string header = "Twój profil")
+        public ProfileViewInitializationParameters(List<ListElement> listElements,
+            UnityAction returnEvent, string header = "Twój profil")
         {
-            Elements = elements;
-            StatisticsEvent += statisticsEvent;
-            AchievementsEvent += achievementsEvent;
-            ShareEvent += shareEvent;
+            ListElements = listElements;
             ReturnEvent += returnEvent;
             Header = header;
         }

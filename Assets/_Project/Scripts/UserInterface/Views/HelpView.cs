@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
+    /// <summary>
+    /// A class that represents a help view. This object can be initialized with HelpViewInitializationParameters.
+    /// </summary>
     public class HelpView : MonoBehaviour, IDisplayable, IInitializableView
     {
         [FormerlySerializedAs("returnButton")] [SerializeField] private Button _returnButton;

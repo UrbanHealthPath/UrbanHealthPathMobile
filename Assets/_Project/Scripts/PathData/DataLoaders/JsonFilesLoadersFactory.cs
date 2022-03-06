@@ -3,6 +3,9 @@ using Newtonsoft.Json.Linq;
 
 namespace PolSl.UrbanHealthPath.PathData.DataLoaders
 {
+    /// <summary>
+    /// Factory of JSON loaders that gets the data to be loaded from .json files.
+    /// </summary>
     public class JsonFilesLoadersFactory : ILoadersFactory
     {
         private readonly string _filesDirectoryPath;
@@ -37,6 +40,12 @@ namespace PolSl.UrbanHealthPath.PathData.DataLoaders
         {
             return new JsonUrbanPathsLoader(_fileReader.ReadJsonFromFile(GetFullFilePath("urban_paths")),
                 _parsers.UrbanPathParser);
+        }
+
+        public ITestLoader CreateTestLoader()
+        {
+            return new JsonTestLoader(_fileReader.ReadJsonFromFile(GetFullFilePath("tests")),
+                _parsers.TestParser);
         }
         
         private string GetFullFilePath(string fileName)

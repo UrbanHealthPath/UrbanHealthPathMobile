@@ -1,5 +1,8 @@
 ﻿namespace PolSl.UrbanHealthPath.UserInterface.Views
 {
+    /// <summary>
+    /// Enum with view types.
+    /// </summary>
     public enum ViewType
     {
         None,

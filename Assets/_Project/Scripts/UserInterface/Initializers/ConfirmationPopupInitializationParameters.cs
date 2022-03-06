@@ -3,6 +3,9 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A class that contains initialization parameters for ConfirmationPopup.
+    /// </summary>
     public class ConfirmationPopupInitializationParameters : IPopupInitializationParameters
     {
         public string Information { get; }

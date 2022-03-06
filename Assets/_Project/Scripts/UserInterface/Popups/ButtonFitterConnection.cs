@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
+    /// <summary>
+    /// Struct that contains a button and it's image fitter.
+    /// </summary>
     [Serializable] public struct ButtonFitterConnection
     {
         [SerializeField] private ImageFitter _imageFitter;

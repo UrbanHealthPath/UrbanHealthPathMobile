@@ -3,6 +3,9 @@ using UnityEngine.Video;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A class that contains initialization parameters for PopupWithTextAndVideo.
+    /// </summary>
     public class PopupWithTextAndVideoInitializationParameters : IPopupInitializationParameters
     {
         public string Text { get; }

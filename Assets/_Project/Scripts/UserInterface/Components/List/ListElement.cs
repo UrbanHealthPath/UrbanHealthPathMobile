@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components.List
 {
+    /// <summary>
+    /// Represents a UI list element. It is used for ListPanel initialization.
+    /// </summary>
     public class ListElement
     {
         public string ButtonText { get; }

@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.PathData.DataLoaders
 {
+    /// <summary>
+    /// Factory that returns DataLoaderParsers for JSON data.
+    /// </summary>
     public class JsonDataLoaderParsersFactory
     {
         public DataLoaderParsers<JObject> Create()
@@ -10,27 +13,16 @@ namespace PolSl.UrbanHealthPath.PathData.DataLoaders
             JsonObjectParser<Exercise> exercisesParser = CreateExercisesParser();
             JsonObjectParser<Waypoint> waypointsParser = CreateWaypointsParser();
             JsonObjectParser<UrbanPath> urbanPathsParser = new UrbanPathJsonParser();
+            JsonObjectParser<Test> testParser = new TestJsonParser();
 
             return new DataLoaderParsers<JObject>(mediaFilesParser, exercisesParser,
-                waypointsParser, urbanPathsParser);
+                waypointsParser, urbanPathsParser, testParser);
         }
 
         private JsonObjectParser<Exercise> CreateExercisesParser()
         {
-            JsonObjectParser<TextExerciseLevel> textExerciseLevelsParser = new TextExerciseLevelJsonParser();
-            JsonObjectParser<VideoExerciseLevel> videoExerciseLevelParser = new VideoExerciseLevelJsonParser();
-            JsonObjectParser<ImageExerciseLevel> imageExerciseLevelParser = new ImageExerciseLevelJsonParser();
-            JsonObjectParser<ImageSelectionExerciseLevel> imageSelectionExerciseLevelParser =
-                new ImageSelectionExerciseLevelJsonParser();
-            JsonObjectParser<AnswerSelectionExerciseLevel> answerSelectionExerciseLevelParser =
-                new AnswerSelectionExerciseLevelJsonParser();
-            JsonObjectParser<HistoricalFactExerciseLevel> historicalFactExerciseLevelParser =
-                new HistoricalFactExerciseLevelJsonParser();
-
             JsonObjectParser<ExerciseLevel>
-                exerciseLevelsParser = new ExerciseLevelJsonParser(textExerciseLevelsParser, videoExerciseLevelParser,
-                    imageExerciseLevelParser, imageSelectionExerciseLevelParser, answerSelectionExerciseLevelParser,
-                    historicalFactExerciseLevelParser);
+                exerciseLevelsParser = new ExerciseLevelJsonParser(new ExerciseLevelTypesJsonParsersFactory());
 
             return new ExerciseJsonParser(exerciseLevelsParser);
         }

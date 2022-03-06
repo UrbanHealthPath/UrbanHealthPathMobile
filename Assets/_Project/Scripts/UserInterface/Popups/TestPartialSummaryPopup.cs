@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Popups
 {
+    /// <summary>
+    /// A class that represents a test partial summary popup.
+    /// It is extended by IPopup interface, so it's size and position should be initialized with PopupPayload.
+    /// </summary>
     public class TestPartialSummaryPopup : MonoBehaviour, IPopup
     {
         public RectTransform PopupArea { get; }

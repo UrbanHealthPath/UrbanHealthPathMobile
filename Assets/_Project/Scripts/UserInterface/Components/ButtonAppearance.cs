@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components
 {
+    /// <summary>
+    /// A struct that represents button appearance. It contains button sprite, text and text bottom offset.
+    /// </summary>
     [Serializable]
     public struct ButtonAppearance
     {

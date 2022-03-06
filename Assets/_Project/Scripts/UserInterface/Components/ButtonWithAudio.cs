@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components
 {
+    /// <summary>
+    /// Button which stores an AudioSource type object.
+    /// </summary>
     public class ButtonWithAudio : MonoBehaviour
     {
         [SerializeField] private Button _button;

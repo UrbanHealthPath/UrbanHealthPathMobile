@@ -300,10 +300,10 @@ RectTransform:
   m_Father: {fileID: 7799555808593891482}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -148, y: -8}
+  m_SizeDelta: {x: 932, y: 1304}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7139639647286392658
 CanvasRenderer:
@@ -687,7 +687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5977577958687123987, guid: abb1e5bcf74c0cf44ab701294d3cd94e, type: 3}
       propertyPath: m_text
-      value: "Ropocznij \u0107wiczenie"
+      value: "W\u0142\u0105cz\\nstoper"
       objectReference: {fileID: 0}
     - target: {fileID: 5977577958687123987, guid: abb1e5bcf74c0cf44ab701294d3cd94e, type: 3}
       propertyPath: m_margin.w
@@ -878,7 +878,7 @@ MonoBehaviour:
   _text: {fileID: 3967413970249189775}
   _icon: {fileID: 3967413969377128630}
   _defaultSprite: {fileID: 21300000, guid: 18f28ef90b3cb934ab06b6b608735eef, type: 3}
-  _defaultText: "Nast\u0119pne \u0107wiczenie"
+  _defaultText: "Podsumuj \u0107wiczenie"
   _defaultMargin: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &471897739479876399
 MonoBehaviour:
@@ -895,7 +895,7 @@ MonoBehaviour:
   _text: {fileID: 5298543990125026184}
   _icon: {fileID: 2751500098861197366}
   _defaultSprite: {fileID: 21300000, guid: 8c686a8f84c0b594c9f18ad4bb07a6fb, type: 3}
-  _defaultText: "Rozpocznij \u0107wiczenie"
+  _defaultText: "W\u0142\u0105cz   stoper"
   _defaultMargin: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1001 &8542978645322613645
 PrefabInstance:
@@ -1094,7 +1094,6 @@ MonoBehaviour:
   _testButtonGroup: {fileID: 3337178705834240883}
   _mainMenuButton: {fileID: 6086754874713841562}
   _returnButton: {fileID: 8185087306682356212}
-  _startTestButton: {fileID: 0}
   _headerPanel: {fileID: 8139914462584043943}
   _popupArea: {fileID: 7190361644073471549}
   _timerText: {fileID: 1614859922920750585}

@@ -14,6 +14,9 @@ using PolSl.UrbanHealthPath.Utils.PermissionManagement;
 
 namespace PolSl.UrbanHealthPath.Controllers
 {
+    /// <summary>
+    /// Main application controller that creates and sets up the rest of them.
+    /// </summary>
     public class MainController : BaseController
     {
         private readonly IPathProgressManager _pathProgressManager;
@@ -33,11 +36,14 @@ namespace PolSl.UrbanHealthPath.Controllers
         private StationController _stationController;
         private ExerciseController _exerciseController;
         private ShareController _shareController;
+        private ProfileController _profileController;
+        private TestController _testController;
 
         public MainController(ViewManager viewManager, PopupManager popupManager,
             IPathProgressManager pathProgressManager, IApplicationData applicationData, MapHolder mapHolderPrefab,
             CoroutineManager coroutineManager, Settings settings, IPermissionManager permissionManager,
-            IPathStatisticsLoggerFactory pathStatisticsLoggerFactory, IFinishedPathStatisticsProvider finishedPathStatisticsProvider) : base(viewManager,
+            IPathStatisticsLoggerFactory pathStatisticsLoggerFactory,
+            IFinishedPathStatisticsProvider finishedPathStatisticsProvider) : base(viewManager,
             popupManager)
         {
             _pathProgressManager = pathProgressManager;
@@ -67,6 +73,8 @@ namespace PolSl.UrbanHealthPath.Controllers
 
             _menuController.HelpButtonPressed += _helpController.ShowHelp;
 
+            _menuController.ProfileButtonPressed += _profileController.ShowProfile;
+
             _menuController.TopMenuButtonPressed += HandleTopButtonClick;
 
             _menuController.BottomMenuButtonPressed += HandleBottomButtonClick;
@@ -75,8 +83,10 @@ namespace PolSl.UrbanHealthPath.Controllers
         private void SubscribeToPathEvents()
         {
             _pathController.PathStarted += BuildPathView;
-            _pathController.PathCancelled += path => _pathController.ShowCancelledPathSummary(path, _shareController.ShareDefaultWhatsappMessage);
-            _pathController.PathCompleted += path => _pathController.ShowCompletedPathSummary(path, _shareController.ShareDefaultWhatsappMessage);
+            _pathController.PathCancelled += path =>
+                _pathController.ShowCancelledPathSummary(path, _shareController.ShareDefaultWhatsappMessage);
+            _pathController.PathCompleted += path =>
+                _pathController.ShowCompletedPathSummary(path, _shareController.ShareDefaultWhatsappMessage);
         }
 
         private void BuildPathView(UrbanPath path)
@@ -105,10 +115,15 @@ namespace PolSl.UrbanHealthPath.Controllers
             _settingsController = new SettingsController(ViewManager, PopupManager, _settings);
             _helpController = new HelpController(ViewManager, PopupManager);
             _pathController = new PathController(ViewManager, PopupManager, _pathProgressManager, ReturnToMenu,
-                new LocationProviderFactory(_permissionManager), _mapHolderPrefab, _coroutineManager,
+                new LocationProviderFactory(), _mapHolderPrefab, _coroutineManager,
                 _permissionManager, _finishedPathStatisticsProvider, _pathStatisticsLoggerFactory);
             _stationController = new StationController(ViewManager, PopupManager, _coroutineManager, _settings);
             _exerciseController = new ExerciseController(ViewManager, PopupManager, _coroutineManager);
+            _profileController = new ProfileController(ViewManager, PopupManager,
+                () => _testController.ShowTestIntroduction(_applicationData.Tests[0]));
+            _testController = new TestController(ViewManager, PopupManager, _coroutineManager, ReturnToMenu,
+                _profileController.ShowProfile, _exerciseController.ShowPopupForExercise,
+                exercise => PopupManager.CloseCurrentPopup());
             _shareController = new ShareController();
         }
 

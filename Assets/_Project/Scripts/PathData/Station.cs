@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace PolSl.UrbanHealthPath.PathData
 {
+    /// <summary>
+    /// Class that holds information about a station - waypoint that user can interact with.
+    /// </summary>
     public class Station : Waypoint
     {
         public string DisplayedName { get; }
@@ -11,11 +14,6 @@ namespace PolSl.UrbanHealthPath.PathData
         public LateBoundValue<MediaFile> NavigationAudio { get; }
         public LateBoundValue<MediaFile> Image { get; }
         public LateBoundValue<MediaFile> IntroductionAudio { get; }
-
-        public override void Trigger()
-        {
-            throw new NotImplementedException();
-        }
 
         public Station(string waypointId, Coordinates coordinates, string zoneName, string displayedName,
             IList<LateBoundValue<Exercise>> exercises,

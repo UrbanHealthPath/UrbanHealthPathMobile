@@ -7,10 +7,12 @@ using PolSl.UrbanHealthPath.PathData;
 
 namespace PolSl.UrbanHealthPath.Map
 {
+    /// <summary>
+    /// Location Provider which updates the location of the user to one of the Locations stored in the
+    /// _latitudeLongitud list
+    /// </summary>
     public class FakeLocationProvider : ILocationProvider
-    { 
-        public event Action<Location> LocationUpdated = delegate {};
-        
+    {
         private float _userHeading = 0;
 
         private int _accuracy = 5;
@@ -52,12 +54,6 @@ namespace PolSl.UrbanHealthPath.Map
             _currentLocation.IsUserHeadingUpdated = true;
             _currentLocation.UserHeading = _userHeading;
             _currentLocation.Accuracy = _accuracy;
-            SendLocation(_currentLocation);
-        }
-        
-        private void SendLocation(Location location)
-        {
-            LocationUpdated(location);
         }
     }
 }

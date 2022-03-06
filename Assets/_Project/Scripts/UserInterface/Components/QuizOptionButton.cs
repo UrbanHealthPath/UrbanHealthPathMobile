@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace PolSl.UrbanHealthPath.UserInterface.Components
 {
+    /// <summary>
+    /// Represents a button, that is an option in quiz.
+    /// </summary>
     public class QuizOptionButton : MonoBehaviour
     {
         [SerializeField] protected Button _button;

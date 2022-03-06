@@ -4,6 +4,10 @@ using Newtonsoft.Json.Linq;
 
 namespace PolSl.UrbanHealthPath.PathData.DataLoaders
 {
+    /// <summary>
+    /// Base class for all loaders that use data in JSON format as their input.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class JsonDataLoader<T>
     {
         private readonly JToken _json;

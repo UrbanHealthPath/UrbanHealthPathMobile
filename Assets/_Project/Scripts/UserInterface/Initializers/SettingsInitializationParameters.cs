@@ -2,6 +2,9 @@
 
 namespace PolSl.UrbanHealthPath.UserInterface.Initializers
 {
+    /// <summary>
+    /// A class that contains initialization parameters for SettingsView.
+    /// </summary>
     public class SettingsInitializationParameters : IViewInitializationParameters
     {
         public string HeaderText { get;}

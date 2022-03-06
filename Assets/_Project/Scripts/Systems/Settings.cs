@@ -3,6 +3,9 @@ using PolSl.UrbanHealthPath.Utils.PersistentValue;
 
 namespace PolSl.UrbanHealthPath.Systems
 {
+    /// <summary>
+    /// Settings system that allow manipulating application's settings.
+    /// </summary>
     public class Settings
     {
         public event Action<bool> IsAudioEnabledChanged;

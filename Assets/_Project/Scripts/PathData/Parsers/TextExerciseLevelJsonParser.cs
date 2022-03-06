@@ -3,6 +3,9 @@ using PolSl.UrbanHealthPath.PathData;
 
 namespace PolSl.UrbanHealthPath
 {
+    /// <summary>
+    /// Class that is able to parse JObject into TextExerciseLevel.
+    /// </summary>
     public class TextExerciseLevelJsonParser : ValidatedJsonObjectParser<TextExerciseLevel>
     {
         private const string DESCRIPTION_KEY = "description";
