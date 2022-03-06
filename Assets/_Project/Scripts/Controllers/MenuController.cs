@@ -23,7 +23,7 @@ namespace PolSl.UrbanHealthPath.Controllers
 
         public void ShowMenu(bool isPathInProgress)
         {
-            string upperButtonText = isPathInProgress ? "Rozpocznij nową ścieżkę" : "Wyjdź na ścieżkę";
+            string upperButtonText = isPathInProgress ? "Zakończ ścieżkę" : "Wyjdź na ścieżkę";
             string lowerButtonText = isPathInProgress ? "Kontynuuj ścieżkę" : "Zobacz ścieżkę";
 
             MainViewInitializationParameters initParams = new MainViewInitializationParameters(OnProfileButtonPressed,
