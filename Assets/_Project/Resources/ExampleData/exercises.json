@@ -917,7 +917,7 @@
           "image.game.gliwice.Gra_miejska_zdjęcie3_8.Synagoga",
           "image.game.Gra_miejska_zdjęcieD_5.Galeria_sztuki"
         ],
-        "correct_answers": [0]
+        "correct_answers": [1]
       }
     ]
   },
@@ -1316,7 +1316,7 @@
   },
   {
     "exercise_id": "gliwice.herby.game",
-    "displayed_name": "Neptun - Gra Miejska",
+    "displayed_name": "Herby - Gra Miejska",
     "category": "Game",
     "subcategory": "Eyes",
     "levels": [
@@ -1324,7 +1324,7 @@
         "min_difficulty": 1,
         "max_difficulty": 5,
         "type": "image_selection",
-        "question": "Kamienica nr 8 na rogu ulicy Jana Matejki przykuwa uwagę swoimi dekoracjami. Pomiędzy oknami, w wydzielonych pasach umieszczono płaskorzeźby, które przedstawiają herby. Spośród poniższych fotografii wybierz tę, na której sfotografowano herb znajdujący się na kamienicy.",
+        "question": "Kamienica nr 8 na rogu ulicy Jana Matejki przykuwa uwagę swoimi dekoracjami. Spośród poniższych fotografii wybierz tę, na której sfotografowano herb znajdujący się na kamienicy.",
         "images": [
           "image.game.gliwice.herby.Gra_miejska_Zdjęcie1.Kamienica",
           "image.game.gliwice.herby.Gra_miejska_Zdjęcie2.Kamienica",
