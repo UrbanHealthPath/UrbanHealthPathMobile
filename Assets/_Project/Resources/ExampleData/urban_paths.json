@@ -5,7 +5,7 @@
     "displayed_name": "Gliwice - Rynek",
     "approximate_distance_in_meters": 180,
     "is_cyclic": false,
-    "map_url": "mapbox://styles/matadam667/ckxn3iyihbqu214pbijxv32f1",
+    "map_url": "mapbox://styles/polslrau6/cl02epmx2000l14n1x2diwqhg",
     "waypoints": [
       "gliwice.rynek.neptun",
       "gliwice.rynek.ratusz",
@@ -24,7 +24,7 @@
     "displayed_name": "Gliwice - Centrum",
     "approximate_distance_in_meters": 1100,
     "is_cyclic": false,
-    "map_url": "mapbox://styles/matadam667/ckzx6r3wh000y14pbh52ycfa5",
+    "map_url": "mapbox://styles/polslrau6/cl02he6wm002p14qb7uztm0yf",
     "waypoints": [
       "gliwice.rynek.neptun",
       "gliwice.rynek.ratusz",
